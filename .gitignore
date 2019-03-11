@@ -33,6 +33,8 @@ obj/
 [Rr]elease*/
 Ankh.NoLoad
 
+/AstroMonkey/.vs
+
 #Tooling
 _ReSharper*/
 *.resharper
