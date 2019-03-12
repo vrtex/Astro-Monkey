@@ -13,7 +13,7 @@
 
 #---------------------------------- Content ---------------------------------#
 
-#begin Characters/Enemys/Klucha.png
+#begin Characters/Enemies/Klucha.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -23,7 +23,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Characters/Enemys/Klucha.png
+/build:Characters/Enemies/Klucha.png
 
 #begin Characters/Player/PlayerConture.png
 /importer:TextureImporter
