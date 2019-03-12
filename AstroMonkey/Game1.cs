@@ -11,11 +11,14 @@ namespace AstroMonkey
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+        InputManager inputManager;
         
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+            /// create manager
+            inputManager = new InputManager();
         }
 
         /// <summary>
@@ -29,6 +32,18 @@ namespace AstroMonkey
             // TODO: Add your initialization logic here
 
             base.Initialize();
+
+            // initialize manager
+            inputManager.Initialize();
+            // add interesting buttons. Duplicates are ignored
+            inputManager.AddObservedKey(Keys.W);
+            inputManager.AddObservedKey(Keys.S);
+
+            // hook up events
+            inputManager.OnKeyReleased += TestKey;
+            inputManager.OnMouseMove += TestMouse;
+            inputManager.OnMouseButtonPressed += TestMouse;
+            inputManager.OnMouseButtonReleased += TestMouse;
         }
 
         /// <summary>
@@ -60,7 +75,11 @@ namespace AstroMonkey
         protected override void Update(GameTime gameTime)
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
+            {
+                // IMPORTANT: call end on manager before quitting game
+                inputManager.End();
                 Exit();
+            }
 
             // TODO: Add your update logic here
 
@@ -78,6 +97,16 @@ namespace AstroMonkey
             // TODO: Add your drawing code here
 
             base.Draw(gameTime);
+        }
+
+        private void TestKey(KeyInputEventArgs args)
+        {
+            System.Console.WriteLine(args);
+        }
+
+        private void TestMouse(MouseInputEventArgs args)
+        {
+            System.Console.WriteLine(args);
         }
     }
 }
