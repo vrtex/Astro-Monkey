@@ -14,5 +14,12 @@ namespace AstroMonkey.Core
             this.scale = scale;
             this.rotation = rotation;
         }
+
+        public Transform()
+        {
+            position = Vector2.Zero;
+            scale = Vector2.Zero;
+            rotation = 0f;
+        }
     }
 }

@@ -13,6 +13,7 @@ namespace AstroMonkey
         SpriteBatch spriteBatch;
 
         Graphics.SpriteContainer spriteContainer;
+        Core.GameObject             testGameObject;
 
         public Game1()
         {
@@ -30,7 +31,8 @@ namespace AstroMonkey
         {
             // TODO: Add your initialization logic here
             Graphics.SpriteContainer.Instance.LoadTextures(this);
-
+            testGameObject = new Core.GameObject();
+            testGameObject.AddComponent(new Graphics.Sprite(testGameObject, "player", new Util.Rect(0, 0, 32, 32)));
             base.Initialize();
         }
 
@@ -79,6 +81,11 @@ namespace AstroMonkey
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             // TODO: Add your drawing code here
+            spriteBatch.Begin();
+
+            spriteBatch.Draw((testGameObject.Components[0] as Graphics.Sprite).image, testGameObject.transform.position, Color.Wheat);
+
+            spriteBatch.End();
 
             base.Draw(gameTime);
         }
