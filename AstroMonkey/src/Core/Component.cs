@@ -1,6 +1,6 @@
 ﻿namespace AstroMonkey.Core
 {
-    public class Component
+    public abstract class Component
     {
         public bool active;
         private GameObject parent;
@@ -9,7 +9,7 @@
             get { return parent; }
         }
 
-        Component(GameObject parent)
+        protected Component(GameObject parent)
         {
             this.parent = parent;
             active = true;
