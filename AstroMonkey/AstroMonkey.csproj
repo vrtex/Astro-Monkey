@@ -48,6 +48,11 @@
     <Compile Include="src\Core\Component.cs" />
     <Compile Include="src\Core\GameObject.cs" />
     <Compile Include="src\Core\Transform.cs" />
+    <Compile Include="src\Physics\Collider\BoxCollider.cs" />
+    <Compile Include="src\Physics\Collider\CircleCollider.cs" />
+    <Compile Include="src\Physics\Collider\Collider.cs" />
+    <Compile Include="src\Physics\Collider\CollisionChanell.cs" />
+    <Compile Include="src\Physics\Collider\ReactType.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Framework">
