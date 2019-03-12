@@ -1,12 +1,14 @@
 ﻿namespace AstroMonkey.Physics.Collider
 {
-    public enum CollisionChanell
+    public  enum CollisionChanell
     {
         Player,
         Enemy,
         Item,
-        Wall,
-        Interact,
-        Object
+        Object,
+        Hitbox,
+        Bullets,
+        InteractPlayer,
+        InteractBullet
     }
 }
