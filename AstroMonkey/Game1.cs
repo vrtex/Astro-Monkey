@@ -17,8 +17,7 @@ namespace AstroMonkey
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
-            /// create manager
-            inputManager = new InputManager();
+            inputManager = InputManager.manager;
         }
 
         /// <summary>
@@ -33,8 +32,6 @@ namespace AstroMonkey
 
             base.Initialize();
 
-            // initialize manager
-            inputManager.Initialize();
             // add interesting buttons. Duplicates are ignored
             inputManager.AddObservedKey(Keys.W);
             inputManager.AddObservedKey(Keys.S);

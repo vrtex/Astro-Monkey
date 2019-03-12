@@ -50,7 +50,7 @@ namespace AstroMonkey
 
     /// <summary>
     /// Handles input using events
-    /// before using call Initialize and add interesting keys using AddObservedKey
+    /// before using add interesting keys using AddObservedKey
     /// call End() before ending the game, otherwise you'll thread won't stop
     /// </summary>
     class InputManager
@@ -95,7 +95,13 @@ namespace AstroMonkey
         List<Keys> ObservedKeys = new List<Keys>();
         private bool bActive = false;
 
-        public void Initialize()
+        public static InputManager manager = new InputManager();
+        private InputManager()
+        {
+            Initialize();
+        }
+
+        private void Initialize()
         {
             PreviousKeyboardState = Keyboard.GetState();
             PreviousMouseState = Mouse.GetState();
@@ -120,7 +126,7 @@ namespace AstroMonkey
             }
         }
 
-        public void Update()
+        private void Update()
         {
             KeyboardState currentKeyboardState = Keyboard.GetState();
             MouseState currentMouseState = Mouse.GetState();
@@ -194,7 +200,7 @@ namespace AstroMonkey
                 ));
         }
         
-        internal void End()
+        public void End()
         {
             bActive = false;
         }
