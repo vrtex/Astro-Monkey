@@ -11,6 +11,8 @@ namespace AstroMonkey
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+        InputManager inputManager;
+        
 
         Graphics.SpriteContainer spriteContainer;
         Core.GameObject             testGameObject;
@@ -19,6 +21,7 @@ namespace AstroMonkey
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+            inputManager = InputManager.manager;
         }
 
         /// <summary>
@@ -34,6 +37,16 @@ namespace AstroMonkey
             testGameObject = new Core.GameObject();
             testGameObject.AddComponent(new Graphics.Sprite(testGameObject, "player", new Util.Rect(0, 0, 32, 32)));
             base.Initialize();
+
+            // add interesting buttons. Duplicates are ignored
+            inputManager.AddObservedKey(Keys.W);
+            inputManager.AddObservedKey(Keys.S);
+
+            // hook up events
+            inputManager.OnKeyReleased += TestKey;
+            inputManager.OnMouseMove += TestMouse;
+            inputManager.OnMouseButtonPressed += TestMouse;
+            inputManager.OnMouseButtonReleased += TestMouse;
         }
 
         /// <summary>
@@ -65,7 +78,11 @@ namespace AstroMonkey
         protected override void Update(GameTime gameTime)
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
+            {
+                // IMPORTANT: call end on manager before quitting game
+                inputManager.End();
                 Exit();
+            }
 
             // TODO: Add your update logic here
 
@@ -88,6 +105,16 @@ namespace AstroMonkey
             spriteBatch.End();
 
             base.Draw(gameTime);
+        }
+
+        private void TestKey(KeyInputEventArgs args)
+        {
+            System.Console.WriteLine(args);
+        }
+
+        private void TestMouse(MouseInputEventArgs args)
+        {
+            System.Console.WriteLine(args);
         }
     }
 }
