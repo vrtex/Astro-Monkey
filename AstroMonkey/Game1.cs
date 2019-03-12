@@ -107,6 +107,7 @@ namespace AstroMonkey
 
         protected override void OnExiting(object sender, System.EventArgs args)
         {
+            base.OnExiting(sender, args);
             // very fucking important
             inputManager.End();
         }
