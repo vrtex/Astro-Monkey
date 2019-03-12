@@ -29,7 +29,7 @@ namespace AstroMonkey
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-            spriteContainer = new Graphics.SpriteContainer();
+            Graphics.SpriteContainer.Instance.LoadTextures(this);
 
             base.Initialize();
         }
