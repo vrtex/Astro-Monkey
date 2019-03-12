@@ -6,13 +6,12 @@ namespace AstroMonkey.Physics.Collider
 {
     public class CircleCollider : Collider
     {
-        private Vector2 position;
         private float radius;
 
-        public CircleCollider(GameObject gameObject, CollisionChanell collisionChanell, Dictionary<CollisionChanell, ReactType> reaction, Vector2 position, float radius)
-            : base(gameObject, collisionChanell, reaction)
+
+        public CircleCollider(GameObject gameObject, CollisionChanell collisionChanell = CollisionChanell.Object, Vector2 position = new Vector2(), float radius = 1)
+            : base(gameObject, collisionChanell, position)
         {
-            this.position = position;
             this.radius = radius;
         }
     }
