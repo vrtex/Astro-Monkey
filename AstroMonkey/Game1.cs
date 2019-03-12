@@ -35,7 +35,7 @@ namespace AstroMonkey
             // TODO: Add your initialization logic here
             Graphics.SpriteContainer.Instance.LoadTextures(this);
             testGameObject = new Core.GameObject();
-            testGameObject.AddComponent(new Graphics.Sprite(testGameObject, "player", new Util.Rect(0, 0, 32, 32)));
+            testGameObject.AddComponent(new Graphics.Sprite(testGameObject, "player", new Rectangle(0, 0, 32, 32)));
             base.Initialize();
 
             // add interesting buttons. Duplicates are ignored
