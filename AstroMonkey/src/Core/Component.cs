@@ -9,7 +9,7 @@
             get { return parent; }
         }
 
-        Component(GameObject parent)
+        public Component(GameObject parent)
         {
             this.parent = parent;
             active = true;

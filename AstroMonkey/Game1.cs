@@ -11,7 +11,9 @@ namespace AstroMonkey
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-        
+
+        Graphics.SpriteContainer spriteContainer;
+
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -27,6 +29,7 @@ namespace AstroMonkey
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
+            spriteContainer = new Graphics.SpriteContainer();
 
             base.Initialize();
         }
