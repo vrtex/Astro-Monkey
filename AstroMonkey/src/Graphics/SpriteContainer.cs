@@ -6,16 +6,9 @@ namespace AstroMonkey.Graphics
 {
     public sealed class SpriteContainer
     {
-        private static  SpriteContainer             _instance = new SpriteContainer();
-        public  Dictionary<string, Texture2D>       images = new Dictionary<string, Texture2D>();
+        public Dictionary<string, Texture2D>       images = new Dictionary<string, Texture2D>();
 
-        public static SpriteContainer Instance
-        {
-            get
-            {
-                return _instance;
-            }
-        }
+        public static SpriteContainer Instance { get; private set; } = new SpriteContainer();
 
         static SpriteContainer()
         {   
