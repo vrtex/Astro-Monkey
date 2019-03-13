@@ -8,8 +8,8 @@ namespace AstroMonkey.Graphics
 {
     class AnimatorController: Core.Component
     {
-        public  Dictionary<AnimationState, Animation>   animations = new Dictionary<AnimationState, Animation>();
-        public  AnimationState                          currentAnim;
+        public  Dictionary<string, Animation>       animations = new Dictionary<string, Animation>();
+        public  Animation                           currentAnim = null;
 
         public AnimatorController(Core.GameObject go) : base(go)
         {

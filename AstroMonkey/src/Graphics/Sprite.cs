@@ -5,7 +5,7 @@ namespace AstroMonkey.Graphics
 {
     class Sprite: Core.Component
     {
-        public  string          name;
+        public  string          name; //nazwa grafiki z bazy SpriteContainer
         public  Texture2D       image;
         public  Rectangle       rect;
         public  Color           color;

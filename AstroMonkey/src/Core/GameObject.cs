@@ -32,5 +32,13 @@ namespace AstroMonkey.Core
 
             return toReturn;
         }
+
+        public T GetComponent<T>() where T : Component
+        {
+            foreach(Component c in components)
+                if(c is T) return (T)c;
+
+            return null;
+        }
     }
 }

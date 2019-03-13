@@ -35,7 +35,8 @@ namespace AstroMonkey
             // TODO: Add your initialization logic here
             Graphics.SpriteContainer.Instance.LoadTextures(this);
             testGameObject = new Core.GameObject();
-            testGameObject.AddComponent(new Graphics.Sprite(testGameObject, "player", new Rectangle(0, 0, 32, 32)));
+            testGameObject.transform.position = new Vector2(50, 90);
+            testGameObject.AddComponent(new Graphics.Sprite(testGameObject, "player", new Rectangle(32, 32, 32, 32)));
             base.Initialize();
 
             // add interesting buttons. Duplicates are ignored
@@ -100,11 +101,18 @@ namespace AstroMonkey
             // TODO: Add your drawing code here
             spriteBatch.Begin();
 
-            spriteBatch.Draw((testGameObject.Components[0] as Graphics.Sprite).image, testGameObject.transform.position, Color.Wheat);
+            Graphics.Sprite playerSprite= testGameObject.GetComponent<Graphics.Sprite>();
+            spriteBatch.Draw(playerSprite.image, testGameObject.transform.position, playerSprite.rect, Color.Wheat);
 
             spriteBatch.End();
 
             base.Draw(gameTime);
+        }
+        protected override void OnExiting(object sender, System.EventArgs args)
+        {
+            base.OnExiting(sender, args);
+            // very fucking important
+            inputManager.End();
         }
 
         private void TestKey(KeyInputEventArgs args)
