@@ -48,11 +48,20 @@
     <Compile Include="src\Core\Component.cs" />
     <Compile Include="src\Core\GameObject.cs" />
     <Compile Include="src\Core\Transform.cs" />
+<<<<<<< HEAD
     <Compile Include="src\Physics\Collider\BoxCollider.cs" />
     <Compile Include="src\Physics\Collider\CircleCollider.cs" />
     <Compile Include="src\Physics\Collider\Collider.cs" />
     <Compile Include="src\Physics\Collider\CollisionChanell.cs" />
     <Compile Include="src\Physics\Collider\ReactType.cs" />
+=======
+    <Compile Include="src\Input\InputManager.cs" />
+    <Compile Include="src\Graphics\Animation.cs" />
+    <Compile Include="src\Graphics\AnimatorController.cs" />
+    <Compile Include="src\Graphics\Sprite.cs" />
+    <Compile Include="src\Graphics\SpriteContainer.cs" />
+    <Compile Include="src\Util\Rect.cs" />
+>>>>>>> develop
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Framework">

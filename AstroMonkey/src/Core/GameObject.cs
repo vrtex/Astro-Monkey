@@ -21,5 +21,16 @@ namespace AstroMonkey.Core
         {
             components.Add(component);
         }
+
+        public List<T> GetComponents<T>() where T: Component
+        {
+            List<T> toReturn = new List<T>();
+
+            foreach(Component c in components)
+                if(c is T)
+                    toReturn.Add((T)c);
+
+            return toReturn;
+        }
     }
 }
