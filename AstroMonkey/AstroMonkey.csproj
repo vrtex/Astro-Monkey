@@ -48,6 +48,7 @@
     <Compile Include="src\Core\Component.cs" />
     <Compile Include="src\Core\GameObject.cs" />
     <Compile Include="src\Core\Transform.cs" />
+    <Compile Include="src\Graphics\AnimationManager.cs" />
     <Compile Include="src\Input\ActionBinding.cs" />
     <Compile Include="src\Input\AxisBinding.cs" />
     <Compile Include="src\Input\InputManager.cs" />

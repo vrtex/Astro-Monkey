@@ -13,7 +13,17 @@ namespace AstroMonkey.Graphics
 
         public AnimatorController(Core.GameObject go) : base(go)
         {
+            
+        }
 
+        public void SetAnimation(string name)
+        {
+            animations.TryGetValue(name, out currentAnim);
+        }
+
+        public void AddAnimation(Animation anim)
+        {
+            animations.Add(anim.name, anim);
         }
     }
 }
