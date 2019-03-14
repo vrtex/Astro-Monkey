@@ -38,7 +38,7 @@ namespace AstroMonkey
             testGameObject = new Core.GameObject();
             testGameObject.transform.position = new Vector2(50, 90);
             testGameObject.AddComponent(new Graphics.Sprite(testGameObject, "player", new Rectangle(32, 32, 32, 32)));
-            testGameObject.AddComponent(new Graphics.AnimatorController(testGameObject));
+            testGameObject.AddComponent(new Graphics.Animator(testGameObject));
             List<Rectangle> tempAnimRect = new List<Rectangle>
             {
                 new Rectangle(0, 64, 32, 32),
@@ -46,14 +46,14 @@ namespace AstroMonkey
                 new Rectangle(0, 64, 32, 32),
                 new Rectangle(64, 64, 32, 32),
             };
-            testGameObject.GetComponent<Graphics.AnimatorController>().AddAnimation(
+            testGameObject.GetComponent<Graphics.Animator>().AddAnimation(
                 new Graphics.Animation("walk",
                 testGameObject.GetComponent<Graphics.Sprite>(),
                 tempAnimRect,
                 200,
                 true));
-            testGameObject.GetComponent<Graphics.AnimatorController>().SetAnimation("walk");
-            Graphics.AnimationManager.Instance.AddAnimator(testGameObject.GetComponent<Graphics.AnimatorController>());
+            testGameObject.GetComponent<Graphics.Animator>().SetAnimation("walk");
+            Graphics.AnimationManager.Instance.AddAnimator(testGameObject.GetComponent<Graphics.Animator>());
             //
             base.Initialize();
 
@@ -129,8 +129,12 @@ namespace AstroMonkey
             // TODO: Add your drawing code here
             spriteBatch.Begin();
 
-            Graphics.Sprite playerSprite= testGameObject.GetComponent<Graphics.Sprite>();
-            spriteBatch.Draw(playerSprite.image, testGameObject.transform.position, playerSprite.rect, Color.Wheat);
+            Graphics.Sprite playerSprite = testGameObject.GetComponent<Graphics.Sprite>();
+            spriteBatch.Draw(playerSprite.image,
+                new Vector2(
+                testGameObject.transform.position.X - playerSprite.rect.Width / 2,
+                testGameObject.transform.position.Y - playerSprite.rect.Height / 2),
+                playerSprite.rect, Color.Wheat);
             spriteBatch.End();
 
             base.Draw(gameTime);

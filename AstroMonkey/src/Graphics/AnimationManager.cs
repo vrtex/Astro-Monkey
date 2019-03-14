@@ -8,7 +8,7 @@ namespace AstroMonkey.Graphics
 {
     class AnimationManager
     {
-        public List<AnimatorController> animators = new List<AnimatorController>();
+        public List<Animator> animators = new List<Animator>();
         public static AnimationManager  Instance { get; private set; } = new AnimationManager();
 
         static AnimationManager()
@@ -16,14 +16,14 @@ namespace AstroMonkey.Graphics
             //powinien przejżeć wszystkie obiekty i popobierać z nich animatory
         }
 
-        public void AddAnimator(AnimatorController animatorController)
+        public void AddAnimator(Animator animatorController)
         {
             animators.Add(animatorController);
         }
 
         public void Update(double deltaTime)
         {
-            foreach(AnimatorController a in animators)
+            foreach(Animator a in animators)
             {
                 if(a.currentAnim != null)
                 {
