@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System.Collections.Generic;
 
 namespace AstroMonkey
 {
@@ -12,9 +13,7 @@ namespace AstroMonkey
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         InputManager inputManager;
-        
 
-        Graphics.SpriteContainer spriteContainer;
         Core.GameObject             testGameObject;
 
         public Game1()
@@ -34,9 +33,27 @@ namespace AstroMonkey
         {
             // TODO: Add your initialization logic here
             Graphics.SpriteContainer.Instance.LoadTextures(this);
+            //TEST GRAFIKI I ANIMACJI
             testGameObject = new Core.GameObject();
             testGameObject.transform.position = new Vector2(50, 90);
             testGameObject.AddComponent(new Graphics.Sprite(testGameObject, "player", new Rectangle(32, 32, 32, 32)));
+            testGameObject.AddComponent(new Graphics.AnimatorController(testGameObject));
+            List<Rectangle> tempAnimRect = new List<Rectangle>
+            {
+                new Rectangle(0, 64, 32, 32),
+                new Rectangle(32, 64, 32, 32),
+                new Rectangle(0, 64, 32, 32),
+                new Rectangle(64, 64, 32, 32),
+            };
+            testGameObject.GetComponent<Graphics.AnimatorController>().AddAnimation(
+                new Graphics.Animation("walk",
+                testGameObject.GetComponent<Graphics.Sprite>(),
+                tempAnimRect,
+                200,
+                true));
+            testGameObject.GetComponent<Graphics.AnimatorController>().SetAnimation("walk");
+            Graphics.AnimationManager.Instance.AddAnimator(testGameObject.GetComponent<Graphics.AnimatorController>());
+            //
             base.Initialize();
 
             // add interesting buttons. Duplicates are ignored
@@ -84,6 +101,8 @@ namespace AstroMonkey
                 inputManager.End();
                 Exit();
             }
+
+            Graphics.AnimationManager.Instance.Update(gameTime.ElapsedGameTime.TotalSeconds);
 
             // TODO: Add your update logic here
 
