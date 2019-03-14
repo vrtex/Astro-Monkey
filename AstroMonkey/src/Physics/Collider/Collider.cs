@@ -20,8 +20,6 @@ namespace AstroMonkey.Physics.Collider
             this.position = position;
 
             setReactions();
-
-
         }
 
         private void setReactions()
