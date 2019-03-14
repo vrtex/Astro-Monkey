@@ -1,9 +1,18 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using AstroMonkey.Input;
 
 namespace AstroMonkey
 {
+    class TestClass
+    {
+        public void TestBinding()
+        {
+            System.Console.WriteLine("dupa dupa");
+        }
+    }
+
     /// <summary>
     /// This is the main type for your game.
     /// </summary>
@@ -12,6 +21,7 @@ namespace AstroMonkey
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         InputManager inputManager;
+        TestClass test = new TestClass();
         
 
         Graphics.SpriteContainer spriteContainer;
@@ -40,14 +50,18 @@ namespace AstroMonkey
             base.Initialize();
 
             // add interesting buttons. Duplicates are ignored
-            inputManager.AddObservedKey(Keys.W);
-            inputManager.AddObservedKey(Keys.S);
+            //inputManager.AddObservedKey(Keys.W);
+            //inputManager.AddObservedKey(Keys.S);
 
             // hook up events
-            inputManager.OnKeyReleased += TestKey;
-            inputManager.OnMouseMove += TestMouse;
-            inputManager.OnMouseButtonPressed += TestMouse;
-            inputManager.OnMouseButtonReleased += TestMouse;
+            //inputManager.OnKeyReleased += TestKey;
+            //inputManager.OnMouseMove += TestMouse;
+            //inputManager.OnMouseButtonPressed += TestMouse;
+            //inputManager.OnMouseButtonReleased += TestMouse;
+
+            ActionBinding testBingind = new ActionBinding(Keys.K);
+            testBingind.OnRelease += test.TestBinding;
+            inputManager.AddActionBinding("", testBingind);
         }
 
         /// <summary>

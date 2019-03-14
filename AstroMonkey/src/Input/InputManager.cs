@@ -4,15 +4,17 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using System.Threading;
 
-namespace AstroMonkey
+namespace AstroMonkey.Input
 {
     public class KeyInputEventArgs : EventArgs
     {
         public Keys key { get; }
+        public bool pressed;
 
-        public KeyInputEventArgs(Keys k)
+        public KeyInputEventArgs(Keys k, bool pressed)
         {
             key = k;
+            this.pressed = pressed;
         }
 
         public override string ToString()
@@ -95,7 +97,9 @@ namespace AstroMonkey
         List<Keys> ObservedKeys = new List<Keys>();
         private bool bActive = false;
 
-        public static InputManager manager = new InputManager();
+        private Dictionary<String, ActionBinding> actionBindings = new Dictionary<string, ActionBinding>();
+
+        public static InputManager manager { get; private set; } = new InputManager();
         private InputManager()
         {
             Initialize();
@@ -115,6 +119,19 @@ namespace AstroMonkey
             if(ObservedKeys.Contains(newKey))
                 return;
             ObservedKeys.Add(newKey);
+        }
+
+        public void AddActionBinding(String name, ActionBinding binding)
+        {
+            if(actionBindings.ContainsKey(name))
+                throw new System.ApplicationException("trying to replace existing action binding");
+
+            OnKeyPressed += binding.CheckKey;
+            OnKeyReleased += binding.CheckKey;
+
+            AddObservedKey(binding.key);
+
+            actionBindings.Add(name, binding);
         }
 
         private void MainLoop()
@@ -147,9 +164,9 @@ namespace AstroMonkey
             foreach(Keys key in ObservedKeys)
             {
                 if(newState.IsKeyDown(key) && PreviousKeyboardState.IsKeyUp(key) && OnKeyPressed != null)
-                    OnKeyPressed(new KeyInputEventArgs(key));
+                    OnKeyPressed(new KeyInputEventArgs(key, true));
                 else if(newState.IsKeyUp(key) && PreviousKeyboardState.IsKeyDown(key) && OnKeyReleased != null)
-                    OnKeyReleased(new KeyInputEventArgs(key));
+                    OnKeyReleased(new KeyInputEventArgs(key, false));
             }
         }
 
