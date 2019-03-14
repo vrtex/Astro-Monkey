@@ -16,11 +16,12 @@ namespace AstroMonkey.Graphics
 
         public void LoadTextures(Game game)
         {
-            images.Add("player", game.Content.Load<Texture2D>(@"Characters/Player/PlayerConture"));
-            images.Add("enemy", game.Content.Load<Texture2D>(@"Characters/Enemies/Klucha"));
-            images.Add("floor", game.Content.Load<Texture2D>(@"Map/Floor/PlatformFloor"));
-            images.Add("wall", game.Content.Load<Texture2D>(@"Map/Objects/Walls"));
-            images.Add("item", game.Content.Load<Texture2D>(@"Items/Banana"));
+            images.Add("player", game.Content.Load<Texture2D>(@"gfx/Characters/Player/PlayerConture"));
+            images.Add("enemy", game.Content.Load<Texture2D>(@"gfx/Characters/Enemies/Klucha"));
+            images.Add("floor", game.Content.Load<Texture2D>(@"gfx/Map/Floor/PlatformFloor"));
+            images.Add("wall", game.Content.Load<Texture2D>(@"gfx/Map/Objects/Walls"));
+            images.Add("item", game.Content.Load<Texture2D>(@"gfx/Items/Banana"));
+            images.Add("computer", game.Content.Load<Texture2D>(@"gfx/Map/Interactable/Computer"));
         }
 
         public Texture2D GetImage(string name)
