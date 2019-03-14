@@ -98,6 +98,7 @@ namespace AstroMonkey.Input
         private bool bActive = false;
 
         private Dictionary<String, ActionBinding> actionBindings = new Dictionary<string, ActionBinding>();
+        private Dictionary<String, AxisBinding> axisBindings = new Dictionary<string, AxisBinding>();
 
         public static InputManager manager { get; private set; } = new InputManager();
         private InputManager()
@@ -114,6 +115,11 @@ namespace AstroMonkey.Input
             starter.Start();
         }
 
+        public bool IsKeyPressed(Keys key)
+        {
+            return PreviousKeyboardState.IsKeyDown(key);
+        }
+
         public void AddObservedKey(Keys newKey)
         {
             if(ObservedKeys.Contains(newKey))
@@ -124,7 +130,7 @@ namespace AstroMonkey.Input
         public void AddActionBinding(String name, ActionBinding binding)
         {
             if(actionBindings.ContainsKey(name))
-                throw new System.ApplicationException("trying to replace existing action binding");
+                throw new ApplicationException("trying to replace existing action binding");
 
             OnKeyPressed += binding.CheckKey;
             OnKeyReleased += binding.CheckKey;
@@ -132,6 +138,33 @@ namespace AstroMonkey.Input
             AddObservedKey(binding.key);
 
             actionBindings.Add(name, binding);
+        }
+
+        public ActionBinding GetActionBinding(String name)
+        {
+            foreach(KeyValuePair<String, ActionBinding> pair in actionBindings)
+                if(pair.Key == name)
+                    return pair.Value;
+            return null;
+        }
+
+        public void AddAxisBinding(String name, AxisBinding binding)
+        {
+            if(axisBindings.ContainsKey(name))
+                throw new ApplicationException();
+
+            AddObservedKey(binding.positiveKey);
+            AddObservedKey(binding.negativeKey);
+
+            axisBindings.Add(name, binding);
+        }
+
+        public AxisBinding GetAxisBinding(String name)
+        {
+            foreach(KeyValuePair<String, AxisBinding> pair in axisBindings)
+                if(pair.Key == name)
+                    return pair.Value;
+            return null;
         }
 
         private void MainLoop()
@@ -154,6 +187,9 @@ namespace AstroMonkey.Input
 
             PreviousKeyboardState = currentKeyboardState;
             PreviousMouseState = Mouse.GetState();
+
+            foreach(AxisBinding b in axisBindings.Values)
+                b.Update();
         }
 
         private void ProcessKeyboardChange(KeyboardState newState)

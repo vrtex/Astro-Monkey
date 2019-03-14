@@ -49,12 +49,14 @@
     <Compile Include="src\Core\GameObject.cs" />
     <Compile Include="src\Core\Transform.cs" />
     <Compile Include="src\Input\ActionBinding.cs" />
+    <Compile Include="src\Input\AxisBinding.cs" />
     <Compile Include="src\Input\InputManager.cs" />
     <Compile Include="src\Graphics\Animation.cs" />
     <Compile Include="src\Graphics\AnimatorController.cs" />
     <Compile Include="src\Graphics\Sprite.cs" />
     <Compile Include="src\Graphics\SpriteContainer.cs" />
     <Compile Include="src\Util\Rect.cs" />
+    <Compile Include="src\Util\Statics.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Framework">
