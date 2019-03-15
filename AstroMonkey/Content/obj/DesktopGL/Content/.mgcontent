@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SourceFileCollection xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Profile>Reach</Profile>
+  <Platform>DesktopGL</Platform>
+  <Config />
+  <SourceFiles>
+    <File>F:/Politechnika/Semestr6/ProgramowanieGier2D/AstroMonkey/PG2D_2019_Dzienni_1/AstroMonkey/Content/gfx/Characters/Enemies/Klucha.png</File>
+    <File>F:/Politechnika/Semestr6/ProgramowanieGier2D/AstroMonkey/PG2D_2019_Dzienni_1/AstroMonkey/Content/gfx/Characters/Player/PlayerConture.png</File>
+    <File>F:/Politechnika/Semestr6/ProgramowanieGier2D/AstroMonkey/PG2D_2019_Dzienni_1/AstroMonkey/Content/gfx/Items/Banana.png</File>
+    <File>F:/Politechnika/Semestr6/ProgramowanieGier2D/AstroMonkey/PG2D_2019_Dzienni_1/AstroMonkey/Content/gfx/Map/Floor/PlatformFloor.png</File>
+    <File>F:/Politechnika/Semestr6/ProgramowanieGier2D/AstroMonkey/PG2D_2019_Dzienni_1/AstroMonkey/Content/gfx/Map/Interactable/Computer.png</File>
+    <File>F:/Politechnika/Semestr6/ProgramowanieGier2D/AstroMonkey/PG2D_2019_Dzienni_1/AstroMonkey/Content/gfx/Map/Objects/Walls.png</File>
+  </SourceFiles>
+  <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+  </DestFiles>
+</SourceFileCollection>
