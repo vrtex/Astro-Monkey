@@ -15,11 +15,13 @@ namespace AstroMonkey.Core
             this.rotation = rotation;
         }
 
-        public Transform()
+        public Transform(): this(Vector2.Zero, Vector2.Zero, 0f)
         {
-            position = Vector2.Zero;
-            scale = Vector2.Zero;
-            rotation = 0f;
+        }
+
+        public override string ToString()
+        {
+            return "Transform: " + position + " " + rotation + " " + scale;
         }
     }
 }

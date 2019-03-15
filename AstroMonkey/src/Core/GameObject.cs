@@ -1,11 +1,12 @@
 ﻿using System.Collections.Generic;
+using Microsoft.Xna.Framework;
 
 namespace AstroMonkey.Core
 {
-    public class GameObject
+    public abstract class GameObject
     {
         public Transform transform;
-        private List<Component> components;
+        protected List<Component> components;
 
         public List<Component> Components {
             get { return components; }
@@ -40,5 +41,7 @@ namespace AstroMonkey.Core
 
             return null;
         }
+
+        public virtual void Update(GameTime gameTime) { }
     }
 }

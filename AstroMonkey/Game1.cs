@@ -15,13 +15,13 @@ namespace AstroMonkey
         SpriteBatch spriteBatch;
         InputManager inputManager;
 
-        Core.GameObject             testPlayer;
+        Assets.Player             testPlayer;
 
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
-            inputManager = InputManager.manager;
+            inputManager = InputManager.Manager;
         }
 
         /// <summary>
@@ -86,13 +86,10 @@ namespace AstroMonkey
         protected override void Update(GameTime gameTime)
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-            {
-                // IMPORTANT: call end on manager before quitting game
-                inputManager.End();
                 Exit();
-            }
 
             Graphics.AnimationManager.Instance.Update(gameTime.ElapsedGameTime.TotalSeconds);
+            testPlayer.Update(gameTime);
 
             // TODO: Add your update logic here
 
@@ -113,8 +110,8 @@ namespace AstroMonkey
             Graphics.Sprite playerSprite = testPlayer.GetComponent<Graphics.Sprite>();
             spriteBatch.Draw(playerSprite.image,
                 new Vector2(
-                testPlayer.transform.position.X - playerSprite.rect.Width / 2,
-                testPlayer.transform.position.Y - playerSprite.rect.Height / 2),
+                    testPlayer.transform.position.X - playerSprite.rect.Width / 2,
+                    testPlayer.transform.position.Y - playerSprite.rect.Height / 2),
                 playerSprite.rect, Color.Wheat);
             spriteBatch.End();
 

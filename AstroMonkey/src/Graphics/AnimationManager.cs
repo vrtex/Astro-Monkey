@@ -11,9 +11,10 @@ namespace AstroMonkey.Graphics
         public List<Animator> animators = new List<Animator>();
         public static AnimationManager  Instance { get; private set; } = new AnimationManager();
 
-        static AnimationManager()
+        private AnimationManager()
         {
             //powinien przejżeć wszystkie obiekty i popobierać z nich animatory
+            // a nie dopiero jak już będą obiekty stworzone? - vrtex
         }
 
         public void AddAnimator(Animator animatorController)

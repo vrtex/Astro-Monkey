@@ -19,6 +19,8 @@ namespace AstroMonkey.Graphics
         public void SetAnimation(string name)
         {
             animations.TryGetValue(name, out currentAnim);
+            if(currentAnim == null)
+                Console.WriteLine("Lolz, bogus animation " + name +". Animator::SetAnimation");
         }
 
         public void AddAnimation(Animation anim)

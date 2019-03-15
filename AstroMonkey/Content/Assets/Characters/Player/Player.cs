@@ -15,6 +15,8 @@ namespace AstroMonkey.Assets
             transform.position = new Vector2(50, 90);
             AddComponent(new Graphics.Sprite(this, "player", new Rectangle(32, 32, 32, 32)));
             AddComponent(new Graphics.Animator(this));
+            AddComponent(new Navigation.MovementComponent(this));
+            AddComponent(new Input.InputCompoent(this));
 
             //Added animations
             GetComponent<Graphics.Animator>().AddAnimation(
@@ -85,6 +87,29 @@ namespace AstroMonkey.Assets
 
             Graphics.AnimationManager.Instance.AddAnimator(GetComponent<Graphics.Animator>());
         }
-        
+
+        public override void Update(GameTime gameTime)
+        {
+            foreach(var c in components)
+                c.Update(gameTime);
+
+            // move this mess somewhere else. Or don't I don't care
+            Vector2 currVel = GetComponent<Navigation.MovementComponent>().CurrentVelocity;
+            if(Util.Statics.IsNearlyEqual(currVel.Length(), 0, 0.001))
+                GetComponent<Graphics.Animator>().SetAnimation("IdleDown");
+            else
+            {
+                double currentDirection = GetComponent<Navigation.MovementComponent>().CurrentDirection;
+                currentDirection += Math.PI;
+                if(currentDirection >= -Math.PI * 0.25 && currentDirection < Math.PI * 0.75)
+                    GetComponent<Graphics.Animator>().SetAnimation("WalkUp");
+                else if(currentDirection < Math.PI * 1.25)
+                    GetComponent<Graphics.Animator>().SetAnimation("WalkRight");
+                else if(currentDirection < Math.PI * 1.75)
+                    GetComponent<Graphics.Animator>().SetAnimation("WalkDown");
+                else
+                    GetComponent<Graphics.Animator>().SetAnimation("WalkLeft");
+            }
+        }
     }
 }
