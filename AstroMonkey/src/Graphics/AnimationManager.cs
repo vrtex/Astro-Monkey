@@ -32,7 +32,6 @@ namespace AstroMonkey.Graphics
                     a.currentAnim.currentTime += (int)(deltaTime * 1000);
                     if(a.currentAnim.currentTime >= a.currentAnim.speed)
                     {
-                        
                         a.currentAnim.currentTime -= a.currentAnim.speed;
                         if(a.currentAnim.loop)
                         {

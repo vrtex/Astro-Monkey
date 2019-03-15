@@ -15,7 +15,7 @@ namespace AstroMonkey
         SpriteBatch spriteBatch;
         InputManager inputManager;
 
-        Core.GameObject             testGameObject;
+        Core.GameObject             testPlayer;
 
         public Game1()
         {
@@ -34,27 +34,8 @@ namespace AstroMonkey
         {
             // TODO: Add your initialization logic here
             Graphics.SpriteContainer.Instance.LoadTextures(this);
-            //TEST GRAFIKI I ANIMACJI
-            testGameObject = new Core.GameObject();
-            testGameObject.transform.position = new Vector2(50, 90);
-            testGameObject.AddComponent(new Graphics.Sprite(testGameObject, "player", new Rectangle(32, 32, 32, 32)));
-            testGameObject.AddComponent(new Graphics.Animator(testGameObject));
-            List<Rectangle> tempAnimRect = new List<Rectangle>
-            {
-                new Rectangle(0, 64, 32, 32),
-                new Rectangle(32, 64, 32, 32),
-                new Rectangle(0, 64, 32, 32),
-                new Rectangle(64, 64, 32, 32),
-            };
-            testGameObject.GetComponent<Graphics.Animator>().AddAnimation(
-                new Graphics.Animation("walk",
-                testGameObject.GetComponent<Graphics.Sprite>(),
-                tempAnimRect,
-                200,
-                true));
-            testGameObject.GetComponent<Graphics.Animator>().SetAnimation("walk");
-            Graphics.AnimationManager.Instance.AddAnimator(testGameObject.GetComponent<Graphics.Animator>());
-            //
+            
+            testPlayer = new Assets.Player(); //TEST GRAFIKI I ANIMACJI
             base.Initialize();
 
             // add interesting buttons. Duplicates are ignored
@@ -129,11 +110,11 @@ namespace AstroMonkey
             // TODO: Add your drawing code here
             spriteBatch.Begin();
 
-            Graphics.Sprite playerSprite = testGameObject.GetComponent<Graphics.Sprite>();
+            Graphics.Sprite playerSprite = testPlayer.GetComponent<Graphics.Sprite>();
             spriteBatch.Draw(playerSprite.image,
                 new Vector2(
-                testGameObject.transform.position.X - playerSprite.rect.Width / 2,
-                testGameObject.transform.position.Y - playerSprite.rect.Height / 2),
+                testPlayer.transform.position.X - playerSprite.rect.Width / 2,
+                testPlayer.transform.position.Y - playerSprite.rect.Height / 2),
                 playerSprite.rect, Color.Wheat);
             spriteBatch.End();
 
