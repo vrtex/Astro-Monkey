@@ -19,7 +19,7 @@ namespace AstroMonkey
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
-            inputManager = InputManager.manager;
+            inputManager = InputManager.Manager;
         }
 
         /// <summary>
@@ -82,13 +82,10 @@ namespace AstroMonkey
         protected override void Update(GameTime gameTime)
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-            {
-                // IMPORTANT: call end on manager before quitting game
-                inputManager.End();
                 Exit();
-            }
 
             Graphics.AnimationManager.Instance.Update(gameTime.ElapsedGameTime.TotalSeconds);
+            testPlayer.Update(gameTime);
 
             // TODO: Add your update logic here
 

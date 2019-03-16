@@ -8,18 +8,18 @@ namespace AstroMonkey.Input
 {
     public class KeyInputEventArgs : EventArgs
     {
-        public Keys key { get; }
+        public Keys Key { get; }
         public bool pressed;
 
         public KeyInputEventArgs(Keys k, bool pressed)
         {
-            key = k;
+            Key = k;
             this.pressed = pressed;
         }
 
         public override string ToString()
         {
-            return "Key: " + key;
+            return "Key: " + Key;
         }
     }
 
@@ -33,20 +33,20 @@ namespace AstroMonkey.Input
 
     public class MouseInputEventArgs : EventArgs
     {
-        public Vector2 oldPosition { get; }
-        public Vector2 newPosition { get; }
-        public EMouseButton button { get; }
+        public Vector2 OldPosition { get; }
+        public Vector2 NewPosition { get; }
+        public EMouseButton Button { get; }
 
         public MouseInputEventArgs(EMouseButton button, Vector2 oldPosition, Vector2 newPosition)
         {
-            this.button = button;
-            this.oldPosition = oldPosition;
-            this.newPosition = newPosition;
+            this.Button = button;
+            this.OldPosition = oldPosition;
+            this.NewPosition = newPosition;
         }
 
         public override String ToString()
         {
-            return "New position: " + newPosition.ToString() + " old position: " + oldPosition + " key: " + button.ToString();
+            return "New position: " + NewPosition.ToString() + " old position: " + OldPosition + " key: " + Button.ToString();
         }
     }
 
@@ -100,7 +100,7 @@ namespace AstroMonkey.Input
         private Dictionary<String, ActionBinding> actionBindings = new Dictionary<string, ActionBinding>();
         private Dictionary<String, AxisBinding> axisBindings = new Dictionary<string, AxisBinding>();
 
-        public static InputManager manager { get; private set; } = new InputManager();
+        public static InputManager Manager { get; private set; } = new InputManager();
         private InputManager()
         {
             Initialize();
@@ -135,7 +135,7 @@ namespace AstroMonkey.Input
             OnKeyPressed += binding.CheckKey;
             OnKeyReleased += binding.CheckKey;
 
-            AddObservedKey(binding.key);
+            AddObservedKey(binding.Key);
 
             actionBindings.Add(name, binding);
         }
@@ -150,11 +150,11 @@ namespace AstroMonkey.Input
 
         public void AddAxisBinding(String name, AxisBinding binding)
         {
-            if(axisBindings.ContainsKey(name))
-                throw new ApplicationException();
+            if(actionBindings.ContainsKey(name))
+                throw new ApplicationException("trying to replace existing axis binding");
 
-            AddObservedKey(binding.positiveKey);
-            AddObservedKey(binding.negativeKey);
+            AddObservedKey(binding.PositiveKey);
+            AddObservedKey(binding.NegativeKey);
 
             axisBindings.Add(name, binding);
         }

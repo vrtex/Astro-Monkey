@@ -15,25 +15,25 @@ namespace AstroMonkey.Input
         public event AxisEvent OnUpdate;
 
 
-        public float speed { get; set; } = 0.01f;
-        public float gravity { get; set; } = 0.01f;
+        public float speed { get; set; } = 0.1f;
+        public float gravity { get; set; } = 0.1f;
 
         public float Value { get; private set; }
-        public Keys positiveKey { get; private set; }
-        public Keys negativeKey { get; private set; }
+        public Keys PositiveKey { get; private set; }
+        public Keys NegativeKey { get; private set; }
 
         public AxisBinding(Keys positiveKey, Keys negativeKey)
         {
-            this.positiveKey = positiveKey;
-            this.negativeKey = negativeKey;
+            this.PositiveKey = positiveKey;
+            this.NegativeKey = negativeKey;
         }
 
         public void Update()
         {
             float change = 0.0f;
-            if(InputManager.manager.IsKeyPressed(positiveKey))
+            if(InputManager.Manager.IsKeyPressed(PositiveKey))
                 change += 1;
-            if(InputManager.manager.IsKeyPressed(negativeKey))
+            if(InputManager.Manager.IsKeyPressed(NegativeKey))
                 change -= 1;
 
             change *= speed;

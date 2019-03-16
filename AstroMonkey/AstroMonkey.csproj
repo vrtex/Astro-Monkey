@@ -63,11 +63,13 @@
     <Compile Include="src\Graphics\ViewManager.cs" />
     <Compile Include="src\Input\ActionBinding.cs" />
     <Compile Include="src\Input\AxisBinding.cs" />
+    <Compile Include="src\Input\InputCompoent.cs" />
     <Compile Include="src\Input\InputManager.cs" />
     <Compile Include="src\Graphics\Animation.cs" />
     <Compile Include="src\Graphics\Animator.cs" />
     <Compile Include="src\Graphics\Sprite.cs" />
     <Compile Include="src\Graphics\SpriteContainer.cs" />
+    <Compile Include="src\Navigation\MovementComponent.cs" />
     <Compile Include="src\Util\Rect.cs" />
     <Compile Include="src\Util\Statics.cs" />
   </ItemGroup>

@@ -1,9 +1,11 @@
-﻿namespace AstroMonkey.Core
+﻿using Microsoft.Xna.Framework;
+
+namespace AstroMonkey.Core
 {
-    public class Component
+    public abstract class Component
     {
         public bool active;
-        private GameObject parent;
+        protected GameObject parent;
 
         public GameObject Parent {
             get { return parent; }
@@ -14,5 +16,7 @@
             this.parent = parent;
             active = true;
         }
+
+        public virtual void Update(GameTime gameTime) { }
     }
 }
