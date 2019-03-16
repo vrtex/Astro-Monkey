@@ -32,9 +32,8 @@ namespace AstroMonkey
         {
             // TODO: Add your initialization logic here
             Core.GameManager.Instance.InitializeGame(this);
-            // Graphics.ViewManager.Instance.SetCamera(Core.SceneManager.Instance.currScene.)
             base.Initialize();
-            
+
         }
 
         /// <summary>
@@ -85,7 +84,7 @@ namespace AstroMonkey
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            GraphicsDevice.Clear(Color.Black);
 
             // TODO: Add your drawing code here
             Graphics.ViewManager.Instance.Render(spriteBatch);
@@ -94,9 +93,9 @@ namespace AstroMonkey
         }
         protected override void OnExiting(object sender, System.EventArgs args)
         {
-            base.OnExiting(sender, args);
-            // very fucking important
             inputManager.End();
+            base.OnExiting(sender, args);
         }
+
     }
 }

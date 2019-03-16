@@ -1,7 +1,13 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
+using System.Diagnostics;
 
 namespace AstroMonkey.Graphics
 {
@@ -9,9 +15,9 @@ namespace AstroMonkey.Graphics
     {
         public static ViewManager Instance { get; private set; } = new ViewManager();
         public static List<Core.GameObject> sprites = new List<Core.GameObject>();
-        private CameraComponent currentCamera;
+        public static Core.Transform playerTransform = null;
 
-        static ViewManager()
+        private ViewManager()
         {
 
         }
@@ -21,22 +27,18 @@ namespace AstroMonkey.Graphics
             sprites.Add(sprite);
         }
 
-        public void SetCamera(CameraComponent camera)
-        {
-            currentCamera = camera;
-        }
-
         public void Render(SpriteBatch spriteBatch)
         {
-            Matrix position = currentCamera == null ? Matrix.Identity : currentCamera.Transform;
 
-            // spriteBatch.Begin(transformMatrix: position);
-            spriteBatch.Begin();
+            spriteBatch.Begin(SpriteSortMode.Deferred,
+                            null, null, null, null, null,
+                            Matrix.CreateTranslation(
+                                -Graphics.ViewManager.playerTransform.position.X + spriteBatch.GraphicsDevice.Viewport.Width / 2,
+                                -Graphics.ViewManager.playerTransform.position.Y + spriteBatch.GraphicsDevice.Viewport.Height / 2, 0));
+            //Debug.WriteLine(sprites.Count);
             foreach(Core.GameObject s in sprites)
             {
-
-                Sprite sprite = s.GetComponent<Graphics.Sprite>();
-                // spriteBatch.Draw(sprite.image, destinationRectangle: sprite.rect);
+                Graphics.Sprite sprite = s.GetComponent<Graphics.Sprite>();
                 spriteBatch.Draw(
                     sprite.image,
                     new Vector2(
@@ -50,7 +52,6 @@ namespace AstroMonkey.Graphics
                     s.transform.rotation,
                     s.transform.scale);
             }
-
             spriteBatch.End();
         }
         

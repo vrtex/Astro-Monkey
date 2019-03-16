@@ -29,7 +29,6 @@ namespace AstroMonkey.Assets.Objects
             AddComponent(new Graphics.Animator(this));
             AddComponent(new Navigation.MovementComponent(this));
             AddComponent(new Input.InputCompoent(this));
-            AddComponent(new Graphics.CameraComponent(this));
 
             //dodawanie animacji
             GetComponent<Graphics.Animator>().AddAnimation(

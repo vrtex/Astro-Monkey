@@ -18,7 +18,7 @@ namespace AstroMonkey.Core
 
         public GameObject(Transform transform)
         {
-            transform = new Transform();
+            this.transform = transform;
             components = new List<Component>();
         }
 
