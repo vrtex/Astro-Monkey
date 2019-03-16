@@ -15,8 +15,6 @@ namespace AstroMonkey
         SpriteBatch spriteBatch;
         InputManager inputManager;
 
-        Core.GameObject             testPlayer;
-
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -33,9 +31,7 @@ namespace AstroMonkey
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-            Graphics.SpriteContainer.Instance.LoadTextures(this);
-            
-            testPlayer = new Assets.Player(); //TEST GRAFIKI I ANIMACJI
+            Core.GameManager.Instance.InitializeGame(this);
             base.Initialize();
 
             // add interesting buttons. Duplicates are ignored
@@ -109,13 +105,7 @@ namespace AstroMonkey
 
             // TODO: Add your drawing code here
             spriteBatch.Begin();
-
-            Graphics.Sprite playerSprite = testPlayer.GetComponent<Graphics.Sprite>();
-            spriteBatch.Draw(playerSprite.image,
-                new Vector2(
-                testPlayer.transform.position.X - playerSprite.rect.Width / 2,
-                testPlayer.transform.position.Y - playerSprite.rect.Height / 2),
-                playerSprite.rect, Color.Wheat);
+            Graphics.ViewManager.Instance.Render(spriteBatch);
             spriteBatch.End();
 
             base.Draw(gameTime);

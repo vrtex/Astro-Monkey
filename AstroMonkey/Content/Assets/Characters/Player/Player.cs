@@ -1,22 +1,34 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 
-namespace AstroMonkey.Assets
+namespace AstroMonkey.Assets.Objects
 {
     class Player: Core.GameObject
     {
         public Player()
         {
-            transform.position = new Vector2(50, 90);
+            Load(new Core.Transform(Vector2.Zero, Vector2.One, 0f));
+        }
+        public Player(Core.Transform _transform)
+        {
+            Load(_transform);
+        }
+        public Player(Vector2 position, Vector2 scale, float rotation = 0f)
+        {
+            Load(new Core.Transform(position, scale, rotation));
+        }
+        public Player(Vector2 position)
+        {
+            Load(new Core.Transform(position, Vector2.One, 0f));
+        }
+
+        private void Load(Core.Transform _transform)
+        { 
+            transform = _transform;
             AddComponent(new Graphics.Sprite(this, "player", new Rectangle(32, 32, 32, 32)));
             AddComponent(new Graphics.Animator(this));
 
-            //Added animations
+            //dodawanie animacji
             GetComponent<Graphics.Animator>().AddAnimation(
                     new Graphics.Animation("IdleUp",
                     GetComponent<Graphics.Sprite>(),
@@ -83,7 +95,6 @@ namespace AstroMonkey.Assets
                     true));
             GetComponent<Graphics.Animator>().SetAnimation("IdleDown");
 
-            Graphics.AnimationManager.Instance.AddAnimator(GetComponent<Graphics.Animator>());
         }
         
     }

@@ -8,7 +8,16 @@ namespace AstroMonkey.Core
 {
     class Scene
     {
-        List<GameObject> objects        = new List<GameObject>();
+        public List<GameObject> objects        = new List<GameObject>();
 
+        public virtual void Load()
+        {
+
+        }
+
+        public virtual void UnLoad()
+        {
+
+        }
     }
 }

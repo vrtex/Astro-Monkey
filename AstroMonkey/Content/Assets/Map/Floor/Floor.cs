@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AstroMonkey.Assets
+namespace AstroMonkey.Assets.Objects
 {
     class Floor: Core.GameObject
     {
