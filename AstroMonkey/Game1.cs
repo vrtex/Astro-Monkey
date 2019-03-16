@@ -32,25 +32,9 @@ namespace AstroMonkey
         {
             // TODO: Add your initialization logic here
             Core.GameManager.Instance.InitializeGame(this);
+            // Graphics.ViewManager.Instance.SetCamera(Core.SceneManager.Instance.currScene.)
             base.Initialize();
-
-            // add interesting buttons. Duplicates are ignored
-            //inputManager.AddObservedKey(Keys.W);
-            //inputManager.AddObservedKey(Keys.S);
-
-            // hook up events
-            //inputManager.OnKeyReleased += TestKey;
-            //inputManager.OnMouseMove += TestMouse;
-            //inputManager.OnMouseButtonPressed += TestMouse;
-            //inputManager.OnMouseButtonReleased += TestMouse;
-
-            // add action binding
-            //ActionBinding testBingind = new ActionBinding(Keys.K);
-            //inputManager.AddActionBinding("", testBingind);
-
-            // add axis bindings
-            //AxisBinding axisBinding = new AxisBinding(Keys.X, Keys.Z);
-            //inputManager.AddAxisBinding("", axisBinding);
+            
         }
 
         /// <summary>
@@ -104,9 +88,7 @@ namespace AstroMonkey
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             // TODO: Add your drawing code here
-            spriteBatch.Begin();
             Graphics.ViewManager.Instance.Render(spriteBatch);
-            spriteBatch.End();
 
             base.Draw(gameTime);
         }
@@ -115,16 +97,6 @@ namespace AstroMonkey
             base.OnExiting(sender, args);
             // very fucking important
             inputManager.End();
-        }
-
-        private void TestKey(KeyInputEventArgs args)
-        {
-            System.Console.WriteLine(args);
-        }
-
-        private void TestMouse(MouseInputEventArgs args)
-        {
-            System.Console.WriteLine(args);
         }
     }
 }

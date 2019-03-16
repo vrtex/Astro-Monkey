@@ -61,6 +61,7 @@
     <Compile Include="src\Core\SceneManager.cs" />
     <Compile Include="src\Core\Transform.cs" />
     <Compile Include="src\Graphics\AnimationManager.cs" />
+    <Compile Include="src\Graphics\CameraComponent.cs" />
     <Compile Include="src\Graphics\ViewManager.cs" />
     <Compile Include="src\Input\ActionBinding.cs" />
     <Compile Include="src\Input\AxisBinding.cs" />
