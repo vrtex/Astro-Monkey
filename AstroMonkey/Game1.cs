@@ -34,23 +34,6 @@ namespace AstroMonkey
             Core.GameManager.Instance.InitializeGame(this);
             base.Initialize();
 
-            // add interesting buttons. Duplicates are ignored
-            //inputManager.AddObservedKey(Keys.W);
-            //inputManager.AddObservedKey(Keys.S);
-
-            // hook up events
-            //inputManager.OnKeyReleased += TestKey;
-            //inputManager.OnMouseMove += TestMouse;
-            //inputManager.OnMouseButtonPressed += TestMouse;
-            //inputManager.OnMouseButtonReleased += TestMouse;
-
-            // add action binding
-            //ActionBinding testBingind = new ActionBinding(Keys.K);
-            //inputManager.AddActionBinding("", testBingind);
-
-            // add axis bindings
-            //AxisBinding axisBinding = new AxisBinding(Keys.X, Keys.Z);
-            //inputManager.AddAxisBinding("", axisBinding);
         }
 
         /// <summary>
@@ -104,31 +87,15 @@ namespace AstroMonkey
             GraphicsDevice.Clear(Color.Black);
 
             // TODO: Add your drawing code here
-            spriteBatch.Begin(SpriteSortMode.Deferred,
-                            null, null, null, null, null,
-                            Matrix.CreateTranslation(
-                                -Graphics.ViewManager.playerTransform.position.X + graphics.PreferredBackBufferWidth / 2,
-                                -Graphics.ViewManager.playerTransform.position.Y + graphics.PreferredBackBufferHeight / 2, 0));
             Graphics.ViewManager.Instance.Render(spriteBatch);
-            spriteBatch.End();
 
             base.Draw(gameTime);
         }
         protected override void OnExiting(object sender, System.EventArgs args)
         {
-            base.OnExiting(sender, args);
-            // very fucking important
             inputManager.End();
+            base.OnExiting(sender, args);
         }
 
-        private void TestKey(KeyInputEventArgs args)
-        {
-            System.Console.WriteLine(args);
-        }
-
-        private void TestMouse(MouseInputEventArgs args)
-        {
-            System.Console.WriteLine(args);
-        }
     }
 }

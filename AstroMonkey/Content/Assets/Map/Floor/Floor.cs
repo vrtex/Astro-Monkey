@@ -6,21 +6,18 @@ namespace AstroMonkey.Assets.Objects
 {
     class Floor: Core.GameObject
     {
-        public Floor()
+        public Floor(): this(new Core.Transform())
         {
-            Load(new Core.Transform(Vector2.Zero, Vector2.One, 0f));
         }
         public Floor(Core.Transform _transform)
         {
             Load(_transform);
         }
-        public Floor(Vector2 position, Vector2 scale, float rotation = 0f)
+        public Floor(Vector2 position, Vector2 scale, float rotation = 0f): this(new Core.Transform(position, scale, rotation))
         {
-            Load(new Core.Transform(position, scale, rotation));
         }
-        public Floor(Vector2 position)
+        public Floor(Vector2 position): this(new Core.Transform(position, Vector2.One))
         {
-            Load(new Core.Transform(position, Vector2.One, 0f));
         }
 
         private void Load(Core.Transform _transform)
