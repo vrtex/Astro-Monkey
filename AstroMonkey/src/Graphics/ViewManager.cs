@@ -32,11 +32,18 @@ namespace AstroMonkey.Graphics
             foreach(Core.GameObject s in sprites)
             {
                 Graphics.Sprite sprite = s.GetComponent<Graphics.Sprite>();
-                spriteBatch.Draw(sprite.image,
-                new Vector2(
-                    s.transform.position.X - sprite.rect.Width / 2,
-                    s.transform.position.Y - sprite.rect.Height / 2),
-                    sprite.rect, Color.Wheat);
+                spriteBatch.Draw(
+                    sprite.image,
+                    new Vector2(
+                        s.transform.position.X,
+                        s.transform.position.Y),
+                    null,
+                    sprite.rect,
+                    new Vector2(
+                        sprite.rect.Width / 2,
+                        sprite.rect.Height / 2),
+                    s.transform.rotation,
+                    s.transform.scale);
             }
         }
         

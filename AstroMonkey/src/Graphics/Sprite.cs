@@ -10,14 +10,16 @@ namespace AstroMonkey.Graphics
         public  Rectangle       rect;
         public  Color           color;
         public  Vector2         anchor;
+        public  float           layer;
 
-        public Sprite(Core.GameObject go, string _image, Rectangle _rect): base(go)
+        public Sprite(Core.GameObject go, string _image, Rectangle _rect, float _layer = 0f): base(go)
         {
             name    = _image;
             image   = SpriteContainer.Instance.GetImage(_image);
             rect    = _rect;
             color   = Color.Wheat;
             anchor  = Vector2.Zero;
+            layer   = _layer;
         }
 
         public bool SetImage(string _image)

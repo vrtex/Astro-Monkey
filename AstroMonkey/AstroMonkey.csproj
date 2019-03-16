@@ -47,6 +47,7 @@
     <Compile Include="Content\Assets\Items\Banana.cs" />
     <Compile Include="Content\Assets\Map\Floor\Floor.cs" />
     <Compile Include="Content\Assets\Map\Interactable\Computer.cs" />
+    <Compile Include="Content\Assets\Map\Objects\Corner.cs" />
     <Compile Include="Content\Assets\Map\Objects\Wall.cs" />
     <Compile Include="Content\Assets\Scenes\DevRoom.cs" />
     <Compile Include="Game1.cs" />
@@ -72,6 +73,7 @@
     <Compile Include="src\Navigation\MovementComponent.cs" />
     <Compile Include="src\Util\Enums.cs" />
     <Compile Include="src\Util\Rect.cs" />
+    <Compile Include="src\Util\RNG.cs" />
     <Compile Include="src\Util\Statics.cs" />
   </ItemGroup>
   <ItemGroup>
