@@ -14,8 +14,8 @@ namespace AstroMonkey.Assets.Scenes
         {
             objects.Add(new Objects.Player(new Vector2(20f, 50f)));
 
-            objects.Add(new Objects.Player(new Vector2(90f, 70f)));
-            objects[1].GetComponent<Graphics.Animator>().SetAnimation("WalkDown");
+            objects.Add(new Objects.Klucha(new Vector2(90f, 70f)));
+            objects[1].GetComponent<Graphics.Animator>().SetAnimation("WalkRight");
 
             objects.Add(new Objects.Klucha(new Vector2(140f, 100f)));
             objects[2].GetComponent<Graphics.Animator>().SetAnimation("WalkUp");

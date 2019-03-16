@@ -70,6 +70,7 @@
     <Compile Include="src\Graphics\Sprite.cs" />
     <Compile Include="src\Graphics\SpriteContainer.cs" />
     <Compile Include="src\Navigation\MovementComponent.cs" />
+    <Compile Include="src\Util\Enums.cs" />
     <Compile Include="src\Util\Rect.cs" />
     <Compile Include="src\Util\Statics.cs" />
   </ItemGroup>

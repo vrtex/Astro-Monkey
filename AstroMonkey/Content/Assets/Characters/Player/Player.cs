@@ -1,10 +1,13 @@
 ﻿using System.Collections.Generic;
 using Microsoft.Xna.Framework;
+using System;
 
 namespace AstroMonkey.Assets.Objects
 {
     class Player: Core.GameObject
     {
+        int side = 0;
+
         public Player()
         {
             Load(new Core.Transform(Vector2.Zero, Vector2.One, 0f));
@@ -36,7 +39,7 @@ namespace AstroMonkey.Assets.Objects
                     GetComponent<Graphics.Sprite>(),
                     new List<Rectangle> {
                         new Rectangle(0, 0, 32, 32)},
-                    215,
+                    166,
                     false));
             GetComponent<Graphics.Animator>().AddAnimation(
                     new Graphics.Animation("WalkUp",
@@ -46,14 +49,14 @@ namespace AstroMonkey.Assets.Objects
                         new Rectangle(32, 0, 32, 32),
                         new Rectangle(0, 0, 32, 32),
                         new Rectangle(64, 0, 32, 32)},
-                    215,
+                    166,
                     true));
             GetComponent<Graphics.Animator>().AddAnimation(
                     new Graphics.Animation("IdleRight",
                     GetComponent<Graphics.Sprite>(),
                     new List<Rectangle> {
                         new Rectangle(0, 32, 32, 32)},
-                    215,
+                    166,
                     false));
             GetComponent<Graphics.Animator>().AddAnimation(
                     new Graphics.Animation("WalkRight",
@@ -61,14 +64,14 @@ namespace AstroMonkey.Assets.Objects
                     new List<Rectangle> {
                         new Rectangle(0, 32, 32, 32),
                         new Rectangle(32, 32, 32, 32)},
-                    215,
+                    166,
                     true));
             GetComponent<Graphics.Animator>().AddAnimation(
                     new Graphics.Animation("IdleDown",
                     GetComponent<Graphics.Sprite>(),
                     new List<Rectangle> {
                         new Rectangle(0, 64, 32, 32)},
-                    215,
+                    166,
                     false));
             GetComponent<Graphics.Animator>().AddAnimation(
                     new Graphics.Animation("WalkDown",
@@ -78,14 +81,14 @@ namespace AstroMonkey.Assets.Objects
                         new Rectangle(32, 64, 32, 32),
                         new Rectangle(0, 64, 32, 32),
                         new Rectangle(64, 64, 32, 32)},
-                    215,
+                    166,
                     true));
             GetComponent<Graphics.Animator>().AddAnimation(
                     new Graphics.Animation("IdleLeft",
                     GetComponent<Graphics.Sprite>(),
                     new List<Rectangle> {
                         new Rectangle(0, 96, 32, 32)},
-                    215,
+                    166,
                     false));
             GetComponent<Graphics.Animator>().AddAnimation(
                     new Graphics.Animation("WalkLeft",
@@ -93,7 +96,7 @@ namespace AstroMonkey.Assets.Objects
                     new List<Rectangle> {
                         new Rectangle(0, 96, 32, 32),
                         new Rectangle(32, 96, 32, 32)},
-                    215,
+                    166,
                     true));
             GetComponent<Graphics.Animator>().SetAnimation("IdleDown");
 
@@ -107,19 +110,36 @@ namespace AstroMonkey.Assets.Objects
             // move this mess somewhere else. Or don't I don't care
             Vector2 currVel = GetComponent<Navigation.MovementComponent>().CurrentVelocity;
             if(Util.Statics.IsNearlyEqual(currVel.Length(), 0, 0.001))
-                GetComponent<Graphics.Animator>().SetAnimation("IdleDown");
+            {
+                if(side == 0) GetComponent<Graphics.Animator>().SetAnimation("IdleUp");
+                else if(side == 1) GetComponent<Graphics.Animator>().SetAnimation("IdleRight");
+                else if(side == 2) GetComponent<Graphics.Animator>().SetAnimation("IdleDown");
+                else if(side == 3) GetComponent<Graphics.Animator>().SetAnimation("IdleLeft");
+            }
             else
             {
                 double currentDirection = GetComponent<Navigation.MovementComponent>().CurrentDirection;
                 currentDirection += Math.PI;
                 if(currentDirection >= -Math.PI * 0.25 && currentDirection < Math.PI * 0.75)
+                {
+                    side = 0;
                     GetComponent<Graphics.Animator>().SetAnimation("WalkUp");
+                }
                 else if(currentDirection < Math.PI * 1.25)
+                {
+                    side = 1;
                     GetComponent<Graphics.Animator>().SetAnimation("WalkRight");
+                } 
                 else if(currentDirection < Math.PI * 1.75)
+                {
+                    side = 2;
                     GetComponent<Graphics.Animator>().SetAnimation("WalkDown");
+                }
                 else
+                {
+                    side = 3;
                     GetComponent<Graphics.Animator>().SetAnimation("WalkLeft");
+                }
             }
         }
     }

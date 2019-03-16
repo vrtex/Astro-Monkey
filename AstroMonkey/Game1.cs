@@ -85,7 +85,10 @@ namespace AstroMonkey
                 Exit();
 
             Graphics.AnimationManager.Instance.Update(gameTime.ElapsedGameTime.TotalSeconds);
-            testPlayer.Update(gameTime);
+            foreach(Core.GameObject go in Core.SceneManager.Instance.currScene.objects)
+            {
+                go.Update(gameTime);
+            }
 
             // TODO: Add your update logic here
 
