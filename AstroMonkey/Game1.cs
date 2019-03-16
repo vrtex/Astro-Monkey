@@ -101,10 +101,14 @@ namespace AstroMonkey
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            GraphicsDevice.Clear(Color.Black);
 
             // TODO: Add your drawing code here
-            spriteBatch.Begin();
+            spriteBatch.Begin(SpriteSortMode.Deferred,
+                            null, null, null, null, null,
+                            Matrix.CreateTranslation(
+                                -Graphics.ViewManager.playerTransform.position.X + graphics.PreferredBackBufferWidth / 2,
+                                -Graphics.ViewManager.playerTransform.position.Y + graphics.PreferredBackBufferHeight / 2, 0));
             Graphics.ViewManager.Instance.Render(spriteBatch);
             spriteBatch.End();
 

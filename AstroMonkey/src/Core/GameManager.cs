@@ -27,8 +27,6 @@ namespace AstroMonkey.Core
 
             //przeszukiwanie obiektów i podpinanie referenzji do komponenetów
             //pod odpowiednie zarządzające klasy (animator, sprites, ...)
-
-            Debug.WriteLine("test " + SceneManager.Instance.currScene + " " + SceneManager.Instance.currScene.objects.Count);
             foreach(GameObject go in SceneManager.Instance.currScene.objects)
             {
                 Graphics.Animator anim = go.GetComponent<Graphics.Animator>();

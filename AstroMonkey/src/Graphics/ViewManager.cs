@@ -15,6 +15,7 @@ namespace AstroMonkey.Graphics
     {
         public static ViewManager Instance { get; private set; } = new ViewManager();
         public static List<Core.GameObject> sprites = new List<Core.GameObject>();
+        public static Core.Transform playerTransform = null;
 
         static ViewManager()
         {

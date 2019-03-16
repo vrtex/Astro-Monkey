@@ -43,7 +43,10 @@ namespace AstroMonkey.Assets.Scenes
             objects.Add(new Objects.Computer(new Vector2(12 * 32f, 2 * 32f + 8f)));
 
             //DODAWANIE POSTACI
-            objects.Add(new Objects.Player(new Vector2(20f, 50f)));
+            Objects.Player player = new Objects.Player(new Vector2(20f, 50f));
+            objects.Add(player);
+            Graphics.ViewManager.playerTransform = player.transform;
+
 
             objects.Add(new Objects.Klucha(new Vector2(90f, 70f)));
             objects.Last().GetComponent<Graphics.Animator>().SetAnimation("WalkRight");
