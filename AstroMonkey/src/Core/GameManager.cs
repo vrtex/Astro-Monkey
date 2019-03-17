@@ -26,13 +26,16 @@ namespace AstroMonkey.Core
             SceneManager.Instance.LoadScene("devroom");
 
             //przeszukiwanie obiektów i podpinanie referenzji do komponenetów
-            //pod odpowiednie zarządzające klasy (animator, sprites, ...)
+            //pod odpowiednie zarządzające klasy (animator, sprite, stack animator, stack sprite,...)
             foreach(GameObject go in SceneManager.Instance.currScene.objects)
             {
                 Graphics.Animator anim = go.GetComponent<Graphics.Animator>();
                 if(anim != null) Graphics.AnimationManager.Instance.AddAnimator(anim);
+                Graphics.StackAnimator stackAnim = go.GetComponent<Graphics.StackAnimator>();
+                if(stackAnim != null) Graphics.AnimationManager.Instance.AddAnimator(stackAnim);
 
                 if(go.GetComponent<Graphics.Sprite>() != null) Graphics.ViewManager.Instance.AddSprite(go);
+                if(go.GetComponent<Graphics.StackSprite>() != null) Graphics.ViewManager.Instance.AddStackSprite(go);
             }
             
         }

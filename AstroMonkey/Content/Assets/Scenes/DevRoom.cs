@@ -47,6 +47,14 @@ namespace AstroMonkey.Assets.Scenes
             objects.Add(player);
             Graphics.ViewManager.playerTransform = player.transform;
 
+            objects.Add(new Objects.Monkey(new Vector2(350f, 170f)));
+            objects.Last().transform.rotation = (float)(Math.PI);
+
+            objects.Add(new Objects.Monkey(new Vector2(390f, 200f)));
+            objects.Last().transform.rotation = (float)(Math.PI * 0.5);
+
+            objects.Add(new Objects.Monkey(new Vector2(320f, 280f)));
+            objects.Last().transform.rotation = (float)(Math.PI * 1.5);
 
             objects.Add(new Objects.Klucha(new Vector2(90f, 70f)));
             objects.Last().GetComponent<Graphics.Animator>().SetAnimation("WalkRight");

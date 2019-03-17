@@ -15,6 +15,7 @@ namespace AstroMonkey.Graphics
     {
         public static ViewManager Instance { get; private set; } = new ViewManager();
         public static List<Core.GameObject> sprites = new List<Core.GameObject>();
+        public static List<Core.GameObject> stackSprites = new List<Core.GameObject>();
         public static Core.Transform playerTransform = null;
 
         private ViewManager()
@@ -27,11 +28,16 @@ namespace AstroMonkey.Graphics
             sprites.Add(sprite);
         }
 
+        public void AddStackSprite(Core.GameObject stackSprite)
+        {
+            stackSprites.Add(stackSprite);
+        }
+
         public void Render(SpriteBatch spriteBatch)
         {
-
             spriteBatch.Begin(SpriteSortMode.Deferred,
-                            null, null, null, null, null,
+                            BlendState.AlphaBlend, 
+                            SamplerState.PointClamp, null, null, null,
                             Matrix.CreateTranslation(
                                 -Graphics.ViewManager.playerTransform.position.X + spriteBatch.GraphicsDevice.Viewport.Width / 2,
                                 -Graphics.ViewManager.playerTransform.position.Y + spriteBatch.GraphicsDevice.Viewport.Height / 2, 0));
@@ -51,6 +57,26 @@ namespace AstroMonkey.Graphics
                         sprite.rect.Height / 2),
                     s.transform.rotation,
                     s.transform.scale);
+            }
+
+            foreach(Core.GameObject s in stackSprites)
+            {
+                Graphics.StackSprite sprite = s.GetComponent<Graphics.StackSprite>();
+                for(int i = 0; i < sprite.rect.Count; ++i)
+                {
+                    spriteBatch.Draw(
+                    sprite.image,
+                    new Vector2(
+                        s.transform.position.X,
+                        s.transform.position.Y - i),
+                    null,
+                    sprite.rect[i],
+                    new Vector2(
+                        sprite.rect[i].Width / 2,
+                        sprite.rect[i].Height / 2),
+                    s.transform.rotation,
+                    s.transform.scale);
+                }
             }
             spriteBatch.End();
         }

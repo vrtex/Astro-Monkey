@@ -8,7 +8,8 @@ namespace AstroMonkey.Graphics
 {
     class AnimationManager
     {
-        public List<Animator> animators = new List<Animator>();
+        public List<Animator>           animators       = new List<Animator>();
+        public List<StackAnimator>      stackAnimators  = new List<StackAnimator>();
         public static AnimationManager  Instance { get; private set; } = new AnimationManager();
 
         private AnimationManager()
@@ -20,6 +21,11 @@ namespace AstroMonkey.Graphics
         public void AddAnimator(Animator animatorController)
         {
             animators.Add(animatorController);
+        }
+
+        public void AddAnimator(StackAnimator animatorController)
+        {
+            stackAnimators.Add(animatorController);
         }
 
         public void Update(double deltaTime)
@@ -50,6 +56,38 @@ namespace AstroMonkey.Graphics
                             }
                         }
                             
+                    }
+
+                    sprite.rect = a.currentAnim.frames[a.currentAnim.currentFrame];
+                }
+            }
+
+            foreach(StackAnimator a in stackAnimators)
+            {
+                if(a.currentAnim != null)
+                {
+                    StackSprite sprite = a.Parent.GetComponent<StackSprite>();
+
+                    a.currentAnim.currentTime += (int)(deltaTime * 1000);
+                    if(a.currentAnim.currentTime >= a.currentAnim.speed)
+                    {
+                        a.currentAnim.currentTime -= a.currentAnim.speed;
+                        if(a.currentAnim.loop)
+                        {
+                            ++a.currentAnim.currentFrame;
+                            if(a.currentAnim.currentFrame == a.currentAnim.frames.Count)
+                            {
+                                a.currentAnim.currentFrame = 0;
+                            }
+                        }
+                        else
+                        {
+                            if(a.currentAnim.currentFrame < a.currentAnim.frames.Count - 1)
+                            {
+                                ++a.currentAnim.currentFrame;
+                            }
+                        }
+
                     }
 
                     sprite.rect = a.currentAnim.frames[a.currentAnim.currentFrame];
