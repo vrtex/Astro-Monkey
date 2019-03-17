@@ -8,21 +8,18 @@ namespace AstroMonkey.Assets.Objects
     {
         int side = 0;
 
-        public Player()
+        public Player(): this(new Core.Transform())
         {
-            Load(new Core.Transform(Vector2.Zero, Vector2.One, 0f));
         }
         public Player(Core.Transform _transform)
         {
             Load(_transform);
         }
-        public Player(Vector2 position, Vector2 scale, float rotation = 0f)
+        public Player(Vector2 position, Vector2 scale, float rotation = 0f): this(new Core.Transform(position, scale, rotation))
         {
-            Load(new Core.Transform(position, scale, rotation));
         }
-        public Player(Vector2 position)
+        public Player(Vector2 position): this(new Core.Transform(position, Vector2.One))
         {
-            Load(new Core.Transform(position, Vector2.One, 0f));
         }
 
         private void Load(Core.Transform _transform)

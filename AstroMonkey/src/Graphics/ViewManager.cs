@@ -17,7 +17,7 @@ namespace AstroMonkey.Graphics
         public static List<Core.GameObject> sprites = new List<Core.GameObject>();
         public static Core.Transform playerTransform = null;
 
-        static ViewManager()
+        private ViewManager()
         {
 
         }
@@ -29,6 +29,12 @@ namespace AstroMonkey.Graphics
 
         public void Render(SpriteBatch spriteBatch)
         {
+
+            spriteBatch.Begin(SpriteSortMode.Deferred,
+                            null, null, null, null, null,
+                            Matrix.CreateTranslation(
+                                -Graphics.ViewManager.playerTransform.position.X + spriteBatch.GraphicsDevice.Viewport.Width / 2,
+                                -Graphics.ViewManager.playerTransform.position.Y + spriteBatch.GraphicsDevice.Viewport.Height / 2, 0));
             //Debug.WriteLine(sprites.Count);
             foreach(Core.GameObject s in sprites)
             {
@@ -46,6 +52,7 @@ namespace AstroMonkey.Graphics
                     s.transform.rotation,
                     s.transform.scale);
             }
+            spriteBatch.End();
         }
         
     }

@@ -12,9 +12,13 @@ namespace AstroMonkey.Core
             get { return components; }
         }
 
-        public GameObject()
+        public GameObject(): this(new Transform())
         {
-            transform = new Transform();
+        }
+
+        public GameObject(Transform transform)
+        {
+            this.transform = transform;
             components = new List<Component>();
         }
 

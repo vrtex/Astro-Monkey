@@ -7,21 +7,21 @@ namespace AstroMonkey.Assets.Objects
 {
     class Computer: Core.GameObject
     {
-        public Computer()
+        public Computer(): this(new Core.Transform())
         {
-            Load(new Core.Transform(Vector2.Zero, Vector2.One, 0f));
         }
+
         public Computer(Core.Transform _transform)
         {
             Load(_transform);
         }
-        public Computer(Vector2 position, Vector2 scale, float rotation = 0f)
+
+        public Computer(Vector2 position, Vector2 scale, float rotation = 0f): this(new Core.Transform(position, scale, rotation))
         {
-            Load(new Core.Transform(position, scale, rotation));
         }
-        public Computer(Vector2 position)
+
+        public Computer(Vector2 position): this(new Core.Transform(position, Vector2.One))
         {
-            Load(new Core.Transform(position, Vector2.One, 0f));
         }
 
         private void Load(Core.Transform _transform)

@@ -23,7 +23,10 @@ namespace AstroMonkey.Core
         public void LoadScene(string name)
         {
             scenes.TryGetValue(name, out currScene);
-            currScene.Load();
+            if(currScene != null)
+                currScene.Load();
+            else
+                throw new ApplicationException("Unknown scene " + name);
         }
     }
 }
