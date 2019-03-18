@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
-using System.Threading;
+using System.Timers;
 
 namespace AstroMonkey.Input
 {
@@ -57,45 +57,20 @@ namespace AstroMonkey.Input
     /// </summary>
     class InputManager
     {
-        /// <summary>
-        /// fires off when key is pressed/released.
-        /// </summary>
-        /// <param name="key">which key was pressed/released?</param>
         public delegate void KeyboardEvent(KeyInputEventArgs key);
-        /// <summary>
-        /// fires off when key is pressed.
-        /// </summary>
         public event KeyboardEvent OnKeyPressed;
-        /// <summary>
-        /// fires off when key is released.
-        /// </summary>
         public event KeyboardEvent OnKeyReleased;
 
-        /// <summary>
-        /// fires off when mouse button is pressed/released (only works for left button for now)
-        /// OnMouseMove fires off when mouse is moved
-        /// </summary>
-        /// <param name="mouseArgs">contains info about event: which button was pressed (None for OnMouseMove), 
-        /// old and new position (should be same for presses/releases)</param>
         public delegate void MouseEvent(MouseInputEventArgs mouseArgs);
-        /// <summary>
-        /// fires off when mouse is moved. Button in args should be None
-        /// </summary>
         public event MouseEvent OnMouseMove;
-        /// <summary>
-        /// fires off when mouse button is pressed. Args should contain info on pressed button and current position
-        /// </summary>
         public event MouseEvent OnMouseButtonPressed;
-        /// <summary>
-        /// fires off when mouse button is pressed. Args should contain info on released button and current position
-        /// </summary>
         public event MouseEvent OnMouseButtonReleased;
 
 
         KeyboardState PreviousKeyboardState;
         MouseState PreviousMouseState;
         List<Keys> ObservedKeys = new List<Keys>();
-        private bool bActive = false;
+        private Timer tickTimer = new Timer(16);
 
         private Dictionary<String, ActionBinding> actionBindings = new Dictionary<string, ActionBinding>();
         private Dictionary<String, AxisBinding> axisBindings = new Dictionary<string, AxisBinding>();
@@ -103,6 +78,8 @@ namespace AstroMonkey.Input
         public static InputManager Manager { get; private set; } = new InputManager();
         private InputManager()
         {
+            tickTimer.Elapsed += OnTick;
+            tickTimer.Start();
             Initialize();
         }
 
@@ -110,9 +87,6 @@ namespace AstroMonkey.Input
         {
             PreviousKeyboardState = Keyboard.GetState();
             PreviousMouseState = Mouse.GetState();
-            Thread starter = new Thread(new ThreadStart(this.MainLoop));
-            bActive = true;
-            starter.Start();
         }
 
         public bool IsKeyPressed(Keys key)
@@ -167,13 +141,9 @@ namespace AstroMonkey.Input
             return null;
         }
 
-        private void MainLoop()
+        private void OnTick(Object o, ElapsedEventArgs args)
         {
-            while(bActive)
-            {
-                Update();
-                Thread.Sleep(16);
-            }
+            Update();
         }
 
         private void Update()
@@ -224,7 +194,6 @@ namespace AstroMonkey.Input
                 else if(OnMouseButtonReleased != null)
                     OnMouseButtonReleased(new MouseInputEventArgs(EMouseButton.Left, new Vector2(PreviousMouseState.X, PreviousMouseState.Y), new Vector2(newState.X, newState.Y)));
             }
-            // TODO: only left mouse button works
             if(newState.RightButton != PreviousMouseState.RightButton)
             {
                 if(newState.LeftButton == ButtonState.Pressed && OnMouseButtonPressed != null)
@@ -251,11 +220,6 @@ namespace AstroMonkey.Input
                 new Vector2(PreviousMouseState.X, PreviousMouseState.Y),
                 new Vector2(newState.X, newState.Y)
                 ));
-        }
-        
-        public void End()
-        {
-            bActive = false;
         }
     }
 }
