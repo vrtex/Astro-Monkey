@@ -91,11 +91,6 @@ namespace AstroMonkey
 
             base.Draw(gameTime);
         }
-        protected override void OnExiting(object sender, System.EventArgs args)
-        {
-            inputManager.End();
-            base.OnExiting(sender, args);
-        }
 
     }
 }
