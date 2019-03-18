@@ -8,8 +8,7 @@ namespace AstroMonkey.Graphics
 {
     class AnimationManager
     {
-        public List<Animator>           animators       = new List<Animator>();
-        public List<StackAnimator>      stackAnimators  = new List<StackAnimator>();
+        public List<AnimatorContainer>  animators       = new List<AnimatorContainer>();
         public static AnimationManager  Instance { get; private set; } = new AnimationManager();
 
         private AnimationManager()
@@ -18,19 +17,14 @@ namespace AstroMonkey.Graphics
             // a nie dopiero jak już będą obiekty stworzone? - vrtex
         }
 
-        public void AddAnimator(Animator animatorController)
+        public void AddAnimator(AnimatorContainer animator)
         {
-            animators.Add(animatorController);
-        }
-
-        public void AddAnimator(StackAnimator animatorController)
-        {
-            stackAnimators.Add(animatorController);
+            animators.Add(animator);
         }
 
         public void Update(double deltaTime)
         {
-            foreach(Animator a in animators)
+            foreach(AnimatorContainer a in animators)
             {
                 if(a.currentAnim != null)
                 {
@@ -43,56 +37,47 @@ namespace AstroMonkey.Graphics
                         if(a.currentAnim.loop)
                         {
                             ++a.currentAnim.currentFrame;
-                            if(a.currentAnim.currentFrame == a.currentAnim.frames.Count)
+                            if(a is Animator)
                             {
-                                a.currentAnim.currentFrame = 0;
+                                if(a.currentAnim.currentFrame == (a.currentAnim as Animation).frames.Count)
+                                {
+                                    a.currentAnim.currentFrame = 0;
+                                }
+                                sprite.rect[0] = (a.currentAnim as Animation).frames[a.currentAnim.currentFrame];
+                            }
+                            else
+                            {
+                                if(a.currentAnim.currentFrame == (a.currentAnim as StackAnimation).frames.Count)
+                                {
+                                    a.currentAnim.currentFrame = 0;
+                                }
+                                sprite.rect = (a.currentAnim as StackAnimation).frames[a.currentAnim.currentFrame];
                             }
                         }
                         else
                         {
-                            if(a.currentAnim.currentFrame < a.currentAnim.frames.Count -1)
+                            if(a is Animator)
                             {
-                                ++a.currentAnim.currentFrame;
+                                if(a.currentAnim.currentFrame < (a.currentAnim as Animation).frames.Count - 1)
+                                {
+                                    ++a.currentAnim.currentFrame;
+                                }
+                                sprite.rect[0] = (a.currentAnim as Animation).frames[a.currentAnim.currentFrame];
+                            }
+                            else
+                            {
+                                if(a.currentAnim.currentFrame < (a.currentAnim as StackAnimation).frames.Count - 1)
+                                {
+                                    ++a.currentAnim.currentFrame;
+                                }
+                                sprite.rect = (a.currentAnim as StackAnimation).frames[a.currentAnim.currentFrame];
                             }
                         }
                             
                     }
-
-                    sprite.rect = a.currentAnim.frames[a.currentAnim.currentFrame];
                 }
             }
-
-            foreach(StackAnimator a in stackAnimators)
-            {
-                if(a.currentAnim != null)
-                {
-                    StackSprite sprite = a.Parent.GetComponent<StackSprite>();
-
-                    a.currentAnim.currentTime += (int)(deltaTime * 1000);
-                    if(a.currentAnim.currentTime >= a.currentAnim.speed)
-                    {
-                        a.currentAnim.currentTime -= a.currentAnim.speed;
-                        if(a.currentAnim.loop)
-                        {
-                            ++a.currentAnim.currentFrame;
-                            if(a.currentAnim.currentFrame == a.currentAnim.frames.Count)
-                            {
-                                a.currentAnim.currentFrame = 0;
-                            }
-                        }
-                        else
-                        {
-                            if(a.currentAnim.currentFrame < a.currentAnim.frames.Count - 1)
-                            {
-                                ++a.currentAnim.currentFrame;
-                            }
-                        }
-
-                    }
-
-                    sprite.rect = a.currentAnim.frames[a.currentAnim.currentFrame];
-                }
-            }
+            
         }
 
 

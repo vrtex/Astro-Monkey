@@ -61,10 +61,11 @@
     <Compile Include="src\Core\Scene.cs" />
     <Compile Include="src\Core\SceneManager.cs" />
     <Compile Include="src\Core\Transform.cs" />
+    <Compile Include="src\Graphics\AnimationComponent.cs" />
     <Compile Include="src\Graphics\AnimationManager.cs" />
+    <Compile Include="src\Graphics\AnimatorContainer.cs" />
     <Compile Include="src\Graphics\StackAnimation.cs" />
     <Compile Include="src\Graphics\StackAnimator.cs" />
-    <Compile Include="src\Graphics\StackSprite.cs" />
     <Compile Include="src\Graphics\ViewManager.cs" />
     <Compile Include="src\Input\ActionBinding.cs" />
     <Compile Include="src\Input\AxisBinding.cs" />

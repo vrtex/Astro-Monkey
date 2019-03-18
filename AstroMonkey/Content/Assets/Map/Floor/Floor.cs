@@ -23,12 +23,12 @@ namespace AstroMonkey.Assets.Objects
         private void Load(Core.Transform _transform)
         {
             transform = _transform;
-            AddComponent(new Graphics.Sprite(this, "floor", new Rectangle(0, 0, 32, 32)));
+            AddComponent(new Graphics.Sprite(this, "floor", new List<Rectangle> { new Rectangle(0, 0, 32, 32) }));
         }
 
         public void RandFloor()
         {
-            GetComponent<Graphics.Sprite>().rect = new Rectangle(Util.RNG.random.Next(0, 3) * 32, 0, 32, 32);
+            GetComponent<Graphics.Sprite>().rect = new List<Rectangle> { new Rectangle(Util.RNG.random.Next(0, 3) * 32, 0, 32, 32) };
         }
     }
 }

@@ -27,7 +27,7 @@ namespace AstroMonkey.Assets.Objects
         private void Load(Core.Transform _transform)
         {
             transform = _transform;
-            AddComponent(new Graphics.Sprite(this, "computer", new Rectangle(0, 0, 32, 32)));
+            AddComponent(new Graphics.Sprite(this, "computer", new List<Rectangle> { new Rectangle(0, 0, 32, 32) }));
         }
     }
 }

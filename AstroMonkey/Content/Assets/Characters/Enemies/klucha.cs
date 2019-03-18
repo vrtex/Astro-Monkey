@@ -25,7 +25,7 @@ namespace AstroMonkey.Assets.Objects
         private void Load(Core.Transform _transform)
         {
             transform = _transform;
-            AddComponent(new Graphics.Sprite(this, "enemy", new Rectangle(32, 32, 32, 32)));
+            AddComponent(new Graphics.Sprite(this, "enemy", new List<Rectangle> { new Rectangle(32, 32, 32, 32) }));
             AddComponent(new Graphics.Animator(this));
 
             //dodawanie animacji

@@ -6,26 +6,11 @@ using System.Threading.Tasks;
 
 namespace AstroMonkey.Graphics
 {
-    class Animator: Core.Component
+    class Animator: AnimatorContainer
     {
-        public  Dictionary<string, Animation>       animations = new Dictionary<string, Animation>();
-        public  Animation                           currentAnim = null;
-
         public Animator(Core.GameObject go) : base(go)
         {
-            
-        }
 
-        public void SetAnimation(string name)
-        {
-            animations.TryGetValue(name, out currentAnim);
-            if(currentAnim == null)
-                Console.WriteLine("Lolz, bogus animation " + name +". Animator::SetAnimation");
-        }
-
-        public void AddAnimation(Animation anim)
-        {
-            animations.Add(anim.name, anim);
         }
     }
 }

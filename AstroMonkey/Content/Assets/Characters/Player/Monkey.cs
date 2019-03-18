@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 
 namespace AstroMonkey.Assets.Objects
@@ -31,7 +30,7 @@ namespace AstroMonkey.Assets.Objects
         private void Load(Core.Transform _transform)
         {
             transform = _transform;
-            AddComponent(new Graphics.StackSprite(this, "monkey", new List<Rectangle> {
+            AddComponent(new Graphics.Sprite(this, "monkey", new List<Rectangle> {
                 new Rectangle(0, 0, 16, 16),
                 new Rectangle(16, 0, 16, 16),
                 new Rectangle(32, 0, 16, 16),

@@ -35,7 +35,6 @@ namespace AstroMonkey.Core
                 if(stackAnim != null) Graphics.AnimationManager.Instance.AddAnimator(stackAnim);
 
                 if(go.GetComponent<Graphics.Sprite>() != null) Graphics.ViewManager.Instance.AddSprite(go);
-                if(go.GetComponent<Graphics.StackSprite>() != null) Graphics.ViewManager.Instance.AddStackSprite(go);
             }
             
         }

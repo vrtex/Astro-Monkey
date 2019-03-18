@@ -23,9 +23,9 @@ namespace AstroMonkey.Assets.Objects
         }
 
         private void Load(Core.Transform _transform)
-        { 
+        {
             transform = _transform;
-            AddComponent(new Graphics.Sprite(this, "player", new Rectangle(32, 32, 32, 32)));
+            AddComponent(new Graphics.Sprite(this, "player", new List<Rectangle> { new Rectangle(32, 32, 32, 32) }));
             AddComponent(new Graphics.Animator(this));
             AddComponent(new Navigation.MovementComponent(this));
             AddComponent(new Input.InputCompoent(this));
