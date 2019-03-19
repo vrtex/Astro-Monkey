@@ -7,11 +7,12 @@ namespace AstroMonkey.Assets.Objects
     class Player: Core.GameObject
     {
         int side = 0;
+        public Audio.AudioSource testSource;
 
         public Player(): this(new Core.Transform())
         {
         }
-        public Player(Core.Transform _transform)
+        public Player(Core.Transform _transform): base(_transform)
         {
             Load(_transform);
         }
@@ -24,11 +25,13 @@ namespace AstroMonkey.Assets.Objects
 
         private void Load(Core.Transform _transform)
         {
-            transform = _transform;
             AddComponent(new Graphics.Sprite(this, "player", new List<Rectangle> { new Rectangle(32, 32, 32, 32) }));
             AddComponent(new Graphics.Animator(this));
             AddComponent(new Navigation.MovementComponent(this));
             AddComponent(new Input.InputCompoent(this));
+            testSource = (Audio.AudioSource)AddComponent(new Audio.AudioSource(this, Audio.SoundContainer.Instance.GetSoundEffect("test")));
+
+
 
             //dodawanie animacji
             GetComponent<Graphics.Animator>().AddAnimation(

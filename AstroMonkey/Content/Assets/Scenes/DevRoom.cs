@@ -46,6 +46,7 @@ namespace AstroMonkey.Assets.Scenes
             Objects.Player player = new Objects.Player(new Vector2(20f, 50f));
             objects.Add(player);
             Graphics.ViewManager.playerTransform = player.transform;
+            Audio.AudioManager.Instance.PlayerTransform = player.transform;
 
             objects.Add(new Objects.Monkey(new Vector2(350f, 170f)));
             objects.Last().transform.rotation = (float)(Math.PI);
