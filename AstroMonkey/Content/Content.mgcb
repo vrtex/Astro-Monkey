@@ -97,3 +97,9 @@
 /processorParam:TextureFormat=Color
 /build:gfx/Map/Objects/Walls.png
 
+#begin sfx/bottle_pop_2.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:sfx/bottle_pop_2.wav;sfx/test_sound.wav
+

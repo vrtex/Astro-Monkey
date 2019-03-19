@@ -19,12 +19,15 @@ namespace AstroMonkey.Input
             moveComp = parent.GetComponent<Navigation.MovementComponent>();
             verticalAxis = new AxisBinding(Keys.S, Keys.W);
             horizontalAxis = new AxisBinding(Keys.D, Keys.A);
+            ActionBinding playBinding = new ActionBinding(Keys.P);
 
             verticalAxis.OnUpdate += Move;
             horizontalAxis.OnUpdate += Move;
+            playBinding.OnTrigger += Play;
 
             InputManager.Manager.AddAxisBinding("move up", verticalAxis);
             InputManager.Manager.AddAxisBinding("move right", horizontalAxis);
+            InputManager.Manager.AddActionBinding("play", playBinding);
         }
 
         private void Move(float trash)
@@ -37,6 +40,12 @@ namespace AstroMonkey.Input
                 newDirection.Normalize();
             
             moveComp.AddMovementInput(newDirection);
+        }
+
+        private void Play()
+        {
+            Assets.Objects.Player player = (Assets.Objects.Player)parent;
+            player.testSource.Play();
         }
 
     }

@@ -31,6 +31,7 @@ namespace AstroMonkey
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
+            Audio.SoundContainer.Instance.AddSound("test", @"sfx/test_sound", Content);
             Core.GameManager.Instance.InitializeGame(this);
             base.Initialize();
 

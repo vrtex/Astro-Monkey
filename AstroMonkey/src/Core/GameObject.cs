@@ -22,9 +22,10 @@ namespace AstroMonkey.Core
             components = new List<Component>();
         }
 
-        public void AddComponent(Component component)
+        public Component AddComponent(Component component)
         {
             components.Add(component);
+            return component;
         }
 
         public List<T> GetComponents<T>() where T: Component
