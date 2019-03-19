@@ -23,7 +23,7 @@ namespace AstroMonkey.Graphics
                 Console.WriteLine("Lolz, bogus animation " + name + ". Animator::SetAnimation");
         }
 
-        public void AddAnimation(Animation anim)
+        public void AddAnimation(AnimationComponent anim)
         {
             animations.Add(anim.name, anim);
         }

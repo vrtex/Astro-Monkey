@@ -46,7 +46,7 @@ namespace AstroMonkey.Graphics
                     sprite.image,
                     new Vector2(
                         s.transform.position.X,
-                        s.transform.position.Y - i),
+                        s.transform.position.Y - i * s.transform.scale.Y),
                     null,
                     sprite.rect[i],
                     new Vector2(

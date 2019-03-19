@@ -45,6 +45,7 @@
     <Compile Include="Content\Assets\Characters\Enemies\Klucha.cs" />
     <Compile Include="Content\Assets\Characters\Player\Monkey.cs" />
     <Compile Include="Content\Assets\Characters\Player\Player.cs" />
+    <Compile Include="Content\Assets\Characters\Player\TestPlayer.cs" />
     <Compile Include="Content\Assets\Items\Banana.cs" />
     <Compile Include="Content\Assets\Map\Floor\Floor.cs" />
     <Compile Include="Content\Assets\Map\Interactable\Computer.cs" />
