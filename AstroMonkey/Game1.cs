@@ -1,9 +1,8 @@
-﻿using AstroMonkey.Core;
-using AstroMonkey.Physics;
-using AstroMonkey.Physics.Collider;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System.Collections.Generic;
+using AstroMonkey.Input;
 
 namespace AstroMonkey
 {
@@ -15,16 +14,12 @@ namespace AstroMonkey
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         InputManager inputManager;
-        
-
-        Graphics.SpriteContainer spriteContainer;
-        Core.GameObject             testGameObject;
 
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
-            inputManager = InputManager.manager;
+            inputManager = InputManager.Manager;
         }
 
         /// <summary>
@@ -36,28 +31,10 @@ namespace AstroMonkey
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-
-            GameObject go = new GameObject();
-            CircleCollider cr = new CircleCollider(go, CollisionChanell.Enemy,Vector2.One, 5.2f);
-
-            PhysicsManager.CheckCollision();
-
-
-            Graphics.SpriteContainer.Instance.LoadTextures(this);
-            testGameObject = new Core.GameObject();
-            testGameObject.transform.position = new Vector2(50, 90);
-            testGameObject.AddComponent(new Graphics.Sprite(testGameObject, "player", new Rectangle(32, 32, 32, 32)));
+            Audio.SoundContainer.Instance.AddSound("test", @"sfx/test_sound", Content);
+            Core.GameManager.Instance.InitializeGame(this);
             base.Initialize();
 
-            // add interesting buttons. Duplicates are ignored
-            inputManager.AddObservedKey(Keys.W);
-            inputManager.AddObservedKey(Keys.S);
-
-            // hook up events
-            inputManager.OnKeyReleased += TestKey;
-            inputManager.OnMouseMove += TestMouse;
-            inputManager.OnMouseButtonPressed += TestMouse;
-            inputManager.OnMouseButtonReleased += TestMouse;
         }
 
         /// <summary>
@@ -89,10 +66,12 @@ namespace AstroMonkey
         protected override void Update(GameTime gameTime)
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-            {
-                // IMPORTANT: call end on manager before quitting game
-                inputManager.End();
                 Exit();
+
+            Graphics.AnimationManager.Instance.Update(gameTime.ElapsedGameTime.TotalSeconds);
+            foreach(Core.GameObject go in Core.SceneManager.Instance.currScene.objects)
+            {
+                go.Update(gameTime);
             }
 
             // TODO: Add your update logic here
@@ -106,33 +85,13 @@ namespace AstroMonkey
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            GraphicsDevice.Clear(Color.Black);
 
             // TODO: Add your drawing code here
-            spriteBatch.Begin();
-
-            Graphics.Sprite playerSprite= testGameObject.GetComponent<Graphics.Sprite>();
-            spriteBatch.Draw(playerSprite.image, testGameObject.transform.position, playerSprite.rect, Color.Wheat);
-
-            spriteBatch.End();
+            Graphics.ViewManager.Instance.Render(spriteBatch);
 
             base.Draw(gameTime);
         }
-        protected override void OnExiting(object sender, System.EventArgs args)
-        {
-            base.OnExiting(sender, args);
-            // very fucking important
-            inputManager.End();
-        }
 
-        private void TestKey(KeyInputEventArgs args)
-        {
-            System.Console.WriteLine(args);
-        }
-
-        private void TestMouse(MouseInputEventArgs args)
-        {
-            System.Console.WriteLine(args);
-        }
     }
 }

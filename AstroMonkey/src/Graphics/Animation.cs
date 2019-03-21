@@ -8,26 +8,23 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace AstroMonkey.Graphics
 {
-    public enum AnimationState
+    class Animation: AnimationComponent
     {
-        Idle    = 0,
-        Walk    = 1,
-        Run     = 2,
-        Attack  = 3,
-        Dead    = 4
-    }
+        public  List<Rectangle>     frames; //klatki jakie po kolei są odtwarzane w animacji   
 
-    class Animation: Core.Component
-    {
-        public  Sprite              sprite;
-        public  List<Rectangle>     frames; //klatki jakie po kolei są odtwarzane w animacji
-        public  int                 speed; //pręskość odtwarzania kolejnych klatek
-        public  bool                loop;
-
-        public Animation(Core.GameObject go, Sprite _sprite) : base(go)
+        public Animation(string _name, Sprite _sprite, List<Rectangle> _frames, int _speed, bool _loop = false) : base(_name, _sprite, _speed, _loop)
         {
-            sprite = _sprite;
+            frames = _frames;
+        }
 
+        public void SetFrames(List<Rectangle> rectangle)
+        {
+            frames = rectangle;
+        }
+
+        public void AddFrame(Rectangle rectangle)
+        {
+            frames.Add(rectangle);
         }
     }
 }
