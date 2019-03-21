@@ -53,7 +53,7 @@ namespace AstroMonkey.Physics.Collider
         }
 
 
-        public ReactType GetReactType(CollisionChanell collisionChanell)
+        public ReactType GetReaction(CollisionChanell collisionChanell)
         {
             return reaction[collisionChanell];
         }
