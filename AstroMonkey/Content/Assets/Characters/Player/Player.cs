@@ -205,6 +205,159 @@ namespace AstroMonkey.Assets.Objects
                     216,
                     true));
 
+            GetComponent<Graphics.StackAnimator>().AddAnimation(
+                    new Graphics.StackAnimation("Hold",
+                    GetComponent<Graphics.Sprite>(),
+                    new List<List<Rectangle>> {
+                        new List<Rectangle> {
+                            new Rectangle(0, 84, 21, 21),
+                            new Rectangle(21, 84, 21, 21),
+                            new Rectangle(42, 84, 21, 21),
+                            new Rectangle(63, 84, 21, 21),
+                            new Rectangle(84, 84, 21, 21),
+                            new Rectangle(105, 84, 21, 21),
+                            new Rectangle(126, 84, 21, 21),
+                            new Rectangle(147, 84, 21, 21),
+                            new Rectangle(168, 84, 21, 21),
+                            new Rectangle(189, 84, 21, 21),
+                            new Rectangle(210, 84, 21, 21),
+                            new Rectangle(231, 84, 21, 21),
+                            new Rectangle(252, 84, 21, 21),
+                            new Rectangle(273, 84, 21, 21),
+                            new Rectangle(294, 84, 21, 21),
+                            new Rectangle(315, 84, 21, 21),
+                            new Rectangle(336, 84, 21, 21),
+                            new Rectangle(357, 84, 21, 21),
+                            new Rectangle(378, 84, 21, 21),
+                            new Rectangle(399, 84, 21, 21),
+                            new Rectangle(420, 84, 21, 21),
+                        },
+                        new List<Rectangle> {
+                            new Rectangle(0, 105, 21, 21),
+                            new Rectangle(21, 105, 21, 21),
+                            new Rectangle(42, 105, 21, 21),
+                            new Rectangle(63, 105, 21, 21),
+                            new Rectangle(84, 105, 21, 21),
+                            new Rectangle(105, 105, 21, 21),
+                            new Rectangle(126, 105, 21, 21),
+                            new Rectangle(147, 105, 21, 21),
+                            new Rectangle(168, 105, 21, 21),
+                            new Rectangle(189, 105, 21, 21),
+                            new Rectangle(210, 105, 21, 21),
+                            new Rectangle(231, 105, 21, 21),
+                            new Rectangle(252, 105, 21, 21),
+                            new Rectangle(273, 105, 21, 21),
+                            new Rectangle(294, 105, 21, 21),
+                            new Rectangle(315, 105, 21, 21),
+                            new Rectangle(336, 105, 21, 21),
+                            new Rectangle(357, 105, 21, 21),
+                            new Rectangle(378, 105, 21, 21),
+                            new Rectangle(399, 105, 21, 21),
+                            new Rectangle(420, 105, 21, 21),
+                        }},
+                    266,
+                    true));
+
+            GetComponent<Graphics.StackAnimator>().AddAnimation(
+                    new Graphics.StackAnimation("HoldWalk",
+                    GetComponent<Graphics.Sprite>(),
+                    new List<List<Rectangle>> {
+                        new List<Rectangle> {
+                            new Rectangle(0, 84, 21, 21),
+                            new Rectangle(21, 84, 21, 21),
+                            new Rectangle(42, 84, 21, 21),
+                            new Rectangle(63, 84, 21, 21),
+                            new Rectangle(84, 84, 21, 21),
+                            new Rectangle(105, 84, 21, 21),
+                            new Rectangle(126, 84, 21, 21),
+                            new Rectangle(147, 84, 21, 21),
+                            new Rectangle(168, 84, 21, 21),
+                            new Rectangle(189, 84, 21, 21),
+                            new Rectangle(210, 84, 21, 21),
+                            new Rectangle(231, 84, 21, 21),
+                            new Rectangle(252, 84, 21, 21),
+                            new Rectangle(273, 84, 21, 21),
+                            new Rectangle(294, 84, 21, 21),
+                            new Rectangle(315, 84, 21, 21),
+                            new Rectangle(336, 84, 21, 21),
+                            new Rectangle(357, 84, 21, 21),
+                            new Rectangle(378, 84, 21, 21),
+                            new Rectangle(399, 84, 21, 21),
+                            new Rectangle(420, 84, 21, 21),
+                        },
+                        new List<Rectangle> {
+                            new Rectangle(0, 126, 21, 21),
+                            new Rectangle(21, 126, 21, 21),
+                            new Rectangle(42, 126, 21, 21),
+                            new Rectangle(63, 126, 21, 21),
+                            new Rectangle(84, 126, 21, 21),
+                            new Rectangle(105, 126, 21, 21),
+                            new Rectangle(126, 126, 21, 21),
+                            new Rectangle(147, 126, 21, 21),
+                            new Rectangle(168, 126, 21, 21),
+                            new Rectangle(189, 126, 21, 21),
+                            new Rectangle(210, 126, 21, 21),
+                            new Rectangle(231, 126, 21, 21),
+                            new Rectangle(252, 126, 21, 21),
+                            new Rectangle(273, 126, 21, 21),
+                            new Rectangle(294, 126, 21, 21),
+                            new Rectangle(315, 126, 21, 21),
+                            new Rectangle(336, 126, 21, 21),
+                            new Rectangle(357, 126, 21, 21),
+                            new Rectangle(378, 126, 21, 21),
+                            new Rectangle(399, 126, 21, 21),
+                            new Rectangle(420, 126, 21, 21),
+                        },
+                    new List<Rectangle> {
+                            new Rectangle(0, 84, 21, 21),
+                            new Rectangle(21, 84, 21, 21),
+                            new Rectangle(42, 84, 21, 21),
+                            new Rectangle(63, 84, 21, 21),
+                            new Rectangle(84, 84, 21, 21),
+                            new Rectangle(105, 84, 21, 21),
+                            new Rectangle(126, 84, 21, 21),
+                            new Rectangle(147, 84, 21, 21),
+                            new Rectangle(168, 84, 21, 21),
+                            new Rectangle(189, 84, 21, 21),
+                            new Rectangle(210, 84, 21, 21),
+                            new Rectangle(231, 84, 21, 21),
+                            new Rectangle(252, 84, 21, 21),
+                            new Rectangle(273, 84, 21, 21),
+                            new Rectangle(294, 84, 21, 21),
+                            new Rectangle(315, 84, 21, 21),
+                            new Rectangle(336, 84, 21, 21),
+                            new Rectangle(357, 84, 21, 21),
+                            new Rectangle(378, 84, 21, 21),
+                            new Rectangle(399, 84, 21, 21),
+                            new Rectangle(420, 84, 21, 21),
+                        },
+                        new List<Rectangle> {
+                            new Rectangle(0, 147, 21, 21),
+                            new Rectangle(21, 147, 21, 21),
+                            new Rectangle(42, 147, 21, 21),
+                            new Rectangle(63, 147, 21, 21),
+                            new Rectangle(84, 147, 21, 21),
+                            new Rectangle(105, 147, 21, 21),
+                            new Rectangle(126, 147, 21, 21),
+                            new Rectangle(147, 147, 21, 21),
+                            new Rectangle(168, 147, 21, 21),
+                            new Rectangle(189, 147, 21, 21),
+                            new Rectangle(210, 147, 21, 21),
+                            new Rectangle(231, 147, 21, 21),
+                            new Rectangle(252, 147, 21, 21),
+                            new Rectangle(273, 147, 21, 21),
+                            new Rectangle(294, 147, 21, 21),
+                            new Rectangle(315, 147, 21, 21),
+                            new Rectangle(336, 147, 21, 21),
+                            new Rectangle(357, 147, 21, 21),
+                            new Rectangle(378, 147, 21, 21),
+                            new Rectangle(399, 147, 21, 21),
+                            new Rectangle(420, 147, 21, 21),
+                        }},
+                    266,
+                    true));
+
+            GetComponent<Graphics.StackAnimator>().SetAnimation("Hold");
         }
 
         public override void Update(GameTime gameTime)
@@ -216,12 +369,12 @@ namespace AstroMonkey.Assets.Objects
             Vector2 currVel = GetComponent<Navigation.MovementComponent>().CurrentVelocity;
             if(Util.Statics.IsNearlyEqual(currVel.Length(), 0, 0.001))
             {
-                GetComponent<Graphics.AnimatorContainer>().SetAnimation("Idle");
+                GetComponent<Graphics.AnimatorContainer>().SetAnimation("Hold");
             }
             else
             {
                 transform.rotation = (float)Math.PI * 0.5f + GetComponent<Navigation.MovementComponent>().CurrentDirection;
-                GetComponent<Graphics.AnimatorContainer>().SetAnimation("Walk");
+                GetComponent<Graphics.AnimatorContainer>().SetAnimation("HoldWalk");
             }
         }
     }
