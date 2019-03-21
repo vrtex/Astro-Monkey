@@ -19,10 +19,46 @@ namespace AstroMonkey.Physics.Collider
             this.collisionChanell = collisionChanell;
             this.position = position;
 
-            setReactions();
+            SetReactions();
+
+            PhysicsManager.AddCollider(this);
         }
 
-        private void setReactions()
+        ~Collider()
+        {
+            PhysicsManager.RemoveCollider(this);
+        }
+
+
+        public CollisionChanell GetCollisionChanell()
+        {
+            return collisionChanell;
+        }
+
+        public void SetCollisionChanell(CollisionChanell collisionChanell)
+        {
+            this.collisionChanell = collisionChanell;
+            SetReactions();
+        }
+        
+
+        public Vector2 GetPosition()
+        {
+            return position;
+        }
+
+        public void SetPosition(Vector2 position)
+        {
+            this.position = position;
+        }
+
+
+        public ReactType GetReactType(CollisionChanell collisionChanell)
+        {
+            return reaction[collisionChanell];
+        }
+
+        private void SetReactions()
         {
             reaction = new Dictionary<CollisionChanell, ReactType>();
 

@@ -1,4 +1,7 @@
-﻿using Microsoft.Xna.Framework;
+﻿using AstroMonkey.Core;
+using AstroMonkey.Physics;
+using AstroMonkey.Physics.Collider;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
@@ -33,6 +36,13 @@ namespace AstroMonkey
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
+
+            GameObject go = new GameObject();
+            CircleCollider cr = new CircleCollider(go, CollisionChanell.Enemy,Vector2.One, 5.2f);
+
+            PhysicsManager.CheckCollision();
+
+
             Graphics.SpriteContainer.Instance.LoadTextures(this);
             testGameObject = new Core.GameObject();
             testGameObject.AddComponent(new Graphics.Sprite(testGameObject, "enemy", new Util.Rect(0, 0, 32, 32)));
