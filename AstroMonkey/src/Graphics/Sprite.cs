@@ -5,13 +5,13 @@ namespace AstroMonkey.Graphics
 {
     class Sprite: Core.Component
     {
-        public  string          name;
+        public  string          name; //nazwa grafiki z bazy SpriteContainer
         public  Texture2D       image;
-        public  Util.Rect       rect;
+        public  Rectangle       rect;
         public  Color           color;
         public  Vector2         anchor;
 
-        public Sprite(Core.GameObject go, string _image, Util.Rect _rect): base(go)
+        public Sprite(Core.GameObject go, string _image, Rectangle _rect): base(go)
         {
             name    = _image;
             image   = SpriteContainer.Instance.GetImage(_image);

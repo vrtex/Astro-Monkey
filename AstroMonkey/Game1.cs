@@ -45,10 +45,19 @@ namespace AstroMonkey
 
             Graphics.SpriteContainer.Instance.LoadTextures(this);
             testGameObject = new Core.GameObject();
-            testGameObject.AddComponent(new Graphics.Sprite(testGameObject, "enemy", new Util.Rect(0, 0, 32, 32)));
-            System.Console.WriteLine(testGameObject.GetComponents<Graphics.Sprite>().Count);
+            testGameObject.transform.position = new Vector2(50, 90);
+            testGameObject.AddComponent(new Graphics.Sprite(testGameObject, "player", new Rectangle(32, 32, 32, 32)));
             base.Initialize();
 
+            // add interesting buttons. Duplicates are ignored
+            inputManager.AddObservedKey(Keys.W);
+            inputManager.AddObservedKey(Keys.S);
+
+            // hook up events
+            inputManager.OnKeyReleased += TestKey;
+            inputManager.OnMouseMove += TestMouse;
+            inputManager.OnMouseButtonPressed += TestMouse;
+            inputManager.OnMouseButtonReleased += TestMouse;
         }
 
         /// <summary>
@@ -80,7 +89,11 @@ namespace AstroMonkey
         protected override void Update(GameTime gameTime)
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
+            {
+                // IMPORTANT: call end on manager before quitting game
+                inputManager.End();
                 Exit();
+            }
 
             // TODO: Add your update logic here
 
@@ -98,11 +111,18 @@ namespace AstroMonkey
             // TODO: Add your drawing code here
             spriteBatch.Begin();
 
-            spriteBatch.Draw((testGameObject.Components[0] as Graphics.Sprite).image, testGameObject.transform.position, Color.Wheat);
+            Graphics.Sprite playerSprite= testGameObject.GetComponent<Graphics.Sprite>();
+            spriteBatch.Draw(playerSprite.image, testGameObject.transform.position, playerSprite.rect, Color.Wheat);
 
             spriteBatch.End();
 
             base.Draw(gameTime);
+        }
+        protected override void OnExiting(object sender, System.EventArgs args)
+        {
+            base.OnExiting(sender, args);
+            // very fucking important
+            inputManager.End();
         }
 
         private void TestKey(KeyInputEventArgs args)
@@ -113,13 +133,6 @@ namespace AstroMonkey
         private void TestMouse(MouseInputEventArgs args)
         {
             System.Console.WriteLine(args);
-        }
-
-        protected override void OnExiting(object sender, System.EventArgs args)
-        {
-            base.OnExiting(sender, args);
-            // very fucking important
-            inputManager.End();
         }
     }
 }

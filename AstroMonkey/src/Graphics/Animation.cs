@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace AstroMonkey.Graphics
 {
@@ -17,13 +19,14 @@ namespace AstroMonkey.Graphics
 
     class Animation: Core.Component
     {
-        public  string              image; //nazwa grafiki z bazy SpriteContainer
-        public  List<Util.Rect>     frames; //klatki jakie po kolei są odtwarzane w animacji
+        public  Sprite              sprite;
+        public  List<Rectangle>     frames; //klatki jakie po kolei są odtwarzane w animacji
         public  int                 speed; //pręskość odtwarzania kolejnych klatek
         public  bool                loop;
 
-        public Animation(Core.GameObject go): base(go)
+        public Animation(Core.GameObject go, Sprite _sprite) : base(go)
         {
+            sprite = _sprite;
 
         }
     }
