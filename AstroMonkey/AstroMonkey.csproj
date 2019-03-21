@@ -42,11 +42,28 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Content\Assets\Characters\Enemies\Klucha.cs" />
+    <Compile Include="Content\Assets\Characters\Player\Monkey.cs" />
+    <Compile Include="Content\Assets\Characters\Player\Player.cs" />
+    <Compile Include="Content\Assets\Characters\Player\TestPlayer.cs" />
+    <Compile Include="Content\Assets\Items\Banana.cs" />
+    <Compile Include="Content\Assets\Map\Floor\Floor.cs" />
+    <Compile Include="Content\Assets\Map\Interactable\Computer.cs" />
+    <Compile Include="Content\Assets\Map\Objects\Corner.cs" />
+    <Compile Include="Content\Assets\Map\Objects\Wall.cs" />
+    <Compile Include="Content\Assets\Scenes\DevRoom.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="src\Audio\AudioManager.cs" />
+    <Compile Include="src\Audio\AudioSource.cs" />
+    <Compile Include="src\Audio\SoundContainer.cs" />
     <Compile Include="src\Core\Component.cs" />
+    <Compile Include="src\Core\GameManager.cs" />
     <Compile Include="src\Core\GameObject.cs" />
+    <Compile Include="src\Core\ObjectManager.cs" />
+    <Compile Include="src\Core\Scene.cs" />
+    <Compile Include="src\Core\SceneManager.cs" />
     <Compile Include="src\Core\Transform.cs" />
     <Compile Include="src\Physics\Body.cs" />
     <Compile Include="src\Physics\Collider\BoxCollider.cs" />
@@ -54,13 +71,26 @@
     <Compile Include="src\Physics\Collider\Collider.cs" />
     <Compile Include="src\Physics\Collider\CollisionChanell.cs" />
     <Compile Include="src\Physics\Collider\ReactType.cs" />
+    <Compile Include="src\Graphics\AnimationComponent.cs" />
+    <Compile Include="src\Graphics\AnimationManager.cs" />
+    <Compile Include="src\Graphics\AnimatorContainer.cs" />
+    <Compile Include="src\Graphics\StackAnimation.cs" />
+    <Compile Include="src\Graphics\StackAnimator.cs" />
+    <Compile Include="src\Graphics\ViewManager.cs" />
+    <Compile Include="src\Input\ActionBinding.cs" />
+    <Compile Include="src\Input\AxisBinding.cs" />
+    <Compile Include="src\Input\InputCompoent.cs" />
     <Compile Include="src\Input\InputManager.cs" />
     <Compile Include="src\Graphics\Animation.cs" />
-    <Compile Include="src\Graphics\AnimatorController.cs" />
+    <Compile Include="src\Graphics\Animator.cs" />
     <Compile Include="src\Graphics\Sprite.cs" />
     <Compile Include="src\Graphics\SpriteContainer.cs" />
     <Compile Include="src\Physics\PhysicsManager.cs" />
+    <Compile Include="src\Navigation\MovementComponent.cs" />
+    <Compile Include="src\Util\Enums.cs" />
     <Compile Include="src\Util\Rect.cs" />
+    <Compile Include="src\Util\RNG.cs" />
+    <Compile Include="src\Util\Statics.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Framework">
