@@ -357,6 +357,59 @@ namespace AstroMonkey.Assets.Objects
                     266,
                     true));
 
+            GetComponent<Graphics.StackAnimator>().AddAnimation(
+                    new Graphics.StackAnimation("Dead",
+                    GetComponent<Graphics.Sprite>(),
+                    new List<List<Rectangle>> {
+                        new List<Rectangle> {
+                            new Rectangle(0, 168, 21, 21),
+                            new Rectangle(21, 168, 21, 21),
+                            new Rectangle(42, 168, 21, 21),
+                            new Rectangle(63, 168, 21, 21),
+                            new Rectangle(84, 168, 21, 21),
+                            new Rectangle(105, 168, 21, 21),
+                            new Rectangle(126, 168, 21, 21),
+                            new Rectangle(147, 168, 21, 21),
+                            new Rectangle(168, 168, 21, 21),
+                            new Rectangle(189, 168, 21, 21),
+                            new Rectangle(210, 168, 21, 21),
+                            new Rectangle(231, 168, 21, 21),
+                            new Rectangle(252, 168, 21, 21),
+                            new Rectangle(273, 168, 21, 21),
+                            new Rectangle(294, 168, 21, 21),
+                            new Rectangle(315, 168, 21, 21),
+                            new Rectangle(336, 168, 21, 21),
+                            new Rectangle(357, 168, 21, 21),
+                            new Rectangle(378, 168, 21, 21),
+                            new Rectangle(399, 168, 21, 21),
+                            new Rectangle(420, 168, 21, 21),
+                        },
+                    new List<Rectangle> {
+                            new Rectangle(0, 189, 21, 21),
+                            new Rectangle(21, 189, 21, 21),
+                            new Rectangle(42, 189, 21, 21),
+                            new Rectangle(63, 189, 21, 21),
+                            new Rectangle(84, 189, 21, 21),
+                            new Rectangle(105, 189, 21, 21),
+                            new Rectangle(126, 189, 21, 21),
+                            new Rectangle(147, 189, 21, 21),
+                            new Rectangle(168, 189, 21, 21),
+                            new Rectangle(189, 189, 21, 21),
+                            new Rectangle(210, 189, 21, 21),
+                            new Rectangle(231, 189, 21, 21),
+                            new Rectangle(252, 189, 21, 21),
+                            new Rectangle(273, 189, 21, 21),
+                            new Rectangle(294, 189, 21, 21),
+                            new Rectangle(315, 189, 21, 21),
+                            new Rectangle(336, 189, 21, 21),
+                            new Rectangle(357, 189, 21, 21),
+                            new Rectangle(378, 189, 21, 21),
+                            new Rectangle(399, 189, 21, 21),
+                            new Rectangle(420, 189, 21, 21),
+                        }},
+                    298,
+                    false));
+
             GetComponent<Graphics.StackAnimator>().SetAnimation("Hold");
         }
 
