@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework;
 
 namespace AstroMonkey.Core
 {
-    public abstract class GameObject
+    public class GameObject
     {
         public Transform transform;
         protected List<Component> components;

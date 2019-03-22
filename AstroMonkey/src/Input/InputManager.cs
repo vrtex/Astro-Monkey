@@ -50,11 +50,6 @@ namespace AstroMonkey.Input
         }
     }
 
-    /// <summary>
-    /// Handles input using events
-    /// before using add interesting keys using AddObservedKey
-    /// call End() before ending the game, otherwise you'll thread won't stop
-    /// </summary>
     class InputManager
     {
         public delegate void KeyboardEvent(KeyInputEventArgs key);
@@ -71,6 +66,7 @@ namespace AstroMonkey.Input
         MouseState PreviousMouseState;
         List<Keys> ObservedKeys = new List<Keys>();
         private Timer tickTimer = new Timer(16);
+        public Vector2 MouseCursor { get; private set; } = new Vector2();
 
         private Dictionary<String, ActionBinding> actionBindings = new Dictionary<string, ActionBinding>();
         private Dictionary<String, AxisBinding> axisBindings = new Dictionary<string, AxisBinding>();
@@ -183,6 +179,8 @@ namespace AstroMonkey.Input
 
             ProcessMouseButton(newState);
             ProcessMouseMove(newState);
+
+            MouseCursor = newState.Position.ToVector2();
         }
 
         private void ProcessMouseButton(MouseState newState)
