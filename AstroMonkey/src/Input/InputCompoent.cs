@@ -44,11 +44,13 @@ namespace AstroMonkey.Input
                 newDirection.Normalize();
             
             moveComp.AddMovementInput(newDirection);
+
+            MoveTarget(new MouseInputEventArgs(EMouseButton.None, new Vector2(), new Vector2()));
         }
 
         private void MoveTarget(MouseInputEventArgs args)
         {
-            target.transform.position = InputManager.Manager.MouseCursor - parent.transform.position;
+            target.transform.position = InputManager.Manager.MouseCursor + parent.transform.position - Graphics.ViewManager.Instance.ScreenSize / 2f;
         }
 
         private void Play()

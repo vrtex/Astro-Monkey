@@ -1,21 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-
-using System.Diagnostics;
 
 namespace AstroMonkey.Graphics
 {
     class ViewManager
     {
         public static ViewManager Instance { get; private set; } = new ViewManager();
-        public static List<Core.GameObject> sprites = new List<Core.GameObject>();
-        public static Core.Transform playerTransform = null;
+        public List<Core.GameObject> sprites = new List<Core.GameObject>();
+        public Core.Transform playerTransform = null;
+        public Vector2 ScreenSize;
 
         private ViewManager()
         {
@@ -33,13 +28,12 @@ namespace AstroMonkey.Graphics
                             BlendState.AlphaBlend, 
                             SamplerState.PointClamp, null, null, null,
                             Matrix.CreateTranslation(
-                                -Graphics.ViewManager.playerTransform.position.X + spriteBatch.GraphicsDevice.Viewport.Width / 2,
-                                -Graphics.ViewManager.playerTransform.position.Y + spriteBatch.GraphicsDevice.Viewport.Height / 2, 0));
+                                -playerTransform.position.X + spriteBatch.GraphicsDevice.Viewport.Width / 2,
+                                -playerTransform.position.Y + spriteBatch.GraphicsDevice.Viewport.Height / 2, 0));
             //Debug.WriteLine(sprites.Count);
-
             foreach(Core.GameObject s in sprites)
             {
-                Graphics.Sprite sprite = s.GetComponent<Graphics.Sprite>();
+                Sprite sprite = s.GetComponent<Graphics.Sprite>();
                 for(int i = 0; i < sprite.rect.Count; ++i)
                 {
                     spriteBatch.Draw(

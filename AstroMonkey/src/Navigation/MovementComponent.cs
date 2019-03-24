@@ -37,9 +37,6 @@ namespace AstroMonkey.Navigation
                 Vector2 currentPosition = parent.transform.position;
                 Vector2 lookDirection = CurrentFocus.transform.position - currentPosition;
                 lookDirection.Normalize();
-                Console.WriteLine("current pos: " + currentPosition);
-                Console.WriteLine("mouse pos: " + CurrentFocus.transform.position);
-                Console.WriteLine("look direction: " + lookDirection);
                 CurrentDirection = (float)Math.Atan2(lookDirection.Y, lookDirection.X);
             }
         }

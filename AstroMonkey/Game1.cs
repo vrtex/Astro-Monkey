@@ -33,6 +33,7 @@ namespace AstroMonkey
             // TODO: Add your initialization logic here
             Audio.SoundContainer.Instance.AddSound("test", @"sfx/test_sound", Content);
             Core.GameManager.Instance.InitializeGame(this);
+            Graphics.ViewManager.Instance.ScreenSize = new Vector2(graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight);
             IsMouseVisible = true;
             base.Initialize();
 

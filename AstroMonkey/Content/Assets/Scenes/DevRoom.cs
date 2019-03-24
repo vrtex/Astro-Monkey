@@ -45,7 +45,7 @@ namespace AstroMonkey.Assets.Scenes
             //DODAWANIE POSTACI
             Objects.Player player = new Objects.Player(new Vector2(20f, 50f));
             objects.Add(player);
-            Graphics.ViewManager.playerTransform = player.transform;
+            Graphics.ViewManager.Instance.playerTransform = player.transform;
             objects.Last().transform.scale = new Vector2(3f, 3f);
 
             /*objects.Add(new Objects.Monkey(new Vector2(350f, 170f)));
