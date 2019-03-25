@@ -7,7 +7,7 @@
 *.userprefs
 *.[Oo]bj
 *.exe
-!/semi-finished/*
+!/semi-finished/*/!*.exe
 *.pdb
 *.user
 *.aps
