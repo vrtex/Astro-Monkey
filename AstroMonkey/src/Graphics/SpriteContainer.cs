@@ -16,6 +16,8 @@ namespace AstroMonkey.Graphics
 
         public void LoadTextures(Game game)
         {
+            images.Add("mark", game.Content.Load<Texture2D>(@"gfx/UI/HUD/mark"));
+
             images.Add("player", game.Content.Load<Texture2D>(@"gfx/Characters/Player/PlayerConture"));
             images.Add("monkey", game.Content.Load<Texture2D>(@"gfx/Characters/Player/monkey"));
             images.Add("enemy", game.Content.Load<Texture2D>(@"gfx/Characters/Enemies/Klucha"));

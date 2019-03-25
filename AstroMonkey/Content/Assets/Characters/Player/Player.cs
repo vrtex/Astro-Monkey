@@ -354,7 +354,7 @@ namespace AstroMonkey.Assets.Objects
                         new Rectangle(399, 147, 21, 21),
                         new Rectangle(420, 147, 21, 21),
                     }},
-                266,
+                166,
                 true));
 
             GetComponent<Graphics.StackAnimator>().AddAnimation(

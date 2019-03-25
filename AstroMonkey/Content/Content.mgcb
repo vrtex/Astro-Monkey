@@ -109,6 +109,18 @@
 /processorParam:TextureFormat=Color
 /build:gfx/Map/Objects/Walls.png
 
+#begin gfx/UI/HUD/mark.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:gfx/UI/HUD/mark.png
+
 #begin sfx/bottle_pop_2.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor

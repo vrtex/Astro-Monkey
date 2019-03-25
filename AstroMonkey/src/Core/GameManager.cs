@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 using Microsoft.Xna.Framework;
 using System.Diagnostics;
+using Microsoft.Xna.Framework.Input;
 
 namespace AstroMonkey.Core
 {
@@ -21,6 +22,9 @@ namespace AstroMonkey.Core
         {
             //załadowanie grafik
             Graphics.SpriteContainer.Instance.LoadTextures(game);
+
+            //ustawienie kursora
+            Mouse.SetCursor(MouseCursor.FromTexture2D(Graphics.SpriteContainer.Instance.GetImage("mark"), 4, 4));
 
             //załadowanie sceny
             SceneManager.Instance.LoadScene("devroom");
