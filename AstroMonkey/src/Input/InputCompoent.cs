@@ -13,6 +13,7 @@ namespace AstroMonkey.Input
         Navigation.MovementComponent moveComp;
         private readonly AxisBinding verticalAxis;
         private readonly AxisBinding horizontalAxis;
+        private Core.GameObject target = new Core.GameObject();
 
         public InputCompoent(Core.GameObject parent) : base(parent)
         {
@@ -28,6 +29,9 @@ namespace AstroMonkey.Input
             InputManager.Manager.AddAxisBinding("move up", verticalAxis);
             InputManager.Manager.AddAxisBinding("move right", horizontalAxis);
             InputManager.Manager.AddActionBinding("play", playBinding);
+
+            moveComp.CurrentFocus = target;
+            InputManager.Manager.OnMouseMove += MoveTarget;
         }
 
         private void Move(float trash)
@@ -40,6 +44,13 @@ namespace AstroMonkey.Input
                 newDirection.Normalize();
             
             moveComp.AddMovementInput(newDirection);
+
+            MoveTarget(new MouseInputEventArgs(EMouseButton.None, new Vector2(), new Vector2()));
+        }
+
+        private void MoveTarget(MouseInputEventArgs args)
+        {
+            target.transform.position = InputManager.Manager.MouseCursor + parent.transform.position - Graphics.ViewManager.Instance.ScreenSize / 2f;
         }
 
         private void Play()
@@ -48,5 +59,10 @@ namespace AstroMonkey.Input
             player.testSource.Play();
         }
 
+        public override void Update(GameTime gameTime)
+        {
+            base.Update(gameTime);
+            target.transform.position = InputManager.Manager.MouseCursor + parent.transform.position - Graphics.ViewManager.Instance.ScreenSize / 2f;
+        }
     }
 }

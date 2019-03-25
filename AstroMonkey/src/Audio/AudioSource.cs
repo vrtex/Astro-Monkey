@@ -50,7 +50,6 @@ namespace AstroMonkey.Audio
             angle += 10f;
             offset.X = (float)Math.Cos(angle) * 100;
             offset.Z = -(float)Math.Sin(angle) * 100;
-            Console.WriteLine(offset);
             emitter.Position = new Vector3(parent.transform.position, 0f) + offset;
         }
     }
