@@ -59,5 +59,10 @@ namespace AstroMonkey.Input
             player.testSource.Play();
         }
 
+        public override void Update(GameTime gameTime)
+        {
+            base.Update(gameTime);
+            target.transform.position = InputManager.Manager.MouseCursor + parent.transform.position - Graphics.ViewManager.Instance.ScreenSize / 2f;
+        }
     }
 }
