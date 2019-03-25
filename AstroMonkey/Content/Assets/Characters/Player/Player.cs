@@ -24,7 +24,7 @@ namespace AstroMonkey.Assets.Objects
 
         private void Load(Core.Transform _transform)
         {
-            AddComponent(new Navigation.MovementComponent(this));
+            Navigation.MovementComponent moveComp =  (Navigation.MovementComponent)AddComponent(new Navigation.MovementComponent(this));
             AddComponent(new Input.InputCompoent(this));
             testSource = (Audio.AudioSource)AddComponent(new Audio.AudioSource(this, Audio.SoundContainer.Instance.GetSoundEffect("test")));
 
@@ -548,9 +548,9 @@ namespace AstroMonkey.Assets.Objects
             }
             else
             {
-                transform.rotation = (float)Math.PI * 0.5f + GetComponent<Navigation.MovementComponent>().CurrentDirection;
                 GetComponent<Graphics.AnimatorContainer>().SetAnimation("HoldWalk");
             }
+            transform.rotation = (float)Math.PI * 0.5f + GetComponent<Navigation.MovementComponent>().CurrentDirection;
         }
     }
 }
