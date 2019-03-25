@@ -28,28 +28,12 @@ namespace AstroMonkey.Assets.Objects
             AddComponent(new Input.InputCompoent(this));
             testSource = (Audio.AudioSource)AddComponent(new Audio.AudioSource(this, Audio.SoundContainer.Instance.GetSoundEffect("test")));
 
-            AddComponent(new Graphics.Sprite(this, "monkey", new List<Rectangle> {
-                new Rectangle(0, 0, 21, 21),
-                new Rectangle(21, 0, 21, 21),
-                new Rectangle(42, 0, 21, 21),
-                new Rectangle(63, 0, 21, 21),
-                new Rectangle(84, 0, 21, 21),
-                new Rectangle(105, 0, 21, 21),
-                new Rectangle(126, 0, 21, 21),
-                new Rectangle(147, 0, 21, 21),
-                new Rectangle(168, 0, 21, 21),
-                new Rectangle(189, 0, 21, 21),
-                new Rectangle(210, 0, 21, 21),
-                new Rectangle(231, 0, 21, 21),
-                new Rectangle(252, 0, 21, 21),
-                new Rectangle(273, 0, 21, 21),
-                new Rectangle(294, 0, 21, 21),
-                new Rectangle(315, 0, 21, 21),
-                new Rectangle(336, 0, 21, 21),
-                new Rectangle(357, 0, 21, 21),
-                new Rectangle(378, 0, 21, 21),
-                new Rectangle(399, 0, 21, 21),
-                new Rectangle(420, 0, 21, 21)}));
+            List<Rectangle> temp = new List<Rectangle>();
+            for(int i = 0; i < 32; ++i)
+            {
+                temp.Add(new Rectangle(i * 21, 0, 21, 21));
+            }
+            AddComponent(new Graphics.Sprite(this, "monkey", temp));
 
             AddComponent(new Graphics.StackAnimator(this));
 
@@ -354,7 +338,7 @@ namespace AstroMonkey.Assets.Objects
                         new Rectangle(399, 147, 21, 21),
                         new Rectangle(420, 147, 21, 21),
                     }},
-                166,
+                150,
                 true));
 
             GetComponent<Graphics.StackAnimator>().AddAnimation(

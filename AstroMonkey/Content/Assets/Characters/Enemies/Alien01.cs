@@ -271,7 +271,7 @@ namespace AstroMonkey.Assets.Objects
                 352,
                 false));
 
-            GetComponent<Graphics.StackAnimator>().SetAnimation("Dead");
+            GetComponent<Graphics.StackAnimator>().SetAnimation("Idle");
         }
     }
 }

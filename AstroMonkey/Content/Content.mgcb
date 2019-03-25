@@ -97,6 +97,30 @@
 /processorParam:TextureFormat=Color
 /build:gfx/Map/Interactable/Computer.png
 
+#begin gfx/Map/Objects/corner.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:gfx/Map/Objects/corner.png
+
+#begin gfx/Map/Objects/wall.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:gfx/Map/Objects/wall.png
+
 #begin gfx/Map/Objects/Walls.png
 /importer:TextureImporter
 /processor:TextureProcessor
