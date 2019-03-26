@@ -85,6 +85,7 @@
     <Compile Include="src\Util\Rect.cs" />
     <Compile Include="src\Util\RNG.cs" />
     <Compile Include="src\Util\Statics.cs" />
+    <Compile Include="src\Util\ViewComparable.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Framework">

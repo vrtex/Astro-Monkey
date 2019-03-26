@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -12,6 +13,8 @@ namespace AstroMonkey.Graphics
         public List<Core.GameObject> floor = new List<Core.GameObject>();
         public Core.Transform playerTransform = null;
         public Vector2 ScreenSize;
+
+        private Util.ViewComparable vc = new Util.ViewComparable();
 
         private ViewManager()
         {
@@ -58,7 +61,7 @@ namespace AstroMonkey.Graphics
                                 -playerTransform.position.X + spriteBatch.GraphicsDevice.Viewport.Width / 2,
                                 -playerTransform.position.Y + spriteBatch.GraphicsDevice.Viewport.Height / 2, 0));
 
-            sprites.Sort();
+            sprites.Sort(vc);
 
             foreach(Core.GameObject s in sprites)
             {
