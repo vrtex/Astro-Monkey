@@ -1,9 +1,10 @@
 ﻿using System.Collections.Generic;
 using Microsoft.Xna.Framework;
+using System;
 
 namespace AstroMonkey.Core
 {
-    public class GameObject
+    public class GameObject: IComparable<GameObject>
     {
         public Transform transform;
         protected List<Component> components;
@@ -48,5 +49,10 @@ namespace AstroMonkey.Core
         }
 
         public virtual void Update(GameTime gameTime) { }
+
+        public int CompareTo(GameObject other)
+        {
+            return (int)(transform.position.Y - other.transform.position.Y);
+        }
     }
 }

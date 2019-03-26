@@ -30,21 +30,12 @@ namespace AstroMonkey.Assets.Objects
         private void Load(Core.Transform _transform)
         {
             transform = _transform;
-            AddComponent(new Graphics.Sprite(this, "alien01", new List<Rectangle> {
-                new Rectangle(0, 0, 21, 21),
-                new Rectangle(21, 0, 21, 21),
-                new Rectangle(42, 0, 21, 21),
-                new Rectangle(63, 0, 21, 21),
-                new Rectangle(84, 0, 21, 21),
-                new Rectangle(105, 0, 21, 21),
-                new Rectangle(126, 0, 21, 21),
-                new Rectangle(147, 0, 21, 21),
-                new Rectangle(168, 0, 21, 21),
-                new Rectangle(189, 0, 21, 21),
-                new Rectangle(210, 0, 21, 21),
-                new Rectangle(231, 0, 21, 21),
-                new Rectangle(252, 0, 21, 21)
-            }));
+            List<Rectangle> temp = new List<Rectangle>();
+            for(int i = 0; i < 13; ++i)
+            {
+                temp.Add(new Rectangle(i * 21, 0, 21, 21));
+            }
+            AddComponent(new Graphics.Sprite(this, "alien01", temp));
 
             AddComponent(new Graphics.StackAnimator(this));
 
