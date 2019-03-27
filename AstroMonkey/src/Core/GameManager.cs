@@ -44,11 +44,15 @@ namespace AstroMonkey.Core
 
         public static void DestroyObject(GameObject gameObject)
         {
+            gameObject.Destroy();
+        }
+
+        private static void QueueDestroy(GameObject gameObject)
+        {
             lock(Instance.toDestroy)
             {
                 Instance.toDestroy.Add(gameObject);
             }
-            
         }
 
         public static void FinalizeSpwaning()
@@ -69,7 +73,7 @@ namespace AstroMonkey.Core
                     if(gameObject.GetComponent<Graphics.Sprite>() != null)
                         Graphics.ViewManager.Instance.AddSprite(gameObject);
 
-                    gameObject.OnDestroy += DestroyObject;
+                    gameObject.OnDestroy += QueueDestroy;
                 }
                 Instance.toSpawn.Clear();
             }
