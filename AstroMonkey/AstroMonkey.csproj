@@ -53,6 +53,8 @@
     <Compile Include="Content\Assets\Map\Interactable\Computer.cs" />
     <Compile Include="Content\Assets\Map\Objects\Corner.cs" />
     <Compile Include="Content\Assets\Map\Objects\Wall.cs" />
+    <Compile Include="Content\Assets\Projectiles\Poop.cs" />
+    <Compile Include="Content\Assets\Projectiles\Rocket.cs" />
     <Compile Include="Content\Assets\Scenes\DevRoom.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="Program.cs" />
