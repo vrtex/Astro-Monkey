@@ -33,6 +33,7 @@ namespace AstroMonkey.Graphics
             images.Add("floor", game.Content.Load<Texture2D>(@"gfx/Map/Floor/PlatformFloor"));
             images.Add("wall", game.Content.Load<Texture2D>(@"gfx/Map/Objects/wall"));
             images.Add("corner", game.Content.Load<Texture2D>(@"gfx/Map/Objects/corner"));
+            images.Add("column", game.Content.Load<Texture2D>(@"gfx/Map/Objects/column"));
             images.Add("computer", game.Content.Load<Texture2D>(@"gfx/Map/Interactable/Computer"));
 
             //przedmioty
