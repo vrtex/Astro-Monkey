@@ -10,7 +10,7 @@ namespace AstroMonkey.Assets.Objects
         {
         }
 
-        public Corner(Core.Transform _transform)
+        public Corner(Core.Transform _transform): base(_transform)
         {
             Load(_transform);
         }

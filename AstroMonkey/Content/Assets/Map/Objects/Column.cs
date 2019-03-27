@@ -4,21 +4,21 @@ using System;
 
 namespace AstroMonkey.Assets.Objects
 {
-    class Wall: Core.GameObject
+    class Column: Core.GameObject
     {
-        public Wall(): this(new Core.Transform())
+        public Column() : this(new Core.Transform())
         {
         }
 
-        public Wall(Core.Transform _transform): base(_transform)
+        public Column(Core.Transform _transform) : base(_transform)
         {
             Load(_transform);
         }
-        public Wall(Vector2 position, Vector2 scale, float rotation = 0f): this(new Core.Transform(position, scale, rotation))
+        public Column(Vector2 position, Vector2 scale, float rotation = 0f) : this(new Core.Transform(position, scale, rotation))
         {
         }
 
-        public Wall(Vector2 position): this(new Core.Transform(position, Vector2.One))
+        public Column(Vector2 position) : this(new Core.Transform(position, Vector2.One))
         {
         }
 
@@ -31,7 +31,7 @@ namespace AstroMonkey.Assets.Objects
                 temp.Add(new Rectangle(i * 32, 0, 32, 32));
             }
 
-            AddComponent(new Graphics.Sprite(this, "wall", temp));
+            AddComponent(new Graphics.Sprite(this, "column", temp));
         }
     }
 

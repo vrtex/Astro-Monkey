@@ -44,11 +44,20 @@
   <ItemGroup>
     <Compile Include="Content\Assets\Characters\Enemies\Alien01.cs" />
     <Compile Include="Content\Assets\Characters\Player\Player.cs" />
+    <Compile Include="Content\Assets\Items\AmmoGun.cs" />
+    <Compile Include="Content\Assets\Items\AmmoLuncher.cs" />
+    <Compile Include="Content\Assets\Items\AmmoRiffle.cs" />
     <Compile Include="Content\Assets\Items\Banana.cs" />
+    <Compile Include="Content\Assets\Items\Nut.cs" />
     <Compile Include="Content\Assets\Map\Floor\Floor.cs" />
     <Compile Include="Content\Assets\Map\Interactable\Computer.cs" />
+    <Compile Include="Content\Assets\Map\Objects\Column.cs" />
     <Compile Include="Content\Assets\Map\Objects\Corner.cs" />
     <Compile Include="Content\Assets\Map\Objects\Wall.cs" />
+    <Compile Include="Content\Assets\Projectiles\AlienBullet.cs" />
+    <Compile Include="Content\Assets\Projectiles\BulletHit.cs" />
+    <Compile Include="Content\Assets\Projectiles\Poop.cs" />
+    <Compile Include="Content\Assets\Projectiles\Rocket.cs" />
     <Compile Include="Content\Assets\Scenes\DevRoom.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="Program.cs" />
