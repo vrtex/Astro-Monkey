@@ -64,19 +64,21 @@ namespace AstroMonkey.Assets.Scenes
 
             objects.Add(new Objects.Nut(new Vector2(490f, 490f), new Vector2(sceneScale, sceneScale), 0f));
 
-            objects.Add(new Objects.AmmoRiffle(new Vector2(190f, 90f), new Vector2(sceneScale, sceneScale), 0f));
-            objects.Add(new Objects.AmmoGun(new Vector2(290f, 90f), new Vector2(sceneScale, sceneScale), 0f));
-            objects.Add(new Objects.AmmoLuncher(new Vector2(390f, 90f), new Vector2(sceneScale, sceneScale), 0f));
+            objects.Add(new Objects.AmmoRiffle(new Vector2(190f, 590f), new Vector2(sceneScale, sceneScale), 0f));
+            objects.Add(new Objects.AmmoGun(new Vector2(290f, 590f), new Vector2(sceneScale, sceneScale), 0f));
+            objects.Add(new Objects.AmmoLuncher(new Vector2(390f, 590f), new Vector2(sceneScale, sceneScale), 0f));
 
             objects.Add(new Objects.Column(new Vector2(590f, 140f), new Vector2(sceneScale, sceneScale), 0f));
+            objects.Add(new Objects.Cockpit(new Vector2(690f, 32f), new Vector2(sceneScale, sceneScale), (float)(Math.PI)));
+            objects.Add(new Objects.Fridge(new Vector2(754f, 32f), new Vector2(sceneScale, sceneScale), (float)(Math.PI)));
+            objects.Add(new Objects.Armchair(new Vector2(680f, 64f), new Vector2(sceneScale, sceneScale), (float)(Math.PI * 0.15f)));
 
-            /*objects.Add(new Objects.Klucha(new Vector2(90f, 70f)));
-            objects.Last().GetComponent<Graphics.Animator>().SetAnimation("WalkRight");
+            objects.Add(new Objects.Case(new Vector2(442f, 32f), new Vector2(sceneScale, sceneScale), (float)(Math.PI)));
+            objects.Add(new Objects.CaseCaffe(new Vector2(250f, 32f), new Vector2(sceneScale, sceneScale), (float)(Math.PI)));
+            objects.Add(new Objects.CaseMicrowave(new Vector2(346f, 32f), new Vector2(sceneScale, sceneScale), (float)(Math.PI)));
+            objects.Add(new Objects.Table(new Vector2(346f, 110f), new Vector2(sceneScale, sceneScale), (float)(Math.PI)));
 
-            objects.Add(new Objects.Klucha(new Vector2(140f, 100f)));
-            objects.Last().GetComponent<Graphics.Animator>().SetAnimation("WalkUp");
-
-            objects.Add(new Objects.Banana(new Vector2(240f, 210f)));*/
+            objects.Add(new Objects.NeonSign(new Vector2(442f, 1f), new Vector2(sceneScale, sceneScale), (float)(Math.PI)));
         }
 
         public override void UnLoad()

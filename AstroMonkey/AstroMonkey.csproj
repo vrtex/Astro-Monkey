@@ -51,8 +51,16 @@
     <Compile Include="Content\Assets\Items\Nut.cs" />
     <Compile Include="Content\Assets\Map\Floor\Floor.cs" />
     <Compile Include="Content\Assets\Map\Interactable\Computer.cs" />
+    <Compile Include="Content\Assets\Map\Objects\Armchair.cs" />
+    <Compile Include="Content\Assets\Map\Objects\Case.cs" />
+    <Compile Include="Content\Assets\Map\Objects\CaseCaffe.cs" />
+    <Compile Include="Content\Assets\Map\Objects\CaseMicrowave.cs" />
+    <Compile Include="Content\Assets\Map\Objects\Cockpit.cs" />
     <Compile Include="Content\Assets\Map\Objects\Column.cs" />
     <Compile Include="Content\Assets\Map\Objects\Corner.cs" />
+    <Compile Include="Content\Assets\Map\Objects\Fridge.cs" />
+    <Compile Include="Content\Assets\Map\Objects\NeonSign.cs" />
+    <Compile Include="Content\Assets\Map\Objects\Table.cs" />
     <Compile Include="Content\Assets\Map\Objects\Wall.cs" />
     <Compile Include="Content\Assets\Projectiles\AlienBullet.cs" />
     <Compile Include="Content\Assets\Projectiles\BulletHit.cs" />

@@ -34,6 +34,14 @@ namespace AstroMonkey.Graphics
             images.Add("wall", game.Content.Load<Texture2D>(@"gfx/Map/Objects/wall"));
             images.Add("corner", game.Content.Load<Texture2D>(@"gfx/Map/Objects/corner"));
             images.Add("column", game.Content.Load<Texture2D>(@"gfx/Map/Objects/column"));
+            images.Add("cockpit", game.Content.Load<Texture2D>(@"gfx/Map/Objects/cockpit"));
+            images.Add("armchair", game.Content.Load<Texture2D>(@"gfx/Map/Objects/armchair"));
+            images.Add("fridge", game.Content.Load<Texture2D>(@"gfx/Map/Objects/fridge"));
+            images.Add("case", game.Content.Load<Texture2D>(@"gfx/Map/Objects/case"));
+            images.Add("caseMicrowave", game.Content.Load<Texture2D>(@"gfx/Map/Objects/caseMicrowave"));
+            images.Add("caseCaffe", game.Content.Load<Texture2D>(@"gfx/Map/Objects/caseCaffe"));
+            images.Add("table", game.Content.Load<Texture2D>(@"gfx/Map/Objects/Table"));
+            images.Add("neonSign", game.Content.Load<Texture2D>(@"gfx/Map/Objects/NeonSign"));
             images.Add("computer", game.Content.Load<Texture2D>(@"gfx/Map/Interactable/Computer"));
 
             //przedmioty
