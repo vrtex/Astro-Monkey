@@ -27,6 +27,9 @@ namespace AstroMonkey.Graphics
             images.Add("corner", game.Content.Load<Texture2D>(@"gfx/Map/Objects/corner"));
             images.Add("banana", game.Content.Load<Texture2D>(@"gfx/Items/Banana"));
             images.Add("nut", game.Content.Load<Texture2D>(@"gfx/Items/Nut"));
+            images.Add("ammoRiffle", game.Content.Load<Texture2D>(@"gfx/Items/AmmoRiffle"));
+            images.Add("ammoGun", game.Content.Load<Texture2D>(@"gfx/Items/AmmoGun"));
+            images.Add("ammoLuncher", game.Content.Load<Texture2D>(@"gfx/Items/AmmoLuncher"));
             images.Add("computer", game.Content.Load<Texture2D>(@"gfx/Map/Interactable/Computer"));
         }
 

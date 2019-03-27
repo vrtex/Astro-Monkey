@@ -64,6 +64,10 @@ namespace AstroMonkey.Assets.Scenes
 
             objects.Add(new Objects.Nut(new Vector2(490f, 490f), new Vector2(sceneScale, sceneScale), 0f));
 
+            objects.Add(new Objects.AmmoRiffle(new Vector2(190f, 90f), new Vector2(sceneScale, sceneScale), 0f));
+            objects.Add(new Objects.AmmoGun(new Vector2(290f, 90f), new Vector2(sceneScale, sceneScale), 0f));
+            objects.Add(new Objects.AmmoLuncher(new Vector2(390f, 90f), new Vector2(sceneScale, sceneScale), 0f));
+
             /*objects.Add(new Objects.Klucha(new Vector2(90f, 70f)));
             objects.Last().GetComponent<Graphics.Animator>().SetAnimation("WalkRight");
 
