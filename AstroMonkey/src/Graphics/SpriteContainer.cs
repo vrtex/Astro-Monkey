@@ -26,6 +26,7 @@ namespace AstroMonkey.Graphics
             images.Add("wall", game.Content.Load<Texture2D>(@"gfx/Map/Objects/wall"));
             images.Add("corner", game.Content.Load<Texture2D>(@"gfx/Map/Objects/corner"));
             images.Add("banana", game.Content.Load<Texture2D>(@"gfx/Items/Banana"));
+            images.Add("nut", game.Content.Load<Texture2D>(@"gfx/Items/Nut"));
             images.Add("computer", game.Content.Load<Texture2D>(@"gfx/Map/Interactable/Computer"));
         }
 

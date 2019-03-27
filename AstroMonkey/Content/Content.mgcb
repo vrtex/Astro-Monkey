@@ -73,6 +73,18 @@
 /processorParam:TextureFormat=Color
 /build:gfx/Items/Banana.png
 
+#begin gfx/Items/Nut.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:gfx/Items/Nut.png
+
 #begin gfx/Map/Floor/PlatformFloor.png
 /importer:TextureImporter
 /processor:TextureProcessor

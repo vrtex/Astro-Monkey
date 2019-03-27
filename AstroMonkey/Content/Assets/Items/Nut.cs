@@ -4,22 +4,22 @@ using System;
 
 namespace AstroMonkey.Assets.Objects
 {
-    class Banana: Core.GameObject
+    class Nut: Core.GameObject
     {
-        public Banana(): this(new Core.Transform())
+        public Nut() : this(new Core.Transform())
         {
         }
 
-        public Banana(Core.Transform _transform): base(_transform)
+        public Nut(Core.Transform _transform) : base(_transform)
         {
             Load(_transform);
         }
 
-        public Banana(Vector2 position, Vector2 scale, float rotation = 0f): this(new Core.Transform(position, scale, rotation))
+        public Nut(Vector2 position, Vector2 scale, float rotation = 0f) : this(new Core.Transform(position, scale, rotation))
         {
         }
 
-        public Banana(Vector2 position): this(new Core.Transform(position, Vector2.One, 0f))
+        public Nut(Vector2 position) : this(new Core.Transform(position, Vector2.One, 0f))
         {
         }
 
@@ -31,7 +31,7 @@ namespace AstroMonkey.Assets.Objects
                 temp.Add(new Rectangle(i * 16, 0, 16, 16));
             }
 
-            AddComponent(new Graphics.Sprite(this, "banana", temp));
+            AddComponent(new Graphics.Sprite(this, "nut", temp));
 
             AddComponent(new Graphics.StackAnimator(this));
 

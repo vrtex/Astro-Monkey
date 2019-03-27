@@ -10,7 +10,7 @@ namespace AstroMonkey.Assets.Objects
         {
         }
 
-        public Wall(Core.Transform _transform)
+        public Wall(Core.Transform _transform): base(_transform)
         {
             Load(_transform);
         }

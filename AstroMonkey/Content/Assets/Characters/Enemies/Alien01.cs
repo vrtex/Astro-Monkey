@@ -14,7 +14,7 @@ namespace AstroMonkey.Assets.Objects
         {
             Load(new Core.Transform(Vector2.Zero, Vector2.One, 0f));
         }
-        public Alien01(Core.Transform _transform)
+        public Alien01(Core.Transform _transform): base(_transform)
         {
             Load(_transform);
         }

@@ -62,6 +62,8 @@ namespace AstroMonkey.Assets.Scenes
 
             objects.Add(new Objects.Banana(new Vector2(450f, 470f), new Vector2(sceneScale, sceneScale), 0f));
 
+            objects.Add(new Objects.Nut(new Vector2(490f, 490f), new Vector2(sceneScale, sceneScale), 0f));
+
             /*objects.Add(new Objects.Klucha(new Vector2(90f, 70f)));
             objects.Last().GetComponent<Graphics.Animator>().SetAnimation("WalkRight");
 
