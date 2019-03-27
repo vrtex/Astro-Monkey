@@ -27,6 +27,12 @@ namespace AstroMonkey.Graphics
             else sprites.Add(sprite);
         }
 
+        public void RemoveSprite(Core.GameObject sprite)
+        {
+            floor.Remove(sprite);
+            sprites.Remove(sprite);
+        }
+
         public void Render(SpriteBatch spriteBatch)
         {
             spriteBatch.Begin(SpriteSortMode.Deferred,
@@ -82,6 +88,7 @@ namespace AstroMonkey.Graphics
                         s.transform.scale);
                 }
             }
+
             spriteBatch.End();
         }
         
