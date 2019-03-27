@@ -4,6 +4,7 @@ using System;
 
 namespace AstroMonkey.Assets.Objects
 {
+
     class Player: Core.GameObject
     {
         public Audio.AudioSource testSource;

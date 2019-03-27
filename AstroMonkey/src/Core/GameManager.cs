@@ -46,7 +46,7 @@ namespace AstroMonkey.Core
         {
             lock(Instance.toDestroy)
             {
-                Instance.toDestroy.Remove(gameObject);
+                Instance.toDestroy.Add(gameObject);
             }
             
         }

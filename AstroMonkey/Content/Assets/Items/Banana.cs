@@ -4,6 +4,21 @@ using System;
 
 namespace AstroMonkey.Assets.Objects
 {
+    class SuicideComponent : Core.Component
+    {
+        private System.Timers.Timer timer = new System.Timers.Timer(1000);
+        public SuicideComponent(Core.GameObject parent) : base(parent)
+        {
+            timer.AutoReset = false;
+            timer.Elapsed += hueh;
+            timer.Start();
+        }
+
+        private void hueh(Object o, System.Timers.ElapsedEventArgs args)
+        {
+            Core.GameManager.DestroyObject(Parent);
+        }
+    }
     class Banana: Core.GameObject
     {
         public Banana(): this(new Core.Transform())
@@ -25,7 +40,6 @@ namespace AstroMonkey.Assets.Objects
 
         private void Load(Core.Transform _transform)
         {
-            transform = _transform;
             List<Rectangle> temp = new List<Rectangle>();
             for(int i = 0; i < 16; ++i)
             {
@@ -35,6 +49,7 @@ namespace AstroMonkey.Assets.Objects
             AddComponent(new Graphics.Sprite(this, "banana", temp));
 
             AddComponent(new Graphics.StackAnimator(this));
+            AddComponent(new SuicideComponent(this));
 
             GetComponent<Graphics.StackAnimator>().AddAnimation(
                 new Graphics.StackAnimation("Idle",
