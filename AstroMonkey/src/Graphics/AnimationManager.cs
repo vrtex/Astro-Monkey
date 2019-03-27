@@ -13,13 +13,16 @@ namespace AstroMonkey.Graphics
 
         private AnimationManager()
         {
-            //powinien przejżeć wszystkie obiekty i popobierać z nich animatory
-            // a nie dopiero jak już będą obiekty stworzone? - vrtex
         }
 
         public void AddAnimator(AnimatorContainer animator)
         {
             animators.Add(animator);
+        }
+
+        public void RemoveAnimator(AnimatorContainer animator)
+        {
+            animators.Remove(animator);
         }
 
         public void Update(double deltaTime)
@@ -77,7 +80,7 @@ namespace AstroMonkey.Graphics
                     }
                 }
             }
-            
+
         }
 
 

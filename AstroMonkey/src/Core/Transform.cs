@@ -19,6 +19,10 @@ namespace AstroMonkey.Core
         {
         }
 
+        public Transform(Transform transform): this(transform.position, transform.scale, transform.rotation)
+        {
+        }
+
         public override string ToString()
         {
             return "Transform: " + position + " " + rotation + " " + scale;

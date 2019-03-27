@@ -78,6 +78,7 @@ namespace AstroMonkey
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
+            Core.GameManager.FinalizeSpwaning();
             Graphics.AnimationManager.Instance.Update(gameTime.ElapsedGameTime.TotalSeconds);
             foreach(Core.GameObject go in Core.SceneManager.Instance.currScene.objects)
             {
