@@ -25,6 +25,18 @@
 /processorParam:TextureFormat=Color
 /build:gfx/Characters/Enemies/alien01.png
 
+#begin gfx/Characters/Enemies/Alien02.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:gfx/Characters/Enemies/Alien02.png
+
 #begin gfx/Characters/Player/monkey.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -109,7 +121,7 @@
 /processorParam:TextureFormat=Color
 /build:gfx/Map/Floor/PlatformFloor.png
 
-#begin gfx/Map/Interactable/Computer.png
+#begin gfx/Map/Interactable/buttonClicked.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -119,7 +131,43 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:gfx/Map/Interactable/Computer.png
+/build:gfx/Map/Interactable/buttonClicked.png
+
+#begin gfx/Map/Interactable/buttonWall.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:gfx/Map/Interactable/buttonWall.png
+
+#begin gfx/Map/Interactable/terminal.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:gfx/Map/Interactable/terminal.png
+
+#begin gfx/Map/Interactable/terminalOff.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:gfx/Map/Interactable/terminalOff.png
 
 #begin gfx/Map/Objects/armchair.png
 /importer:TextureImporter

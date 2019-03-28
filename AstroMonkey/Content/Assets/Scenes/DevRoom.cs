@@ -51,7 +51,7 @@ namespace AstroMonkey.Assets.Scenes
             /*objects.Add(new Objects.Computer(new Vector2(12 * 32f, 2 * 32f + 8f)));*/
 
             //DODAWANIE POSTACI
-            Objects.Player player = new Objects.Player(new Vector2(20f, 50f), new Vector2(sceneScale, sceneScale), 0f);
+            Objects.Player player = new Objects.Player(new Vector2(20f, 650f), new Vector2(sceneScale, sceneScale), 0f);
             objects.Add(player);
             Graphics.ViewManager.Instance.playerTransform = player.transform;
 
@@ -59,6 +59,11 @@ namespace AstroMonkey.Assets.Scenes
             objects.Add(new Objects.Alien01(new Vector2(420f, 200f), new Vector2(sceneScale, sceneScale), (float)(Math.PI * 0.5f)));
             objects.Add(new Objects.Alien01(new Vector2(320f, 280f), new Vector2(sceneScale, sceneScale), (float)(Math.PI * 1.1f)));
             objects.Add(new Objects.Alien01(new Vector2(520f, 300f), new Vector2(sceneScale, sceneScale), (float)(Math.PI * 1.8f)));
+
+            objects.Add(new Objects.Alien02(new Vector2(350f, 570f), new Vector2(sceneScale, sceneScale), (float)(Math.PI)));
+            objects.Add(new Objects.Alien02(new Vector2(420f, 600f), new Vector2(sceneScale, sceneScale), (float)(Math.PI * 0.5f)));
+            objects.Add(new Objects.Alien02(new Vector2(320f, 680f), new Vector2(sceneScale, sceneScale), (float)(Math.PI * 1.1f)));
+            objects.Add(new Objects.Alien02(new Vector2(520f, 700f), new Vector2(sceneScale, sceneScale), (float)(Math.PI * 1.8f)));
 
             objects.Add(new Objects.Banana(new Vector2(450f, 470f), new Vector2(sceneScale, sceneScale), 0f));
 
@@ -79,6 +84,9 @@ namespace AstroMonkey.Assets.Scenes
             objects.Add(new Objects.Table(new Vector2(346f, 110f), new Vector2(sceneScale, sceneScale), (float)(Math.PI)));
 
             objects.Add(new Objects.NeonSign(new Vector2(442f, 1f), new Vector2(sceneScale, sceneScale), (float)(Math.PI)));
+
+            objects.Add(new Objects.Terminal(new Vector2(96f, 3f), new Vector2(sceneScale, sceneScale), (float)(Math.PI)));
+            objects.Add(new Objects.ButtonWall(new Vector2(0f, 3f), new Vector2(sceneScale, sceneScale), (float)(Math.PI)));
         }
 
         public override void UnLoad()

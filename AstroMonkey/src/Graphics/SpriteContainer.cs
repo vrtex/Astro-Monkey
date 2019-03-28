@@ -27,7 +27,8 @@ namespace AstroMonkey.Graphics
 
             //postacie
             images.Add("monkey", game.Content.Load<Texture2D>(@"gfx/Characters/Player/monkey"));
-            images.Add("alien01", game.Content.Load<Texture2D>(@"gfx/Characters/Enemies/alien01"));
+            images.Add("alien01", game.Content.Load<Texture2D>(@"gfx/Characters/Enemies/Alien01"));
+            images.Add("alien02", game.Content.Load<Texture2D>(@"gfx/Characters/Enemies/Alien02"));
 
             //otoczenie
             images.Add("floor", game.Content.Load<Texture2D>(@"gfx/Map/Floor/PlatformFloor"));
@@ -42,7 +43,12 @@ namespace AstroMonkey.Graphics
             images.Add("caseCaffe", game.Content.Load<Texture2D>(@"gfx/Map/Objects/caseCaffe"));
             images.Add("table", game.Content.Load<Texture2D>(@"gfx/Map/Objects/Table"));
             images.Add("neonSign", game.Content.Load<Texture2D>(@"gfx/Map/Objects/NeonSign"));
-            images.Add("computer", game.Content.Load<Texture2D>(@"gfx/Map/Interactable/Computer"));
+
+            //interaktywne
+            images.Add("terminal", game.Content.Load<Texture2D>(@"gfx/Map/Interactable/terminal"));
+            images.Add("terminalOff", game.Content.Load<Texture2D>(@"gfx/Map/Interactable/terminalOff"));
+            images.Add("buttonWall", game.Content.Load<Texture2D>(@"gfx/Map/Interactable/buttonWall"));
+            images.Add("buttonClicked", game.Content.Load<Texture2D>(@"gfx/Map/Interactable/buttonClicked"));
 
             //przedmioty
             images.Add("banana", game.Content.Load<Texture2D>(@"gfx/Items/Banana"));
