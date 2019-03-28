@@ -10,7 +10,7 @@ namespace AstroMonkey.Assets.Objects
         {
         }
 
-        public Corner(Core.Transform _transform)
+        public Corner(Core.Transform _transform): base(_transform)
         {
             Load(_transform);
         }
@@ -26,7 +26,13 @@ namespace AstroMonkey.Assets.Objects
         private void Load(Core.Transform _transform)
         {
             transform = _transform;
-            AddComponent(new Graphics.Sprite(this, "wall", new List<Rectangle> { new Rectangle(0, 0, 32, 32) }));
+            List<Rectangle> temp = new List<Rectangle>();
+            for(int i = 0; i < 32; ++i)
+            {
+                temp.Add(new Rectangle(i * 32, 0, 32, 32));
+            }
+
+            AddComponent(new Graphics.Sprite(this, "corner", temp));
         }
     }
 }

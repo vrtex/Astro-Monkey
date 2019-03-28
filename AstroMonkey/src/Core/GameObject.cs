@@ -1,12 +1,16 @@
 ﻿using System.Collections.Generic;
 using Microsoft.Xna.Framework;
+using System;
 
 namespace AstroMonkey.Core
 {
-    public abstract class GameObject
+    public class GameObject
     {
         public Transform transform;
         protected List<Component> components;
+
+        public delegate void DestroyEvent(GameObject destroyed);
+        public event DestroyEvent OnDestroy;
 
         public List<Component> Components {
             get { return components; }
@@ -48,5 +52,10 @@ namespace AstroMonkey.Core
         }
 
         public virtual void Update(GameTime gameTime) { }
+
+        public virtual void Destroy()
+        {
+            OnDestroy?.Invoke(this);
+        }
     }
 }

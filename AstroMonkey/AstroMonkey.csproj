@@ -42,15 +42,34 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Content\Assets\Characters\Enemies\Klucha.cs" />
-    <Compile Include="Content\Assets\Characters\Player\Monkey.cs" />
+    <Compile Include="Content\Assets\Characters\Enemies\Alien01.cs" />
+    <Compile Include="Content\Assets\Characters\Enemies\Alien02.cs" />
     <Compile Include="Content\Assets\Characters\Player\Player.cs" />
-    <Compile Include="Content\Assets\Characters\Player\TestPlayer.cs" />
+    <Compile Include="Content\Assets\Items\AmmoGun.cs" />
+    <Compile Include="Content\Assets\Items\AmmoLuncher.cs" />
+    <Compile Include="Content\Assets\Items\AmmoRiffle.cs" />
     <Compile Include="Content\Assets\Items\Banana.cs" />
+    <Compile Include="Content\Assets\Items\Nut.cs" />
     <Compile Include="Content\Assets\Map\Floor\Floor.cs" />
-    <Compile Include="Content\Assets\Map\Interactable\Computer.cs" />
+    <Compile Include="Content\Assets\Map\Interactable\ButtonWall.cs" />
+    <Compile Include="Content\Assets\Map\Interactable\ButtonClicked.cs" />
+    <Compile Include="Content\Assets\Map\Interactable\Terminal.cs" />
+    <Compile Include="Content\Assets\Map\Interactable\TerminalOff.cs" />
+    <Compile Include="Content\Assets\Map\Objects\Armchair.cs" />
+    <Compile Include="Content\Assets\Map\Objects\Case.cs" />
+    <Compile Include="Content\Assets\Map\Objects\CaseCaffe.cs" />
+    <Compile Include="Content\Assets\Map\Objects\CaseMicrowave.cs" />
+    <Compile Include="Content\Assets\Map\Objects\Cockpit.cs" />
+    <Compile Include="Content\Assets\Map\Objects\Column.cs" />
     <Compile Include="Content\Assets\Map\Objects\Corner.cs" />
+    <Compile Include="Content\Assets\Map\Objects\Fridge.cs" />
+    <Compile Include="Content\Assets\Map\Objects\NeonSign.cs" />
+    <Compile Include="Content\Assets\Map\Objects\Table.cs" />
     <Compile Include="Content\Assets\Map\Objects\Wall.cs" />
+    <Compile Include="Content\Assets\Projectiles\AlienBullet.cs" />
+    <Compile Include="Content\Assets\Projectiles\BulletHit.cs" />
+    <Compile Include="Content\Assets\Projectiles\Poop.cs" />
+    <Compile Include="Content\Assets\Projectiles\Rocket.cs" />
     <Compile Include="Content\Assets\Scenes\DevRoom.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="Program.cs" />
@@ -91,6 +110,7 @@
     <Compile Include="src\Util\Rect.cs" />
     <Compile Include="src\Util\RNG.cs" />
     <Compile Include="src\Util\Statics.cs" />
+    <Compile Include="src\Util\ViewComparable.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Framework">

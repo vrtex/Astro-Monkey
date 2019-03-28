@@ -7,6 +7,7 @@
 *.userprefs
 *.[Oo]bj
 *.exe
+!semi-finished/scripts/*.exe
 *.pdb
 *.user
 *.aps
@@ -59,3 +60,4 @@ monodroid*.msi
 *.dll
 
 praca_domowa1/hueh/.vs/
+praca_domowa2/shaderless_shader/.vs/shaderless_shader/v15/Browse.VC.db

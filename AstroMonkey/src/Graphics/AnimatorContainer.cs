@@ -20,7 +20,17 @@ namespace AstroMonkey.Graphics
         {
             animations.TryGetValue(name, out currentAnim);
             if(currentAnim == null)
+            {
                 Console.WriteLine("Lolz, bogus animation " + name + ". Animator::SetAnimation");
+            }
+            else
+            {
+                if(currentAnim.loop == false && currentAnim.currentFrame != 0)
+                {
+                    currentAnim.currentTime = 0;
+                    currentAnim.currentFrame = 0;
+                }
+            }
         }
 
         public void AddAnimation(AnimationComponent anim)

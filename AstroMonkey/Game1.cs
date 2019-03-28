@@ -33,6 +33,16 @@ namespace AstroMonkey
             // TODO: Add your initialization logic here
             Audio.SoundContainer.Instance.AddSound("test", @"sfx/test_sound", Content);
             Core.GameManager.Instance.InitializeGame(this);
+
+            graphics.PreferredBackBufferWidth = 1280;
+            graphics.PreferredBackBufferHeight = 720;
+            //graphics.PreferredBackBufferWidth = 1920;
+            //graphics.PreferredBackBufferHeight = 1080;
+            //graphics.IsFullScreen = true;
+            graphics.ApplyChanges();
+
+            Graphics.ViewManager.Instance.ScreenSize = new Vector2(graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight);
+            IsMouseVisible = true;
             base.Initialize();
 
         }
@@ -68,6 +78,7 @@ namespace AstroMonkey
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
+            Core.GameManager.FinalizeSpwaning();
             Graphics.AnimationManager.Instance.Update(gameTime.ElapsedGameTime.TotalSeconds);
             foreach(Core.GameObject go in Core.SceneManager.Instance.currScene.objects)
             {

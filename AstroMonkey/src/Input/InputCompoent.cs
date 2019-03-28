@@ -13,6 +13,7 @@ namespace AstroMonkey.Input
         Navigation.MovementComponent moveComp;
         private readonly AxisBinding verticalAxis;
         private readonly AxisBinding horizontalAxis;
+        private Core.GameObject target = new Core.GameObject();
 
         public InputCompoent(Core.GameObject parent) : base(parent)
         {
@@ -20,14 +21,21 @@ namespace AstroMonkey.Input
             verticalAxis = new AxisBinding(Keys.S, Keys.W);
             horizontalAxis = new AxisBinding(Keys.D, Keys.A);
             ActionBinding playBinding = new ActionBinding(Keys.P);
+            ActionBinding spawnBinding = new ActionBinding(Keys.Y);
 
             verticalAxis.OnUpdate += Move;
             horizontalAxis.OnUpdate += Move;
             playBinding.OnTrigger += Play;
+            spawnBinding.OnTrigger += Spawn;
 
             InputManager.Manager.AddAxisBinding("move up", verticalAxis);
             InputManager.Manager.AddAxisBinding("move right", horizontalAxis);
             InputManager.Manager.AddActionBinding("play", playBinding);
+
+            InputManager.Manager.AddActionBinding("spawn", spawnBinding);
+
+            moveComp.CurrentFocus = target;
+            InputManager.Manager.OnMouseMove += MoveTarget;
         }
 
         private void Move(float trash)
@@ -40,6 +48,13 @@ namespace AstroMonkey.Input
                 newDirection.Normalize();
             
             moveComp.AddMovementInput(newDirection);
+
+            MoveTarget(new MouseInputEventArgs(EMouseButton.None, new Vector2(), new Vector2()));
+        }
+
+        private void MoveTarget(MouseInputEventArgs args)
+        {
+            target.transform.position = InputManager.Manager.MouseCursor + parent.transform.position - Graphics.ViewManager.Instance.ScreenSize / 2f;
         }
 
         private void Play()
@@ -48,5 +63,15 @@ namespace AstroMonkey.Input
             player.testSource.Play();
         }
 
+        private void Spawn()
+        {
+            Core.GameManager.SpawnObject(new Assets.Objects.Banana(new Core.Transform(Parent.transform)));
+        }
+
+        public override void Update(GameTime gameTime)
+        {
+            base.Update(gameTime);
+            target.transform.position = InputManager.Manager.MouseCursor + parent.transform.position - Graphics.ViewManager.Instance.ScreenSize / 2f;
+        }
     }
 }
