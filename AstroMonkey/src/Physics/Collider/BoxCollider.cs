@@ -11,8 +11,8 @@ namespace AstroMonkey.Physics.Collider
 
         public BoxCollider(GameObject gameObject, CollisionChanell collisionChanell = CollisionChanell.Object, Vector2 relativePosition = new Vector2(), float width = 1, float height = 1) : base(gameObject, collisionChanell, relativePosition)
         {
-            this.width = width;
-            this.height = height;
+            this.width = width * scale;
+            this.height = height * scale;
         }
     }
 }

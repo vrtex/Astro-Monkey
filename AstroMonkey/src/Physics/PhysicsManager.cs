@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using System.Security.Policy;
+using AstroMonkey.Core;
 using AstroMonkey.Physics.Collider;
 using Microsoft.Xna.Framework;
 
@@ -35,13 +36,17 @@ namespace AstroMonkey.Physics
         /// </summary>
         public static void ResolveAllCollision()
         {
+            //Debug.WriteLine("RESOLVE");
             colliders.ForEach(c1 =>
             {
                 if (CanMove(c1))
                 {
                     colliders.ForEach(c2 =>
                     {
-                        CheckColliderType(c1, c2);
+                        if (!c1.Equals(c2))
+                        {
+                            CheckColliderType(c1, c2);
+                        }
                     });
                 }
             });
@@ -82,7 +87,7 @@ namespace AstroMonkey.Physics
 
         private static void ResolveCollision(CircleCollider c1, CircleCollider c2)
         {
-            if (c1.radius + c2.radius < GetDistanceBetween(c1, c2))
+            if (GetDistanceBetween(c1, c2) < c1.radius + c2.radius)
             {
                 if (IsBlocking(c1, c2))
                 {
@@ -133,12 +138,27 @@ namespace AstroMonkey.Physics
 
         private static void ResolveCollision(CircleCollider c1, BoxCollider c2)
         {
+            float pointX = MathHelper.Clamp(
+                c1.GetPosition().X,
+                c2.GetPosition().X - c2.width / 2,
+                c2.GetPosition().X + c2.width / 2);
 
+            float pointY = MathHelper.Clamp(
+                c1.GetPosition().Y,
+                c2.GetPosition().Y - c2.height / 2,
+                c2.GetPosition().Y + c2.height / 2);
+
+            Vector2 point = new Vector2(pointX, pointY);
+
+            // hacki soł macz
+            GameObject go = new GameObject(new Transform());
+            go.transform.position = point;
+            ResolveCollision(c1, new CircleCollider(go, CollisionChanell.Object, Vector2.Zero, 1, true));
         }
 
-        private static void ResolveCollision(BoxCollider c1, CircleCollider c2)
+        private static void ResolveCollision(BoxCollider c2, CircleCollider c1)
         {
-
+            
         }
 
         private static void ResolveCollision(BoxCollider c1, BoxCollider c2)

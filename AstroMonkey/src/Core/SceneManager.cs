@@ -15,6 +15,8 @@ namespace AstroMonkey.Core
 
         public Scene    currScene = null;
 
+        public static float scale = 3f;
+
         static SceneManager()
         {
             scenes.Add("devroom", new Assets.Scenes.DevRoom());
