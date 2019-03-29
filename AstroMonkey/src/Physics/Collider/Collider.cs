@@ -8,16 +8,16 @@ namespace AstroMonkey.Physics.Collider
     {
         private CollisionChanell collisionChanell;
         private Dictionary<CollisionChanell, ReactType> reaction;
-        private Vector2 position;
+        private Vector2 relativePosition;
 
         public Collider(
             GameObject gameObject,
             CollisionChanell collisionChanell = CollisionChanell.Object,
-            Vector2 position = new Vector2())
+            Vector2 relativePosition = new Vector2())
             : base(gameObject)
         {
             this.collisionChanell = collisionChanell;
-            this.position = position;
+            this.relativePosition = relativePosition;
 
             SetReactions();
 
@@ -29,30 +29,43 @@ namespace AstroMonkey.Physics.Collider
             PhysicsManager.RemoveCollider(this);
         }
 
-
         public CollisionChanell GetCollisionChanell()
         {
             return collisionChanell;
         }
 
+        
         public void SetCollisionChanell(CollisionChanell collisionChanell)
         {
             this.collisionChanell = collisionChanell;
             SetReactions();
         }
-        
+
+
+        public Vector2 GetRelativePosition()
+        {
+            return relativePosition;
+        }
+
+        public void SetRelativePosition(Vector2 relativePosition)
+        {
+            this.relativePosition = relativePosition;
+        }
+
 
         public Vector2 GetPosition()
         {
-            return position;
+            return Vector2.Add(Parent.transform.position, relativePosition);
         }
 
         public void SetPosition(Vector2 position)
         {
-            this.position = position;
+            Parent.transform.position = Vector2.Subtract(position, relativePosition);
         }
 
-
+        /// <summary>
+        /// Zwraca typ reakcji na dany kanał kolizji.
+        /// </summary>
         public ReactType GetReaction(CollisionChanell collisionChanell)
         {
             return reaction[collisionChanell];

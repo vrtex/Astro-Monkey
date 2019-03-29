@@ -9,7 +9,7 @@ namespace AstroMonkey.Physics.Collider
         public float width { get; set; }
         public float height { get; set; }
 
-        public BoxCollider(GameObject gameObject, CollisionChanell collisionChanell = CollisionChanell.Object, Vector2 position = new Vector2(), float width = 1, float height = 1) : base(gameObject, collisionChanell, position)
+        public BoxCollider(GameObject gameObject, CollisionChanell collisionChanell = CollisionChanell.Object, Vector2 relativePosition = new Vector2(), float width = 1, float height = 1) : base(gameObject, collisionChanell, relativePosition)
         {
             this.width = width;
             this.height = height;
