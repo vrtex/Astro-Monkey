@@ -44,6 +44,9 @@ namespace AstroMonkey.Graphics
             images.Add("caseCaffe", game.Content.Load<Texture2D>(@"gfx/Map/Objects/caseCaffe"));
             images.Add("table", game.Content.Load<Texture2D>(@"gfx/Map/Objects/Table"));
             images.Add("neonSign", game.Content.Load<Texture2D>(@"gfx/Map/Objects/NeonSign"));
+            images.Add("half-wall", game.Content.Load<Texture2D>(@"gfx/Map/Objects/half-wall"));
+            images.Add("doorRight", game.Content.Load<Texture2D>(@"gfx/Map/Objects/DoorRight"));
+            images.Add("doorLeft", game.Content.Load<Texture2D>(@"gfx/Map/Objects/DoorLeft"));
 
             //interaktywne
             images.Add("terminal", game.Content.Load<Texture2D>(@"gfx/Map/Interactable/terminal"));

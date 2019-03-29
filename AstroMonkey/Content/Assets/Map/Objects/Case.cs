@@ -28,7 +28,7 @@ namespace AstroMonkey.Assets.Objects
             List<Rectangle> temp = new List<Rectangle>();
             for(int i = 0; i < 8; ++i)
             {
-                temp.Add(new Rectangle(i * 32, 0, 32, 32));
+                temp.Add(new Rectangle(i * 32, 0, 32, 16));
             }
 
             AddComponent(new Graphics.Sprite(this, "case", temp));

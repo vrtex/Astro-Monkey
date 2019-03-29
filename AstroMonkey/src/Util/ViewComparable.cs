@@ -8,7 +8,9 @@ namespace AstroMonkey.Util
     {
         public int Compare(GameObject a, GameObject b)
         {
-            return (int)(a.transform.position.Y - b.transform.position.Y);
+            int val = (int)(a.transform.position.Y - b.transform.position.Y);
+            if(val == 0) val = (int)(a.transform.position.X - b.transform.position.X);
+            return val;
         }
     }
 }

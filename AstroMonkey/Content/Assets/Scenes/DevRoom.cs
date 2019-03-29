@@ -31,8 +31,9 @@ namespace AstroMonkey.Assets.Scenes
             }
             for(int x = 0; x < 10; ++x)
             {
-                if(x == 4 || x == 5) continue;
-                objects.Add(new Objects.Wall(new Vector2(x * 32f * sceneScale, 8 * 32f * sceneScale), new Vector2(sceneScale, sceneScale), 0f));
+                if(x == 4) objects.Add(new Objects.DoorLeft(new Vector2(x * 32f * sceneScale, 8 * 32f * sceneScale), new Vector2(sceneScale, sceneScale), 0f));
+                else if(x == 5) objects.Add(new Objects.DoorRight(new Vector2(x * 32f * sceneScale, 8 * 32f * sceneScale), new Vector2(sceneScale, sceneScale), 0f));
+                else objects.Add(new Objects.Wall(new Vector2(x * 32f * sceneScale, 8 * 32f * sceneScale), new Vector2(sceneScale, sceneScale), 0f));
             }
             objects.Add(new Objects.Corner(new Vector2(-1 * 32f * sceneScale, 0 * 32f * sceneScale), new Vector2(sceneScale, sceneScale), (float)(Math.PI)));
             objects.Add(new Objects.Corner(new Vector2(10 * 32f * sceneScale, 0 * 32f * sceneScale), new Vector2(sceneScale, sceneScale), -(float)(Math.PI * 0.5f)));
@@ -78,14 +79,15 @@ namespace AstroMonkey.Assets.Scenes
             objects.Add(new Objects.AmmoGun(new Vector2(290f, 590f), new Vector2(sceneScale, sceneScale), 0f));
             objects.Add(new Objects.AmmoLuncher(new Vector2(390f, 590f), new Vector2(sceneScale, sceneScale), 0f));
 
+            objects.Add(new Objects.HalfWall(new Vector2(500f, 140f), new Vector2(sceneScale, sceneScale), 0f));
             objects.Add(new Objects.Column(new Vector2(590f, 140f), new Vector2(sceneScale, sceneScale), 0f));
             objects.Add(new Objects.Cockpit(new Vector2(690f, 32f), new Vector2(sceneScale, sceneScale), (float)(Math.PI)));
             objects.Add(new Objects.Fridge(new Vector2(754f, 32f), new Vector2(sceneScale, sceneScale), (float)(Math.PI)));
             objects.Add(new Objects.Armchair(new Vector2(680f, 64f), new Vector2(sceneScale, sceneScale), (float)(Math.PI * 0.15f)));
 
-            objects.Add(new Objects.Case(new Vector2(442f, 32f), new Vector2(sceneScale, sceneScale), (float)(Math.PI)));
-            objects.Add(new Objects.CaseCaffe(new Vector2(250f, 32f), new Vector2(sceneScale, sceneScale), (float)(Math.PI)));
-            objects.Add(new Objects.CaseMicrowave(new Vector2(346f, 32f), new Vector2(sceneScale, sceneScale), (float)(Math.PI)));
+            objects.Add(new Objects.Case(new Vector2(442f, 16f), new Vector2(sceneScale, sceneScale), (float)(Math.PI)));
+            objects.Add(new Objects.CaseCaffe(new Vector2(250f, 16f), new Vector2(sceneScale, sceneScale), (float)(Math.PI)));
+            objects.Add(new Objects.CaseMicrowave(new Vector2(346f, 16f), new Vector2(sceneScale, sceneScale), (float)(Math.PI)));
             objects.Add(new Objects.Table(new Vector2(346f, 110f), new Vector2(sceneScale, sceneScale), (float)(Math.PI)));
 
             objects.Add(new Objects.NeonSign(new Vector2(442f, 1f), new Vector2(sceneScale, sceneScale), (float)(Math.PI)));
