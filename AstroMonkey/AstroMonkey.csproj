@@ -76,6 +76,7 @@
     <Compile Include="Content\Assets\Projectiles\Poop.cs" />
     <Compile Include="Content\Assets\Projectiles\Rocket.cs" />
     <Compile Include="Content\Assets\Scenes\Basement.cs" />
+    <Compile Include="Content\Assets\Scenes\ColliderRoom.cs" />
     <Compile Include="Content\Assets\Scenes\DevRoom.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="Program.cs" />
