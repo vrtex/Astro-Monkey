@@ -88,6 +88,12 @@
     <Compile Include="src\Core\Scene.cs" />
     <Compile Include="src\Core\SceneManager.cs" />
     <Compile Include="src\Core\Transform.cs" />
+    <Compile Include="src\Physics\Body.cs" />
+    <Compile Include="src\Physics\Collider\BoxCollider.cs" />
+    <Compile Include="src\Physics\Collider\CircleCollider.cs" />
+    <Compile Include="src\Physics\Collider\Collider.cs" />
+    <Compile Include="src\Physics\Collider\CollisionChanell.cs" />
+    <Compile Include="src\Physics\Collider\ReactType.cs" />
     <Compile Include="src\Graphics\AnimationComponent.cs" />
     <Compile Include="src\Graphics\AnimationManager.cs" />
     <Compile Include="src\Graphics\AnimatorContainer.cs" />
@@ -102,6 +108,7 @@
     <Compile Include="src\Graphics\Animator.cs" />
     <Compile Include="src\Graphics\Sprite.cs" />
     <Compile Include="src\Graphics\SpriteContainer.cs" />
+    <Compile Include="src\Physics\PhysicsManager.cs" />
     <Compile Include="src\Navigation\MovementComponent.cs" />
     <Compile Include="src\Util\Enums.cs" />
     <Compile Include="src\Util\Rect.cs" />

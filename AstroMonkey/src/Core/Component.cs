@@ -11,7 +11,7 @@ namespace AstroMonkey.Core
             get { return parent; }
         }
 
-        public Component(GameObject parent)
+        protected Component(GameObject parent)
         {
             this.parent = parent;
             active = true;
