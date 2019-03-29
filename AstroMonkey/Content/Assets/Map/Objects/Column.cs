@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using System;
+using AstroMonkey.Physics.Collider;
 
 namespace AstroMonkey.Assets.Objects
 {

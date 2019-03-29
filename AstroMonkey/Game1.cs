@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System.Collections.Generic;
 using AstroMonkey.Input;
+using AstroMonkey.Physics;
 
 namespace AstroMonkey
 {
@@ -85,7 +86,8 @@ namespace AstroMonkey
                 go.Update(gameTime);
             }
 
-
+            // TODO: Add your update logic here
+            PhysicsManager.ResolveAllCollision();
             base.Update(gameTime);
         }
 
