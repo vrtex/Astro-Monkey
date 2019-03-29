@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using AstroMonkey.Core;
 using Microsoft.Xna.Framework;
@@ -20,12 +21,13 @@ namespace AstroMonkey.Physics.Collider
             bool temp = false)
             : base(gameObject)
         {
-            this.collisionChanell = collisionChanell;
-            this.relativePosition = relativePosition;
-            this.temp = temp;
             scale = SceneManager.scale;
+            this.collisionChanell = collisionChanell;
+            this.relativePosition = Vector2.Multiply(relativePosition, new Vector2(scale, scale));
+            this.temp = temp;
 
             SetReactions();
+            SetRotation();
 
             if(!temp)
                 PhysicsManager.AddCollider(this);
@@ -68,9 +70,6 @@ namespace AstroMonkey.Physics.Collider
 
         public void SetPosition(Vector2 position)
         {
-            //Debug.WriteLine("POS" + position);
-            //Debug.WriteLine("REL" + relativePosition);
-            //Debug.WriteLine("SUB" + Vector2.Subtract(position, relativePosition));
             Parent.transform.position = Vector2.Subtract(position, relativePosition);
         }
 
@@ -80,6 +79,34 @@ namespace AstroMonkey.Physics.Collider
         public ReactType GetReaction(CollisionChanell collisionChanell)
         {
             return reaction[collisionChanell];
+        }
+
+        private void SetRotation()
+        {
+            float epsilon = (float)Math.PI / 8;
+            float rotation = Parent.transform.rotation;
+
+            if (Math.Abs(rotation - 0) < epsilon) // FACE UP
+            {
+
+            }
+            else if (Math.Abs(rotation - Math.PI / 2) < epsilon) // FACE LEFT
+            {
+                float temp = relativePosition.Y;
+                relativePosition.Y = relativePosition.X;
+                relativePosition.X = -temp;
+            }
+            else if(Math.Abs(rotation - Math.PI) < epsilon) // FACE DOWN
+            {
+                relativePosition.X = -relativePosition.X;
+                relativePosition.Y = -relativePosition.Y;
+            }
+            else //FACE RIGHT
+            {
+                float temp = relativePosition.X;
+                relativePosition.X = relativePosition.Y;
+                relativePosition.Y = -temp;
+            }
         }
 
         private void SetReactions()
