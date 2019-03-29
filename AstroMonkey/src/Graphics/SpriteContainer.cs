@@ -29,6 +29,7 @@ namespace AstroMonkey.Graphics
             images.Add("monkey", game.Content.Load<Texture2D>(@"gfx/Characters/Player/monkey"));
             images.Add("alien01", game.Content.Load<Texture2D>(@"gfx/Characters/Enemies/Alien01"));
             images.Add("alien02", game.Content.Load<Texture2D>(@"gfx/Characters/Enemies/Alien02"));
+            images.Add("alien03", game.Content.Load<Texture2D>(@"gfx/Characters/Enemies/Alien03"));
 
             //otoczenie
             images.Add("floor", game.Content.Load<Texture2D>(@"gfx/Map/Floor/PlatformFloor"));

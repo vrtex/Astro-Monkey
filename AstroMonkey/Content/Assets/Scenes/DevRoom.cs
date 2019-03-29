@@ -60,10 +60,15 @@ namespace AstroMonkey.Assets.Scenes
             objects.Add(new Objects.Alien01(new Vector2(320f, 280f), new Vector2(sceneScale, sceneScale), (float)(Math.PI * 1.1f)));
             objects.Add(new Objects.Alien01(new Vector2(520f, 300f), new Vector2(sceneScale, sceneScale), (float)(Math.PI * 1.8f)));
 
-            objects.Add(new Objects.Alien02(new Vector2(350f, 570f), new Vector2(sceneScale, sceneScale), (float)(Math.PI)));
-            objects.Add(new Objects.Alien02(new Vector2(420f, 600f), new Vector2(sceneScale, sceneScale), (float)(Math.PI * 0.5f)));
-            objects.Add(new Objects.Alien02(new Vector2(320f, 680f), new Vector2(sceneScale, sceneScale), (float)(Math.PI * 1.1f)));
-            objects.Add(new Objects.Alien02(new Vector2(520f, 700f), new Vector2(sceneScale, sceneScale), (float)(Math.PI * 1.8f)));
+            objects.Add(new Objects.Alien03(new Vector2(350f, 570f), new Vector2(sceneScale, sceneScale), (float)(Math.PI)));
+            objects.Add(new Objects.Alien03(new Vector2(450f, 600f), new Vector2(sceneScale, sceneScale), (float)(Math.PI * 0.5f)));
+            objects.Add(new Objects.Alien03(new Vector2(320f, 680f), new Vector2(sceneScale, sceneScale), (float)(Math.PI * 1.1f)));
+            objects.Add(new Objects.Alien03(new Vector2(520f, 700f), new Vector2(sceneScale, sceneScale), (float)(Math.PI * 1.8f)));
+
+            objects.Add(new Objects.Alien02(new Vector2(650f, 570f), new Vector2(sceneScale, sceneScale), (float)(Math.PI)));
+            objects.Add(new Objects.Alien02(new Vector2(720f, 600f), new Vector2(sceneScale, sceneScale), (float)(Math.PI * 0.5f)));
+            objects.Add(new Objects.Alien02(new Vector2(620f, 680f), new Vector2(sceneScale, sceneScale), (float)(Math.PI * 1.1f)));
+            objects.Add(new Objects.Alien02(new Vector2(820f, 700f), new Vector2(sceneScale, sceneScale), (float)(Math.PI * 1.8f)));
 
             objects.Add(new Objects.Banana(new Vector2(450f, 470f), new Vector2(sceneScale, sceneScale), 0f));
 

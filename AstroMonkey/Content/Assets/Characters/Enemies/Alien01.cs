@@ -27,238 +27,65 @@ namespace AstroMonkey.Assets.Objects
             Load(new Core.Transform(position, Vector2.One, 0f));
         }
 
+        private int height = 13;
+        private int size = 21;
+
         private void Load(Core.Transform _transform)
         {
             transform = _transform;
-            List<Rectangle> temp = new List<Rectangle>();
-            for(int i = 0; i < 13; ++i)
-            {
-                temp.Add(new Rectangle(i * 21, 0, 21, 21));
-            }
-            AddComponent(new Graphics.Sprite(this, "alien01", temp));
+            List<Rectangle> idle01 = new List<Rectangle>();
+            for(int i = 0; i < height; ++i) idle01.Add(new Rectangle(i * size, 0, size, size));
+            AddComponent(new Graphics.Sprite(this, "alien01", idle01));
 
             AddComponent(new Graphics.StackAnimator(this));
 
+            //STANIE
+            List<Rectangle> idle02 = new List<Rectangle>();
+            for(int i = 0; i < height; ++i) idle02.Add(new Rectangle(i * size, size, size, size));
             GetComponent<Graphics.StackAnimator>().AddAnimation(
                 new Graphics.StackAnimation("Idle",
                 GetComponent<Graphics.Sprite>(),
-                new List<List<Rectangle>> {
-                    new List<Rectangle> {
-                        new Rectangle(0, 0, 21, 21),
-                        new Rectangle(21, 0, 21, 21),
-                        new Rectangle(42, 0, 21, 21),
-                        new Rectangle(63, 0, 21, 21),
-                        new Rectangle(84, 0, 21, 21),
-                        new Rectangle(105, 0, 21, 21),
-                        new Rectangle(126, 0, 21, 21),
-                        new Rectangle(147, 0, 21, 21),
-                        new Rectangle(168, 0, 21, 21),
-                        new Rectangle(189, 0, 21, 21),
-                        new Rectangle(210, 0, 21, 21),
-                        new Rectangle(231, 0, 21, 21),
-                        new Rectangle(252, 0, 21, 21),
-                    },
-                    new List<Rectangle> {
-                        new Rectangle(0, 21, 21, 21),
-                        new Rectangle(21, 21, 21, 21),
-                        new Rectangle(42, 21, 21, 21),
-                        new Rectangle(63, 21, 21, 21),
-                        new Rectangle(84, 21, 21, 21),
-                        new Rectangle(105, 21, 21, 21),
-                        new Rectangle(126, 21, 21, 21),
-                        new Rectangle(147, 21, 21, 21),
-                        new Rectangle(168, 21, 21, 21),
-                        new Rectangle(189, 21, 21, 21),
-                        new Rectangle(210, 21, 21, 21),
-                        new Rectangle(231, 21, 21, 21),
-                        new Rectangle(252, 21, 21, 21),
-                    }},
+                new List<List<Rectangle>> { idle01, idle02 },
                 266,
                 true));
 
+            //CHODZENIE
+            List<Rectangle> walk01 = new List<Rectangle>();
+            for(int i = 0; i < height; ++i) walk01.Add(new Rectangle(i * size, size * 2, size, size));
+            List<Rectangle> walk02 = new List<Rectangle>();
+            for(int i = 0; i < height; ++i) walk02.Add(new Rectangle(i * size, size * 3, size, size));
             GetComponent<Graphics.StackAnimator>().AddAnimation(
                 new Graphics.StackAnimation("Walk",
                 GetComponent<Graphics.Sprite>(),
-                new List<List<Rectangle>> {
-                    new List<Rectangle> {
-                        new Rectangle(0, 0, 21, 21),
-                        new Rectangle(21, 0, 21, 21),
-                        new Rectangle(42, 0, 21, 21),
-                        new Rectangle(63, 0, 21, 21),
-                        new Rectangle(84, 0, 21, 21),
-                        new Rectangle(105, 0, 21, 21),
-                        new Rectangle(126, 0, 21, 21),
-                        new Rectangle(147, 0, 21, 21),
-                        new Rectangle(168, 0, 21, 21),
-                        new Rectangle(189, 0, 21, 21),
-                        new Rectangle(210, 0, 21, 21),
-                        new Rectangle(231, 0, 21, 21),
-                        new Rectangle(252, 0, 21, 21),
-                    },
-                    new List<Rectangle> {
-                        new Rectangle(0, 42, 21, 21),
-                        new Rectangle(21, 42, 21, 21),
-                        new Rectangle(42, 42, 21, 21),
-                        new Rectangle(63, 42, 21, 21),
-                        new Rectangle(84, 42, 21, 21),
-                        new Rectangle(105, 42, 21, 21),
-                        new Rectangle(126, 42, 21, 21),
-                        new Rectangle(147, 42, 21, 21),
-                        new Rectangle(168, 42, 21, 21),
-                        new Rectangle(189, 42, 21, 21),
-                        new Rectangle(210, 42, 21, 21),
-                        new Rectangle(231, 42, 21, 21),
-                        new Rectangle(252, 42, 21, 21),
-                    },
-                    new List<Rectangle> {
-                        new Rectangle(0, 0, 21, 21),
-                        new Rectangle(21, 0, 21, 21),
-                        new Rectangle(42, 0, 21, 21),
-                        new Rectangle(63, 0, 21, 21),
-                        new Rectangle(84, 0, 21, 21),
-                        new Rectangle(105, 0, 21, 21),
-                        new Rectangle(126, 0, 21, 21),
-                        new Rectangle(147, 0, 21, 21),
-                        new Rectangle(168, 0, 21, 21),
-                        new Rectangle(189, 0, 21, 21),
-                        new Rectangle(210, 0, 21, 21),
-                        new Rectangle(231, 0, 21, 21),
-                        new Rectangle(252, 0, 21, 21),
-                    },
-                    new List<Rectangle> {
-                        new Rectangle(0, 63, 21, 21),
-                        new Rectangle(21, 63, 21, 21),
-                        new Rectangle(42, 63, 21, 21),
-                        new Rectangle(63, 63, 21, 21),
-                        new Rectangle(84, 63, 21, 21),
-                        new Rectangle(105, 63, 21, 21),
-                        new Rectangle(126, 63, 21, 21),
-                        new Rectangle(147, 63, 21, 21),
-                        new Rectangle(168, 63, 21, 21),
-                        new Rectangle(189, 63, 21, 21),
-                        new Rectangle(210, 63, 21, 21),
-                        new Rectangle(231, 63, 21, 21),
-                        new Rectangle(252, 63, 21, 21),
-                    }},
+                new List<List<Rectangle>> { idle01, walk01, idle01, walk02 },
                 134,
                 true));
 
+            //ATAK
+            List<Rectangle> attack01 = new List<Rectangle>();
+            for(int i = 0; i < height; ++i) attack01.Add(new Rectangle(i * size, size * 4, size, size));
             GetComponent<Graphics.StackAnimator>().AddAnimation(
                 new Graphics.StackAnimation("Attack",
                 GetComponent<Graphics.Sprite>(),
-                new List<List<Rectangle>> {
-                    new List<Rectangle> {
-                        new Rectangle(0, 0, 21, 21),
-                        new Rectangle(21, 0, 21, 21),
-                        new Rectangle(42, 0, 21, 21),
-                        new Rectangle(63, 0, 21, 21),
-                        new Rectangle(84, 0, 21, 21),
-                        new Rectangle(105, 0, 21, 21),
-                        new Rectangle(126, 0, 21, 21),
-                        new Rectangle(147, 0, 21, 21),
-                        new Rectangle(168, 0, 21, 21),
-                        new Rectangle(189, 0, 21, 21),
-                        new Rectangle(210, 0, 21, 21),
-                        new Rectangle(231, 0, 21, 21),
-                        new Rectangle(252, 0, 21, 21),
-                    },
-                    new List<Rectangle> {
-                        new Rectangle(0, 84, 21, 21),
-                        new Rectangle(21, 84, 21, 21),
-                        new Rectangle(42, 84, 21, 21),
-                        new Rectangle(63, 84, 21, 21),
-                        new Rectangle(84, 84, 21, 21),
-                        new Rectangle(105, 84, 21, 21),
-                        new Rectangle(126, 84, 21, 21),
-                        new Rectangle(147, 84, 21, 21),
-                        new Rectangle(168, 84, 21, 21),
-                        new Rectangle(189, 84, 21, 21),
-                        new Rectangle(210, 84, 21, 21),
-                        new Rectangle(231, 84, 21, 21),
-                        new Rectangle(252, 84, 21, 21),
-                    }},
+                new List<List<Rectangle>> { idle01, attack01 },
                 266,
                 true));
 
+            //UMIERANIE
+            List<Rectangle> dead01 = new List<Rectangle>();
+            for(int i = 0; i < height; ++i) dead01.Add(new Rectangle(i * size, size * 5, size, size));
+            List<Rectangle> dead02 = new List<Rectangle>();
+            for(int i = 0; i < height; ++i) dead02.Add(new Rectangle(i * size, size * 6, size, size));
+            List<Rectangle> dead03 = new List<Rectangle>();
+            for(int i = 0; i < height; ++i) dead03.Add(new Rectangle(i * size, size * 7, size, size));
+            List<Rectangle> dead04 = new List<Rectangle>();
+            for(int i = 0; i < height; ++i) dead04.Add(new Rectangle(i * size, size * 8, size, size));
+            List<Rectangle> dead05 = new List<Rectangle>();
+            for(int i = 0; i < height; ++i) dead05.Add(new Rectangle(i * size, size * 9, size, size));
             GetComponent<Graphics.StackAnimator>().AddAnimation(
                 new Graphics.StackAnimation("Dead",
                 GetComponent<Graphics.Sprite>(),
-                new List<List<Rectangle>> {
-                    new List<Rectangle> {
-                        new Rectangle(0, 105, 21, 21),
-                        new Rectangle(21, 105, 21, 21),
-                        new Rectangle(42, 105, 21, 21),
-                        new Rectangle(63, 105, 21, 21),
-                        new Rectangle(84, 105, 21, 21),
-                        new Rectangle(105, 105, 21, 21),
-                        new Rectangle(126, 105, 21, 21),
-                        new Rectangle(147, 105, 21, 21),
-                        new Rectangle(168, 105, 21, 21),
-                        new Rectangle(189, 105, 21, 21),
-                        new Rectangle(210, 105, 21, 21),
-                        new Rectangle(231, 105, 21, 21),
-                        new Rectangle(252, 105, 21, 21),
-                    },
-                    new List<Rectangle> {
-                        new Rectangle(0, 126, 21, 21),
-                        new Rectangle(21, 126, 21, 21),
-                        new Rectangle(42, 126, 21, 21),
-                        new Rectangle(63, 126, 21, 21),
-                        new Rectangle(84, 126, 21, 21),
-                        new Rectangle(105, 126, 21, 21),
-                        new Rectangle(126, 126, 21, 21),
-                        new Rectangle(147, 126, 21, 21),
-                        new Rectangle(168, 126, 21, 21),
-                        new Rectangle(189, 126, 21, 21),
-                        new Rectangle(210, 126, 21, 21),
-                        new Rectangle(231, 126, 21, 21),
-                        new Rectangle(252, 126, 21, 21),
-                    },
-                    new List<Rectangle> {
-                        new Rectangle(0, 147, 21, 21),
-                        new Rectangle(21, 147, 21, 21),
-                        new Rectangle(42, 147, 21, 21),
-                        new Rectangle(63, 147, 21, 21),
-                        new Rectangle(84, 147, 21, 21),
-                        new Rectangle(105, 147, 21, 21),
-                        new Rectangle(126, 147, 21, 21),
-                        new Rectangle(147, 147, 21, 21),
-                        new Rectangle(168, 147, 21, 21),
-                        new Rectangle(189, 147, 21, 21),
-                        new Rectangle(210, 147, 21, 21),
-                        new Rectangle(231, 147, 21, 21),
-                        new Rectangle(252, 147, 21, 21),
-                    },
-                    new List<Rectangle> {
-                        new Rectangle(0, 168, 21, 21),
-                        new Rectangle(21, 168, 21, 21),
-                        new Rectangle(42, 168, 21, 21),
-                        new Rectangle(63, 168, 21, 21),
-                        new Rectangle(84, 168, 21, 21),
-                        new Rectangle(105, 168, 21, 21),
-                        new Rectangle(126, 168, 21, 21),
-                        new Rectangle(147, 168, 21, 21),
-                        new Rectangle(168, 168, 21, 21),
-                        new Rectangle(189, 168, 21, 21),
-                        new Rectangle(210, 168, 21, 21),
-                        new Rectangle(231, 168, 21, 21),
-                        new Rectangle(252, 168, 21, 21),
-                    },
-                    new List<Rectangle> {
-                        new Rectangle(0, 189, 21, 21),
-                        new Rectangle(21, 189, 21, 21),
-                        new Rectangle(42, 189, 21, 21),
-                        new Rectangle(63, 189, 21, 21),
-                        new Rectangle(84, 189, 21, 21),
-                        new Rectangle(105, 189, 21, 21),
-                        new Rectangle(126, 189, 21, 21),
-                        new Rectangle(147, 189, 21, 21),
-                        new Rectangle(168, 189, 21, 21),
-                        new Rectangle(189, 189, 21, 21),
-                        new Rectangle(210, 189, 21, 21),
-                        new Rectangle(231, 189, 21, 21),
-                        new Rectangle(252, 189, 21, 21),
-                    }},
+                new List<List<Rectangle>> { dead01, dead02, dead03, dead04, dead05 },
                 352,
                 false));
 

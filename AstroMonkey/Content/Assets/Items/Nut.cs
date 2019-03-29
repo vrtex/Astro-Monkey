@@ -23,94 +23,25 @@ namespace AstroMonkey.Assets.Objects
         {
         }
 
+        private int height = 16;
+        private int size = 16;
+
         private void Load(Core.Transform _transform)
         {
-            List<Rectangle> temp = new List<Rectangle>();
-            for(int i = 0; i < 16; ++i)
-            {
-                temp.Add(new Rectangle(i * 16, 0, 16, 16));
-            }
-
-            AddComponent(new Graphics.Sprite(this, "nut", temp));
+            List<Rectangle> idle01 = new List<Rectangle>();
+            for(int i = 0; i < height; ++i) idle01.Add(new Rectangle(i * size, 0, size, size));
+            AddComponent(new Graphics.Sprite(this, "nut", idle01));
 
             AddComponent(new Graphics.StackAnimator(this));
 
+            List<Rectangle> idle02 = new List<Rectangle>();
+            for(int i = 0; i < height; ++i) idle02.Add(new Rectangle(i * size, size, size, size));
+            List<Rectangle> idle03 = new List<Rectangle>();
+            for(int i = 0; i < height; ++i) idle03.Add(new Rectangle(i * size, size * 2, size, size));
             GetComponent<Graphics.StackAnimator>().AddAnimation(
                 new Graphics.StackAnimation("Idle",
                 GetComponent<Graphics.Sprite>(),
-                new List<List<Rectangle>> {
-                    new List<Rectangle> {
-                        new Rectangle(0, 0, 16, 16),
-                        new Rectangle(16, 0, 16, 16),
-                        new Rectangle(32, 0, 16, 16),
-                        new Rectangle(48, 0, 16, 16),
-                        new Rectangle(64, 0, 16, 16),
-                        new Rectangle(80, 0, 16, 16),
-                        new Rectangle(96, 0, 16, 16),
-                        new Rectangle(112, 0, 16, 16),
-                        new Rectangle(128, 0, 16, 16),
-                        new Rectangle(144, 0, 16, 16),
-                        new Rectangle(160, 0, 16, 16),
-                        new Rectangle(176, 0, 16, 16),
-                        new Rectangle(192, 0, 16, 16),
-                        new Rectangle(208, 0, 16, 16),
-                        new Rectangle(224, 0, 16, 16),
-                        new Rectangle(240, 0, 16, 16)
-                    },
-                    new List<Rectangle> {
-                        new Rectangle(0, 16, 16, 16),
-                        new Rectangle(16, 16, 16, 16),
-                        new Rectangle(32, 16, 16, 16),
-                        new Rectangle(48, 16, 16, 16),
-                        new Rectangle(64, 16, 16, 16),
-                        new Rectangle(80, 16, 16, 16),
-                        new Rectangle(96, 16, 16, 16),
-                        new Rectangle(112, 16, 16, 16),
-                        new Rectangle(128, 16, 16, 16),
-                        new Rectangle(144, 16, 16, 16),
-                        new Rectangle(160, 16, 16, 16),
-                        new Rectangle(176, 16, 16, 16),
-                        new Rectangle(192, 16, 16, 16),
-                        new Rectangle(208, 16, 16, 16),
-                        new Rectangle(224, 16, 16, 16),
-                        new Rectangle(240, 16, 16, 16)
-                    },
-                    new List<Rectangle> {
-                        new Rectangle(0, 32, 16, 16),
-                        new Rectangle(16, 32, 16, 16),
-                        new Rectangle(32, 32, 16, 16),
-                        new Rectangle(48, 32, 16, 16),
-                        new Rectangle(64, 32, 16, 16),
-                        new Rectangle(80, 32, 16, 16),
-                        new Rectangle(96, 32, 16, 16),
-                        new Rectangle(112, 32, 16, 16),
-                        new Rectangle(128, 32, 16, 16),
-                        new Rectangle(144, 32, 16, 16),
-                        new Rectangle(160, 32, 16, 16),
-                        new Rectangle(176, 32, 16, 16),
-                        new Rectangle(192, 32, 16, 16),
-                        new Rectangle(208, 32, 16, 16),
-                        new Rectangle(224, 32, 16, 16),
-                        new Rectangle(240, 32, 16, 16)
-                    },
-                    new List<Rectangle> {
-                        new Rectangle(0, 16, 16, 16),
-                        new Rectangle(16, 16, 16, 16),
-                        new Rectangle(32, 16, 16, 16),
-                        new Rectangle(48, 16, 16, 16),
-                        new Rectangle(64, 16, 16, 16),
-                        new Rectangle(80, 16, 16, 16),
-                        new Rectangle(96, 16, 16, 16),
-                        new Rectangle(112, 16, 16, 16),
-                        new Rectangle(128, 16, 16, 16),
-                        new Rectangle(144, 16, 16, 16),
-                        new Rectangle(160, 16, 16, 16),
-                        new Rectangle(176, 16, 16, 16),
-                        new Rectangle(192, 16, 16, 16),
-                        new Rectangle(208, 16, 16, 16),
-                        new Rectangle(224, 16, 16, 16),
-                        new Rectangle(240, 16, 16, 16)
-                    }},
+                new List<List<Rectangle>> { idle01, idle02, idle03, idle02 },
                 266,
                 true));
 

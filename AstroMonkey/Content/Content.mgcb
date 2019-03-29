@@ -13,7 +13,7 @@
 
 #---------------------------------- Content ---------------------------------#
 
-#begin gfx/Characters/Enemies/alien01.png
+#begin gfx/Characters/Enemies/Alien01.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -23,7 +23,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:gfx/Characters/Enemies/alien01.png
+/build:gfx/Characters/Enemies/Alien01.png
 
 #begin gfx/Characters/Enemies/Alien02.png
 /importer:TextureImporter
@@ -36,6 +36,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:gfx/Characters/Enemies/Alien02.png
+
+#begin gfx/Characters/Enemies/Alien03.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:gfx/Characters/Enemies/Alien03.png
 
 #begin gfx/Characters/Player/monkey.png
 /importer:TextureImporter
