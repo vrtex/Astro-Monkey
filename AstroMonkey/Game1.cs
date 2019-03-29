@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System.Collections.Generic;
 using AstroMonkey.Input;
+using AstroMonkey.Physics;
 
 namespace AstroMonkey
 {
@@ -31,7 +32,6 @@ namespace AstroMonkey
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-            Audio.SoundContainer.Instance.AddSound("test", @"sfx/test_sound", Content);
             Core.GameManager.Instance.InitializeGame(this);
 
             graphics.PreferredBackBufferWidth = 1280;
@@ -78,6 +78,7 @@ namespace AstroMonkey
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
+            Core.GameManager.UpdateScene();
             Core.GameManager.FinalizeSpwaning();
             Graphics.AnimationManager.Instance.Update(gameTime.ElapsedGameTime.TotalSeconds);
             foreach(Core.GameObject go in Core.SceneManager.Instance.currScene.objects)
@@ -86,7 +87,7 @@ namespace AstroMonkey
             }
 
             // TODO: Add your update logic here
-
+            PhysicsManager.ResolveAllCollision();
             base.Update(gameTime);
         }
 

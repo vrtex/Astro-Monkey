@@ -11,7 +11,12 @@ namespace AstroMonkey.Graphics
         public static ViewManager Instance { get; private set; } = new ViewManager();
         public List<Core.GameObject> sprites = new List<Core.GameObject>();
         public List<Core.GameObject> floor = new List<Core.GameObject>();
-        public Core.Transform playerTransform = null;
+        private Core.Transform _playerTransform;
+        public Core.Transform PlayerTransform {
+            get => _playerTransform ?? new Core.Transform();
+            set => _playerTransform = value;
+        }
+
         public Vector2 ScreenSize;
 
         private Util.ViewComparable vc = new Util.ViewComparable();
@@ -29,8 +34,8 @@ namespace AstroMonkey.Graphics
 
         public void RemoveSprite(Core.GameObject sprite)
         {
-            floor.Remove(sprite);
-            sprites.Remove(sprite);
+            floor.RemoveAll( x => x.Equals(sprite));
+            sprites.RemoveAll( x => x.Equals(sprite));
         }
 
         public void Render(SpriteBatch spriteBatch)
@@ -39,8 +44,8 @@ namespace AstroMonkey.Graphics
                             BlendState.AlphaBlend,
                             SamplerState.PointClamp, null, null, null,
                             Matrix.CreateTranslation(
-                                -playerTransform.position.X + spriteBatch.GraphicsDevice.Viewport.Width / 2,
-                                -playerTransform.position.Y + spriteBatch.GraphicsDevice.Viewport.Height / 2, 0));
+                                -PlayerTransform.position.X + spriteBatch.GraphicsDevice.Viewport.Width / 2,
+                                -PlayerTransform.position.Y + spriteBatch.GraphicsDevice.Viewport.Height / 2, 0));
 
             foreach(Core.GameObject s in floor)
             {
@@ -64,8 +69,8 @@ namespace AstroMonkey.Graphics
                             BlendState.AlphaBlend, 
                             SamplerState.PointClamp, null, null, null,
                             Matrix.CreateTranslation(
-                                -playerTransform.position.X + spriteBatch.GraphicsDevice.Viewport.Width / 2,
-                                -playerTransform.position.Y + spriteBatch.GraphicsDevice.Viewport.Height / 2, 0));
+                                -PlayerTransform.position.X + spriteBatch.GraphicsDevice.Viewport.Width / 2,
+                                -PlayerTransform.position.Y + spriteBatch.GraphicsDevice.Viewport.Height / 2, 0));
 
             sprites.Sort(vc);
 

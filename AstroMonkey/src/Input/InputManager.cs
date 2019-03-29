@@ -97,10 +97,13 @@ namespace AstroMonkey.Input
             ObservedKeys.Add(newKey);
         }
 
-        public void AddActionBinding(String name, ActionBinding binding)
+        public void AddActionBinding(String name, ActionBinding binding, bool allowReplace = true)
         {
             if(actionBindings.ContainsKey(name))
-                throw new ApplicationException("trying to replace existing action binding");
+                if(!allowReplace)
+                    throw new ApplicationException("trying to replace existing action binding");
+                else
+                    actionBindings.Remove(name);
 
             OnKeyPressed += binding.CheckKey;
             OnKeyReleased += binding.CheckKey;
@@ -118,10 +121,14 @@ namespace AstroMonkey.Input
             return null;
         }
 
-        public void AddAxisBinding(String name, AxisBinding binding)
+        public void AddAxisBinding(String name, AxisBinding binding, bool allowReplace = true)
         {
-            if(actionBindings.ContainsKey(name))
-                throw new ApplicationException("trying to replace existing axis binding");
+            if(axisBindings.ContainsKey(name))
+                if(!allowReplace)
+                    throw new ApplicationException("trying to replace existing axis binding");
+                else
+                    axisBindings.Remove(name);
+
 
             AddObservedKey(binding.PositiveKey);
             AddObservedKey(binding.NegativeKey);

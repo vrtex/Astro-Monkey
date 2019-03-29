@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using System;
+using AstroMonkey.Physics.Collider;
 
 namespace AstroMonkey.Assets.Objects
 {
@@ -32,6 +33,8 @@ namespace AstroMonkey.Assets.Objects
             }
 
             AddComponent(new Graphics.Sprite(this, "table", temp));
+
+            AddComponent(new BoxCollider(this, CollisionChanell.Object, Vector2.Zero, 32, 32));
         }
     }
 

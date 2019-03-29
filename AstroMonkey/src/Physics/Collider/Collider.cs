@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics;
 using AstroMonkey.Core;
 using Microsoft.Xna.Framework;
 
@@ -9,24 +10,31 @@ namespace AstroMonkey.Physics.Collider
         private CollisionChanell collisionChanell;
         private Dictionary<CollisionChanell, ReactType> reaction;
         private Vector2 relativePosition;
+        protected float scale;
+        private bool temp;
 
         public Collider(
             GameObject gameObject,
             CollisionChanell collisionChanell = CollisionChanell.Object,
-            Vector2 relativePosition = new Vector2())
+            Vector2 relativePosition = new Vector2(),
+            bool temp = false)
             : base(gameObject)
         {
             this.collisionChanell = collisionChanell;
             this.relativePosition = relativePosition;
+            this.temp = temp;
+            scale = SceneManager.scale;
 
             SetReactions();
 
-            PhysicsManager.AddCollider(this);
+            if(!temp)
+                PhysicsManager.AddCollider(this);
         }
 
         ~Collider()
         {
-            PhysicsManager.RemoveCollider(this);
+            if (!temp)
+                PhysicsManager.RemoveCollider(this);
         }
 
         public CollisionChanell GetCollisionChanell()
@@ -60,6 +68,9 @@ namespace AstroMonkey.Physics.Collider
 
         public void SetPosition(Vector2 position)
         {
+            //Debug.WriteLine("POS" + position);
+            //Debug.WriteLine("REL" + relativePosition);
+            //Debug.WriteLine("SUB" + Vector2.Subtract(position, relativePosition));
             Parent.transform.position = Vector2.Subtract(position, relativePosition);
         }
 
