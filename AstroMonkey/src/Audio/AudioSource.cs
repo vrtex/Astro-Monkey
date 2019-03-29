@@ -35,11 +35,14 @@ namespace AstroMonkey.Audio
 
         public AudioSource(Core.GameObject parent, SoundEffect sfx): base(parent)
         {
-            soundEffect = sfx.CreateInstance();
+            if(sfx != null)
+                soundEffect = sfx.CreateInstance();
         }
 
         public void Play()
         {
+            if(soundEffect == null)
+                return;
             emitter.Position = new Vector3(parent.transform.position, 0f) + offset;
             soundEffect.Apply3D(AudioManager.Instance.playerListener, emitter);
             soundEffect.Play();

@@ -7,8 +7,6 @@ namespace AstroMonkey.Assets.Objects
 
     class Player: Core.GameObject
     {
-        public Audio.AudioSource testSource;
-
         public Player(): this(new Core.Transform())
         {
         }
@@ -30,7 +28,6 @@ namespace AstroMonkey.Assets.Objects
         {
             Navigation.MovementComponent moveComp =  (Navigation.MovementComponent)AddComponent(new Navigation.MovementComponent(this));
             AddComponent(new Input.InputCompoent(this));
-            testSource = (Audio.AudioSource)AddComponent(new Audio.AudioSource(this, Audio.SoundContainer.Instance.GetSoundEffect("test")));
 
             List<Rectangle> idle01 = new List<Rectangle>();
             for(int i = 0; i < height; ++i) idle01.Add(new Rectangle(i * size, 0, size, size));
@@ -118,7 +115,6 @@ namespace AstroMonkey.Assets.Objects
             foreach(var c in components)
                 c.Update(gameTime);
 
-            // move this mess somewhere else. Or don't I don't care
             Vector2 currVel = GetComponent<Navigation.MovementComponent>().CurrentVelocity;
             if(Util.Statics.IsNearlyEqual(currVel.Length(), 0, 0.001))
             {

@@ -22,7 +22,7 @@ namespace AstroMonkey.Graphics
 
         public void RemoveAnimator(AnimatorContainer animator)
         {
-            animators.Remove(animator);
+            animators.RemoveAll( x => x.Equals(animator));
         }
 
         public void Update(double deltaTime)
