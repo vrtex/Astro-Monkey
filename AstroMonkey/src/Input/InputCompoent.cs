@@ -20,17 +20,14 @@ namespace AstroMonkey.Input
             moveComp = parent.GetComponent<Navigation.MovementComponent>();
             verticalAxis = new AxisBinding(Keys.S, Keys.W);
             horizontalAxis = new AxisBinding(Keys.D, Keys.A);
-            ActionBinding playBinding = new ActionBinding(Keys.P);
             ActionBinding spawnBinding = new ActionBinding(Keys.Y);
 
             verticalAxis.OnUpdate += Move;
             horizontalAxis.OnUpdate += Move;
-            playBinding.OnTrigger += Play;
             spawnBinding.OnTrigger += Spawn;
 
             InputManager.Manager.AddAxisBinding("move up", verticalAxis);
             InputManager.Manager.AddAxisBinding("move right", horizontalAxis);
-            InputManager.Manager.AddActionBinding("play", playBinding);
 
             InputManager.Manager.AddActionBinding("spawn", spawnBinding);
 
@@ -55,12 +52,6 @@ namespace AstroMonkey.Input
         private void MoveTarget(MouseInputEventArgs args)
         {
             target.transform.position = InputManager.Manager.MouseCursor + parent.transform.position - Graphics.ViewManager.Instance.ScreenSize / 2f;
-        }
-
-        private void Play()
-        {
-            Assets.Objects.Player player = (Assets.Objects.Player)parent;
-            player.testSource.Play();
         }
 
         private void Spawn()

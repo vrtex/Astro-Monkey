@@ -1,10 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using Microsoft.Xna.Framework;
 
 namespace AstroMonkey.Core
 {
@@ -18,15 +13,24 @@ namespace AstroMonkey.Core
         static SceneManager()
         {
             scenes.Add("devroom", new Assets.Scenes.DevRoom());
+            scenes.Add("basement", new Assets.Scenes.Basement());
         }
 
         public void LoadScene(string name)
         {
+            currScene?.UnLoad();
+
+            GameManager.FinalizeSpwaning();
+
             scenes.TryGetValue(name, out currScene);
             if(currScene != null)
                 currScene.Load();
             else
                 throw new ApplicationException("Unknown scene " + name);
+
+            foreach(GameObject go in currScene.objects)
+                GameManager.SpawnObject(go);
+
         }
     }
 }

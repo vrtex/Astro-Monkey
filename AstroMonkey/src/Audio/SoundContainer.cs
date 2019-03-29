@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
 
@@ -28,7 +25,10 @@ namespace AstroMonkey.Audio
             SoundEffect toReturn;
             sounds.TryGetValue(id, out toReturn);
             if(toReturn == null)
+            {
                 Console.WriteLine("Unexisting sound: " + id);
+                Console.WriteLine(new System.Diagnostics.StackTrace());
+            }
             return toReturn;
         }
     }

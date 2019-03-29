@@ -10,10 +10,10 @@ namespace AstroMonkey.Assets.Scenes
 {
     class DevRoom: Core.Scene
     {
-        private float sceneScale = 3f;
 
         public override void Load()
         {
+            base.Load();
             //DODAWANIE PODŁOGI
             for(int x = -1; x < 11; ++x)
             {
@@ -54,7 +54,7 @@ namespace AstroMonkey.Assets.Scenes
             //DODAWANIE POSTACI
             Objects.Player player = new Objects.Player(new Vector2(20f, 650f), new Vector2(sceneScale, sceneScale), 0f);
             objects.Add(player);
-            Graphics.ViewManager.Instance.playerTransform = player.transform;
+            Graphics.ViewManager.Instance.PlayerTransform = player.transform;
 
             objects.Add(new Objects.Alien01(new Vector2(350f, 170f), new Vector2(sceneScale, sceneScale), (float)(Math.PI)));
             objects.Add(new Objects.Alien01(new Vector2(420f, 200f), new Vector2(sceneScale, sceneScale), (float)(Math.PI * 0.5f)));
@@ -96,9 +96,5 @@ namespace AstroMonkey.Assets.Scenes
             objects.Add(new Objects.ButtonWall(new Vector2(0f, 3f), new Vector2(sceneScale, sceneScale), (float)(Math.PI)));
         }
 
-        public override void UnLoad()
-        {
-            
-        }
     }
 }

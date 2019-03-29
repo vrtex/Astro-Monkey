@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using System.Collections.Generic;
+using System;
 
 namespace AstroMonkey.Core
 {
@@ -10,9 +11,14 @@ namespace AstroMonkey.Core
         private Game CurrentGame;
         private List<GameObject> toSpawn = new List<GameObject>();
         private List<GameObject> toDestroy = new List<GameObject>();
+        private bool bongo = false;
+        private String nextScene = null;
 
         static GameManager()
         {
+            Input.ActionBinding bind = new Input.ActionBinding(Microsoft.Xna.Framework.Input.Keys.O);
+            bind.OnTrigger += swap;
+            Input.InputManager.Manager.AddActionBinding("ee", bind);
         }
 
         public void InitializeGame(Game game)
@@ -29,9 +35,9 @@ namespace AstroMonkey.Core
 
             //przeszukiwanie obiektów i podpinanie referenzji do komponenetów
             //pod odpowiednie zarządzające klasy (animator, sprite, stack animator, stack sprite,...)
-            foreach(GameObject go in SceneManager.Instance.currScene.objects)
-                SpawnObject(go);
-            
+            //foreach(GameObject go in SceneManager.Instance.currScene.objects)
+            //    SpawnObject(go);
+
         }
 
         public static void SpawnObject(GameObject gameObject)
@@ -57,6 +63,7 @@ namespace AstroMonkey.Core
 
         public static void FinalizeSpwaning()
         {
+
             lock(Instance.toSpawn)
             {
                 foreach(GameObject gameObject in Instance.toSpawn)
@@ -84,6 +91,7 @@ namespace AstroMonkey.Core
                 {
                     if(!SceneManager.Instance.currScene.objects.Contains(gameObject))
                         continue;
+                    SceneManager.Instance.currScene.objects.RemoveAll( x=> x.Equals(gameObject));
 
                     Graphics.Animator anim = gameObject.GetComponent<Graphics.Animator>();
                     if(anim != null) Graphics.AnimationManager.Instance.RemoveAnimator(anim);
@@ -96,6 +104,30 @@ namespace AstroMonkey.Core
                 }
                 Instance.toDestroy.Clear();
             }
+        }
+
+        public static void UpdateScene()
+        {
+            if(Instance.nextScene != null)
+                lock(Instance.nextScene)
+                {
+                    SceneManager.Instance.LoadScene(Instance.nextScene);
+                    Instance.nextScene = null;
+                }
+        }
+
+        private static void swap()
+        {
+            Instance.nextScene = "";
+            lock(Instance.nextScene)
+            {
+                Instance.nextScene = Instance.bongo ? "devroom" : "basement";
+                //if(!Instance.bongo)
+                //    SceneManager.Instance.LoadScene("basement");
+                //else
+                //    SceneManager.Instance.LoadScene("devroom");
+            }
+            Instance.bongo = !Instance.bongo;
         }
     }
 }
