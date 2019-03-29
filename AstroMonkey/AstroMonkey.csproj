@@ -70,6 +70,7 @@
     <Compile Include="Content\Assets\Map\Objects\NeonSign.cs" />
     <Compile Include="Content\Assets\Map\Objects\Table.cs" />
     <Compile Include="Content\Assets\Map\Objects\Wall.cs" />
+    <Compile Include="Content\Assets\Map\Objects\WallDoor.cs" />
     <Compile Include="Content\Assets\Projectiles\AlienBullet.cs" />
     <Compile Include="Content\Assets\Projectiles\BulletHit.cs" />
     <Compile Include="Content\Assets\Projectiles\Poop.cs" />

@@ -27,7 +27,8 @@ namespace AstroMonkey.Assets.Scenes
             //DODAWANIE ŚCIAN
             for(int x = 0; x < 10; ++x)
             {
-                objects.Add(new Objects.Wall(new Vector2(x * 32f * sceneScale, 0 * 32f * sceneScale), new Vector2(sceneScale, sceneScale), (float)(Math.PI)));
+                if(x == 9) objects.Add(new Objects.WallDoor(new Vector2(x * 32f * sceneScale, 0 * 32f * sceneScale), new Vector2(sceneScale, sceneScale), (float)(Math.PI)));
+                else objects.Add(new Objects.Wall(new Vector2(x * 32f * sceneScale, 0 * 32f * sceneScale), new Vector2(sceneScale, sceneScale), (float)(Math.PI)));
             }
             for(int x = 0; x < 10; ++x)
             {
