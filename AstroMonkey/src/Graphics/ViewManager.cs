@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-
+using AstroMonkey.Physics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -46,7 +46,8 @@ namespace AstroMonkey.Graphics
                             Matrix.CreateTranslation(
                                 -PlayerTransform.position.X + spriteBatch.GraphicsDevice.Viewport.Width / 2,
                                 -PlayerTransform.position.Y + spriteBatch.GraphicsDevice.Viewport.Height / 2, 0));
-
+            
+            
             foreach(Core.GameObject s in floor)
             {
                 Sprite sprite = s.GetComponent<Graphics.Sprite>();
@@ -93,6 +94,9 @@ namespace AstroMonkey.Graphics
                         s.transform.scale);
                 }
             }
+
+            // Rysowanie colliderów
+            PhysicsManager.DrawAllColliders(spriteBatch);
 
             spriteBatch.End();
         }
