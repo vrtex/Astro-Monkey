@@ -119,8 +119,7 @@ namespace AstroMonkey.Assets.Objects
 
         public override void Update(GameTime gameTime)
         {
-            foreach(var c in components)
-                c.Update(gameTime);
+            base.Update(gameTime);
 
             Vector2 currVel = GetComponent<Navigation.MovementComponent>().CurrentVelocity;
             if(Util.Statics.IsNearlyEqual(currVel.Length(), 0, 0.001))

@@ -86,7 +86,7 @@ namespace AstroMonkey
                 go.Update(gameTime);
             }
 
-            // TODO: Add your update logic here
+
             PhysicsManager.ResolveAllCollision();
             base.Update(gameTime);
         }

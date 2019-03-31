@@ -91,6 +91,7 @@
     <Compile Include="src\Core\Scene.cs" />
     <Compile Include="src\Core\SceneManager.cs" />
     <Compile Include="src\Core\Transform.cs" />
+    <Compile Include="src\Navigation\ProjectileMovementComponent.cs" />
     <Compile Include="src\Physics\Body.cs" />
     <Compile Include="src\Physics\Collider\BoxCollider.cs" />
     <Compile Include="src\Physics\Collider\CircleCollider.cs" />

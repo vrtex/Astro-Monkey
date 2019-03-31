@@ -51,7 +51,11 @@ namespace AstroMonkey.Core
             return null;
         }
 
-        public virtual void Update(GameTime gameTime) { }
+        public virtual void Update(GameTime gameTime)
+        {
+            foreach(var c in components)
+                c.Update(gameTime);
+        }
 
         public virtual void Destroy()
         {
