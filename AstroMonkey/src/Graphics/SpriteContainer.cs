@@ -36,6 +36,7 @@ namespace AstroMonkey.Graphics
             images.Add("wall", game.Content.Load<Texture2D>(@"gfx /Map/Objects/wall"));
             images.Add("wallDoor", game.Content.Load<Texture2D>(@"gfx/Map/Objects/wallDoor"));
             images.Add("corner", game.Content.Load<Texture2D>(@"gfx/Map/Objects/corner"));
+            images.Add("cornerPhillar", game.Content.Load<Texture2D>(@"gfx/Map/Objects/cornerPhillar"));
             images.Add("column", game.Content.Load<Texture2D>(@"gfx/Map/Objects/column"));
             images.Add("cockpit", game.Content.Load<Texture2D>(@"gfx/Map/Objects/cockpit"));
             images.Add("armchair", game.Content.Load<Texture2D>(@"gfx/Map/Objects/armchair"));

@@ -63,6 +63,7 @@
     <Compile Include="Content\Assets\Map\Objects\Cockpit.cs" />
     <Compile Include="Content\Assets\Map\Objects\Column.cs" />
     <Compile Include="Content\Assets\Map\Objects\Corner.cs" />
+    <Compile Include="Content\Assets\Map\Objects\CornerPhillar.cs" />
     <Compile Include="Content\Assets\Map\Objects\DoorLeft.cs" />
     <Compile Include="Content\Assets\Map\Objects\DoorRight.cs" />
     <Compile Include="Content\Assets\Map\Objects\Fridge.cs" />

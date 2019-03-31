@@ -158,6 +158,11 @@ namespace AstroMonkey.Assets.Scenes
             objects.Add(new Objects.ButtonClicked(new Vector2(27 * 32f * sceneScale * sceneScale + offsetX, 5 * 32f * sceneScale), new Vector2(sceneScale, sceneScale), (float)(Math.PI)));
             objects.Add(new Objects.ButtonClicked(new Vector2(27 * 32f * sceneScale * sceneScale + offsetX, 7 * 32f * sceneScale), new Vector2(sceneScale, sceneScale), -(float)(Math.PI / 2)));
 
+            objects.Add(new Objects.CornerPhillar(new Vector2(28 * 32f * sceneScale * sceneScale + offsetX, 1 * 32f * sceneScale), new Vector2(sceneScale, sceneScale), 0));
+            objects.Add(new Objects.CornerPhillar(new Vector2(28 * 32f * sceneScale * sceneScale + offsetX, 3 * 32f * sceneScale), new Vector2(sceneScale, sceneScale), (float)(Math.PI / 2)));
+            objects.Add(new Objects.CornerPhillar(new Vector2(28 * 32f * sceneScale * sceneScale + offsetX, 5 * 32f * sceneScale), new Vector2(sceneScale, sceneScale), (float)(Math.PI)));
+            objects.Add(new Objects.CornerPhillar(new Vector2(28 * 32f * sceneScale * sceneScale + offsetX, 7 * 32f * sceneScale), new Vector2(sceneScale, sceneScale), -(float)(Math.PI / 2)));
+
         }
     }
 }
