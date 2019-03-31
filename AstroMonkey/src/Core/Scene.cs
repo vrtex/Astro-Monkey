@@ -4,7 +4,7 @@ namespace AstroMonkey.Core
 {
     class Scene
     {
-        protected float sceneScale = 3f;
+        protected float sceneScale = SceneManager.scale;
 
         public List<GameObject> objects        = new List<GameObject>();
 
