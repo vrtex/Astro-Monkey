@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.Xna.Framework.Input;
+﻿using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework;
 
 namespace AstroMonkey.Input
@@ -20,7 +15,7 @@ namespace AstroMonkey.Input
             moveComp = parent.GetComponent<Navigation.MovementComponent>();
             verticalAxis = new AxisBinding(Keys.S, Keys.W);
             horizontalAxis = new AxisBinding(Keys.D, Keys.A);
-            ActionBinding spawnBinding = new ActionBinding(Keys.Y);
+            ActionBinding spawnBinding = new ActionBinding(EMouseButton.Left);
 
             verticalAxis.OnUpdate += Move;
             horizontalAxis.OnUpdate += Move;

@@ -15,11 +15,24 @@ namespace AstroMonkey.Input
         public event ActionBindingEvent OnRelease;
 
 
-        public Keys Key { get; private set; }
+        public Keys Key { get; private set; } = Keys.None;
+        public EMouseButton MouseButton { get; private set; } = EMouseButton.None;
         private bool status = false;
+
         public ActionBinding(Keys key)
         {
             this.Key = key;
+
+            InputManager.Manager.OnKeyPressed += CheckKey;
+            InputManager.Manager.OnKeyReleased += CheckKey;
+        }
+
+        public ActionBinding(EMouseButton button)
+        {
+            this.MouseButton = button;
+
+            InputManager.Manager.OnMouseButtonPressed += CheckMouseButton;
+            InputManager.Manager.OnMouseButtonReleased += CheckMouseButton;
         }
 
         internal void CheckKey(Input.KeyInputEventArgs args)
@@ -32,6 +45,17 @@ namespace AstroMonkey.Input
             if(!args.pressed && status)
                 FlipStatus();
 
+        }
+
+        internal void CheckMouseButton(MouseInputEventArgs mouseArgs)
+        {
+            if(mouseArgs.Button != MouseButton)
+                return;
+
+            if(mouseArgs.pressed && !status)
+                FlipStatus();
+            if(!mouseArgs.pressed && status)
+                FlipStatus();
         }
 
         private void FlipStatus()
