@@ -33,7 +33,7 @@ namespace AstroMonkey.Assets.Objects
             }
 
             AddComponent(new Graphics.Sprite(this, "wall", temp));
-            AddComponent(new BoxCollider(this, CollisionChanell.Object, new Vector2(0, 8), 32, 8));
+            AddComponent(new BoxCollider(this, CollisionChanell.Object, new Vector2(0, 10), 32, 12));
         }
     }
 

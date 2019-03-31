@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using System;
+using AstroMonkey.Physics.Collider;
 
 namespace AstroMonkey.Assets.Objects
 {
@@ -28,6 +29,8 @@ namespace AstroMonkey.Assets.Objects
 
         private void Load(Core.Transform _transform)
         {
+            AddComponent(new CircleCollider(this, CollisionChanell.Object, Vector2.Zero, size / 2));
+
             List<Rectangle> idle01 = new List<Rectangle>();
             for(int i = 0; i < height; ++i) idle01.Add(new Rectangle(i * size, 0, size, size));
             AddComponent(new Graphics.Sprite(this, "ammoLuncher", idle01));

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using AstroMonkey.Physics;
 using AstroMonkey.Physics.Collider;
 using Microsoft.Xna.Framework;
 
@@ -32,7 +33,10 @@ namespace AstroMonkey.Assets.Objects
 
         private void Load(Core.Transform _transform)
         {
-            AddComponent(new CircleCollider(this, CollisionChanell.Object, Vector2.Zero, size / 2));
+            transform = _transform;
+            AddComponent(new CircleCollider(this, CollisionChanell.Object, Vector2.Zero, size / 3));
+            AddComponent(new Body(this));
+
             List<Rectangle> idle01 = new List<Rectangle>();
             for(int i = 0; i < height; ++i) idle01.Add(new Rectangle(i * size, 0, size, size));
             AddComponent(new Graphics.Sprite(this, "alien01", idle01));
