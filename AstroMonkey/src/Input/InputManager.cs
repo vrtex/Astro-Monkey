@@ -36,12 +36,14 @@ namespace AstroMonkey.Input
         public Vector2 OldPosition { get; }
         public Vector2 NewPosition { get; }
         public EMouseButton Button { get; }
+        public bool pressed;
 
-        public MouseInputEventArgs(EMouseButton button, Vector2 oldPosition, Vector2 newPosition)
+        public MouseInputEventArgs(EMouseButton button, Vector2 oldPosition, Vector2 newPosition, bool pressed = false)
         {
             this.Button = button;
             this.OldPosition = oldPosition;
             this.NewPosition = newPosition;
+            this.pressed = pressed;
         }
 
         public override String ToString()
@@ -67,6 +69,9 @@ namespace AstroMonkey.Input
         List<Keys> ObservedKeys = new List<Keys>();
         private Timer tickTimer = new Timer(16);
         public Vector2 MouseCursor { get; private set; } = new Vector2();
+        public Vector2 MouseCursorInWorldSpace {
+            get => Manager.MouseCursor + Graphics.ViewManager.Instance.PlayerTransform.position - Graphics.ViewManager.Instance.ScreenSize / 2f;
+        }
 
         private Dictionary<String, ActionBinding> actionBindings = new Dictionary<string, ActionBinding>();
         private Dictionary<String, AxisBinding> axisBindings = new Dictionary<string, AxisBinding>();
@@ -105,8 +110,8 @@ namespace AstroMonkey.Input
                 else
                     actionBindings.Remove(name);
 
-            OnKeyPressed += binding.CheckKey;
-            OnKeyReleased += binding.CheckKey;
+            //OnKeyPressed += binding.CheckKey;
+            //OnKeyReleased += binding.CheckKey;
 
             AddObservedKey(binding.Key);
 
@@ -195,21 +200,21 @@ namespace AstroMonkey.Input
             if(newState.LeftButton != PreviousMouseState.LeftButton)
             {
                 if(newState.LeftButton == ButtonState.Pressed && OnMouseButtonPressed != null)
-                    OnMouseButtonPressed(new MouseInputEventArgs(EMouseButton.Left, new Vector2(PreviousMouseState.X, PreviousMouseState.Y), new Vector2(newState.X, newState.Y)));
+                    OnMouseButtonPressed(new MouseInputEventArgs(EMouseButton.Left, new Vector2(PreviousMouseState.X, PreviousMouseState.Y), new Vector2(newState.X, newState.Y), true));
                 else if(OnMouseButtonReleased != null)
                     OnMouseButtonReleased(new MouseInputEventArgs(EMouseButton.Left, new Vector2(PreviousMouseState.X, PreviousMouseState.Y), new Vector2(newState.X, newState.Y)));
             }
             if(newState.RightButton != PreviousMouseState.RightButton)
             {
                 if(newState.LeftButton == ButtonState.Pressed && OnMouseButtonPressed != null)
-                    OnMouseButtonPressed(new MouseInputEventArgs(EMouseButton.Right, new Vector2(PreviousMouseState.X, PreviousMouseState.Y), new Vector2(newState.X, newState.Y)));
+                    OnMouseButtonPressed(new MouseInputEventArgs(EMouseButton.Right, new Vector2(PreviousMouseState.X, PreviousMouseState.Y), new Vector2(newState.X, newState.Y), true));
                 else if(OnMouseButtonReleased != null)
                     OnMouseButtonReleased(new MouseInputEventArgs(EMouseButton.Right, new Vector2(PreviousMouseState.X, PreviousMouseState.Y), new Vector2(newState.X, newState.Y)));
             }
             else if(newState.MiddleButton != PreviousMouseState.MiddleButton && OnMouseButtonPressed != null)
             {
                 if(newState.LeftButton == ButtonState.Pressed)
-                    OnMouseButtonPressed(new MouseInputEventArgs(EMouseButton.Middle, new Vector2(PreviousMouseState.X, PreviousMouseState.Y), new Vector2(newState.X, newState.Y)));
+                    OnMouseButtonPressed(new MouseInputEventArgs(EMouseButton.Middle, new Vector2(PreviousMouseState.X, PreviousMouseState.Y), new Vector2(newState.X, newState.Y), true));
                 else if(OnMouseButtonReleased != null)
                     OnMouseButtonReleased(new MouseInputEventArgs(EMouseButton.Middle, new Vector2(PreviousMouseState.X, PreviousMouseState.Y), new Vector2(newState.X, newState.Y)));
             }

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.Xna.Framework.Input;
+﻿using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework;
 
 namespace AstroMonkey.Input
@@ -20,7 +15,7 @@ namespace AstroMonkey.Input
             moveComp = parent.GetComponent<Navigation.MovementComponent>();
             verticalAxis = new AxisBinding(Keys.S, Keys.W);
             horizontalAxis = new AxisBinding(Keys.D, Keys.A);
-            ActionBinding spawnBinding = new ActionBinding(Keys.Y);
+            ActionBinding spawnBinding = new ActionBinding(EMouseButton.Left);
 
             verticalAxis.OnUpdate += Move;
             horizontalAxis.OnUpdate += Move;
@@ -56,13 +51,22 @@ namespace AstroMonkey.Input
 
         private void Spawn()
         {
-            Core.GameManager.SpawnObject(new Assets.Objects.Banana(new Core.Transform(Parent.transform)));
+            Core.GameObject projectile = new Assets.Objects.AlienBullet(new Core.Transform(Parent.transform));
+
+            Vector2 parentPosition = parent.transform.position;
+            Vector2 targetPosition = Input.InputManager.Manager.MouseCursorInWorldSpace;
+            Vector2 direction = targetPosition - parentPosition;
+            direction.Normalize();
+            projectile.AddComponent(new Navigation.ProjectileMovementComponent(projectile, direction, 800f));
+
+            Core.GameManager.SpawnObject(projectile);
         }
 
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
-            target.transform.position = InputManager.Manager.MouseCursor + parent.transform.position - Graphics.ViewManager.Instance.ScreenSize / 2f;
+            //target.transform.position = InputManager.Manager.MouseCursor + parent.transform.position - Graphics.ViewManager.Instance.ScreenSize / 2f;
+            target.transform.position = InputManager.Manager.MouseCursorInWorldSpace;
         }
     }
 }

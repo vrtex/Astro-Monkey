@@ -7,6 +7,7 @@ namespace AstroMonkey.Graphics
     public sealed class SpriteContainer
     {
         public Dictionary<string, Texture2D>       images = new Dictionary<string, Texture2D>();
+        public Dictionary<string, SpriteFont>       fonts = new Dictionary<string, SpriteFont>();
 
         public static SpriteContainer Instance { get; private set; } = new SpriteContainer();
 
@@ -63,6 +64,8 @@ namespace AstroMonkey.Graphics
             images.Add("ammoGun", game.Content.Load<Texture2D>(@"gfx/Items/AmmoGun"));
             images.Add("ammoLuncher", game.Content.Load<Texture2D>(@"gfx/Items/AmmoLuncher"));
             
+            //fonty
+            fonts.Add("text", game.Content.Load<SpriteFont>(@"spritefonts/text"));
         }
 
         public Texture2D GetImage(string name)
@@ -70,6 +73,13 @@ namespace AstroMonkey.Graphics
             Texture2D tex = null;
             images.TryGetValue(name, out tex);
             return tex;
+        }
+
+        public SpriteFont GetFont(string name)
+        {
+            SpriteFont font = null;
+            fonts.TryGetValue(name, out font);
+            return font;
         }
     }
 }

@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using AstroMonkey.Core;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace AstroMonkey.Physics.Collider
 {
@@ -25,6 +27,37 @@ namespace AstroMonkey.Physics.Collider
                 this.width = width * scale;
                 this.height = height * scale;
             }
+        }
+
+
+        public override void DrawBorder(SpriteBatch spriteBatch)
+        {
+            Color borderColor = Color.Red;
+            int thicknessOfBorder = 1;
+
+            Texture2D pixel;
+            pixel = new Texture2D(spriteBatch.GraphicsDevice, 1, 1, false, SurfaceFormat.Color);
+            pixel.SetData(new[] { Color.White });
+
+            // Draw top line
+            spriteBatch.Draw(pixel, new Rectangle((int)(this.GetPosition().X - width / 2), (int)(this.GetPosition().Y - height / 2), (int)width, thicknessOfBorder), borderColor);
+
+            // Draw left line
+            spriteBatch.Draw(pixel, new Rectangle((int)(this.GetPosition().X - width / 2), (int)(this.GetPosition().Y - height / 2), thicknessOfBorder, (int)height), borderColor);
+
+            // Draw right line
+            spriteBatch.Draw(pixel, new Rectangle(((int)(this.GetPosition().X + width / 2) - thicknessOfBorder),
+                (int)(this.GetPosition().Y - height / 2),
+                thicknessOfBorder,
+                (int)height), borderColor);
+
+            // Draw bottom line
+            spriteBatch.Draw(pixel, new Rectangle((int)(this.GetPosition().X - width / 2),
+                (int)(this.GetPosition().Y + height / 2) - thicknessOfBorder,
+                (int)width,
+                thicknessOfBorder), borderColor);
+
+            spriteBatch.DrawString(Graphics.SpriteContainer.Instance.GetFont("text"), this.parent.ToString().Split('.').Last(), GetPosition(), Color.Red);
         }
     }
 }

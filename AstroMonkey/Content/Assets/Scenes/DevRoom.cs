@@ -11,8 +11,6 @@ namespace AstroMonkey.Assets.Scenes
     class DevRoom: Core.Scene
     {
 
-        public float sceneScale = SceneManager.scale;
-
         public override void Load()
         {
             base.Load();
