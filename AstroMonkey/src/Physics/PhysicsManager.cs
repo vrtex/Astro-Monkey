@@ -6,13 +6,15 @@ using System.Security.Policy;
 using AstroMonkey.Core;
 using AstroMonkey.Physics.Collider;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace AstroMonkey.Physics
 {
     public static class PhysicsManager
     {
         private static List<Collider.Collider> colliders = new List<Collider.Collider>();
-
+        
+        
         public enum Direction
         {
             LEFT,
@@ -29,6 +31,15 @@ namespace AstroMonkey.Physics
         public static void RemoveCollider(Collider.Collider collider)
         {
             colliders.Remove(collider);
+        }
+
+        /// <summary>
+        /// Rysuje wszystkie collidery z listy.
+        /// </summary>
+        /// <param name="spriteBatch"></param>
+        public static void DrawAllColliders(SpriteBatch spriteBatch)
+        {
+            colliders.ForEach(c => c.DrawBorder(spriteBatch));
         }
 
         /// <summary>
@@ -131,8 +142,13 @@ namespace AstroMonkey.Physics
 
                 if (IsOverlaping(c1, c2))
                 {
-
+                    c1.RunOnBeginOverlap(c2);
                 }
+            }
+            else // jeżeli nie koliduje
+            {
+                if(c1.collisons.Contains(c2))
+                    c1.RunOnEndOverlap(c2);
             }
         }
 

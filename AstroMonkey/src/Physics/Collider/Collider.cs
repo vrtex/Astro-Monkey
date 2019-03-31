@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using AstroMonkey.Core;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace AstroMonkey.Physics.Collider
 {
@@ -12,7 +13,14 @@ namespace AstroMonkey.Physics.Collider
         private Dictionary<CollisionChanell, ReactType> reaction;
         private Vector2 relativePosition;
         protected float scale;
+
         private bool temp;
+
+        public delegate void ColliderEvent(Collider c1, Collider c2);
+        public event ColliderEvent OnBeginOverlap;
+        public event ColliderEvent OnEndOverlap;
+
+        public List<Collider> collisons = new List<Collider>();
 
         public Collider(
             GameObject gameObject,
@@ -22,13 +30,13 @@ namespace AstroMonkey.Physics.Collider
             : base(gameObject)
         {
             scale = SceneManager.scale;
-            this.collisionChanell = collisionChanell;
             this.relativePosition = Vector2.Multiply(relativePosition, new Vector2(scale, scale));
-            this.temp = temp;
-
-            SetReactions();
             SetRotation();
 
+            this.collisionChanell = collisionChanell;
+            SetReactions();
+            
+            this.temp = temp;
             if(!temp)
                 PhysicsManager.AddCollider(this);
         }
@@ -39,6 +47,25 @@ namespace AstroMonkey.Physics.Collider
                 PhysicsManager.RemoveCollider(this);
         }
 
+        public void RunOnBeginOverlap(Collider c)
+        {
+            collisons.Add(c);
+            OnBeginOverlap?.Invoke(this, c);
+        }
+
+        public void RunOnEndOverlap(Collider c)
+        {
+            collisons.Remove(c);
+            OnEndOverlap?.Invoke(this, c);
+        }
+
+        /// <summary>
+        /// Rysuj wszystkie collidery
+        /// </summary>
+        /// <param name="spriteBatch"></param>
+        public abstract void DrawBorder(SpriteBatch spriteBatch);
+
+        
         public CollisionChanell GetCollisionChanell()
         {
             return collisionChanell;
