@@ -9,6 +9,7 @@ namespace AstroMonkey.Input
         private readonly AxisBinding verticalAxis;
         private readonly AxisBinding horizontalAxis;
         private Core.GameObject target = new Core.GameObject();
+        private bool projectileToSpawn = false;
 
         public InputCompoent(Core.GameObject parent) : base(parent)
         {
@@ -51,15 +52,10 @@ namespace AstroMonkey.Input
 
         private void Spawn()
         {
-            Core.GameObject projectile = new Assets.Objects.AlienBullet(new Core.Transform(Parent.transform));
 
-            Vector2 parentPosition = parent.transform.position;
-            Vector2 targetPosition = Input.InputManager.Manager.MouseCursorInWorldSpace;
-            Vector2 direction = targetPosition - parentPosition;
-            direction.Normalize();
-            projectile.AddComponent(new Navigation.ProjectileMovementComponent(projectile, direction, 800f));
-
-            Core.GameManager.SpawnObject(projectile);
+            lock(this)
+                projectileToSpawn = true;
+            // Core.GameManager.SpawnObject(projectile);
         }
 
         public override void Update(GameTime gameTime)
@@ -67,6 +63,23 @@ namespace AstroMonkey.Input
             base.Update(gameTime);
             //target.transform.position = InputManager.Manager.MouseCursor + parent.transform.position - Graphics.ViewManager.Instance.ScreenSize / 2f;
             target.transform.position = InputManager.Manager.MouseCursorInWorldSpace;
+            if(projectileToSpawn)
+            {
+                lock(this)
+                {
+                    Core.GameObject projectile = new Assets.Objects.AlienBullet(new Core.Transform(Parent.transform));
+
+                    Vector2 parentPosition = parent.transform.position;
+                    Vector2 targetPosition = Input.InputManager.Manager.MouseCursorInWorldSpace;
+                    Vector2 direction = targetPosition - parentPosition;
+                    direction.Normalize();
+
+                    projectile.AddComponent(new Navigation.ProjectileMovementComponent(projectile, direction, 800f));
+
+                    Core.GameManager.SpawnObject(projectile);
+                    projectileToSpawn = false;
+                }
+            }
         }
     }
 }
