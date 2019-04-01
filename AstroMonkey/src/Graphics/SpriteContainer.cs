@@ -32,8 +32,11 @@ namespace AstroMonkey.Graphics
             images.Add("alien02", game.Content.Load<Texture2D>(@"gfx/Characters/Enemies/Alien02"));
             images.Add("alien03", game.Content.Load<Texture2D>(@"gfx/Characters/Enemies/Alien03"));
 
+            //podłoga
+            images.Add("floorPlatform", game.Content.Load<Texture2D>(@"gfx/Map/Floor/FloorPlatform"));
+            images.Add("floorCrate", game.Content.Load<Texture2D>(@"gfx/Map/Floor/FloorCrate"));
+
             //otoczenie
-            images.Add("floor", game.Content.Load<Texture2D>(@"gfx/Map/Floor/PlatformFloor"));
             images.Add("wall", game.Content.Load<Texture2D>(@"gfx /Map/Objects/wall"));
             images.Add("wallDoor", game.Content.Load<Texture2D>(@"gfx/Map/Objects/wallDoor"));
             images.Add("corner", game.Content.Load<Texture2D>(@"gfx/Map/Objects/corner"));

@@ -19,7 +19,7 @@ namespace AstroMonkey.Assets.Scenes
             {
                 for(int y = 0; y < 9; ++y)
                 {
-                    objects.Add(new Objects.PlatformFloor01(new Vector2(x * 32f * sceneScale, y * 32f * sceneScale), new Vector2(sceneScale, sceneScale), 0f));
+                    objects.Add(new Objects.FloorCrate01(new Vector2(x * 32f * sceneScale, y * 32f * sceneScale), new Vector2(sceneScale, sceneScale), 0f));
                 }
             }
 

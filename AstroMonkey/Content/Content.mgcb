@@ -121,7 +121,7 @@
 /processorParam:TextureFormat=Color
 /build:gfx/Items/Nut.png
 
-#begin gfx/Map/Floor/PlatformFloor.png
+#begin gfx/Map/Floor/FloorCrate.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -131,7 +131,19 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:gfx/Map/Floor/PlatformFloor.png
+/build:gfx/Map/Floor/FloorCrate.png
+
+#begin gfx/Map/Floor/FloorPlatform.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:gfx/Map/Floor/FloorPlatform.png
 
 #begin gfx/Map/Interactable/buttonClicked.png
 /importer:TextureImporter
