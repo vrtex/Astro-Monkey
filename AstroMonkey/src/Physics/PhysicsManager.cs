@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.Runtime.CompilerServices;
-using System.Security.Policy;
 using AstroMonkey.Core;
 using AstroMonkey.Physics.Collider;
 using Microsoft.Xna.Framework;
