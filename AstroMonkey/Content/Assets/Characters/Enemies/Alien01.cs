@@ -43,6 +43,9 @@ namespace AstroMonkey.Assets.Objects
 
             AddComponent(new Graphics.StackAnimator(this));
 
+			AddComponent(new Gameplay.Health(this));
+			AddComponent(new UI.HealthBar(this, height * 2));
+
             //STANIE
             List<Rectangle> idle02 = new List<Rectangle>();
             for(int i = 0; i < height; ++i) idle02.Add(new Rectangle(i * size, size, size, size));

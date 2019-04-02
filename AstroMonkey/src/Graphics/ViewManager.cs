@@ -55,15 +55,16 @@ namespace AstroMonkey.Graphics
                 spriteBatch.Draw(
                     sprite.image,
                     new Vector2(
-                        s.transform.position.X,
-                        s.transform.position.Y),
+                        s.transform.position.X + sprite.anchor.X * s.transform.scale.X,
+                        s.transform.position.Y + sprite.anchor.Y * s.transform.scale.Y),
                     null,
                     sprite.rect[0],
                     new Vector2(
                         sprite.rect[0].Width / 2,
                         sprite.rect[0].Height / 2),
                     s.transform.rotation,
-                    s.transform.scale);
+                    s.transform.scale,
+                    sprite.color);
             }
             spriteBatch.End();
 
@@ -84,15 +85,14 @@ namespace AstroMonkey.Graphics
                     spriteBatch.Draw(
                         sprite.image,
                         new Vector2(
-                            s.transform.position.X,
-                            s.transform.position.Y - i * s.transform.scale.Y),
+                            s.transform.position.X + sprite.anchor.X * s.transform.scale.X,
+                            s.transform.position.Y - sprite.stackOffset * i * s.transform.scale.Y + sprite.anchor.Y * s.transform.scale.Y),
                         null,
                         sprite.rect[i],
-                        new Vector2(
-                            sprite.rect[i].Width / 2,
-                            sprite.rect[i].Height / 2),
+                        sprite.origin,
                         s.transform.rotation,
-                        s.transform.scale);
+                        s.transform.scale,
+                        sprite.color);
                 }
             }
 

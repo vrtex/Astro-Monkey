@@ -42,7 +42,9 @@ namespace AstroMonkey.Assets.Objects
             for(int i = 0; i < height; ++i) idle01.Add(new Rectangle(i * size, 0, size, size));
             AddComponent(new Graphics.Sprite(this, "monkey", idle01));
 
-            AddComponent(new Graphics.StackAnimator(this));
+			AddComponent(new Gameplay.Health(this));
+
+			AddComponent(new Graphics.StackAnimator(this));
 
             //STANIE
             List<Rectangle> idle02 = new List<Rectangle>();

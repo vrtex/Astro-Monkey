@@ -46,6 +46,7 @@
     <Compile Include="Content\Assets\Characters\Enemies\Alien02.cs" />
     <Compile Include="Content\Assets\Characters\Enemies\Alien03.cs" />
     <Compile Include="Content\Assets\Characters\Player\Player.cs" />
+    <Compile Include="Content\Assets\HUD\EnemyHealthBar.cs" />
     <Compile Include="Content\Assets\Items\AmmoGun.cs" />
     <Compile Include="Content\Assets\Items\AmmoLuncher.cs" />
     <Compile Include="Content\Assets\Items\AmmoRiffle.cs" />
@@ -113,7 +114,9 @@
     <Compile Include="src\Core\Scene.cs" />
     <Compile Include="src\Core\SceneManager.cs" />
     <Compile Include="src\Core\Transform.cs" />
+    <Compile Include="src\Gameplay\Health.cs" />
     <Compile Include="src\Navigation\ProjectileMovementComponent.cs" />
+    <Compile Include="src\Navigation\TeleportTo.cs" />
     <Compile Include="src\Physics\Body.cs" />
     <Compile Include="src\Physics\Collider\BoxCollider.cs" />
     <Compile Include="src\Physics\Collider\CircleCollider.cs" />
@@ -136,6 +139,11 @@
     <Compile Include="src\Graphics\SpriteContainer.cs" />
     <Compile Include="src\Physics\PhysicsManager.cs" />
     <Compile Include="src\Navigation\MovementComponent.cs" />
+    <Compile Include="src\UI\HealthBar.cs" />
+    <Compile Include="src\UI\Image.cs" />
+    <Compile Include="src\UI\Slider.cs" />
+    <Compile Include="src\UI\Text.cs" />
+    <Compile Include="src\UI\UIElement.cs" />
     <Compile Include="src\Util\Enums.cs" />
     <Compile Include="src\Util\Rect.cs" />
     <Compile Include="src\Util\RNG.cs" />

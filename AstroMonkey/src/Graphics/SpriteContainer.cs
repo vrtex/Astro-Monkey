@@ -19,6 +19,7 @@ namespace AstroMonkey.Graphics
         {
             //interfejs
             images.Add("mark", game.Content.Load<Texture2D>(@"gfx/UI/HUD/mark"));
+            images.Add("bar", game.Content.Load<Texture2D>(@"gfx/UI/HUD/bar"));
 
             //efekty
             images.Add("poop", game.Content.Load<Texture2D>(@"gfx/Projectiles/Poop")); 
