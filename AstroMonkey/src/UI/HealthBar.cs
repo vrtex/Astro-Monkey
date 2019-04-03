@@ -29,7 +29,7 @@ namespace AstroMonkey.UI
                                             new Vector2(0, size),
                                             new Vector2(0, -size));
             lifebar.SetTrack(parent.transform);
-            SceneManager.Instance.currScene.objects.Add(lifebar);
+            GameManager.SpawnObject(lifebar);
         }
 
 		public void SetValue(float value)

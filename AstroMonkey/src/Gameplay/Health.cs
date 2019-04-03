@@ -33,5 +33,10 @@ namespace AstroMonkey.Gameplay
 				//wywołaj śmierć
 			}
 		}
+
+        public float GetPercentage()
+        {
+            return maxHealth == 0 ? 0f : (float)health / (float)maxHealth;
+        }
 	}
 }
