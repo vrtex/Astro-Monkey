@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using System;
+using AstroMonkey.Physics.Collider;
 
 namespace AstroMonkey.Assets.Objects
 {
@@ -25,6 +26,7 @@ namespace AstroMonkey.Assets.Objects
         private void Load(Core.Transform _transform)
         {
             transform = _transform;
+
             List<Rectangle> temp = new List<Rectangle>();
             for(int i = 0; i < 15; ++i)
             {

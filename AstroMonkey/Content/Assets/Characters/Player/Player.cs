@@ -9,6 +9,9 @@ namespace AstroMonkey.Assets.Objects
 
     class Player: Core.GameObject
     {
+        private int height = 21;
+        private int size = 21;
+
         public Player(): this(new Core.Transform())
         {
         }
@@ -23,18 +26,17 @@ namespace AstroMonkey.Assets.Objects
         {
         }
 
-        private int height = 21;
-        private int size = 21;
-
         private void Load(Core.Transform _transform)
         {
             transform = _transform;
-            AddComponent(new CircleCollider(this, CollisionChanell.Player, Vector2.Zero, size / 3));
-            AddComponent(new Body(this));
 
+            // Physics
+            AddComponent(new Body(this));
+            AddComponent(new CircleCollider(this, CollisionChanell.Player, Vector2.Zero, size / 3));
+
+            // Movement
             Navigation.MovementComponent moveComp =  (Navigation.MovementComponent)AddComponent(new Navigation.MovementComponent(this));
             AddComponent(new Input.InputCompoent(this));
-
             
             
 

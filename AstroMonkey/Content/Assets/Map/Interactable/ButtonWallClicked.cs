@@ -5,23 +5,23 @@ using AstroMonkey.Physics.Collider;
 
 namespace AstroMonkey.Assets.Objects
 {
-    class Terminal: Core.GameObject
+    class ButtonWallClicked: Core.GameObject
     {
         private float size = 12;
 
-        public Terminal() : this(new Core.Transform())
+        public ButtonWallClicked() : this(new Core.Transform())
         {
         }
 
-        public Terminal(Core.Transform _transform) : base(_transform)
+        public ButtonWallClicked(Core.Transform _transform) : base(_transform)
         {
             Load(_transform);
         }
-        public Terminal(Vector2 position, Vector2 scale, float rotation = 0f) : this(new Core.Transform(position, scale, rotation))
+        public ButtonWallClicked(Vector2 position, Vector2 scale, float rotation = 0f) : this(new Core.Transform(position, scale, rotation))
         {
         }
 
-        public Terminal(Vector2 position) : this(new Core.Transform(position, Vector2.One))
+        public ButtonWallClicked(Vector2 position) : this(new Core.Transform(position, Vector2.One))
         {
         }
 
@@ -37,7 +37,7 @@ namespace AstroMonkey.Assets.Objects
                 temp.Add(new Rectangle(i * 32, 0, 32, 32));
             }
 
-            AddComponent(new Graphics.Sprite(this, "terminal", temp));
+            AddComponent(new Graphics.Sprite(this, "buttonClicked", temp));
         }
     }
 
