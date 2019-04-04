@@ -43,8 +43,10 @@ namespace AstroMonkey.Assets.Objects
 
             AddComponent(new Graphics.StackAnimator(this));
 
-			AddComponent(new Gameplay.Health(this));
-			AddComponent(new UI.HealthBar(this, height * 2));
+			Gameplay.Health healthComponent = (Gameplay.Health) AddComponent(new Gameplay.Health(this));
+			UI.HealthBar healthBar = (UI.HealthBar)AddComponent(new UI.HealthBar(this, height * 2));
+            healthComponent.OnDamageTaken += healthBar.Refresh;
+
 
             //STANIE
             List<Rectangle> idle02 = new List<Rectangle>();

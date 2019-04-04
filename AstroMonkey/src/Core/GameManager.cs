@@ -101,6 +101,9 @@ namespace AstroMonkey.Core
 
                     if(gameObject.GetComponent<Graphics.Sprite>() != null)
                         Graphics.ViewManager.Instance.RemoveSprite(gameObject);
+
+                    if(gameObject.GetComponent<Physics.Collider.Collider>() != null)
+                        Physics.PhysicsManager.RemoveCollider(gameObject.GetComponent<Physics.Collider.Collider>());
                 }
                 Instance.toDestroy.Clear();
             }

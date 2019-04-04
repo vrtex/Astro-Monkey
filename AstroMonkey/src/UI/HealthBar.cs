@@ -32,6 +32,11 @@ namespace AstroMonkey.UI
             GameManager.SpawnObject(lifebar);
         }
 
+        public void Refresh(Gameplay.Health damaged, Gameplay.DamageInfo dmgInfo)
+        {
+            SetValue(damaged.GetPercentage());
+        }
+
 		public void SetValue(float value)
 		{
 			lifebar.GetComponent<Graphics.Sprite>().rect[1] = new Rectangle(lifebar.size, 0, (int)(20 * value), 1);
