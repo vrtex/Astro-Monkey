@@ -14,7 +14,7 @@ namespace AstroMonkey.Navigation
         public float CurrentDirection { get; private set; }
         public GameObject CurrentFocus { get; set; }
 
-        public float Speed { get; set; } = 1666.0f; //190.0f
+        public float Speed { get; set; } = 190.0f;
 
         public MovementComponent(Core.GameObject parent): base(parent)
         {
