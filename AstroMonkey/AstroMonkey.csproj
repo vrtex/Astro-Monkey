@@ -43,8 +43,11 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Content\Assets\Characters\Enemies\Alien01.cs" />
+    <Compile Include="Content\Assets\Characters\Enemies\Alien01Dead.cs" />
     <Compile Include="Content\Assets\Characters\Enemies\Alien02.cs" />
+    <Compile Include="Content\Assets\Characters\Enemies\Alien02Dead.cs" />
     <Compile Include="Content\Assets\Characters\Enemies\Alien03.cs" />
+    <Compile Include="Content\Assets\Characters\Enemies\Alien03Dead.cs" />
     <Compile Include="Content\Assets\Characters\Player\Player.cs" />
     <Compile Include="Content\Assets\HUD\EnemyHealthBar.cs" />
     <Compile Include="Content\Assets\Items\AmmoGun.cs" />

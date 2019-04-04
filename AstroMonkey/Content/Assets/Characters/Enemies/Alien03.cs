@@ -88,24 +88,6 @@ namespace AstroMonkey.Assets.Objects
                 196,
                 true));
 
-            //UMIERANIE
-            List<Rectangle> dead01 = new List<Rectangle>();
-            for(int i = 0; i < height; ++i) dead01.Add(new Rectangle(i * size, size * 6, size, size));
-            List<Rectangle> dead02 = new List<Rectangle>();
-            for(int i = 0; i < height; ++i) dead02.Add(new Rectangle(i * size, size * 7, size, size));
-            List<Rectangle> dead03 = new List<Rectangle>();
-            for(int i = 0; i < height; ++i) dead03.Add(new Rectangle(i * size, size * 8, size, size));
-            List<Rectangle> dead04 = new List<Rectangle>();
-            for(int i = 0; i < height; ++i) dead04.Add(new Rectangle(i * size, size * 9, size, size));
-            List<Rectangle> dead05 = new List<Rectangle>();
-            for(int i = 0; i < height; ++i) dead05.Add(new Rectangle(i * size, size * 10, size, size));
-            GetComponent<Graphics.StackAnimator>().AddAnimation(
-                new Graphics.StackAnimation("Dead",
-                GetComponent<Graphics.Sprite>(),
-                new List<List<Rectangle>> { dead01, dead02, dead03, dead04, dead05 },
-                352,
-                false));
-
             GetComponent<Graphics.StackAnimator>().SetAnimation("Idle");
         }
     }
