@@ -114,6 +114,7 @@
     <Compile Include="src\Core\Scene.cs" />
     <Compile Include="src\Core\SceneManager.cs" />
     <Compile Include="src\Core\Transform.cs" />
+    <Compile Include="src\Gameplay\DamageInfo.cs" />
     <Compile Include="src\Gameplay\Health.cs" />
     <Compile Include="src\Navigation\ProjectileMovementComponent.cs" />
     <Compile Include="src\Navigation\TeleportTo.cs" />
@@ -208,6 +209,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="app.manifest" />
+    <None Include="Content\Map\AstroMonkey.tmx">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
