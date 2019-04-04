@@ -95,6 +95,7 @@
     <Compile Include="Content\Assets\Map\Objects\Wall.cs" />
     <Compile Include="Content\Assets\Map\Objects\WallDoor.cs" />
     <Compile Include="Content\Assets\Projectiles\AlienBullet.cs" />
+    <Compile Include="Content\Assets\Projectiles\BaseProjectile.cs" />
     <Compile Include="Content\Assets\Projectiles\BulletHit.cs" />
     <Compile Include="Content\Assets\Projectiles\Poop.cs" />
     <Compile Include="Content\Assets\Projectiles\Rocket.cs" />
@@ -116,6 +117,7 @@
     <Compile Include="src\Core\Transform.cs" />
     <Compile Include="src\Gameplay\DamageInfo.cs" />
     <Compile Include="src\Gameplay\Health.cs" />
+    <Compile Include="src\Gameplay\SuicideComponent.cs" />
     <Compile Include="src\Navigation\ProjectileMovementComponent.cs" />
     <Compile Include="src\Navigation\TeleportTo.cs" />
     <Compile Include="src\Physics\Body.cs" />

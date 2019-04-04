@@ -67,13 +67,14 @@ namespace AstroMonkey.Input
             {
                 lock(this)
                 {
-                    Core.GameObject projectile = new Assets.Objects.AlienBullet(new Core.Transform(Parent.transform));
+                    Assets.Objects.AlienBullet projectile = new Assets.Objects.AlienBullet(new Core.Transform(Parent.transform));
 
                     Vector2 parentPosition = parent.transform.position;
                     Vector2 targetPosition = Input.InputManager.Manager.MouseCursorInWorldSpace;
                     Vector2 direction = targetPosition - parentPosition;
                     direction.Normalize();
 
+                    projectile.damage = new Gameplay.DamageInfo(parent, 10);
                     projectile.AddComponent(new Navigation.ProjectileMovementComponent(projectile, direction, 800f));
 
                     Core.GameManager.SpawnObject(projectile);
