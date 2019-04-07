@@ -33,10 +33,10 @@ namespace AstroMonkey.Assets.Scenes
             objects.Add(new Objects.WallDoor(new Vector2(2 * 32f * sceneScale * sceneScale + offsetX, 5 * 32f * sceneScale), new Vector2(sceneScale, sceneScale), (float)(Math.PI)));
             objects.Add(new Objects.WallDoor(new Vector2(2 * 32f * sceneScale * sceneScale + offsetX, 7 * 32f * sceneScale), new Vector2(sceneScale, sceneScale), -(float)(Math.PI / 2)));
 
-            objects.Add(new Objects.Corner(new Vector2(3 * 32f * sceneScale * sceneScale + offsetX, 1 * 32f * sceneScale), new Vector2(sceneScale, sceneScale), 0));
-            objects.Add(new Objects.Corner(new Vector2(3 * 32f * sceneScale * sceneScale + offsetX, 3 * 32f * sceneScale), new Vector2(sceneScale, sceneScale), (float)(Math.PI / 2)));
-            objects.Add(new Objects.Corner(new Vector2(3 * 32f * sceneScale * sceneScale + offsetX, 5 * 32f * sceneScale), new Vector2(sceneScale, sceneScale), (float)(Math.PI)));
-            objects.Add(new Objects.Corner(new Vector2(3 * 32f * sceneScale * sceneScale + offsetX, 7 * 32f * sceneScale), new Vector2(sceneScale, sceneScale), -(float)(Math.PI / 2)));
+            objects.Add(new Objects.WallCorner(new Vector2(3 * 32f * sceneScale * sceneScale + offsetX, 1 * 32f * sceneScale), new Vector2(sceneScale, sceneScale), 0));
+            objects.Add(new Objects.WallCorner(new Vector2(3 * 32f * sceneScale * sceneScale + offsetX, 3 * 32f * sceneScale), new Vector2(sceneScale, sceneScale), (float)(Math.PI / 2)));
+            objects.Add(new Objects.WallCorner(new Vector2(3 * 32f * sceneScale * sceneScale + offsetX, 5 * 32f * sceneScale), new Vector2(sceneScale, sceneScale), (float)(Math.PI)));
+            objects.Add(new Objects.WallCorner(new Vector2(3 * 32f * sceneScale * sceneScale + offsetX, 7 * 32f * sceneScale), new Vector2(sceneScale, sceneScale), -(float)(Math.PI / 2)));
 
             objects.Add(new Objects.DoorLeft(new Vector2(4 * 32f * sceneScale * sceneScale + offsetX, 1 * 32f * sceneScale), new Vector2(sceneScale, sceneScale), 0));
             objects.Add(new Objects.DoorLeft(new Vector2(4 * 32f * sceneScale * sceneScale + offsetX, 3 * 32f * sceneScale), new Vector2(sceneScale, sceneScale), (float)(Math.PI / 2)));
@@ -153,15 +153,15 @@ namespace AstroMonkey.Assets.Scenes
             objects.Add(new Objects.ButtonWall(new Vector2(26 * 32f * sceneScale * sceneScale + offsetX, 5 * 32f * sceneScale), new Vector2(sceneScale, sceneScale), (float)(Math.PI)));
             objects.Add(new Objects.ButtonWall(new Vector2(26 * 32f * sceneScale * sceneScale + offsetX, 7 * 32f * sceneScale), new Vector2(sceneScale, sceneScale), -(float)(Math.PI / 2)));
 
-            objects.Add(new Objects.ButtonClicked(new Vector2(27 * 32f * sceneScale * sceneScale + offsetX, 1 * 32f * sceneScale), new Vector2(sceneScale, sceneScale), 0));
-            objects.Add(new Objects.ButtonClicked(new Vector2(27 * 32f * sceneScale * sceneScale + offsetX, 3 * 32f * sceneScale), new Vector2(sceneScale, sceneScale), (float)(Math.PI / 2)));
-            objects.Add(new Objects.ButtonClicked(new Vector2(27 * 32f * sceneScale * sceneScale + offsetX, 5 * 32f * sceneScale), new Vector2(sceneScale, sceneScale), (float)(Math.PI)));
-            objects.Add(new Objects.ButtonClicked(new Vector2(27 * 32f * sceneScale * sceneScale + offsetX, 7 * 32f * sceneScale), new Vector2(sceneScale, sceneScale), -(float)(Math.PI / 2)));
+            objects.Add(new Objects.ButtonWallClicked(new Vector2(27 * 32f * sceneScale * sceneScale + offsetX, 1 * 32f * sceneScale), new Vector2(sceneScale, sceneScale), 0));
+            objects.Add(new Objects.ButtonWallClicked(new Vector2(27 * 32f * sceneScale * sceneScale + offsetX, 3 * 32f * sceneScale), new Vector2(sceneScale, sceneScale), (float)(Math.PI / 2)));
+            objects.Add(new Objects.ButtonWallClicked(new Vector2(27 * 32f * sceneScale * sceneScale + offsetX, 5 * 32f * sceneScale), new Vector2(sceneScale, sceneScale), (float)(Math.PI)));
+            objects.Add(new Objects.ButtonWallClicked(new Vector2(27 * 32f * sceneScale * sceneScale + offsetX, 7 * 32f * sceneScale), new Vector2(sceneScale, sceneScale), -(float)(Math.PI / 2)));
 
-            objects.Add(new Objects.CornerPhillar(new Vector2(28 * 32f * sceneScale * sceneScale + offsetX, 1 * 32f * sceneScale), new Vector2(sceneScale, sceneScale), 0));
-            objects.Add(new Objects.CornerPhillar(new Vector2(28 * 32f * sceneScale * sceneScale + offsetX, 3 * 32f * sceneScale), new Vector2(sceneScale, sceneScale), (float)(Math.PI / 2)));
-            objects.Add(new Objects.CornerPhillar(new Vector2(28 * 32f * sceneScale * sceneScale + offsetX, 5 * 32f * sceneScale), new Vector2(sceneScale, sceneScale), (float)(Math.PI)));
-            objects.Add(new Objects.CornerPhillar(new Vector2(28 * 32f * sceneScale * sceneScale + offsetX, 7 * 32f * sceneScale), new Vector2(sceneScale, sceneScale), -(float)(Math.PI / 2)));
+            objects.Add(new Objects.WallCornerPhillar(new Vector2(28 * 32f * sceneScale * sceneScale + offsetX, 1 * 32f * sceneScale), new Vector2(sceneScale, sceneScale), 0));
+            objects.Add(new Objects.WallCornerPhillar(new Vector2(28 * 32f * sceneScale * sceneScale + offsetX, 3 * 32f * sceneScale), new Vector2(sceneScale, sceneScale), (float)(Math.PI / 2)));
+            objects.Add(new Objects.WallCornerPhillar(new Vector2(28 * 32f * sceneScale * sceneScale + offsetX, 5 * 32f * sceneScale), new Vector2(sceneScale, sceneScale), (float)(Math.PI)));
+            objects.Add(new Objects.WallCornerPhillar(new Vector2(28 * 32f * sceneScale * sceneScale + offsetX, 7 * 32f * sceneScale), new Vector2(sceneScale, sceneScale), -(float)(Math.PI / 2)));
 
         }
     }

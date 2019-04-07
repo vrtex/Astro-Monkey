@@ -43,8 +43,11 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Content\Assets\Characters\Enemies\Alien01.cs" />
+    <Compile Include="Content\Assets\Characters\Enemies\Alien01Dead.cs" />
     <Compile Include="Content\Assets\Characters\Enemies\Alien02.cs" />
+    <Compile Include="Content\Assets\Characters\Enemies\Alien02Dead.cs" />
     <Compile Include="Content\Assets\Characters\Enemies\Alien03.cs" />
+    <Compile Include="Content\Assets\Characters\Enemies\Alien03Dead.cs" />
     <Compile Include="Content\Assets\Characters\Player\Player.cs" />
     <Compile Include="Content\Assets\HUD\EnemyHealthBar.cs" />
     <Compile Include="Content\Assets\Items\AmmoGun.cs" />
@@ -75,7 +78,7 @@
     <Compile Include="Content\Assets\Map\Floor\FloorPlatformDirtyCrush03.cs" />
     <Compile Include="Content\Assets\Map\Floor\FloorPlatformDirtyCrush04.cs" />
     <Compile Include="Content\Assets\Map\Interactable\ButtonWall.cs" />
-    <Compile Include="Content\Assets\Map\Interactable\ButtonClicked.cs" />
+    <Compile Include="Content\Assets\Map\Interactable\ButtonWallClicked.cs" />
     <Compile Include="Content\Assets\Map\Interactable\Terminal.cs" />
     <Compile Include="Content\Assets\Map\Interactable\TerminalOff.cs" />
     <Compile Include="Content\Assets\Map\Objects\Armchair.cs" />
@@ -84,8 +87,8 @@
     <Compile Include="Content\Assets\Map\Objects\CaseMicrowave.cs" />
     <Compile Include="Content\Assets\Map\Objects\Cockpit.cs" />
     <Compile Include="Content\Assets\Map\Objects\Column.cs" />
-    <Compile Include="Content\Assets\Map\Objects\Corner.cs" />
-    <Compile Include="Content\Assets\Map\Objects\CornerPhillar.cs" />
+    <Compile Include="Content\Assets\Map\Objects\WallCorner.cs" />
+    <Compile Include="Content\Assets\Map\Objects\WallCornerPhillar.cs" />
     <Compile Include="Content\Assets\Map\Objects\DoorLeft.cs" />
     <Compile Include="Content\Assets\Map\Objects\DoorRight.cs" />
     <Compile Include="Content\Assets\Map\Objects\Fridge.cs" />

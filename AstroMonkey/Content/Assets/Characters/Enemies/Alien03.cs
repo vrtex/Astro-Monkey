@@ -11,6 +11,9 @@ namespace AstroMonkey.Assets.Objects
 {
     class Alien03: Core.GameObject
     {
+        private int height = 32;
+        private int size = 32;
+
         public Alien03()
         {
             Load(new Core.Transform(Vector2.Zero, Vector2.One, 0f));
@@ -28,14 +31,13 @@ namespace AstroMonkey.Assets.Objects
             Load(new Core.Transform(position, Vector2.One, 0f));
         }
 
-        private int height = 32;
-        private int size = 32;
-
         private void Load(Core.Transform _transform)
         {
             transform = _transform;
-            AddComponent(new CircleCollider(this, CollisionChanell.Object, Vector2.Zero, size / 3));
+
+            // Physics
             AddComponent(new Body(this));
+            AddComponent(new CircleCollider(this, CollisionChanell.Enemy, Vector2.Zero, size / 3));
 
             List<Rectangle> idle01 = new List<Rectangle>();
             for(int i = 0; i < height; ++i) idle01.Add(new Rectangle(i * size, 0, size, size));
@@ -85,24 +87,6 @@ namespace AstroMonkey.Assets.Objects
                 },
                 196,
                 true));
-
-            //UMIERANIE
-            List<Rectangle> dead01 = new List<Rectangle>();
-            for(int i = 0; i < height; ++i) dead01.Add(new Rectangle(i * size, size * 6, size, size));
-            List<Rectangle> dead02 = new List<Rectangle>();
-            for(int i = 0; i < height; ++i) dead02.Add(new Rectangle(i * size, size * 7, size, size));
-            List<Rectangle> dead03 = new List<Rectangle>();
-            for(int i = 0; i < height; ++i) dead03.Add(new Rectangle(i * size, size * 8, size, size));
-            List<Rectangle> dead04 = new List<Rectangle>();
-            for(int i = 0; i < height; ++i) dead04.Add(new Rectangle(i * size, size * 9, size, size));
-            List<Rectangle> dead05 = new List<Rectangle>();
-            for(int i = 0; i < height; ++i) dead05.Add(new Rectangle(i * size, size * 10, size, size));
-            GetComponent<Graphics.StackAnimator>().AddAnimation(
-                new Graphics.StackAnimation("Dead",
-                GetComponent<Graphics.Sprite>(),
-                new List<List<Rectangle>> { dead01, dead02, dead03, dead04, dead05 },
-                352,
-                false));
 
             GetComponent<Graphics.StackAnimator>().SetAnimation("Idle");
         }

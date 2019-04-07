@@ -11,6 +11,9 @@ namespace AstroMonkey.Assets.Objects
 {
     class Alien02: Core.GameObject
     {
+        private int height = 21;
+        private int size = 21;
+
         public Alien02()
         {
             Load(new Core.Transform(Vector2.Zero, Vector2.One, 0f));
@@ -28,14 +31,13 @@ namespace AstroMonkey.Assets.Objects
             Load(new Core.Transform(position, Vector2.One, 0f));
         }
 
-        private int height = 21;
-        private int size = 21;
-
         private void Load(Core.Transform _transform)
         {
             transform = _transform;
-            AddComponent(new CircleCollider(this, CollisionChanell.Object, Vector2.Zero, size / 3));
+
+            // Physics
             AddComponent(new Body(this));
+            AddComponent(new CircleCollider(this, CollisionChanell.Enemy, Vector2.Zero, size / 3));
 
             List<Rectangle> idle01 = new List<Rectangle>();
             for(int i = 0; i < height; ++i) idle01.Add(new Rectangle(i * size, 0, size, size));
