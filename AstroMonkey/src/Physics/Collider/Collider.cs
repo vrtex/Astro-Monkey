@@ -136,6 +136,16 @@ namespace AstroMonkey.Physics.Collider
             }
         }
 
+        public void SetReaction(Dictionary<CollisionChanell, ReactType> reaction)
+        {
+            this.reaction = reaction;
+        }
+
+        public Dictionary<CollisionChanell, ReactType> GetReaction()
+        {
+            return reaction;
+        }
+
         private void SetReactions()
         {
             reaction = new Dictionary<CollisionChanell, ReactType>();
