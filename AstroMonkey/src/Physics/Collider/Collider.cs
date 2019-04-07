@@ -136,6 +136,26 @@ namespace AstroMonkey.Physics.Collider
             }
         }
 
+        public void ClearReactions()
+        {
+            reaction = new Dictionary<CollisionChanell, ReactType>
+            {
+                [CollisionChanell.Bullets] = ReactType.Ignore,
+                [CollisionChanell.Enemy] = ReactType.Ignore,
+                [CollisionChanell.Hitbox] = ReactType.Ignore,
+                [CollisionChanell.InteractBullet] = ReactType.Ignore,
+                [CollisionChanell.InteractPlayer] = ReactType.Ignore,
+                [CollisionChanell.Item] = ReactType.Ignore,
+                [CollisionChanell.Object] = ReactType.Ignore,
+                [CollisionChanell.Player] = ReactType.Ignore
+            };
+        }
+
+        public void SetReaction(CollisionChanell channel, ReactType reaction)
+        {
+            this.reaction[channel] = reaction;
+        }
+
         private void SetReactions()
         {
             reaction = new Dictionary<CollisionChanell, ReactType>();

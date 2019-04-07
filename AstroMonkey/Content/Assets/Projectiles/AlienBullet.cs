@@ -30,16 +30,8 @@ namespace AstroMonkey.Assets.Objects
         private void Load(Core.Transform _transform)
         {
             AddComponent(new Graphics.Sprite(this, "alienBullet", new List<Rectangle>() { new Rectangle(0, 0, 3, 6) }));
-            Collider collider = new CircleCollider(this, CollisionChanell.Bullets, Vector2.Zero, 3);
-            collider.OnBeginOverlap += OnHit;
-            AddComponent(collider);
-            AddComponent(new Body(this));
-            AddComponent(new Gameplay.SuicideComponent(this));
+            
         }
 
-        private void OnHit(Collider self, Collider other)
-        {
-            Console.WriteLine(self);
-        }
     }
 }

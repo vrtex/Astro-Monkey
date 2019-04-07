@@ -26,11 +26,6 @@ namespace AstroMonkey.Gameplay
 			health = health - damage.value;
 			if(health < 0) health = 0;
 
-            //UI.HealthBar hb = parent.GetComponent<UI.HealthBar>();
-            //if(hb != null)
-            //{
-            //	hb.SetValue(GetPercentage());
-            //}
             OnDamageTaken?.Invoke(this, damage);
 			
 			if(health == 0)

@@ -6,17 +6,28 @@ namespace AstroMonkey.Navigation
     class ProjectileMovementComponent : Core.Component
     {
 
-        public Vector2 Direction { get; private set; }
-        public float Velocity { get; private set; }
+        private Vector2 direction;
+        public Vector2 Direction {
+            get => direction;
+            set
+            {
+                direction = value;
+                shouldMove = !Util.Statics.IsNearlyEqual(direction, Vector2.Zero);
+            }
+        }
+        public float Velocity { get; set; }
+        private bool shouldMove = false;
 
-        public ProjectileMovementComponent(GameObject parent, Vector2 direction, float velocity = 1f) : base(parent)
+        public ProjectileMovementComponent(GameObject parent) : base(parent)
         {
-            Direction = direction;
-            Velocity = velocity;
+            Direction = Vector2.Zero;
+            Velocity = 1f;
         }
 
         public override void Update(GameTime gameTime)
         {
+            if(!shouldMove)
+                return;
             Vector2 displacement = Direction * Velocity * (float)gameTime.ElapsedGameTime.TotalSeconds;
             Vector2 previousPosition = parent.transform.position;
             parent.transform.position = previousPosition + displacement;

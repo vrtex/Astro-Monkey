@@ -1,8 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using AstroMonkey.Physics;
+using AstroMonkey.Physics.Collider;
+using Microsoft.Xna.Framework;
+using System;
 
 namespace AstroMonkey.Assets.Objects
 {
@@ -10,7 +9,18 @@ namespace AstroMonkey.Assets.Objects
     {
         public BaseProjectile(Core.Transform transform): base(transform)
         {
+            Collider collider = new CircleCollider(this, CollisionChanell.Bullets, Vector2.Zero, 3);
+            collider.ClearReactions();
+            collider.SetReaction(CollisionChanell.Enemy, ReactType.Overlap);
+            collider.OnBeginOverlap += OnHit;
+            AddComponent(collider);
+            AddComponent(new Body(this));
+            AddComponent(new Gameplay.SuicideComponent(this));
+            AddComponent(new Navigation.ProjectileMovementComponent(this));
+        }
 
+        protected virtual void OnHit(Collider c1, Collider c2)
+        {
         }
     }
 }

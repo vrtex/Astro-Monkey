@@ -75,7 +75,8 @@ namespace AstroMonkey.Input
                     direction.Normalize();
 
                     projectile.damage = new Gameplay.DamageInfo(parent, 10);
-                    projectile.AddComponent(new Navigation.ProjectileMovementComponent(projectile, direction, 800f));
+                    projectile.GetComponent<Navigation.ProjectileMovementComponent>().Direction = direction;
+                    projectile.GetComponent<Navigation.ProjectileMovementComponent>().Velocity = 800f;
 
                     Core.GameManager.SpawnObject(projectile);
                     projectileToSpawn = false;
