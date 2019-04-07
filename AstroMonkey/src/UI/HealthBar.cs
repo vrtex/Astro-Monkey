@@ -39,7 +39,7 @@ namespace AstroMonkey.UI
 
 		public void SetValue(float value)
 		{
-			lifebar.GetComponent<Graphics.Sprite>().rect[1] = new Rectangle(lifebar.size, 0, (int)(20 * value), 1);
+			lifebar.GetComponent<Graphics.Sprite>().rect[1] = new Rectangle(lifebar.size, 0, (int)(lifebar.size * value), 1);
 		}
     }
 }
