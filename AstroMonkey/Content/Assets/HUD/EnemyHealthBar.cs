@@ -12,6 +12,9 @@ namespace AstroMonkey.Assets.Objects
 {
     class EnemyHealthBar: GameObject
     {
+        private int height = 1;
+        public int size = 20;
+
         public EnemyHealthBar() : this(new Transform())
         {
         }
@@ -30,9 +33,6 @@ namespace AstroMonkey.Assets.Objects
         {
             Load(_transform, offsetTeleport, offsetSprite);
         }
-
-        private int height = 1;
-        public int size = 20;
 
         private void Load(Transform _transform, Vector2 offsetTeleport, Vector2 offsetSprite)
         {

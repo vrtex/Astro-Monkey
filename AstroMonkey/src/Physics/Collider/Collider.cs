@@ -112,7 +112,7 @@ namespace AstroMonkey.Physics.Collider
         {
             float epsilon = (float)Math.PI / 8;
             float rotation = Parent.transform.rotation;
-
+            
             if (Math.Abs(rotation - 0) < epsilon) // FACE UP
             {
 
@@ -134,6 +134,16 @@ namespace AstroMonkey.Physics.Collider
                 relativePosition.X = relativePosition.Y;
                 relativePosition.Y = -temp;
             }
+        }
+
+        public void SetReaction(Dictionary<CollisionChanell, ReactType> reaction)
+        {
+            this.reaction = reaction;
+        }
+
+        public Dictionary<CollisionChanell, ReactType> GetReaction()
+        {
+            return reaction;
         }
 
         private void SetReactions()

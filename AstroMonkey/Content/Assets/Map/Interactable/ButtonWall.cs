@@ -1,11 +1,15 @@
 ﻿using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using System;
+using AstroMonkey.Physics.Collider;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace AstroMonkey.Assets.Objects
 {
     class ButtonWall: Core.GameObject
     {
+        private float size = 12;
+        
         public ButtonWall() : this(new Core.Transform())
         {
         }
@@ -25,6 +29,9 @@ namespace AstroMonkey.Assets.Objects
         private void Load(Core.Transform _transform)
         {
             transform = _transform;
+            // Physics
+            AddComponent(new CircleCollider(this, CollisionChanell.InteractPlayer, new Vector2(-4, 0), size));
+
             List<Rectangle> temp = new List<Rectangle>();
             for(int i = 0; i < 32; ++i)
             {

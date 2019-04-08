@@ -26,6 +26,10 @@ namespace AstroMonkey.Assets.Objects
         private void Load(Core.Transform _transform)
         {
             transform = _transform;
+
+            // Physics
+            AddComponent(new BoxCollider(this, CollisionChanell.Object, new Vector2(0, 0), 32, 24));
+
             List<Rectangle> temp = new List<Rectangle>();
             for(int i = 0; i < 11; ++i)
             {
@@ -33,8 +37,6 @@ namespace AstroMonkey.Assets.Objects
             }
 
             AddComponent(new Graphics.Sprite(this, "table", temp));
-
-            AddComponent(new BoxCollider(this, CollisionChanell.Object, Vector2.Zero, 32, 32));
         }
     }
 

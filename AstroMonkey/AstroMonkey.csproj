@@ -80,7 +80,7 @@
     <Compile Include="Content\Assets\Map\Floor\FloorPlatformDirtyCrush03.cs" />
     <Compile Include="Content\Assets\Map\Floor\FloorPlatformDirtyCrush04.cs" />
     <Compile Include="Content\Assets\Map\Interactable\ButtonWall.cs" />
-    <Compile Include="Content\Assets\Map\Interactable\ButtonClicked.cs" />
+    <Compile Include="Content\Assets\Map\Interactable\ButtonWallClicked.cs" />
     <Compile Include="Content\Assets\Map\Interactable\Terminal.cs" />
     <Compile Include="Content\Assets\Map\Interactable\TerminalOff.cs" />
     <Compile Include="Content\Assets\Map\Objects\Armchair.cs" />
@@ -89,8 +89,8 @@
     <Compile Include="Content\Assets\Map\Objects\CaseMicrowave.cs" />
     <Compile Include="Content\Assets\Map\Objects\Cockpit.cs" />
     <Compile Include="Content\Assets\Map\Objects\Column.cs" />
-    <Compile Include="Content\Assets\Map\Objects\Corner.cs" />
-    <Compile Include="Content\Assets\Map\Objects\CornerPhillar.cs" />
+    <Compile Include="Content\Assets\Map\Objects\WallCorner.cs" />
+    <Compile Include="Content\Assets\Map\Objects\WallCornerPhillar.cs" />
     <Compile Include="Content\Assets\Map\Objects\DoorLeft.cs" />
     <Compile Include="Content\Assets\Map\Objects\DoorRight.cs" />
     <Compile Include="Content\Assets\Map\Objects\Fridge.cs" />
