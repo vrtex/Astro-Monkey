@@ -10,8 +10,11 @@ namespace AstroMonkey.Assets.Objects
         public BaseProjectile(Core.Transform transform): base(transform)
         {
             Collider collider = new CircleCollider(this, CollisionChanell.Bullets, Vector2.Zero, 3);
-            collider.ClearReactions();
-            collider.SetReaction(CollisionChanell.Enemy, ReactType.Overlap);
+
+            var reactions = collider.GetReaction();
+            reactions[CollisionChanell.Enemy] = ReactType.Overlap;
+            collider.SetReaction(reactions);
+
             collider.OnBeginOverlap += OnHit;
             AddComponent(collider);
             AddComponent(new Body(this));
