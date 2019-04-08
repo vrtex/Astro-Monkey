@@ -94,7 +94,10 @@ namespace AstroMonkey.Assets.Scenes
 
             objects.Add(new Objects.Terminal(new Vector2(96f, 3f), new Vector2(sceneScale, sceneScale), (float)(Math.PI)));
             objects.Add(new Objects.ButtonWall(new Vector2(0f, 3f), new Vector2(sceneScale, sceneScale), (float)(Math.PI)));
-        }
+
+			objects.Add(new Objects.AmmoAmount());
+			objects.Add(new Objects.SimpleButton());
+		}
 
     }
 }

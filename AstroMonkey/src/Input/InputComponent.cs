@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework;
 
 namespace AstroMonkey.Input
 {
-    class InputCompoent : Core.Component
+    class InputComponent : Core.Component
     {
         Navigation.MovementComponent moveComp;
         private readonly AxisBinding verticalAxis;
@@ -11,7 +11,7 @@ namespace AstroMonkey.Input
         private Core.GameObject target = new Core.GameObject();
         private bool projectileToSpawn = false;
 
-        public InputCompoent(Core.GameObject parent) : base(parent)
+        public InputComponent(Core.GameObject parent) : base(parent)
         {
             moveComp = parent.GetComponent<Navigation.MovementComponent>();
             verticalAxis = new AxisBinding(Keys.S, Keys.W);

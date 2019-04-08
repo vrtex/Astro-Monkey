@@ -33,7 +33,7 @@ namespace AstroMonkey.Assets.Objects
             AddComponent(new Body(this));
 
             Navigation.MovementComponent moveComp =  (Navigation.MovementComponent)AddComponent(new Navigation.MovementComponent(this));
-            AddComponent(new Input.InputCompoent(this));
+            AddComponent(new Input.InputComponent(this));
 
             
             

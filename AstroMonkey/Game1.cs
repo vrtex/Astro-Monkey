@@ -32,7 +32,7 @@ namespace AstroMonkey
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-            Core.GameManager.Instance.InitializeGame(this);
+            Core.GameManager.Instance.InitializeGame(this, graphics);
 
             graphics.PreferredBackBufferWidth = 1280;
             graphics.PreferredBackBufferHeight = 720;

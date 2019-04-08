@@ -8,15 +8,17 @@ namespace AstroMonkey.Graphics
 {
     class ViewManager
     {
-        public static ViewManager Instance { get; private set; } = new ViewManager();
-        public List<Core.GameObject> sprites = new List<Core.GameObject>();
-        public List<Core.GameObject> floor = new List<Core.GameObject>();
-		public List<UI.UIElement> UI = new List<UI.UIElement>();
+        public static ViewManager			Instance { get; private set; } = new ViewManager();
+        public List<Core.GameObject>		sprites = new List<Core.GameObject>();
+        public List<Core.GameObject>		floor = new List<Core.GameObject>();
+		public List<UI.UIElement>			ui = new List<UI.UIElement>();
 		private Core.Transform _playerTransform;
         public Core.Transform PlayerTransform {
             get => _playerTransform ?? new Core.Transform();
             set => _playerTransform = value;
         }
+
+		public GraphicsDeviceManager        graphics;
 
         public Vector2 ScreenSize;
 
@@ -27,8 +29,17 @@ namespace AstroMonkey.Graphics
 
         }
 
+		public Vector2 WinSize()
+		{
+			return new Vector2(Instance.graphics.PreferredBackBufferWidth, Instance.graphics.PreferredBackBufferHeight);
+		}
 
-        public void AddSprite(Core.GameObject sprite)
+		public void AddSprite(UI.UIElement sprite)
+		{
+			ui.Add(sprite);
+		}
+
+		public void AddSprite(Core.GameObject sprite)
         {
             if(sprite is Assets.Objects.Floor) floor.Add(sprite);
             else sprites.Add(sprite);
@@ -97,8 +108,14 @@ namespace AstroMonkey.Graphics
                 }
             }
 
-            // Rysowanie colliderów
-            PhysicsManager.DrawAllColliders(spriteBatch);
+			ui.Sort();
+			foreach(UI.UIElement s in ui)
+			{
+				s.Draw(spriteBatch, PlayerTransform.position);
+			}
+
+			// Rysowanie colliderów
+			PhysicsManager.DrawAllColliders(spriteBatch);
 
             spriteBatch.End();
         }

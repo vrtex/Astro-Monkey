@@ -21,14 +21,17 @@ namespace AstroMonkey.Core
             Input.InputManager.Manager.AddActionBinding("ee", bind);
         }
 
-        public void InitializeGame(Game game)
+        public void InitializeGame(Game game, GraphicsDeviceManager graphics)
         {
             CurrentGame = game;
             //załadowanie grafik
             Graphics.SpriteContainer.Instance.LoadTextures(game);
 
-            //ustawienie kursora
-            Mouse.SetCursor(MouseCursor.FromTexture2D(Graphics.SpriteContainer.Instance.GetImage("mark"), 4, 4));
+			//przekazanie ViewManagerowi możliwość sterowania grafiką
+			Graphics.ViewManager.Instance.graphics = graphics;
+
+			//ustawienie kursora
+			Mouse.SetCursor(MouseCursor.FromTexture2D(Graphics.SpriteContainer.Instance.GetImage("mark"), 4, 4));
 
             //załadowanie sceny
             SceneManager.Instance.LoadScene("devroom");
@@ -80,7 +83,9 @@ namespace AstroMonkey.Core
                     if(gameObject.GetComponent<Graphics.Sprite>() != null)
                         Graphics.ViewManager.Instance.AddSprite(gameObject);
 
-                    gameObject.OnDestroy += QueueDestroy;
+					if(gameObject is UI.UIElement) Graphics.ViewManager.Instance.AddSprite(gameObject as UI.UIElement);
+
+					gameObject.OnDestroy += QueueDestroy;
                 }
                 Instance.toSpawn.Clear();
             }
