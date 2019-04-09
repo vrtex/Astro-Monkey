@@ -13,6 +13,17 @@ namespace AstroMonkey.Core
         private List<GameObject> toDestroy = new List<GameObject>();
         private bool bongo = false;
         private String nextScene = null;
+		public String NextScene
+		{
+			get => nextScene;
+			set
+			{
+				lock(Instance)
+				{
+					nextScene = value;
+				}
+			}
+		}
 
         static GameManager()
         {
@@ -34,7 +45,7 @@ namespace AstroMonkey.Core
 			Mouse.SetCursor(MouseCursor.FromTexture2D(Graphics.SpriteContainer.Instance.GetImage("mark"), 4, 4));
 
             //załadowanie sceny
-            SceneManager.Instance.LoadScene("devroom");
+            SceneManager.Instance.LoadScene("menu");
 
             //przeszukiwanie obiektów i podpinanie referenzji do komponenetów
             //pod odpowiednie zarządzające klasy (animator, sprite, stack animator, stack sprite,...)
@@ -111,6 +122,11 @@ namespace AstroMonkey.Core
                     if(colliders.Count != 0)
                         foreach(var c in colliders)
                             Physics.PhysicsManager.RemoveCollider(c);
+
+					if(gameObject is UI.UIElement)
+					{
+						Graphics.ViewManager.Instance.RemoveSprite(gameObject as UI.UIElement);
+					}
                 }
                 Instance.toDestroy.Clear();
             }

@@ -22,6 +22,7 @@ namespace AstroMonkey.Assets.Scenes
 			(objects.Last() as Objects.TextButton).SetTextButton("New Game", "planetary", 
 																new Vector2(1f, 0.2f), 
 																new Vector2(0.25f, 0.05f));
+			(objects.Last() as Objects.TextButton).onClick += PlayGame;
 			objects.Add(new Objects.TextButton());
 			(objects.Last() as Objects.TextButton).SetTextButton("Load Game", "planetary",
 																new Vector2(1f, 0.3f),
@@ -43,6 +44,11 @@ namespace AstroMonkey.Assets.Scenes
 			(objects.Last() as UI.Text).SetTextButton("AstroMonkey", "planetary",
 																new Vector2(0.5f, 0.1f),
 																new Vector2(0.25f, 0.1f));
+		}
+
+		void PlayGame(Objects.TextButton textButton)
+		{
+			GameManager.Instance.NextScene = "devroom";
 		}
 	}
 }

@@ -45,6 +45,11 @@ namespace AstroMonkey.Graphics
             else sprites.Add(sprite);
         }
 
+		public void RemoveSprite(UI.UIElement sprite)
+		{
+			ui.Remove(sprite);
+		}
+
         public void RemoveSprite(Core.GameObject sprite)
         {
             floor.RemoveAll( x => x.Equals(sprite));

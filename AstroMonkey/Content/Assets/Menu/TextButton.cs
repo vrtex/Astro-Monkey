@@ -14,6 +14,9 @@ namespace AstroMonkey.Assets.Objects
 {
 	class TextButton: UI.Text
 	{
+		public delegate void clickEvent(TextButton textButton);
+		public event clickEvent onClick;
+
 		public TextButton() : this(new Transform())
 		{
 		}
@@ -63,7 +66,7 @@ namespace AstroMonkey.Assets.Objects
 		public override void OnClick()
 		{
 			if(!enable) return;
-			Debug.WriteLine("Jestem kliknięty");
+			onClick?.Invoke(this);
 		}
 
 		public override void OnEnter()
