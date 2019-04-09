@@ -8,6 +8,7 @@
 *.[Oo]bj
 *.exe
 !semi-finished/scripts/*.exe
+!semi-finished/imagegrid/*.exe
 *.pdb
 *.user
 *.aps
