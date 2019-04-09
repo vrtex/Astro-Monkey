@@ -12,30 +12,35 @@ using System.Diagnostics;
 
 namespace AstroMonkey.Assets.Objects
 {
-	class AmmoAmount: UI.Text
+	class TextButton: UI.Text
 	{
-		public AmmoAmount() : this(new Transform())
-        {
+		public TextButton() : this(new Transform())
+		{
 		}
-		public AmmoAmount(Transform _transform) : base(_transform)
-        {
+		public TextButton(Transform _transform) : base(_transform)
+		{
+		}
+		public TextButton(Vector2 position, Vector2 scale, float rotation = 0f) : this(new Core.Transform(position, scale, rotation))
+		{
+		}
+		public TextButton(Vector2 position) : this(new Core.Transform(position, Vector2.One))
+		{
+		}
+
+		public void SetTextButton(string text, string fontName, Vector2 anchorPosition, Vector2 anchorSize)
+		{
+			this.anchorPosition = anchorPosition;
+			this.anchorSize = anchorSize;
+			this.text = text;
+			this.fontName = fontName;
+			color = Util.Statics.AstroColor(28);
+
 			Load();
 		}
-		public AmmoAmount(Vector2 position, Vector2 scale, float rotation = 0f) : this(new Core.Transform(position, scale, rotation))
-        {
-		}
-		public AmmoAmount(Vector2 position) : this(new Core.Transform(position, Vector2.One))
-        {
-		}
-		
+
 		private void Load()
 		{
-			anchorPosition = new Vector2(0.1f, 0.2f);
-			anchorSize = new Vector2(0.2f, 0.1f);
-			fontName = "planetary";
-
 			AnchorToWorldspace(1f);
-
 			AddComponent(new Input.InputUI(this));
 		}
 
@@ -52,24 +57,24 @@ namespace AstroMonkey.Assets.Objects
 		public override void Draw(SpriteBatch spriteBatch, Vector2 centerPos)
 		{
 			if(!enable) return;
-			spriteBatch.DrawString(SpriteContainer.Instance.GetFont(fontName), "jestem napis", WorldspaceToScreenspace(centerPos), color);
+			spriteBatch.DrawString(SpriteContainer.Instance.GetFont(fontName), text, WorldspaceToScreenspace(centerPos), color);
 		}
 
 		public override void OnClick()
 		{
 			if(!enable) return;
-			Debug.WriteLine("Jestem klikniety");
+			Debug.WriteLine("Jestem kliknięty");
 		}
 
 		public override void OnEnter()
 		{
 			if(!enable) return;
-			color = Color.Red;
+			color = Util.Statics.AstroColor(9);
 		}
 		public override void OnExit()
 		{
 			if(!enable) return;
-			color = Color.White;
+			color = Util.Statics.AstroColor(28);
 		}
 
 	}

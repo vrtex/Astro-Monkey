@@ -51,6 +51,7 @@
     <Compile Include="Content\Assets\Characters\Player\Player.cs" />
     <Compile Include="Content\Assets\HUD\AmmoAmount.cs" />
     <Compile Include="Content\Assets\HUD\EnemyHealthBar.cs" />
+    <Compile Include="Content\Assets\Menu\MenuCenter.cs" />
     <Compile Include="Content\Assets\HUD\SimpleButton.cs" />
     <Compile Include="Content\Assets\Items\AmmoGun.cs" />
     <Compile Include="Content\Assets\Items\AmmoLuncher.cs" />
@@ -99,6 +100,7 @@
     <Compile Include="Content\Assets\Map\Objects\Table.cs" />
     <Compile Include="Content\Assets\Map\Objects\Wall.cs" />
     <Compile Include="Content\Assets\Map\Objects\WallDoor.cs" />
+    <Compile Include="Content\Assets\Menu\TextButton.cs" />
     <Compile Include="Content\Assets\Projectiles\AlienBullet.cs" />
     <Compile Include="Content\Assets\Projectiles\BulletHit.cs" />
     <Compile Include="Content\Assets\Projectiles\Poop.cs" />
@@ -106,6 +108,7 @@
     <Compile Include="Content\Assets\Scenes\Basement.cs" />
     <Compile Include="Content\Assets\Scenes\ColliderRoom.cs" />
     <Compile Include="Content\Assets\Scenes\DevRoom.cs" />
+    <Compile Include="Content\Assets\Scenes\MainMenu.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

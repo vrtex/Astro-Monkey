@@ -52,5 +52,14 @@ namespace AstroMonkey.Assets.Objects
 			Debug.WriteLine("Jestem klikniety");
 		}
 
+		public override void OnEnter()
+		{
+			image.color = Color.Red;
+		}
+		public override void OnExit()
+		{
+			image.color = Color.White;
+		}
+
 	}
 }
