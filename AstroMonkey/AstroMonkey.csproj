@@ -116,6 +116,7 @@
     <Compile Include="src\Core\GameManager.cs" />
     <Compile Include="src\Core\GameObject.cs" />
     <Compile Include="src\Core\ObjectManager.cs" />
+    <Compile Include="src\Core\ObjectsDictionary.cs" />
     <Compile Include="src\Core\Scene.cs" />
     <Compile Include="src\Core\SceneManager.cs" />
     <Compile Include="src\Core\Transform.cs" />
