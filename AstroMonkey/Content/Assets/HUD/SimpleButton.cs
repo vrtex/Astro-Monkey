@@ -15,7 +15,6 @@ namespace AstroMonkey.Assets.Objects
 	{
 		public SimpleButton() : this(new Transform())
         {
-			Load();
 		}
 		public SimpleButton(Transform _transform) : base(_transform)
         {

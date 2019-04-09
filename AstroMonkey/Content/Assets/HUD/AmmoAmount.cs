@@ -16,7 +16,6 @@ namespace AstroMonkey.Assets.Objects
 	{
 		public AmmoAmount() : this(new Transform())
         {
-			Load();
 		}
 		public AmmoAmount(Transform _transform) : base(_transform)
         {
