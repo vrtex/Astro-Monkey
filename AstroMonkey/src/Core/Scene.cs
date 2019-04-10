@@ -59,7 +59,7 @@ namespace AstroMonkey.Core
                         if(index == 0)
                             continue;
 
-                        SpwanUsingTypeIndex(i / mapWidth, i % mapWidth, index);
+                        SpwanUsingTypeIndex(i % mapWidth, i / mapWidth, index);
                     }
                     // TODO this thing
                 }
@@ -70,11 +70,15 @@ namespace AstroMonkey.Core
         {
             Tuple<Type, float> objectInfo = ObjectsDictionary.objects[index];
 
-            Transform spawnTransform = new Transform();
-            spawnTransform.rotation = objectInfo.Item2;
-            spawnTransform.scale = new Vector2(sceneScale, sceneScale);
+            float spacing = 128;
 
-            GameObject spawned = (GameObject)Activator.CreateInstance(objectInfo.Item1, new object[] {spawnTransform}, null);
+            Transform spawnTransform = new Transform(
+                new Vector2(x * spacing, y * spacing),
+                new Vector2(sceneScale, sceneScale),
+                objectInfo.Item2
+                );
+
+            GameObject spawned = (GameObject)Activator.CreateInstance(objectInfo.Item1, new object[] {spawnTransform});
 
             GameManager.SpawnObject(spawned);
         }
@@ -84,6 +88,17 @@ namespace AstroMonkey.Core
             foreach(GameObject obj in objects)
                 obj.Destroy();
             Graphics.ViewManager.Instance.PlayerTransform = null;
+        }
+
+        public List<T> GetObjectsByClass<T>() where T : GameObject
+        {
+            List<T> toReturn = new List<T>();
+
+            foreach(GameObject o in objects)
+                if(o is T)
+                    toReturn.Add((T)o);
+
+            return toReturn;
         }
     }
 }

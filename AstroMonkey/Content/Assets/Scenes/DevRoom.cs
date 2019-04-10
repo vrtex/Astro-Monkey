@@ -15,6 +15,13 @@ namespace AstroMonkey.Assets.Scenes
         {
             base.Load();
             LoadFromFile("Content/Maps/AstroMonkey.tmx");
+            Core.GameManager.FinalizeSpwaning();
+
+            Objects.Player playerObject = GetObjectsByClass<Assets.Objects.Player>()[0];
+            if(playerObject == null)
+                throw new ApplicationException("something went wrong");
+            Graphics.ViewManager.Instance.PlayerTransform = playerObject.transform;
+
             return;
             //DODAWANIE PODŁOGI
             for(int x = -1; x < 11; ++x)
@@ -98,8 +105,9 @@ namespace AstroMonkey.Assets.Scenes
             objects.Add(new Objects.ButtonWall(new Vector2(0f, 3f), new Vector2(sceneScale, sceneScale), (float)(Math.PI)));
 
 			objects.Add(new Objects.AmmoAmount());
-			//objects.Add(new Objects.SimpleButton());
-		}
+            //objects.Add(new Objects.SimpleButton());
+
+        }
 
     }
 }
