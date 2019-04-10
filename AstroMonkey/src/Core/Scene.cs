@@ -2,6 +2,7 @@
 using System.Text.RegularExpressions;
 using System;
 using System.IO;
+using Microsoft.Xna.Framework;
 
 namespace AstroMonkey.Core
 {
@@ -24,7 +25,9 @@ namespace AstroMonkey.Core
 
         public void LoadFromFile(string filepath)
         {
-            using(StreamReader fs = File.OpenText("AstroMonkey.tmx"))
+            int mapWidth = 0;
+            int mapHeight = 0;
+            using(StreamReader fs = File.OpenText(filepath))
             {
                 string file = fs.ReadToEnd();
                 file = Regex.Replace(file, @"\n", "");
@@ -35,8 +38,10 @@ namespace AstroMonkey.Core
                 {
                     Group g1 = m.Groups[1];
                     Group g2 = m.Groups[2];
-                    Console.WriteLine(g1);
-                    Console.WriteLine(g2);
+                    mapWidth = int.Parse(g1.Value);
+                    mapHeight = int.Parse(g2.Value);
+                    Console.WriteLine(mapWidth);
+                    Console.WriteLine(mapHeight);
                 }
 
                 Regex regex = new Regex(@"<data encoding=.csv.>(.*?)<\/data>");
@@ -46,10 +51,32 @@ namespace AstroMonkey.Core
                 {
                     GroupCollection groups = m.Groups;
                     string[] objects = groups[1].Value.Split(',');
+                    int i = 0;
+                    foreach(string o in objects)
+                    {
+                        ++i;
+                        int index = int.Parse(o);
+                        if(index == 0)
+                            continue;
 
+                        SpwanUsingTypeIndex(i / mapWidth, i % mapWidth, index);
+                    }
                     // TODO this thing
                 }
             }
+        }
+
+        private void SpwanUsingTypeIndex(int x, int y, int index)
+        {
+            Tuple<Type, float> objectInfo = ObjectsDictionary.objects[index];
+
+            Transform spawnTransform = new Transform();
+            spawnTransform.rotation = objectInfo.Item2;
+            spawnTransform.scale = new Vector2(sceneScale, sceneScale);
+
+            GameObject spawned = (GameObject)Activator.CreateInstance(objectInfo.Item1, new object[] {spawnTransform}, null);
+
+            GameManager.SpawnObject(spawned);
         }
 
         public virtual void UnLoad()

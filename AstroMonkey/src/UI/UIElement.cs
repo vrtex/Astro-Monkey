@@ -7,6 +7,7 @@ namespace AstroMonkey.UI
 {
     class UIElement: Core.GameObject, IComparable<UIElement>
     {
+		public bool         enable				= true;
         public int			zOrder				= 0;
         public Vector2      anchorPosition		= Vector2.Zero;
 		public Vector2		anchorSize			= Vector2.Zero;
@@ -25,11 +26,6 @@ namespace AstroMonkey.UI
             return sort;
         }
 
-		public virtual void Draw(SpriteBatch spriteBatch, Vector2 centerPos)
-		{
-
-		}
-
 		//scaleWidthFactor - względem której długości krawędzi ma się skalować interfejs
 		//0 względem wysokości | 1 względem szerokości | wszystko pomiędzy jest procentowo
 		protected void AnchorToWorldspace(float scaleWidthFactor)
@@ -45,9 +41,10 @@ namespace AstroMonkey.UI
 			position.Height = (int)Math.Floor(anchorSize.Y * windowSize);
 		}
 
-		public virtual void OnClick()
-		{
-			
-		}
+		public virtual Vector2 WorldspaceToScreenspace(Vector2 centerPos) { return Vector2.Zero; }
+		public virtual void Draw(SpriteBatch spriteBatch, Vector2 centerPos) {}
+		public virtual void OnClick() {}
+		public virtual void OnEnter() {}
+		public virtual void OnExit() {}
 	}
 }

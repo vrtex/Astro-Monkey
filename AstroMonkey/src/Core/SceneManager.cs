@@ -17,7 +17,8 @@ namespace AstroMonkey.Core
             scenes.Add("devroom", new Assets.Scenes.DevRoom());
             scenes.Add("basement", new Assets.Scenes.Basement());
             scenes.Add("colliderroom", new Assets.Scenes.ColliderRoom());
-        }
+			scenes.Add("menu", new Assets.Scenes.MainMenu());
+		}
 
         public void LoadScene(string name)
         {
