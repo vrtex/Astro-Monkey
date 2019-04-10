@@ -28,7 +28,6 @@ namespace AstroMonkey.Assets.Objects
 
         private void Load(Core.Transform _transform)
         {
-            transform = _transform;
 
             // Physics
             AddComponent(new Body(this));

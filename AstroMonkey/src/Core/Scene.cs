@@ -64,16 +64,17 @@ namespace AstroMonkey.Core
                     // TODO this thing
                 }
             }
+            GameManager.FinalizeSpwaning();
         }
 
         private void SpwanUsingTypeIndex(int x, int y, int index)
         {
             Tuple<Type, float> objectInfo = ObjectsDictionary.objects[index];
 
-            float spacing = 128;
+            float spacing = 32;
 
             Transform spawnTransform = new Transform(
-                new Vector2(x * spacing, y * spacing),
+                new Vector2(x * spacing, y * spacing) * sceneScale,
                 new Vector2(sceneScale, sceneScale),
                 objectInfo.Item2
                 );

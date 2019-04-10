@@ -14,6 +14,7 @@ namespace AstroMonkey.Assets.Scenes
         public override void Load()
         {
             base.Load();
+
             LoadFromFile("Content/Maps/AstroMonkey.tmx");
             Core.GameManager.FinalizeSpwaning();
 
