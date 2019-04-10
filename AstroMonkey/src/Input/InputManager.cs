@@ -149,6 +149,12 @@ namespace AstroMonkey.Input
             return null;
         }
 
+        public void RemoveBinding(string name)
+        {
+            axisBindings.Remove(name);
+            actionBindings.Remove(name);
+        }
+
         private void OnTick(Object o, ElapsedEventArgs args)
         {
             Update();

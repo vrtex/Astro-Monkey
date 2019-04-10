@@ -18,5 +18,10 @@ namespace AstroMonkey.Core
         }
 
         public virtual void Update(GameTime gameTime) { }
+
+        public virtual void Destroy()
+        {
+            // parent.RemoveComponent(this);
+        }
     }
 }

@@ -15,9 +15,10 @@ namespace AstroMonkey.UI
 		}
 		public Text(Core.Transform _transform) : base(_transform)
         {	
-		}
+			Load();
+        }
 
-		public Text(string text, string fontName, Vector2 anchorPosition, Vector2 anchorSize) : this(new Core.Transform())
+        public Text(string text, string fontName, Vector2 anchorPosition, Vector2 anchorSize) : this(new Core.Transform())
 		{
 			SetText(text, fontName, anchorPosition, anchorSize);
 		}
@@ -30,7 +31,6 @@ namespace AstroMonkey.UI
 			this.fontName = fontName;
 			color = Util.Statics.AstroColor(28);
 
-			Load();
 		}
 
 		public void Load()

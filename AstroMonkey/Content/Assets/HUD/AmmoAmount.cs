@@ -36,7 +36,7 @@ namespace AstroMonkey.Assets.Objects
 
 			AnchorToWorldspace(1f);
 
-			AddComponent(new Input.InputUI(this));
+			// AddComponent(new Input.InputUI(this));
 		}
 
 		public override Vector2 WorldspaceToScreenspace(Vector2 centerPos)
