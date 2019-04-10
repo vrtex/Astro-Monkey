@@ -19,7 +19,9 @@ namespace AstroMonkey
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
-            Content.RootDirectory = "Content";
+			graphics.HardwareModeSwitch = true;
+			graphics.SynchronizeWithVerticalRetrace = true;
+			Content.RootDirectory = "Content";
             inputManager = InputManager.Manager;
         }
 
