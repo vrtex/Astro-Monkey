@@ -7,6 +7,9 @@ namespace AstroMonkey.Core
         public bool active;
         protected GameObject parent;
 
+        public delegate void DestroyEvent(Component destroyed);
+        public event DestroyEvent OnDestroy;
+
         public GameObject Parent {
             get { return parent; }
         }
@@ -21,6 +24,7 @@ namespace AstroMonkey.Core
 
         public virtual void Destroy()
         {
+            OnDestroy?.Invoke(this);
             // parent.RemoveComponent(this);
         }
     }
