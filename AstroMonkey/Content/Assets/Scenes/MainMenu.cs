@@ -86,6 +86,11 @@ namespace AstroMonkey.Assets.Scenes
 			(objects.Last() as Objects.TextButton).value = 5;
 
 			//++++++++++++++++++++++++++++++++++++++++++OPCJE++++++++++++++++++++++++++++++++++++++++++++++
+			objects.Add(new UI.Slider(new Vector2(0.1f, 0.2f), new Vector2(0.32f, 0.05f), 1f));
+			//(objects.Last() as Objects.TextButton).onClick += SetFullscreen;
+			//settings.Add(objects.Last() as UI.UIElement);
+			//(objects.Last() as UI.UIElement).enable = false;
+
 			objects.Add(new Objects.TextButton("[ ] Fullscreen", "planetary", new Vector2(0.1f, 0.2f), new Vector2(0.32f, 0.05f)));
 			(objects.Last() as Objects.TextButton).onClick += SetFullscreen;
 			settings.Add(objects.Last() as UI.UIElement);
