@@ -91,6 +91,12 @@ namespace AstroMonkey.Core
             Graphics.ViewManager.Instance.PlayerTransform = null;
         }
 
+        protected void RepairSpawns()
+        {
+            foreach(GameObject gameObject in objects)
+                GameManager.SpawnObject(gameObject);
+        }
+
         public List<T> GetObjectsByClass<T>() where T : GameObject
         {
             List<T> toReturn = new List<T>();

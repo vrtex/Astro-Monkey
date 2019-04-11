@@ -45,7 +45,7 @@ namespace AstroMonkey.Core
 			Mouse.SetCursor(MouseCursor.FromTexture2D(Graphics.SpriteContainer.Instance.GetImage("mark"), 4, 4));
 
             //załadowanie sceny
-            SceneManager.Instance.LoadScene("devroom");
+            SceneManager.Instance.LoadScene("basement");
 
             //przeszukiwanie obiektów i podpinanie referenzji do komponenetów
             //pod odpowiednie zarządzające klasy (animator, sprite, stack animator, stack sprite,...)
@@ -54,12 +54,13 @@ namespace AstroMonkey.Core
 
         }
 
-        public static void SpawnObject(GameObject gameObject)
+        public static T SpawnObject<T>(T gameObject) where T : GameObject
         {
             lock(Instance.toSpawn)
             {
                 Instance.toSpawn.Add(gameObject);
             }
+            return gameObject;
         }
 
         public static void DestroyObject(GameObject gameObject)
