@@ -147,6 +147,8 @@ namespace AstroMonkey.Assets.Scenes
 			objects.Add(new UI.Text("www.dafont.com/planetary-contact.font", "planetary", new Vector2(0.1f, 0.7f), new Vector2(0.25f, 0.1f)));
 			authors.Add(objects.Last() as UI.UIElement);
 			(objects.Last() as UI.UIElement).enable = false;
+
+            RepairSpawns();
 		}
 
 		void PlayGame(Objects.TextButton textButton)

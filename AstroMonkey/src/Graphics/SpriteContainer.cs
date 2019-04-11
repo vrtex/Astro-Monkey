@@ -77,6 +77,10 @@ namespace AstroMonkey.Graphics
         {
             Texture2D tex = null;
             images.TryGetValue(name, out tex);
+
+            if(tex == null)
+                throw new System.ApplicationException("Texture " + name + " does not exist");
+
             return tex;
         }
 

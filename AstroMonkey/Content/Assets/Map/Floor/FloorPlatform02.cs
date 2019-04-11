@@ -23,7 +23,7 @@ namespace AstroMonkey.Assets.Objects
         private void Load(Core.Transform _transform)
         {
             transform = _transform;
-            AddComponent(new Graphics.Sprite(this, "floorPlatform0", new List<Rectangle> { new Rectangle(32, 0, 32, 32) }));
+            AddComponent(new Graphics.Sprite(this, "floorPlatform", new List<Rectangle> { new Rectangle(32, 0, 32, 32) }));
         }
     }
 }

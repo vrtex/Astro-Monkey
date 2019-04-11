@@ -108,6 +108,7 @@
     <Compile Include="Content\Assets\Scenes\Basement.cs" />
     <Compile Include="Content\Assets\Scenes\ColliderRoom.cs" />
     <Compile Include="Content\Assets\Scenes\DevRoom.cs" />
+    <Compile Include="Content\Assets\Scenes\Level1.cs" />
     <Compile Include="Content\Assets\Scenes\MainMenu.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="Program.cs" />
@@ -119,6 +120,7 @@
     <Compile Include="src\Core\GameManager.cs" />
     <Compile Include="src\Core\GameObject.cs" />
     <Compile Include="src\Core\ObjectManager.cs" />
+    <Compile Include="src\Core\ObjectsDictionary.cs" />
     <Compile Include="src\Core\Scene.cs" />
     <Compile Include="src\Core\SceneManager.cs" />
     <Compile Include="src\Core\Transform.cs" />
@@ -218,11 +220,10 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="app.manifest" />
-    <None Include="Content\Map\AstroMonkey.tmx">
-      <SubType>Designer</SubType>
-    </None>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Content\Map\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
