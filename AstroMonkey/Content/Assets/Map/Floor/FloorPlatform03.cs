@@ -4,7 +4,7 @@ using System;
 
 namespace AstroMonkey.Assets.Objects
 {
-    class FloorPlatform03: Core.GameObject
+    class FloorPlatform03: Floor
     {
         public FloorPlatform03() : this(new Core.Transform())
         {
