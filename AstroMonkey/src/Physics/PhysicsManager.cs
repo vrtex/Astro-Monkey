@@ -10,8 +10,8 @@ namespace AstroMonkey.Physics
     public static class PhysicsManager
     {
         private static List<Collider.Collider> colliders = new List<Collider.Collider>();
-        
-        
+        static GameObject tempGO = new GameObject(new Transform());
+
         public enum Direction
         {
             LEFT,
@@ -164,9 +164,8 @@ namespace AstroMonkey.Physics
             Vector2 point = new Vector2(pointX, pointY);
 
             // hacki soł macz
-            GameObject go = new GameObject(new Transform());
-            go.transform.position = point;
-            ResolveCollision(c1, new CircleCollider(go, CollisionChanell.Object, Vector2.Zero, 1, true));
+            tempGO.transform.position = point;
+            ResolveCollision(c1, new CircleCollider(tempGO, CollisionChanell.Object, Vector2.Zero, 1, true));
         }
 
         private static void ResolveCollision(BoxCollider c2, CircleCollider c1)
