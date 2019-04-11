@@ -457,6 +457,9 @@
 /processorParam:TextureFormat=Color
 /build:gfx/UI/HUD/mark.png
 
+#begin Map/AstroMonkey.tmx
+/copy:Map/AstroMonkey.tmx
+
 #begin sfx/bottle_pop_2.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
