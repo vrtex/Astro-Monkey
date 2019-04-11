@@ -38,6 +38,7 @@ namespace AstroMonkey.Assets.Objects
             // Physics
             AddComponent(new Body(this));
             AddComponent(new CircleCollider(this, CollisionChanell.Enemy, Vector2.Zero, size / 3));
+            //AddComponent(new CircleCollider(this, CollisionChanell.Hitbox, Vector2.Zero, size / 2));
             
 
             List<Rectangle> idle01 = new List<Rectangle>();

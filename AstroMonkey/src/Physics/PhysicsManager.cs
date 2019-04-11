@@ -271,7 +271,9 @@ namespace AstroMonkey.Physics
         /// </summary>
         public static bool IsBlocking(Collider.Collider c1, Collider.Collider c2)
         {
-            return c1.GetReaction(c2.GetCollisionChanell()).Equals(ReactType.Block);
+            bool reaction1 = c1.GetReaction(c2.GetCollisionChanell()).Equals(ReactType.Block);
+            bool reaction2 = c2.GetReaction(c1.GetCollisionChanell()).Equals(ReactType.Block);
+            return (reaction1 == reaction2) && reaction1;
         }
 
         /// <summary>
@@ -279,7 +281,14 @@ namespace AstroMonkey.Physics
         /// </summary>
         public static bool IsOverlaping(Collider.Collider c1, Collider.Collider c2)
         {
-            return c1.GetReaction(c2.GetCollisionChanell()).Equals(ReactType.Overlap);
+            ReactType reaction1 = c1.GetReaction(c2.GetCollisionChanell());
+            ReactType reaction2 = c2.GetReaction(c1.GetCollisionChanell());
+
+            if (reaction1.Equals(ReactType.Overlap) || reaction2.Equals(ReactType.Overlap))
+            {
+                return true;
+            }
+            return false;
         }
     }
 }

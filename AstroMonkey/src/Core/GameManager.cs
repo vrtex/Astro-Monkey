@@ -153,7 +153,7 @@ namespace AstroMonkey.Core
             Instance.nextScene = "";
             lock(Instance.nextScene)
             {
-                Instance.nextScene = Instance.bongo ? "devroom" : "basement";
+                Instance.nextScene = Instance.bongo ? "basement" : "devroom";
                 //if(!Instance.bongo)
                 //    SceneManager.Instance.LoadScene("basement");
                 //else

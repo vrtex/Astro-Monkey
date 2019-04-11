@@ -28,7 +28,7 @@ namespace AstroMonkey.Assets.Objects
             transform = _transform;
 
             // Physics
-            AddComponent(new BoxCollider(this, CollisionChanell.Object, new Vector2(0, 10), 32, 12));
+            AddComponent(new BoxCollider(this, CollisionChanell.Object, new Vector2(0, 0), 12, 12));
 
             List<Rectangle> temp = new List<Rectangle>();
             for(int i = 0; i < 21; ++i)
