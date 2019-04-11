@@ -75,6 +75,11 @@ namespace AstroMonkey.Core
             }
         }
 
+		public Game GetGame()
+		{
+			return CurrentGame;
+		}
+
         public static void FinalizeSpwaning()
         {
 

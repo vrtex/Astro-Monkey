@@ -14,15 +14,28 @@ namespace AstroMonkey.Input
 
 		public InputUI(Core.GameObject parent) : base(parent)
 		{
-			ActionBinding clicked = new ActionBinding(EMouseButton.Left);
+            ActionBinding clicked;
+            clicked = InputManager.Manager.GetActionBinding("click");
+            if(clicked == null)
+                clicked = new ActionBinding(EMouseButton.Left);
 
-			clicked.OnTrigger += OnClick;
+            clicked.OnTrigger += OnClick;
 
-			InputManager.Manager.AddActionBinding("click", clicked);
+            if(InputManager.Manager.GetActionBinding("click") == null)
+			    InputManager.Manager.AddActionBinding("click", clicked);
+
+            InputManager.Manager.OnMouseMove += MouseMove;
 		}
 
-		private void OnClick() //wykrycie kliknięcia w obszar elementu UI
+        private void MouseMove(MouseInputEventArgs mouseArgs)
+        {
+            OnEnter();
+            OnExit();
+        }
+
+        private void OnClick() //wykrycie kliknięcia w obszar elementu UI
 		{
+            Console.WriteLine("click " + (parent as UI.UIElement).position );
 			Vector2 mousePos = InputManager.Manager.MouseCursor;
 			Rectangle parentPos = (parent as UI.UIElement).position;
 			
@@ -71,11 +84,12 @@ namespace AstroMonkey.Input
 			}
 		}
 
-		public override void Update(GameTime gameTime)
-		{
-			base.Update(gameTime);
-			OnEnter();
-			OnExit();
-		}
-	}
+        public override void Destroy()
+        {
+            base.Destroy();
+            Console.WriteLine("lol " + (parent as UI.UIElement).position );
+            Input.InputManager.Manager.GetActionBinding("click").OnTrigger -= OnClick;
+            InputManager.Manager.OnMouseMove -= MouseMove;
+        }
+    }
 }

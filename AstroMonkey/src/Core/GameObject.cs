@@ -32,6 +32,12 @@ namespace AstroMonkey.Core
             return component;
         }
 
+        public Component RemoveComponent(Component component)
+        {
+            components.RemoveAll(x => x == component);
+            return component;
+        }
+
         public List<T> GetComponents<T>() where T: Component
         {
             List<T> toReturn = new List<T>();
@@ -59,6 +65,8 @@ namespace AstroMonkey.Core
 
         public virtual void Destroy()
         {
+            foreach(Component c in components)
+                c.Destroy();
             OnDestroy?.Invoke(this);
         }
     }

@@ -16,6 +16,7 @@ namespace AstroMonkey.Assets.Objects
 	{
 		public delegate void clickEvent(TextButton textButton);
 		public event clickEvent onClick;
+		public int value = 0;
 
 		public TextButton() : this(new Transform())
 		{
@@ -30,7 +31,12 @@ namespace AstroMonkey.Assets.Objects
 		{
 		}
 
-		public void SetTextButton(string text, string fontName, Vector2 anchorPosition, Vector2 anchorSize)
+		public TextButton(string text, string fontName, Vector2 anchorPosition, Vector2 anchorSize) : this(new Core.Transform())
+		{
+			SetText(text, fontName, anchorPosition, anchorSize);
+		}
+
+		public void SetText(string text, string fontName, Vector2 anchorPosition, Vector2 anchorSize)
 		{
 			this.anchorPosition = anchorPosition;
 			this.anchorSize = anchorSize;
@@ -41,7 +47,7 @@ namespace AstroMonkey.Assets.Objects
 			Load();
 		}
 
-		private void Load()
+		public void Load()
 		{
 			AnchorToWorldspace(1f);
 			AddComponent(new Input.InputUI(this));

@@ -15,9 +15,15 @@ namespace AstroMonkey.UI
 		}
 		public Text(Core.Transform _transform) : base(_transform)
         {	
+			Load();
+        }
+
+        public Text(string text, string fontName, Vector2 anchorPosition, Vector2 anchorSize) : this(new Core.Transform())
+		{
+			SetText(text, fontName, anchorPosition, anchorSize);
 		}
 
-		public void SetTextButton(string text, string fontName, Vector2 anchorPosition, Vector2 anchorSize)
+		public void SetText(string text, string fontName, Vector2 anchorPosition, Vector2 anchorSize)
 		{
 			this.anchorPosition = anchorPosition;
 			this.anchorSize = anchorSize;
@@ -25,10 +31,9 @@ namespace AstroMonkey.UI
 			this.fontName = fontName;
 			color = Util.Statics.AstroColor(28);
 
-			Load();
 		}
 
-		private void Load()
+		public void Load()
 		{
 			AnchorToWorldspace(1f);
 			AddComponent(new Input.InputUI(this));
@@ -47,7 +52,7 @@ namespace AstroMonkey.UI
 		public override void Draw(SpriteBatch spriteBatch, Vector2 centerPos)
 		{
 			if(!enable) return;
-			spriteBatch.DrawString(SpriteContainer.Instance.GetFont(fontName), text, WorldspaceToScreenspace(centerPos), color);
+			spriteBatch.DrawString(SpriteContainer.Instance.GetFont(fontName), this.text, WorldspaceToScreenspace(centerPos), color);
 		}
 
 		public override void OnClick() { }
