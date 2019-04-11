@@ -15,12 +15,13 @@ namespace AstroMonkey.UI
 		}
 		public Text(Core.Transform _transform) : base(_transform)
         {	
-			Load();
+			
         }
 
         public Text(string text, string fontName, Vector2 anchorPosition, Vector2 anchorSize) : this(new Core.Transform())
 		{
 			SetText(text, fontName, anchorPosition, anchorSize);
+			Load();
 		}
 
 		public void SetText(string text, string fontName, Vector2 anchorPosition, Vector2 anchorSize)
@@ -30,13 +31,12 @@ namespace AstroMonkey.UI
 			this.text = text;
 			this.fontName = fontName;
 			color = Util.Statics.AstroColor(28);
-
+			AnchorToWorldspace(1f);
 		}
 
 		public void Load()
 		{
-			AnchorToWorldspace(1f);
-			AddComponent(new Input.InputUI(this));
+			
 		}
 
 		public override Vector2 WorldspaceToScreenspace(Vector2 centerPos)

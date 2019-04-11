@@ -34,6 +34,7 @@ namespace AstroMonkey.Assets.Objects
 		public TextButton(string text, string fontName, Vector2 anchorPosition, Vector2 anchorSize) : this(new Core.Transform())
 		{
 			SetText(text, fontName, anchorPosition, anchorSize);
+			Load();
 		}
 
 		public void SetText(string text, string fontName, Vector2 anchorPosition, Vector2 anchorSize)
@@ -43,13 +44,12 @@ namespace AstroMonkey.Assets.Objects
 			this.text = text;
 			this.fontName = fontName;
 			color = Util.Statics.AstroColor(28);
-
-			Load();
+			AnchorToWorldspace(1f);
 		}
 
 		public void Load()
 		{
-			AnchorToWorldspace(1f);
+			
 			AddComponent(new Input.InputUI(this));
 		}
 
