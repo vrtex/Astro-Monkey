@@ -11,7 +11,7 @@ namespace AstroMonkey.Assets.Scenes
         public override void Load()
         {
             base.Load();
-            LoadFromFile("Content/Maps/AstroMonkey.tmx");
+            LoadFromFile("Content/Map/AstroMonkey.tmx");
 
             Objects.Player playerObject = GetObjectsByClass<Assets.Objects.Player>()[0];
             if(playerObject == null)
