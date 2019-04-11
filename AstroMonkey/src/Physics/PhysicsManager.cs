@@ -247,7 +247,10 @@ namespace AstroMonkey.Physics
         /// </summary>
         public static bool CanMove(Collider.Collider collider)
         {
-            return collider.Parent.GetComponent<Body>() != null && collider.Parent.GetComponent<Body>().movable;
+            var body = collider.Parent.GetComponent<Body>();
+            if(body == null)
+                return false;
+            return body.movable;
         }
 
         /// <summary>

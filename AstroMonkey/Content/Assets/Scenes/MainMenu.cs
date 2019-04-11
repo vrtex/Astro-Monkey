@@ -159,7 +159,7 @@ namespace AstroMonkey.Assets.Scenes
 			}
 			else if(textButton.value == 1)
 			{
-				GameManager.Instance.NextScene = "devroom";
+				GameManager.Instance.NextScene = "level1";
 			}
 			else if(textButton.value == 2)
 			{
