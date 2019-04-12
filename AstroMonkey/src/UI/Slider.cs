@@ -22,8 +22,8 @@ namespace AstroMonkey.UI
 			this.anchorSize = anchorSize;
 			this.value = value;
 
-			imageBackground.color = Util.Statics.AstroColor(28);
-			imageSlider.color = Util.Statics.AstroColor(28);
+			//imageBackground.color = Util.Statics.AstroColor(28);
+			//imageSlider.color = Util.Statics.AstroColor(28);
 			AnchorToWorldspace(1f);
 		}
 
