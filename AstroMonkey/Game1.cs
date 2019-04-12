@@ -114,7 +114,7 @@ namespace AstroMonkey
             }
 
 
-            // PhysicsManager.ResolveAllCollision();
+            PhysicsManager.ResolveAllCollision();
             base.Update(gameTime);
         }
 

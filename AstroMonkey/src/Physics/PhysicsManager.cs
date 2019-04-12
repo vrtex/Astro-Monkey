@@ -11,6 +11,9 @@ namespace AstroMonkey.Physics
     {
         private static List<Collider.Collider> colliders = new List<Collider.Collider>();
         static GameObject tempGO = new GameObject(new Transform());
+        private static CircleCollider tempCC =
+            new CircleCollider(tempGO, CollisionChanell.Object, Vector2.Zero, 1, true);
+
 
         public enum Direction
         {
@@ -165,8 +168,11 @@ namespace AstroMonkey.Physics
 
             // hacki soł macz
             tempGO.transform.position = point;
-            ResolveCollision(c1, new CircleCollider(tempGO, CollisionChanell.Object, Vector2.Zero, 1, true));
+            tempCC.SetCollisionChanell(c2.GetCollisionChanell());
+            ResolveCollision(c1, tempCC);
         }
+
+        
 
         private static void ResolveCollision(BoxCollider c2, CircleCollider c1)
         {
