@@ -236,62 +236,40 @@ namespace AstroMonkey.Assets.Scenes
 		{
 			if(textButton.value == 0)
 			{
-				Graphics.ViewManager.Instance.graphics.PreferredBackBufferWidth = 1024;
-				Graphics.ViewManager.Instance.graphics.PreferredBackBufferHeight = 768;
 				textButton.text = "[X] 1024x768";
 			}
 			else if(textButton.value == 1)
 			{
-				Graphics.ViewManager.Instance.graphics.PreferredBackBufferWidth = 1280;
-				Graphics.ViewManager.Instance.graphics.PreferredBackBufferHeight = 720;
 				textButton.text = "[X] 1280x720";
 			}
 			else if(textButton.value == 2)
 			{
-				Graphics.ViewManager.Instance.graphics.PreferredBackBufferWidth = 1400;
-				Graphics.ViewManager.Instance.graphics.PreferredBackBufferHeight = 1050;
 				textButton.text = "[X] 1400x1050";
 			}
 			else if(textButton.value == 3)
 			{
-				Graphics.ViewManager.Instance.graphics.PreferredBackBufferWidth = 1680;
-				Graphics.ViewManager.Instance.graphics.PreferredBackBufferHeight = 1050;
 				textButton.text = "[X] 1680x1050";
 			}
 			else if(textButton.value == 4)
 			{
-				Graphics.ViewManager.Instance.graphics.PreferredBackBufferWidth = 1920;
-				Graphics.ViewManager.Instance.graphics.PreferredBackBufferHeight = 1080;
 				textButton.text = "[X] 1920x1080";
 			}
 			else if(textButton.value == 5)
 			{
-				Graphics.ViewManager.Instance.graphics.PreferredBackBufferWidth = 1920;
-				Graphics.ViewManager.Instance.graphics.PreferredBackBufferHeight = 1200;
 				textButton.text = "[X] 1920x1200";
 			}
-			RescaleUIElements();
-			//Graphics.ViewManager.Instance.graphics.ApplyChanges();
-			Graphics.ViewManager.Instance.ScreenSize = new Vector2(Graphics.ViewManager.Instance.graphics.PreferredBackBufferWidth, Graphics.ViewManager.Instance.graphics.PreferredBackBufferHeight);
 		}
 
 		void SetFullscreen(Objects.TextButton textButton)
 		{
-			Graphics.ViewManager.Instance.graphics.ToggleFullScreen();
-
-			return;
 			if(Graphics.ViewManager.Instance.graphics.IsFullScreen)
 			{
-				Graphics.ViewManager.Instance.graphics.IsFullScreen = false;
 				textButton.text = "[ ] Fullscreen";
 			}
 			else
 			{
-				Graphics.ViewManager.Instance.graphics.IsFullScreen = true;
 				textButton.text = "[X] Fullscreen";
 			}
-			Graphics.ViewManager.Instance.graphics.ApplyChanges();
-			Graphics.ViewManager.Instance.ScreenSize = new Vector2(Graphics.ViewManager.Instance.graphics.PreferredBackBufferWidth, Graphics.ViewManager.Instance.graphics.PreferredBackBufferHeight);
 		}
 
 		void RescaleUIElements()

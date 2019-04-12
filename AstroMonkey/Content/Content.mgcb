@@ -460,6 +460,9 @@
 #begin Map/AstroMonkey.tmx
 /copy:Map/AstroMonkey.tmx
 
+#begin settings/settings.ini
+/copy:settings/settings.ini
+
 #begin sfx/bottle_pop_2.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor

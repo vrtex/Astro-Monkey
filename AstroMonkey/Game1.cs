@@ -4,6 +4,9 @@ using Microsoft.Xna.Framework.Input;
 using System.Collections.Generic;
 using AstroMonkey.Input;
 using AstroMonkey.Physics;
+using System.IO;
+using System.Diagnostics;
+using System.Text.RegularExpressions;
 
 namespace AstroMonkey
 {
@@ -33,19 +36,41 @@ namespace AstroMonkey
         /// </summary>
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
-            Core.GameManager.Instance.InitializeGame(this, graphics);
+			string[] lines = File.ReadAllLines("Content/settings/settings.ini");
+			int fullscreen = 0;
+			int resorution = 0;
+			foreach(string line in lines)
+			{
+				Regex regexFullscreen = new Regex(@"fullscreen=[0-1]");
+				Regex regexResolution = new Regex(@"resolution=[0-9]");
+				MatchCollection fullscreenMatch = regexFullscreen.Matches(line);
+				foreach(Match m in fullscreenMatch)
+				{
+					Group g1 = m.Groups[0];
+					fullscreen = int.Parse(g1.Value.Replace("fullscreen=", ""));
+				}
+				MatchCollection resolutionMatch = regexResolution.Matches(line);
+				foreach(Match m in resolutionMatch)
+				{
+					Group g1 = m.Groups[0];
+					resorution = int.Parse(g1.Value.Replace("resolution=", ""));
+				}
+			}
 
-            graphics.PreferredBackBufferWidth = 1280;
-            graphics.PreferredBackBufferHeight = 720;
-            //graphics.PreferredBackBufferWidth = 1920;
-            //graphics.PreferredBackBufferHeight = 1080;
-            //graphics.IsFullScreen = true;
+			if(fullscreen == 1)
+				graphics.IsFullScreen = true;
+
+			Vector2 res = Util.Statics.GetResolition(resorution);
+
+			graphics.PreferredBackBufferWidth = (int)res.X;
+            graphics.PreferredBackBufferHeight = (int)res.Y;
             graphics.ApplyChanges();
 
             Graphics.ViewManager.Instance.ScreenSize = new Vector2(graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight);
             IsMouseVisible = true;
-            base.Initialize();
+
+			Core.GameManager.Instance.InitializeGame(this, graphics);
+			base.Initialize();
 
         }
 
