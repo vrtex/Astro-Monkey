@@ -30,7 +30,7 @@ namespace AstroMonkey.Assets.Objects
         {
             transform = _transform;
             // Physics
-            AddComponent(new BoxCollider(this, CollisionChanell.InteractPlayer, new Vector2(0, 10), 32, 12));
+            AddComponent(new BoxCollider(this, CollisionChanell.Object, new Vector2(0, 10), 32, 12));
 
             List<Rectangle> idle01 = new List<Rectangle>();
             for(int i = 0; i < height; ++i) idle01.Add(new Rectangle(i * size, 0, size, size));

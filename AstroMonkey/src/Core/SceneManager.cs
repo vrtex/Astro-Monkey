@@ -17,7 +17,9 @@ namespace AstroMonkey.Core
             scenes.Add("devroom", new Assets.Scenes.DevRoom());
             scenes.Add("basement", new Assets.Scenes.Basement());
             scenes.Add("colliderroom", new Assets.Scenes.ColliderRoom());
-        }
+			scenes.Add("menu", new Assets.Scenes.MainMenu());
+            scenes.Add("level1", new Assets.Scenes.Level1());
+		}
 
         public void LoadScene(string name)
         {
@@ -31,8 +33,8 @@ namespace AstroMonkey.Core
             else
                 throw new ApplicationException("Unknown scene " + name);
 
-            foreach(GameObject go in currScene.objects)
-                GameManager.SpawnObject(go);
+            //foreach(GameObject go in currScene.objects)
+            //    GameManager.SpawnObject(go);
 
         }
     }

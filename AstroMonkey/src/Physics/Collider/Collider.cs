@@ -198,7 +198,7 @@ namespace AstroMonkey.Physics.Collider
                     reaction.Add(CollisionChanell.Item, ReactType.Ignore);
                     reaction.Add(CollisionChanell.Object, ReactType.Ignore);
                     reaction.Add(CollisionChanell.Hitbox, ReactType.Ignore);
-                    reaction.Add(CollisionChanell.Bullets, ReactType.Block);
+                    reaction.Add(CollisionChanell.Bullets, ReactType.Overlap);
                     reaction.Add(CollisionChanell.InteractPlayer, ReactType.Ignore);
                     reaction.Add(CollisionChanell.InteractBullet, ReactType.Ignore);
                     break;

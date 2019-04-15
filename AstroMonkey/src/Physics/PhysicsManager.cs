@@ -10,8 +10,11 @@ namespace AstroMonkey.Physics
     public static class PhysicsManager
     {
         private static List<Collider.Collider> colliders = new List<Collider.Collider>();
-        
-        
+        static GameObject tempGO = new GameObject(new Transform());
+        private static CircleCollider tempCC =
+            new CircleCollider(tempGO, CollisionChanell.Object, Vector2.Zero, 1, true);
+
+
         public enum Direction
         {
             LEFT,
@@ -164,10 +167,12 @@ namespace AstroMonkey.Physics
             Vector2 point = new Vector2(pointX, pointY);
 
             // hacki soł macz
-            GameObject go = new GameObject(new Transform());
-            go.transform.position = point;
-            ResolveCollision(c1, new CircleCollider(go, CollisionChanell.Object, Vector2.Zero, 1, true));
+            tempGO.transform.position = point;
+            tempCC.SetCollisionChanell(c2.GetCollisionChanell());
+            ResolveCollision(c1, tempCC);
         }
+
+        
 
         private static void ResolveCollision(BoxCollider c2, CircleCollider c1)
         {
@@ -247,7 +252,10 @@ namespace AstroMonkey.Physics
         /// </summary>
         public static bool CanMove(Collider.Collider collider)
         {
-            return collider.Parent.GetComponent<Body>() != null && collider.Parent.GetComponent<Body>().movable;
+            var body = collider.Parent.GetComponent<Body>();
+            if(body == null)
+                return false;
+            return body.movable;
         }
 
         /// <summary>
@@ -271,7 +279,9 @@ namespace AstroMonkey.Physics
         /// </summary>
         public static bool IsBlocking(Collider.Collider c1, Collider.Collider c2)
         {
-            return c1.GetReaction(c2.GetCollisionChanell()).Equals(ReactType.Block);
+            bool reaction1 = c1.GetReaction(c2.GetCollisionChanell()).Equals(ReactType.Block);
+            bool reaction2 = c2.GetReaction(c1.GetCollisionChanell()).Equals(ReactType.Block);
+            return (reaction1 == reaction2) && reaction1;
         }
 
         /// <summary>
@@ -279,7 +289,14 @@ namespace AstroMonkey.Physics
         /// </summary>
         public static bool IsOverlaping(Collider.Collider c1, Collider.Collider c2)
         {
-            return c1.GetReaction(c2.GetCollisionChanell()).Equals(ReactType.Overlap);
+            ReactType reaction1 = c1.GetReaction(c2.GetCollisionChanell());
+            ReactType reaction2 = c2.GetReaction(c1.GetCollisionChanell());
+
+            if (reaction1.Equals(ReactType.Overlap) || reaction2.Equals(ReactType.Overlap))
+            {
+                return true;
+            }
+            return false;
         }
     }
 }

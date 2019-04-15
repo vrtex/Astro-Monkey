@@ -70,12 +70,17 @@ namespace AstroMonkey.Graphics
             
             //fonty
             fonts.Add("text", game.Content.Load<SpriteFont>(@"spritefonts/text"));
-        }
+			fonts.Add("planetary", game.Content.Load<SpriteFont>(@"spritefonts/PlanetaryContact"));
+		}
 
         public Texture2D GetImage(string name)
         {
             Texture2D tex = null;
             images.TryGetValue(name, out tex);
+
+            if(tex == null)
+                throw new System.ApplicationException("Texture " + name + " does not exist");
+
             return tex;
         }
 

@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework;
 
 namespace AstroMonkey.Input
 {
-    class InputCompoent : Core.Component
+    class InputComponent : Core.Component
     {
         Navigation.MovementComponent moveComp;
         private readonly AxisBinding verticalAxis;
@@ -11,7 +11,11 @@ namespace AstroMonkey.Input
         private Core.GameObject target = new Core.GameObject();
         private bool projectileToSpawn = false;
 
-        public InputCompoent(Core.GameObject parent) : base(parent)
+        private readonly string verticalBindingName = "move up";
+        private readonly string horizontalBindingName = "move right";
+        private readonly string spawnBindingName = "spawn";
+
+        public InputComponent(Core.GameObject parent) : base(parent)
         {
             moveComp = parent.GetComponent<Navigation.MovementComponent>();
             verticalAxis = new AxisBinding(Keys.S, Keys.W);
@@ -22,10 +26,10 @@ namespace AstroMonkey.Input
             horizontalAxis.OnUpdate += Move;
             spawnBinding.OnTrigger += Spawn;
 
-            InputManager.Manager.AddAxisBinding("move up", verticalAxis);
-            InputManager.Manager.AddAxisBinding("move right", horizontalAxis);
+            InputManager.Manager.AddAxisBinding(verticalBindingName, verticalAxis);
+            InputManager.Manager.AddAxisBinding(horizontalBindingName, horizontalAxis);
 
-            InputManager.Manager.AddActionBinding("spawn", spawnBinding);
+            InputManager.Manager.AddActionBinding(spawnBindingName, spawnBinding);
 
             moveComp.CurrentFocus = target;
             InputManager.Manager.OnMouseMove += MoveTarget;
@@ -82,6 +86,25 @@ namespace AstroMonkey.Input
                     projectileToSpawn = false;
                 }
             }
+        }
+
+        public override void Destroy()
+        {
+            base.Destroy();
+
+            AxisBinding horizontalBinding = InputManager.Manager.GetAxisBinding(horizontalBindingName);
+            AxisBinding verticalBinding = InputManager.Manager.GetAxisBinding(verticalBindingName);
+
+            horizontalAxis.OnUpdate -= Move;
+            verticalAxis.OnUpdate -= Move;
+
+            ActionBinding spawnBinding = InputManager.Manager.GetActionBinding(spawnBindingName);
+
+            spawnBinding.OnTrigger -= Spawn;
+
+            InputManager.Manager.RemoveBinding(spawnBindingName);
+            InputManager.Manager.RemoveBinding(horizontalBindingName);
+            InputManager.Manager.RemoveBinding(verticalBindingName);
         }
     }
 }

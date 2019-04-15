@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Common.props')" />
   <PropertyGroup>
@@ -49,7 +49,10 @@
     <Compile Include="Content\Assets\Characters\Enemies\Alien03.cs" />
     <Compile Include="Content\Assets\Characters\Enemies\Alien03Dead.cs" />
     <Compile Include="Content\Assets\Characters\Player\Player.cs" />
+    <Compile Include="Content\Assets\HUD\AmmoAmount.cs" />
     <Compile Include="Content\Assets\HUD\EnemyHealthBar.cs" />
+    <Compile Include="Content\Assets\Menu\MenuCenter.cs" />
+    <Compile Include="Content\Assets\HUD\SimpleButton.cs" />
     <Compile Include="Content\Assets\Items\AmmoGun.cs" />
     <Compile Include="Content\Assets\Items\AmmoLuncher.cs" />
     <Compile Include="Content\Assets\Items\AmmoRiffle.cs" />
@@ -97,6 +100,7 @@
     <Compile Include="Content\Assets\Map\Objects\Table.cs" />
     <Compile Include="Content\Assets\Map\Objects\Wall.cs" />
     <Compile Include="Content\Assets\Map\Objects\WallDoor.cs" />
+    <Compile Include="Content\Assets\Menu\TextButton.cs" />
     <Compile Include="Content\Assets\Projectiles\AlienBullet.cs" />
     <Compile Include="Content\Assets\Projectiles\BaseProjectile.cs" />
     <Compile Include="Content\Assets\Projectiles\BulletHit.cs" />
@@ -105,6 +109,8 @@
     <Compile Include="Content\Assets\Scenes\Basement.cs" />
     <Compile Include="Content\Assets\Scenes\ColliderRoom.cs" />
     <Compile Include="Content\Assets\Scenes\DevRoom.cs" />
+    <Compile Include="Content\Assets\Scenes\Level1.cs" />
+    <Compile Include="Content\Assets\Scenes\MainMenu.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -115,12 +121,14 @@
     <Compile Include="src\Core\GameManager.cs" />
     <Compile Include="src\Core\GameObject.cs" />
     <Compile Include="src\Core\ObjectManager.cs" />
+    <Compile Include="src\Core\ObjectsDictionary.cs" />
     <Compile Include="src\Core\Scene.cs" />
     <Compile Include="src\Core\SceneManager.cs" />
     <Compile Include="src\Core\Transform.cs" />
     <Compile Include="src\Gameplay\DamageInfo.cs" />
     <Compile Include="src\Gameplay\Health.cs" />
     <Compile Include="src\Gameplay\SuicideComponent.cs" />
+    <Compile Include="src\Input\InputUI.cs" />
     <Compile Include="src\Navigation\ProjectileMovementComponent.cs" />
     <Compile Include="src\Navigation\TeleportTo.cs" />
     <Compile Include="src\Physics\Body.cs" />
@@ -137,7 +145,7 @@
     <Compile Include="src\Graphics\ViewManager.cs" />
     <Compile Include="src\Input\ActionBinding.cs" />
     <Compile Include="src\Input\AxisBinding.cs" />
-    <Compile Include="src\Input\InputCompoent.cs" />
+    <Compile Include="src\Input\InputComponent.cs" />
     <Compile Include="src\Input\InputManager.cs" />
     <Compile Include="src\Graphics\Animation.cs" />
     <Compile Include="src\Graphics\Animator.cs" />
@@ -214,11 +222,10 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="app.manifest" />
-    <None Include="Content\Map\AstroMonkey.tmx">
-      <SubType>Designer</SubType>
-    </None>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Content\Map\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

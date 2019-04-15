@@ -4,7 +4,7 @@ using System;
 
 namespace AstroMonkey.Assets.Objects
 {
-    class FloorPlatform02: Core.GameObject
+    class FloorPlatform02: Floor
     {
         public FloorPlatform02() : this(new Core.Transform())
         {
@@ -22,7 +22,8 @@ namespace AstroMonkey.Assets.Objects
 
         private void Load(Core.Transform _transform)
         {
-            AddComponent(new Graphics.Sprite(this, "floorPlatform0", new List<Rectangle> { new Rectangle(32, 0, 32, 32) }));
+            transform = _transform;
+            AddComponent(new Graphics.Sprite(this, "floorPlatform", new List<Rectangle> { new Rectangle(32, 0, 32, 32) }));
         }
     }
 }
