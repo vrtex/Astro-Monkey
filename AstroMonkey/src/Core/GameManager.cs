@@ -45,7 +45,7 @@ namespace AstroMonkey.Core
 			Mouse.SetCursor(MouseCursor.FromTexture2D(Graphics.SpriteContainer.Instance.GetImage("mark"), 4, 4));
 
             //załadowanie sceny
-            SceneManager.Instance.LoadScene("level1");
+            SceneManager.Instance.LoadScene("devroom");
 
             //przeszukiwanie obiektów i podpinanie referenzji do komponenetów
             //pod odpowiednie zarządzające klasy (animator, sprite, stack animator, stack sprite,...)
@@ -123,11 +123,6 @@ namespace AstroMonkey.Core
 
                     if(gameObject.GetComponent<Graphics.Sprite>() != null)
                         Graphics.ViewManager.Instance.RemoveSprite(gameObject);
-
-                    var colliders = gameObject.GetComponents<Physics.Collider.Collider>();
-                    if(colliders.Count != 0)
-                        foreach(var c in colliders)
-                            Physics.PhysicsManager.RemoveCollider(c);
 
 					if(gameObject is UI.UIElement)
 					{

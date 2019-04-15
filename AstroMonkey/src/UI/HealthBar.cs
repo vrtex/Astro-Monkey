@@ -29,7 +29,13 @@ namespace AstroMonkey.UI
                                             new Vector2(0, size),
                                             new Vector2(0, -size));
             lifebar.SetTrack(parent.transform);
+            parent.OnDestroy += DestroyHealthBar;
             GameManager.SpawnObject(lifebar);
+        }
+
+        private void DestroyHealthBar(GameObject destroyed)
+        {
+            lifebar.Destroy();
         }
 
         public void Refresh(Gameplay.Health damaged, Gameplay.DamageInfo dmgInfo)
@@ -39,7 +45,7 @@ namespace AstroMonkey.UI
 
 		public void SetValue(float value)
 		{
-			lifebar.GetComponent<Graphics.Sprite>().rect[1] = new Rectangle(lifebar.size, 0, (int)(20 * value), 1);
+			lifebar.GetComponent<Graphics.Sprite>().rect[1] = new Rectangle(lifebar.size, 0, (int)(lifebar.size * value), 1);
 		}
     }
 }

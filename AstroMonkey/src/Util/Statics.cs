@@ -19,6 +19,11 @@ namespace AstroMonkey.Util
             return Math.Abs(a - b) < epsilon;
         }
 
+        public static bool IsNearlyEqual(Vector2 a, Vector2 b, float epsilon = 0.0001f)
+        {
+            return IsNearlyEqual(a.X, a.Y, epsilon) && IsNearlyEqual(a.X, a.Y, epsilon);
+        }
+
 		public static Color AstroColor(int color)
 		{
 			switch(color)

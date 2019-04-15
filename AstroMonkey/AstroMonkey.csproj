@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Common.props')" />
   <PropertyGroup>
@@ -102,6 +102,7 @@
     <Compile Include="Content\Assets\Map\Objects\WallDoor.cs" />
     <Compile Include="Content\Assets\Menu\TextButton.cs" />
     <Compile Include="Content\Assets\Projectiles\AlienBullet.cs" />
+    <Compile Include="Content\Assets\Projectiles\BaseProjectile.cs" />
     <Compile Include="Content\Assets\Projectiles\BulletHit.cs" />
     <Compile Include="Content\Assets\Projectiles\Poop.cs" />
     <Compile Include="Content\Assets\Projectiles\Rocket.cs" />
@@ -126,6 +127,7 @@
     <Compile Include="src\Core\Transform.cs" />
     <Compile Include="src\Gameplay\DamageInfo.cs" />
     <Compile Include="src\Gameplay\Health.cs" />
+    <Compile Include="src\Gameplay\SuicideComponent.cs" />
     <Compile Include="src\Input\InputUI.cs" />
     <Compile Include="src\Navigation\ProjectileMovementComponent.cs" />
     <Compile Include="src\Navigation\TeleportTo.cs" />

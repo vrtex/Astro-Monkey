@@ -119,8 +119,8 @@ namespace AstroMonkey.Graphics
 				s.Draw(spriteBatch, PlayerTransform.position);
 			}
 
-			// Rysowanie colliderów
-			// PhysicsManager.DrawAllColliders(spriteBatch);
+            // Rysowanie colliderów
+            PhysicsManager.DrawAllColliders(spriteBatch);
 
             spriteBatch.End();
         }

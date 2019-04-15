@@ -9,7 +9,7 @@ namespace AstroMonkey.Assets.Objects
         public FloorCrate06() : this(new Core.Transform())
         {
         }
-        public FloorCrate06(Core.Transform _transform)
+        public FloorCrate06(Core.Transform _transform) : base(_transform)
         {
             Load(_transform);
         }
@@ -22,7 +22,6 @@ namespace AstroMonkey.Assets.Objects
 
         private void Load(Core.Transform _transform)
         {
-            transform = _transform;
             AddComponent(new Graphics.Sprite(this, "floorCrate", new List<Rectangle> { new Rectangle(160, 0, 32, 32) }));
         }
     }

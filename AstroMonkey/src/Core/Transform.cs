@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using System;
 
 namespace AstroMonkey.Core
 {
@@ -6,7 +7,17 @@ namespace AstroMonkey.Core
     {
         public Vector2 position;
         public Vector2 scale;
-        public float rotation;
+        private float _rotation;
+        public float rotation {
+            get => _rotation;
+            set
+            {
+
+                _rotation = value % (float)(Math.PI * 2);
+                if(_rotation < 0)
+                    _rotation = (float)(2 * Math.PI) + _rotation;
+            }
+        }
 
         public Transform(Vector2 position, Vector2 scale, float rotation = 0)
         {

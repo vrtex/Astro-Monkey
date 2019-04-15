@@ -16,5 +16,10 @@ namespace AstroMonkey.Gameplay
             this.damageDealer = damageDealer;
             this.value = value;
         }
+
+        public override string ToString()
+        {
+            return "Damage info: dealer: " + damageDealer + ", value: " + value;
+        }
     }
 }

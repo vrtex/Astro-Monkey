@@ -7,12 +7,22 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace AstroMonkey.Physics
 {
+    using ColliderEventInfo = Tuple<Collider.Collider, Collider.Collider, ColliderEventType>;
+    enum ColliderEventType
+    {
+        BeginOverlap,
+        EndOverlap,
+        Block
+    }
+
+
     public static class PhysicsManager
     {
         private static List<Collider.Collider> colliders = new List<Collider.Collider>();
         static GameObject tempGO = new GameObject(new Transform());
         private static CircleCollider tempCC =
             new CircleCollider(tempGO, CollisionChanell.Object, Vector2.Zero, 1, true);
+        private static List<ColliderEventInfo> ColliderEvents = new List<ColliderEventInfo>();
 
 
         public enum Direction
@@ -25,12 +35,14 @@ namespace AstroMonkey.Physics
 
         public static void AddCollider(Collider.Collider collider)
         {
-            colliders.Add(collider);
+            lock(colliders)
+                colliders.Add(collider);
         }
 
         public static void RemoveCollider(Collider.Collider collider)
         {
-            colliders.Remove(collider);
+            lock(colliders)
+                colliders.Remove(collider);
         }
 
         /// <summary>
@@ -39,7 +51,8 @@ namespace AstroMonkey.Physics
         /// <param name="spriteBatch"></param>
         public static void DrawAllColliders(SpriteBatch spriteBatch)
         {
-            colliders.ForEach(c => c.DrawBorder(spriteBatch));
+            lock(colliders)
+                colliders.ForEach(c => c.DrawBorder(spriteBatch));
         }
 
         /// <summary>
@@ -48,19 +61,22 @@ namespace AstroMonkey.Physics
         public static void ResolveAllCollision()
         {
             //Debug.WriteLine("RESOLVE");
-            colliders.ForEach(c1 =>
-            {
-                if (CanMove(c1))
+            lock(colliders)
+                colliders.ForEach(c1 =>
                 {
-                    colliders.ForEach(c2 =>
+                    if (CanMove(c1))
                     {
-                        if (!c1.Equals(c2))
+                        colliders.ForEach(c2 =>
                         {
-                            CheckColliderType(c1, c2);
-                        }
-                    });
-                }
-            });
+                            if (!c1.Equals(c2))
+                            {
+                                CheckColliderType(c1, c2);
+                            }
+                        });
+                    }
+                });
+
+            BroadcastEvetns();
         }
 
         private static void CheckColliderType(Collider.Collider movable, Collider.Collider stable)
@@ -138,18 +154,30 @@ namespace AstroMonkey.Physics
                             break;
                         }
                     }
+                    // Blocking events
+                    ColliderEvents.Add(new ColliderEventInfo(c1, c2, ColliderEventType.Block));
+                    //c1.OnBlockDetected(c2);
+                    //c2.OnBlockDetected(c1);
                 }
 
                 if (IsOverlaping(c1, c2))
                 {
-                    c1.RunOnBeginOverlap(c2);
+                    ColliderEvents.Add(new ColliderEventInfo(c1, c2, ColliderEventType.BeginOverlap));
+
+                    //c1.RunOnBeginOverlap(c2);
+                    //c2.RunOnBeginOverlap(c1);
                 }
             }
             else // jeżeli nie koliduje
             {
-                if(c1.collisons.Contains(c2))
-                    c1.RunOnEndOverlap(c2);
+                ColliderEvents.Add(new ColliderEventInfo(c1, c2, ColliderEventType.EndOverlap));
+                //if(c1.collisons.Contains(c2))
+                //    c1.RunOnEndOverlap(c2);
+                //if(c2.collisons.Contains(c1))
+                //    c2.RunOnEndOverlap(c1);
             }
+
+            
         }
 
         private static void ResolveCollision(CircleCollider c1, BoxCollider c2)
@@ -289,14 +317,40 @@ namespace AstroMonkey.Physics
         /// </summary>
         public static bool IsOverlaping(Collider.Collider c1, Collider.Collider c2)
         {
+            return !IsBlocking(c1, c2) && !IsIgnoring(c1, c2);
+        }
+
+        public static bool IsIgnoring(Collider.Collider c1, Collider.Collider c2)
+        {
             ReactType reaction1 = c1.GetReaction(c2.GetCollisionChanell());
             ReactType reaction2 = c2.GetReaction(c1.GetCollisionChanell());
 
-            if (reaction1.Equals(ReactType.Overlap) || reaction2.Equals(ReactType.Overlap))
+            return reaction1 == ReactType.Ignore || reaction2 == ReactType.Ignore;
+        }
+
+        private static void BroadcastEvetns()
+        {
+            foreach(ColliderEventInfo info in ColliderEvents)
             {
-                return true;
+                switch(info.Item3)
+                {
+                    case ColliderEventType.EndOverlap:
+                        info.Item1.RunOnEndOverlap(info.Item2);
+                        info.Item2.RunOnEndOverlap(info.Item1);
+                        break;
+                    case ColliderEventType.BeginOverlap:
+                        info.Item1.RunOnBeginOverlap(info.Item2);
+                        info.Item2.RunOnBeginOverlap(info.Item1);
+                        break;
+                    case ColliderEventType.Block:
+                        info.Item1.OnBlockDetected(info.Item2);
+                        info.Item2.OnBlockDetected(info.Item1);
+                        break;
+                }
+
             }
-            return false;
+
+            ColliderEvents.Clear();
         }
     }
 }

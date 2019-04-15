@@ -9,7 +9,7 @@ namespace AstroMonkey.Assets.Objects
         public FloorPlatform02() : this(new Core.Transform())
         {
         }
-        public FloorPlatform02(Core.Transform _transform)
+        public FloorPlatform02(Core.Transform _transform): base(_transform)
         {
             Load(_transform);
         }

@@ -8,6 +8,9 @@ namespace AstroMonkey.Assets.Objects
 {
     class Floor: Core.GameObject
     {
+        public Floor(Core.Transform transform): base(transform)
+        {
 
+        }
     }
 }

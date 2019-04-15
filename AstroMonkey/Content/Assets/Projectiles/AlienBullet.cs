@@ -6,7 +6,7 @@ using AstroMonkey.Physics.Collider;
 
 namespace AstroMonkey.Assets.Objects
 {
-    class AlienBullet: Core.GameObject
+    class AlienBullet: BaseProjectile
     {
         public AlienBullet() : this(new Core.Transform())
         {
@@ -28,8 +28,8 @@ namespace AstroMonkey.Assets.Objects
         private void Load(Core.Transform _transform)
         {
             AddComponent(new Graphics.Sprite(this, "alienBullet", new List<Rectangle>() { new Rectangle(0, 0, 3, 6) }));
-            AddComponent(new CircleCollider(this, CollisionChanell.Bullets, Vector2.Zero, 3));
-            AddComponent(new Body(this));
+            
         }
+
     }
 }

@@ -12,8 +12,8 @@ namespace AstroMonkey.Gameplay
         public delegate void DamageEvent(Health damaged, DamageInfo damageInfo);
         public event DamageEvent OnDamageTaken;
 
-		public int maxHealth;
-		public int health;
+		public int maxHealth = 100;
+		public int health = 100;
 
 		public Health(GameObject parent) : base(parent)
 		{
@@ -25,16 +25,11 @@ namespace AstroMonkey.Gameplay
 			health = health - damage.value;
 			if(health < 0) health = 0;
 
-            //UI.HealthBar hb = parent.GetComponent<UI.HealthBar>();
-            //if(hb != null)
-            //{
-            //	hb.SetValue(GetPercentage());
-            //}
             OnDamageTaken?.Invoke(this, damage);
 			
 			if(health == 0)
 			{
-				//wywołaj śmierć
+                Parent.Destroy();
 			}
 		}
 
