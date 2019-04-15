@@ -22,7 +22,6 @@ namespace AstroMonkey.Gameplay
 
 		public void DeadDamage(DamageInfo damage)
 		{
-            Console.WriteLine(damage.value);
 			health = health - damage.value;
 			if(health < 0) health = 0;
 
@@ -30,7 +29,7 @@ namespace AstroMonkey.Gameplay
 			
 			if(health == 0)
 			{
-				//wywołaj śmierć
+                Parent.Destroy();
 			}
 		}
 

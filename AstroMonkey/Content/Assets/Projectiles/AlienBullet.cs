@@ -8,8 +8,6 @@ namespace AstroMonkey.Assets.Objects
 {
     class AlienBullet: BaseProjectile
     {
-        public Gameplay.DamageInfo damage;
-
         public AlienBullet() : this(new Core.Transform())
         {
         }

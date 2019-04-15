@@ -124,11 +124,6 @@ namespace AstroMonkey.Core
                     if(gameObject.GetComponent<Graphics.Sprite>() != null)
                         Graphics.ViewManager.Instance.RemoveSprite(gameObject);
 
-                    List<Physics.Collider.Collider> colliders = gameObject.GetComponents<Physics.Collider.Collider>();
-                    if(colliders.Count != 0)
-                        foreach(Physics.Collider.Collider c in colliders)
-                            Physics.PhysicsManager.RemoveCollider(c);
-
 					if(gameObject is UI.UIElement)
 					{
 						Graphics.ViewManager.Instance.RemoveSprite(gameObject as UI.UIElement);

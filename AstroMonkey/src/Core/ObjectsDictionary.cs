@@ -8,7 +8,8 @@ namespace AstroMonkey.Core
         public static float upRotation = 0;
         public static float rightRotation = (float)Math.PI * 0.5f;
         public static float downRotation = (float)Math.PI;
-        public static float leftRotation = (float)Math.PI * 1.5f;
+        public static float leftRotation = -(float)Math.PI * 0.5f;
+        //public static float leftRotation = (float)Math.PI * 1.5f;
 
         public static Dictionary<int, Tuple<Type, float>> objects = new Dictionary<int, Tuple<Type, float>>
         {

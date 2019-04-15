@@ -16,9 +16,10 @@ namespace AstroMonkey.Physics.Collider
 
         private bool temp;
 
-        public delegate void ColliderEvent(Collider c1, Collider c2);
+        public delegate void ColliderEvent(Collider thisCollider, Collider otherCollider);
         public event ColliderEvent OnBeginOverlap;
         public event ColliderEvent OnEndOverlap;
+        public event ColliderEvent OnBlockingCollision;
 
         public List<Collider> collisons = new List<Collider>();
 
@@ -41,21 +42,31 @@ namespace AstroMonkey.Physics.Collider
                 PhysicsManager.AddCollider(this);
         }
 
-        ~Collider()
+        public override void Destroy()
         {
             if (!temp)
                 PhysicsManager.RemoveCollider(this);
+            base.Destroy();
+        }
+
+        public void OnBlockDetected(Collider other)
+        {
+            OnBlockingCollision?.Invoke(this, other);
         }
 
         public void RunOnBeginOverlap(Collider c)
         {
+            if(collisons.Contains(c))
+                return;
             collisons.Add(c);
             OnBeginOverlap?.Invoke(this, c);
         }
 
         public void RunOnEndOverlap(Collider c)
         {
-            collisons.Remove(c);
+            bool deleted = collisons.Remove(c);
+            if(!deleted)
+                return;
             OnEndOverlap?.Invoke(this, c);
         }
 
@@ -112,6 +123,10 @@ namespace AstroMonkey.Physics.Collider
         {
             float epsilon = (float)Math.PI / 8;
             float rotation = Parent.transform.rotation;
+            if(rotation > (float)(Math.PI))
+            {
+                rotation -= (float)(Math.PI);
+            }
             
             if (Math.Abs(rotation - 0) < epsilon) // FACE UP
             {
