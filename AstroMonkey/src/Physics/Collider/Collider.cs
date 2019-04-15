@@ -123,10 +123,10 @@ namespace AstroMonkey.Physics.Collider
         {
             float epsilon = (float)Math.PI / 8;
             float rotation = Parent.transform.rotation;
-            if(rotation > (float)(Math.PI))
-            {
-                rotation -= (float)(Math.PI);
-            }
+            //if(rotation > (float)(Math.PI))
+            //{
+            //    rotation -= (float)(Math.PI);
+            //}
             
             if (Math.Abs(rotation - 0) < epsilon) // FACE UP
             {

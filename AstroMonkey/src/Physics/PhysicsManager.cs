@@ -15,6 +15,7 @@ namespace AstroMonkey.Physics
         Block
     }
 
+
     public static class PhysicsManager
     {
         private static List<Collider.Collider> colliders = new List<Collider.Collider>();

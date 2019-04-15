@@ -8,20 +8,23 @@ namespace AstroMonkey.Assets.Objects
     class BaseProjectile: Core.GameObject
     {
         public Gameplay.DamageInfo Damage { get; set; }
+        Collider collider;
 
         public BaseProjectile(Core.Transform transform): base(transform)
         {
-            Collider collider = new CircleCollider(this, CollisionChanell.Bullets, Vector2.Zero, 3);
+            collider = new CircleCollider(this, CollisionChanell.Bullets, Vector2.Zero, 3);
 
-            var reactions = collider.GetReaction();
-            reactions[CollisionChanell.Enemy] = ReactType.Overlap;
-            collider.SetReaction(reactions);
+            // loleh
+            collider.GetReaction()[CollisionChanell.Enemy] = ReactType.Overlap;
+            // collider.SetReaction(reactions);
 
             collider.OnBeginOverlap += OnHit;
             collider.OnBlockingCollision += OnBlockingHit;
+
             AddComponent(collider);
             AddComponent(new Body(this));
-            AddComponent(new Gameplay.SuicideComponent(this));
+            var suicideComponent = AddComponent(new Gameplay.SuicideComponent(this));
+            suicideComponent.Start(3000);
             AddComponent(new Navigation.ProjectileMovementComponent(this));
             // Damage = new Gameplay.DamageInfo(null, 10);
         }
@@ -31,18 +34,20 @@ namespace AstroMonkey.Assets.Objects
             Destroy();
         }
 
-        public void Report()
-        {
-            Console.WriteLine(Damage.damageDealer == null);
-        }
-
         protected virtual void OnHit(Collider thisCollider, Collider otherCollider)
         {
-            Console.WriteLine(Damage.damageDealer == null);
+            Console.WriteLine("lol");
             Gameplay.Health enemyHealth = otherCollider.Parent.GetComponent<Gameplay.Health>();
             if(enemyHealth != null)
                 enemyHealth.DeadDamage(Damage);
             Destroy();
+        }
+
+        public override void Destroy()
+        {
+            collider.OnBlockingCollision -= OnBlockingHit;
+            collider.OnBeginOverlap -= OnHit;
+            base.Destroy();
         }
     }
 }

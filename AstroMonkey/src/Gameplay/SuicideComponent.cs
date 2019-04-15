@@ -16,14 +16,22 @@ namespace AstroMonkey.Gameplay
         {
         }
 
+        public override void Destroy()
+        {
+            timer.Stop();
+            base.Destroy();
+        }
+
         public void Start(int millis)
         {
             timer = new System.Timers.Timer((double)millis);
             timer.Elapsed += Suicide;
+            timer.Start();
         }
 
         private void Suicide(object sender, System.Timers.ElapsedEventArgs e)
         {
+            Console.WriteLine("suicide");
             GameManager.DestroyObject(parent);
         }
     }
