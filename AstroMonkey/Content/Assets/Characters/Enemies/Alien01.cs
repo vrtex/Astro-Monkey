@@ -9,37 +9,30 @@ using Microsoft.Xna.Framework;
 
 namespace AstroMonkey.Assets.Objects
 {
-    class Alien01: Core.GameObject
+    class Alien01: BaseAlien
     {
         private int height = 13;
         private int size = 21;
 
-        public Alien01()
+        public Alien01() : this(new Core.Transform())
         {
-            Load(new Core.Transform(Vector2.Zero, Vector2.One, 0f));
         }
         public Alien01(Core.Transform _transform): base(_transform)
         {
+            colliderRadius = size / 3;
+            healthBarOffset = height * 2;
             Load(_transform);
         }
-        public Alien01(Vector2 position, Vector2 scale, float rotation = 0f)
+        public Alien01(Vector2 position, Vector2 scale, float rotation = 0f) : this(new Core.Transform(position, scale, rotation))
         {
-            Load(new Core.Transform(position, scale, rotation));
         }
-        public Alien01(Vector2 position)
+        public Alien01(Vector2 position) : this(new Core.Transform(position, Vector2.One))
         {
-            Load(new Core.Transform(position, Vector2.One, 0f));
         }
 
-        private void Load(Core.Transform _transform)
+        protected override void Load(Core.Transform _transform)
         {
-            transform = _transform;
-
-            // Physics
-            AddComponent(new Body(this));
-            AddComponent(new CircleCollider(this, CollisionChanell.Enemy, Vector2.Zero, size / 3));
-            //AddComponent(new CircleCollider(this, CollisionChanell.Hitbox, Vector2.Zero, size / 2));
-            
+            base.Load(transform);
 
             List<Rectangle> idle01 = new List<Rectangle>();
             for(int i = 0; i < height; ++i) idle01.Add(new Rectangle(i * size, 0, size, size));
@@ -47,9 +40,6 @@ namespace AstroMonkey.Assets.Objects
 
             AddComponent(new Graphics.StackAnimator(this));
 
-			Gameplay.Health healthComponent = (Gameplay.Health) AddComponent(new Gameplay.Health(this));
-			UI.HealthBar healthBar = (UI.HealthBar)AddComponent(new UI.HealthBar(this, height * 2));
-            healthComponent.OnDamageTaken += healthBar.Refresh;
 
 
             //STANIE

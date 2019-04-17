@@ -9,37 +9,30 @@ using Microsoft.Xna.Framework;
 
 namespace AstroMonkey.Assets.Objects
 {
-    class Alien03: Core.GameObject
+    class Alien03: BaseAlien
     {
         private int height = 32;
         private int size = 32;
 
-        public Alien03()
+        public Alien03() : this(new Core.Transform())
         {
-            Load(new Core.Transform(Vector2.Zero, Vector2.One, 0f));
         }
         public Alien03(Core.Transform _transform) : base(_transform)
         {
+            colliderRadius = size / 3;
+            healthBarOffset = height * 5 / 3;
             Load(_transform);
         }
-        public Alien03(Vector2 position, Vector2 scale, float rotation = 0f)
+        public Alien03(Vector2 position, Vector2 scale, float rotation = 0f) : this(new Core.Transform(position, scale, rotation))
         {
-            Load(new Core.Transform(position, scale, rotation));
         }
-        public Alien03(Vector2 position)
+        public Alien03(Vector2 position) : this(new Core.Transform(position, Vector2.One))
         {
-            Load(new Core.Transform(position, Vector2.One, 0f));
         }
 
-        private void Load(Core.Transform _transform)
+        protected override void Load(Core.Transform _transform)
         {
-            transform = _transform;
-
-            // Physics
-            AddComponent(new Body(this));
-            AddComponent(new CircleCollider(this, CollisionChanell.Enemy, Vector2.Zero, size / 3));
-            //AddComponent(new CircleCollider(this, CollisionChanell.Hitbox, Vector2.Zero, size / 2));
-
+            base.Load(_transform);
 
             List<Rectangle> idle01 = new List<Rectangle>();
             for(int i = 0; i < height; ++i) idle01.Add(new Rectangle(i * size, 0, size, size));
@@ -47,8 +40,6 @@ namespace AstroMonkey.Assets.Objects
 
             AddComponent(new Graphics.StackAnimator(this));
 
-			AddComponent(new Gameplay.Health(this));
-			AddComponent(new UI.HealthBar(this, height * 5 / 3));
 
             //STANIE
             List<Rectangle> idle02 = new List<Rectangle>();

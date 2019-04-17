@@ -26,7 +26,7 @@ namespace AstroMonkey.Core
             this.rotation = rotation;
         }
 
-        public Transform(): this(Vector2.Zero, Vector2.Zero, 0f)
+        public Transform(): this(Vector2.Zero, Vector2.One, 0f)
         {
         }
 
