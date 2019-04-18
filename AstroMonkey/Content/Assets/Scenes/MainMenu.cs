@@ -16,6 +16,8 @@ namespace AstroMonkey.Assets.Scenes
 		List<UI.UIElement> authors = new List<UI.UIElement>();
 		List<UI.UIElement> settings = new List<UI.UIElement>();
 
+		int currResolution = 0;
+
 		public override void Load()
 		{
 			base.Load();
@@ -27,24 +29,24 @@ namespace AstroMonkey.Assets.Scenes
 			objects.Add(mc);
 			Graphics.ViewManager.Instance.PlayerTransform = mc.transform;
 			
-			objects.Add(new Objects.TextButton("New Game", "planetary", new Vector2(1f, 0.2f), new Vector2(0.25f, 0.05f)));
+			objects.Add(new Objects.TextButton("New Game", "planetary", new Vector2(0.75f, 0.2f), new Vector2(0.25f, 0.05f)));
 			(objects.Last() as Objects.TextButton).onClick += PlayGame;
 			mainMenu.Add(objects.Last() as UI.UIElement);
 			(objects.Last() as Objects.TextButton).value = 0;
 
-			objects.Add(new Objects.TextButton("Load Game", "planetary", new Vector2(1f, 0.3f), new Vector2(0.26f, 0.05f)));
+			objects.Add(new Objects.TextButton("Load Game", "planetary", new Vector2(0.75f, 0.3f), new Vector2(0.26f, 0.05f)));
 			(objects.Last() as Objects.TextButton).onClick += LoadGame;
 			mainMenu.Add(objects.Last() as UI.UIElement);
 
-			objects.Add(new Objects.TextButton("Settings", "planetary", new Vector2(0.99f, 0.4f), new Vector2(0.21f, 0.05f)));
+			objects.Add(new Objects.TextButton("Settings", "planetary", new Vector2(0.75f, 0.4f), new Vector2(0.21f, 0.05f)));
 			(objects.Last() as Objects.TextButton).onClick += Settings;
 			mainMenu.Add(objects.Last() as UI.UIElement);
 
-			objects.Add(new Objects.TextButton("Authors", "planetary", new Vector2(0.98f, 0.5f), new Vector2(0.2f, 0.05f)));
+			objects.Add(new Objects.TextButton("Authors", "planetary", new Vector2(0.75f, 0.5f), new Vector2(0.2f, 0.05f)));
 			(objects.Last() as Objects.TextButton).onClick += Authors;
 			mainMenu.Add(objects.Last() as UI.UIElement);
 
-			objects.Add(new Objects.TextButton("Exit", "planetary", new Vector2(0.97f, 0.6f), new Vector2(0.1f, 0.05f)));
+			objects.Add(new Objects.TextButton("Exit", "planetary", new Vector2(0.75f, 0.6f), new Vector2(0.1f, 0.05f)));
 			(objects.Last() as Objects.TextButton).onClick += QuitGame;
 			mainMenu.Add(objects.Last() as UI.UIElement);
 
@@ -86,7 +88,7 @@ namespace AstroMonkey.Assets.Scenes
 			(objects.Last() as Objects.TextButton).value = 5;
 
 			//++++++++++++++++++++++++++++++++++++++++++OPCJE++++++++++++++++++++++++++++++++++++++++++++++
-			objects.Add(new UI.Slider(new Vector2(0.1f, 0.2f), new Vector2(0.32f, 0.05f), 1f));
+			//objects.Add(new UI.Slider(new Vector2(0.1f, 0.2f), new Vector2(0.32f, 0.05f), 1f));
 			//(objects.Last() as Objects.TextButton).onClick += SetFullscreen;
 			//settings.Add(objects.Last() as UI.UIElement);
 			//(objects.Last() as UI.UIElement).enable = false;
@@ -102,7 +104,7 @@ namespace AstroMonkey.Assets.Scenes
 			(objects.Last() as UI.UIElement).enable = false;
 			(objects.Last() as Objects.TextButton).value = 0;
 
-			objects.Add(new Objects.TextButton("[X] 1280x720", "planetary", new Vector2(0.1f, 0.35f), new Vector2(0.34f, 0.05f)));
+			objects.Add(new Objects.TextButton("[ ] 1280x720", "planetary", new Vector2(0.1f, 0.35f), new Vector2(0.34f, 0.05f)));
 			(objects.Last() as Objects.TextButton).onClick += SetResolution;
 			settings.Add(objects.Last() as UI.UIElement);
 			(objects.Last() as UI.UIElement).enable = false;
@@ -133,27 +135,34 @@ namespace AstroMonkey.Assets.Scenes
 			(objects.Last() as Objects.TextButton).value = 5;
 
 			//+++++++++++++++++++++++++++++++++++++++++AUTORZY+++++++++++++++++++++++++++++++++++++++++++++
-			objects.Add(new UI.Text("Jakub Czaja", "planetary", new Vector2(0.1f, 0.35f), new Vector2(0.25f, 0.1f)));
+			objects.Add(new UI.Text("Jakub Czaja", "planetary", new Vector2(0.1f, 0.15f), new Vector2(0.25f, 0.1f)));
 			authors.Add(objects.Last() as UI.UIElement);
 			(objects.Last() as UI.UIElement).enable = false;
 
-			objects.Add(new UI.Text("Artur Mokrosinski", "planetary", new Vector2(0.1f, 0.4f), new Vector2(0.25f, 0.1f)));
+			objects.Add(new UI.Text("Artur Mokrosinski", "planetary", new Vector2(0.1f, 0.2f), new Vector2(0.25f, 0.1f)));
 			authors.Add(objects.Last() as UI.UIElement);
 			(objects.Last() as UI.UIElement).enable = false;
 
-			objects.Add(new UI.Text("Maciej Nabialczyk", "planetary", new Vector2(0.1f, 0.45f), new Vector2(0.25f, 0.1f)));
+			objects.Add(new UI.Text("Maciej Nabialczyk", "planetary", new Vector2(0.1f, 0.25f), new Vector2(0.25f, 0.1f)));
 			authors.Add(objects.Last() as UI.UIElement);
 			(objects.Last() as UI.UIElement).enable = false;
 
-			objects.Add(new UI.Text("Assets source:", "planetary", new Vector2(0.1f, 0.65f), new Vector2(0.25f, 0.1f)));
+			objects.Add(new UI.Text("Assets source:", "planetary", new Vector2(0.1f, 0.35f), new Vector2(0.25f, 0.1f)));
 			authors.Add(objects.Last() as UI.UIElement);
 			(objects.Last() as UI.UIElement).enable = false;
 
-			objects.Add(new UI.Text("www.dafont.com/planetary-contact.font", "planetary", new Vector2(0.1f, 0.7f), new Vector2(0.25f, 0.1f)));
+			objects.Add(new UI.Text("www.dafont.com/planetary-contact.font", "planetary", new Vector2(0.1f, 0.38f), new Vector2(0.25f, 0.1f)));
 			authors.Add(objects.Last() as UI.UIElement);
 			(objects.Last() as UI.UIElement).enable = false;
 
-            RepairSpawns();
+			objects.Add(new UI.Text("Sound by Soundsnap", "planetary", new Vector2(0.1f, 0.41f), new Vector2(0.25f, 0.1f)));
+			authors.Add(objects.Last() as UI.UIElement);
+			(objects.Last() as UI.UIElement).enable = false;
+
+			RepairSpawns();
+
+			currResolution = Graphics.ViewManager.Instance.ScreenSize;
+			OffAllSetting();
 		}
 
 		void PlayGame(Objects.TextButton textButton)
@@ -234,30 +243,28 @@ namespace AstroMonkey.Assets.Scenes
 
 		void SetResolution(Objects.TextButton textButton)
 		{
-			if(textButton.value == 0)
+			currResolution = textButton.value;
+			OffAllSetting();
+		}
+
+		void OffAllSetting()
+		{
+			if(Graphics.ViewManager.Instance.graphics.IsFullScreen)
+				(settings[0] as Objects.TextButton).text = "[X] Fullscreen";
+			else (settings[0] as Objects.TextButton).text = "[ ] Fullscreen";
+
+			
+			Vector2 res = Vector2.Zero;
+			for(int i = 1; i < settings.Count; ++i)
 			{
-				textButton.text = "[X] 1024x768";
+				res = Util.Statics.GetResolition(i - 1);
+				if((settings[i] as Objects.TextButton).value == currResolution)
+				{
+					(settings[i] as Objects.TextButton).text = "[X] " + res.X.ToString() + "x" + res.Y.ToString();
+				}
+				else (settings[i] as Objects.TextButton).text = "[ ] " + res.X.ToString() + "x" + res.Y.ToString();
 			}
-			else if(textButton.value == 1)
-			{
-				textButton.text = "[X] 1280x720";
-			}
-			else if(textButton.value == 2)
-			{
-				textButton.text = "[X] 1400x1050";
-			}
-			else if(textButton.value == 3)
-			{
-				textButton.text = "[X] 1680x1050";
-			}
-			else if(textButton.value == 4)
-			{
-				textButton.text = "[X] 1920x1080";
-			}
-			else if(textButton.value == 5)
-			{
-				textButton.text = "[X] 1920x1200";
-			}
+			
 		}
 
 		void SetFullscreen(Objects.TextButton textButton)
@@ -265,10 +272,12 @@ namespace AstroMonkey.Assets.Scenes
 			if(Graphics.ViewManager.Instance.graphics.IsFullScreen)
 			{
 				textButton.text = "[ ] Fullscreen";
+				Graphics.ViewManager.Instance.graphics.IsFullScreen = false;
 			}
 			else
 			{
 				textButton.text = "[X] Fullscreen";
+				Graphics.ViewManager.Instance.graphics.IsFullScreen = true;
 			}
 		}
 

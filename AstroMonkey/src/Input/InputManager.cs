@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using System.Timers;
+using AstroMonkey.Graphics;
 
 namespace AstroMonkey.Input
 {
@@ -70,7 +71,7 @@ namespace AstroMonkey.Input
         private Timer tickTimer = new Timer(16);
         public Vector2 MouseCursor { get; private set; } = new Vector2();
         public Vector2 MouseCursorInWorldSpace {
-            get => Manager.MouseCursor + Graphics.ViewManager.Instance.PlayerTransform.position - Graphics.ViewManager.Instance.ScreenSize / 2f;
+            get => Manager.MouseCursor + ViewManager.Instance.PlayerTransform.position - Util.Statics.GetResolition(ViewManager.Instance.ScreenSize) / 2f;
         }
 
         private Dictionary<String, ActionBinding> actionBindings = new Dictionary<string, ActionBinding>();

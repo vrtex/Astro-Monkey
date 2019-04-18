@@ -66,7 +66,7 @@ namespace AstroMonkey
             graphics.PreferredBackBufferHeight = (int)res.Y;
             graphics.ApplyChanges();
 
-            Graphics.ViewManager.Instance.ScreenSize = new Vector2(graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight);
+            Graphics.ViewManager.Instance.ScreenSize = resorution;
             IsMouseVisible = true;
 
 			Core.GameManager.Instance.InitializeGame(this, graphics);

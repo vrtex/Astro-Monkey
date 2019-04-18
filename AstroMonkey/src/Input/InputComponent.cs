@@ -1,5 +1,7 @@
 ﻿using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework;
+using AstroMonkey.Graphics;
+using AstroMonkey.Util;
 
 namespace AstroMonkey.Input
 {
@@ -51,7 +53,7 @@ namespace AstroMonkey.Input
 
         private void MoveTarget(MouseInputEventArgs args)
         {
-            target.transform.position = InputManager.Manager.MouseCursor + parent.transform.position - Graphics.ViewManager.Instance.ScreenSize / 2f;
+            target.transform.position = InputManager.Manager.MouseCursor + parent.transform.position - Statics.GetResolition(ViewManager.Instance.ScreenSize) / 2f;
         }
 
         private void Spawn()
