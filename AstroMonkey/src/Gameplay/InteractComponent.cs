@@ -9,13 +9,16 @@ namespace AstroMonkey.Gameplay
 {
     public class InteractComponent : Component
     {
+        public delegate void InteractEvent(InteractComponent interactComponent, Core.GameObject interacting);
+        public event InteractEvent OnInteract;
+
         public InteractComponent(GameObject parent) : base(parent)
         {
         }
 
         public virtual void Interact(GameObject interacting)
         {
-            Console.WriteLine(interacting);
+            OnInteract?.Invoke(this, interacting);
         }
     }
 }
