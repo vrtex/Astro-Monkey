@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework;
+using System.Collections.Generic;
 
 namespace AstroMonkey.Input
 {
@@ -14,6 +15,7 @@ namespace AstroMonkey.Input
         private readonly string verticalBindingName = "move up";
         private readonly string horizontalBindingName = "move right";
         private readonly string spawnBindingName = "spawn";
+        private readonly string interactBindName = "interact";
 
         public InputComponent(Core.GameObject parent) : base(parent)
         {
@@ -21,18 +23,35 @@ namespace AstroMonkey.Input
             verticalAxis = new AxisBinding(Keys.S, Keys.W);
             horizontalAxis = new AxisBinding(Keys.D, Keys.A);
             ActionBinding spawnBinding = new ActionBinding(EMouseButton.Left);
+            ActionBinding interactBinding = new ActionBinding(Keys.E);
 
             verticalAxis.OnUpdate += Move;
             horizontalAxis.OnUpdate += Move;
             spawnBinding.OnTrigger += Spawn;
+            interactBinding.OnTrigger += Interact;
 
             InputManager.Manager.AddAxisBinding(verticalBindingName, verticalAxis);
             InputManager.Manager.AddAxisBinding(horizontalBindingName, horizontalAxis);
 
             InputManager.Manager.AddActionBinding(spawnBindingName, spawnBinding);
+            InputManager.Manager.AddActionBinding(interactBindName, interactBinding);
 
             moveComp.CurrentFocus = target;
             InputManager.Manager.OnMouseMove += MoveTarget;
+        }
+
+        private void Interact()
+        {
+            List<Core.GameObject> inRange = Parent.GetComponent<Physics.Collider.Collider>().GetOverlapingObjects();
+
+            foreach(var colliding in inRange)
+            {
+                Gameplay.InteractComponent interactComponent = colliding.GetComponent<Gameplay.InteractComponent>();
+                if(interactComponent == null)
+                    continue;
+
+                interactComponent.Interact(Parent);
+            }
         }
 
         private void Move(float trash)

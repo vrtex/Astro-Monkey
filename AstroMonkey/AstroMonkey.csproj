@@ -128,6 +128,7 @@
     <Compile Include="src\Core\Transform.cs" />
     <Compile Include="src\Gameplay\DamageInfo.cs" />
     <Compile Include="src\Gameplay\Health.cs" />
+    <Compile Include="src\Gameplay\InteractComponent.cs" />
     <Compile Include="src\Gameplay\SuicideComponent.cs" />
     <Compile Include="src\Input\InputUI.cs" />
     <Compile Include="src\Navigation\ProjectileMovementComponent.cs" />
