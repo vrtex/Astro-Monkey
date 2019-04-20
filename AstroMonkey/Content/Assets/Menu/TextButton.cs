@@ -44,7 +44,7 @@ namespace AstroMonkey.Assets.Objects
 			this.text = text;
 			this.fontName = fontName;
 			color = Util.Statics.AstroColor(28);
-			AnchorToWorldspace(1f);
+			AnchorToWorldspace(0.5f);
 		}
 
 		public void Load()

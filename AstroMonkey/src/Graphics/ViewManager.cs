@@ -20,7 +20,7 @@ namespace AstroMonkey.Graphics
 
 		public GraphicsDeviceManager        graphics;
 
-        public Vector2 ScreenSize;
+        public int ScreenSize;
 
         private Util.ViewComparable vc = new Util.ViewComparable();
 
