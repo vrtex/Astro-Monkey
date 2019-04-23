@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using AstroMonkey.Core;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System.IO;
+using Microsoft.Xna.Framework.Media;
 
 namespace AstroMonkey.Assets.Scenes
 {
@@ -21,6 +23,8 @@ namespace AstroMonkey.Assets.Scenes
 		public override void Load()
 		{
 			base.Load();
+
+			MediaPlayer.Play(Audio.SoundContainer.Instance.GetSong("menu"));
 
 			objects.Add(new UI.Text("Astro Monkey", "planetary", new Vector2(0.5f, 0.05f), new Vector2(0.25f, 0.1f)));
 			mainMenu.Add(objects.Last() as UI.UIElement);
@@ -134,6 +138,10 @@ namespace AstroMonkey.Assets.Scenes
 			(objects.Last() as UI.UIElement).enable = false;
 			(objects.Last() as Objects.TextButton).value = 5;
 
+			objects.Add(new UI.Text(" ", "planetary", new Vector2(0.1f, 0.65f), new Vector2(0.25f, 0.05f)));
+			settings.Add(objects.Last() as UI.UIElement);
+			(objects.Last() as UI.UIElement).enable = false;
+
 			//+++++++++++++++++++++++++++++++++++++++++AUTORZY+++++++++++++++++++++++++++++++++++++++++++++
 			objects.Add(new UI.Text("Jakub Czaja", "planetary", new Vector2(0.1f, 0.15f), new Vector2(0.25f, 0.1f)));
 			authors.Add(objects.Last() as UI.UIElement);
@@ -167,6 +175,8 @@ namespace AstroMonkey.Assets.Scenes
 
 		void PlayGame(Objects.TextButton textButton)
 		{
+			MediaPlayer.Stop();
+
 			if(textButton.value == 0)
 			{
 				GameManager.Instance.NextScene = "devroom";
@@ -245,6 +255,12 @@ namespace AstroMonkey.Assets.Scenes
 		{
 			currResolution = textButton.value;
 			OffAllSetting();
+
+			(settings[7] as UI.Text).text = "Restart game to apply changes";
+			string[] lines = { "fullscreen=" + (Graphics.ViewManager.Instance.graphics.IsFullScreen ? "1" : "0"),
+								"resolution=" + currResolution.ToString()};
+
+			File.WriteAllLines("Content/settings/settings.ini", lines);
 		}
 
 		void OffAllSetting()
@@ -255,7 +271,7 @@ namespace AstroMonkey.Assets.Scenes
 
 			
 			Vector2 res = Vector2.Zero;
-			for(int i = 1; i < settings.Count; ++i)
+			for(int i = 1; i < 7; ++i)
 			{
 				res = Util.Statics.GetResolition(i - 1);
 				if((settings[i] as Objects.TextButton).value == currResolution)
@@ -279,26 +295,11 @@ namespace AstroMonkey.Assets.Scenes
 				textButton.text = "[X] Fullscreen";
 				Graphics.ViewManager.Instance.graphics.IsFullScreen = true;
 			}
-		}
+			(settings[7] as UI.Text).text = "Restart game to apply changes";
+			string[] lines = { "fullscreen=" + (Graphics.ViewManager.Instance.graphics.IsFullScreen ? "1" : "0"),
+								"resolution=" + currResolution.ToString()};
 
-		void RescaleUIElements()
-		{
-			foreach(var l in loadGame)
-			{
-				(l as UI.Text).Load();
-			}
-			foreach(var s in settings)
-			{
-				(s as UI.Text).Load();
-			}
-			foreach(var a in authors)
-			{
-				(a as UI.Text).Load();
-			}
-			foreach(var m in mainMenu)
-			{
-				(m as UI.Text).Load();
-			}
+			File.WriteAllLines("Content/settings/settings.ini", lines);
 		}
 	}
 }

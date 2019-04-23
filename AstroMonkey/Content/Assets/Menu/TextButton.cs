@@ -14,9 +14,10 @@ namespace AstroMonkey.Assets.Objects
 {
 	class TextButton: UI.Text
 	{
-		public delegate void clickEvent(TextButton textButton);
-		public event clickEvent onClick;
-		public int value = 0;
+		public delegate void	clickEvent(TextButton textButton);
+		public event			clickEvent onClick;
+		public int				value = 0;
+		public bool				hover = false;
 
 		public TextButton() : this(new Transform())
 		{
@@ -72,18 +73,29 @@ namespace AstroMonkey.Assets.Objects
 		public override void OnClick()
 		{
 			if(!enable) return;
+			Audio.SoundContainer.Instance.GetSoundEffect("MenuClick").CreateInstance().Play();
 			onClick?.Invoke(this);
 		}
 
 		public override void OnEnter()
 		{
 			if(!enable) return;
-			color = Util.Statics.AstroColor(9);
+			if(!hover)
+			{
+				Audio.SoundContainer.Instance.GetSoundEffect("MenuHover").CreateInstance().Play();
+				color = Util.Statics.AstroColor(9);
+				hover = true;
+			}
 		}
 		public override void OnExit()
 		{
 			if(!enable) return;
-			color = Util.Statics.AstroColor(28);
+			if(hover)
+			{
+				color = Util.Statics.AstroColor(28);
+				hover = false;
+			}
+			
 		}
 
 	}

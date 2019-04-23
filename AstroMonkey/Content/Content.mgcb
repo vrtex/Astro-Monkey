@@ -463,11 +463,317 @@
 #begin settings/settings.ini
 /copy:settings/settings.ini
 
+#begin sfx/alien01/Alien01Attack.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:sfx/alien01/Alien01Attack.mp3
+
+#begin sfx/alien01/Alien01Dead.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:sfx/alien01/Alien01Dead.mp3
+
+#begin sfx/alien01/Alien01Hit.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:sfx/alien01/Alien01Hit.mp3
+
+#begin sfx/alien01/Alien01Idle.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:sfx/alien01/Alien01Idle.mp3
+
+#begin sfx/alien01/Alien01Look.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:sfx/alien01/Alien01Look.mp3
+
+#begin sfx/alien01/Alien01Near.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:sfx/alien01/Alien01Near.mp3
+
+#begin sfx/alien01/Alien01Near02.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:sfx/alien01/Alien01Near02.mp3
+
+#begin sfx/alien01/Alien01Walk.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:sfx/alien01/Alien01Walk.mp3
+
+#begin sfx/alien02/Alien02Attack.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:sfx/alien02/Alien02Attack.mp3
+
+#begin sfx/alien02/Alien02Dead.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:sfx/alien02/Alien02Dead.mp3
+
+#begin sfx/alien02/Alien02Hit.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:sfx/alien02/Alien02Hit.mp3
+
+#begin sfx/alien02/Alien02Idle.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:sfx/alien02/Alien02Idle.mp3
+
+#begin sfx/alien02/Alien02Look.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:sfx/alien02/Alien02Look.mp3
+
+#begin sfx/alien02/Alien02Near.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:sfx/alien02/Alien02Near.mp3
+
+#begin sfx/alien02/Alien02Walk.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:sfx/alien02/Alien02Walk.mp3
+
+#begin sfx/alien03/Alien03Attack.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:sfx/alien03/Alien03Attack.mp3
+
+#begin sfx/alien03/Alien03Dead.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:sfx/alien03/Alien03Dead.mp3
+
+#begin sfx/alien03/Alien03Hit.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:sfx/alien03/Alien03Hit.mp3
+
+#begin sfx/alien03/Alien03Idle.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:sfx/alien03/Alien03Idle.mp3
+
+#begin sfx/alien03/Alien03Look.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:sfx/alien03/Alien03Look.mp3
+
+#begin sfx/alien03/Alien03Walk.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:sfx/alien03/Alien03Walk.mp3
+
+#begin sfx/background/01 - Sound design sweeper bed filter swells ambient 01_SFXBible_ss00411.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:sfx/background/01 - Sound design sweeper bed filter swells ambient 01_SFXBible_ss00411.mp3
+
+#begin sfx/background/02 - Dark_SciFi_Drone_Mixed_080.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:sfx/background/02 - Dark_SciFi_Drone_Mixed_080.mp3
+
+#begin sfx/background/02 - Dark_SciFi_Drone_Mixed_083_V2.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:sfx/background/02 - Dark_SciFi_Drone_Mixed_083_V2.mp3
+
+#begin sfx/background/02 - Spaceship Passageway.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:sfx/background/02 - Spaceship Passageway.mp3
+
+#begin sfx/background/03 - SCIENCE FICTION DRONE ADVANCED TECHNOLOGY HUM 01.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:sfx/background/03 - SCIENCE FICTION DRONE ADVANCED TECHNOLOGY HUM 01.mp3
+
+#begin sfx/background/03 - SCIENCE FICTION DRONE DARK BLIPS 01.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:sfx/background/03 - SCIENCE FICTION DRONE DARK BLIPS 01.mp3
+
+#begin sfx/background/04 - HORROR DRONE DARK AIR 01.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:sfx/background/04 - HORROR DRONE DARK AIR 01.mp3
+
+#begin sfx/background/05 - Crab Nebula.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:sfx/background/05 - Crab Nebula.mp3
+
+#begin sfx/background/05 - Interstellar_Spacedrone.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:sfx/background/05 - Interstellar_Spacedrone.mp3
+
+#begin sfx/background/06 - amb_doomdrones_amorph_stahlwand.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:sfx/background/06 - amb_doomdrones_amorph_stahlwand.mp3
+
+#begin sfx/background/menu - Sound design synth bed pad sweeper ambient 01_SFXBible_ss00421.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:sfx/background/menu - Sound design synth bed pad sweeper ambient 01_SFXBible_ss00421.mp3
+
 #begin sfx/bottle_pop_2.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
 /build:sfx/bottle_pop_2.wav;sfx/test_sound.wav
+
+#begin sfx/guns/GunReload.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:sfx/guns/GunReload.mp3
+
+#begin sfx/guns/GunShoot.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:sfx/guns/GunShoot.mp3
+
+#begin sfx/guns/LuncherHit.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:sfx/guns/LuncherHit.mp3
+
+#begin sfx/guns/LuncherReload.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:sfx/guns/LuncherReload.mp3
+
+#begin sfx/guns/LuncherShoot.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:sfx/guns/LuncherShoot.mp3
+
+#begin sfx/guns/PistolReload.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:sfx/guns/PistolReload.mp3
+
+#begin sfx/guns/PistolShoot.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:sfx/guns/PistolShoot.mp3
+
+#begin sfx/guns/PopHit.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:sfx/guns/PopHit.mp3
+
+#begin sfx/guns/PopReload.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:sfx/guns/PopReload.mp3
+
+#begin sfx/guns/RifleReload.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:sfx/guns/RifleReload.mp3
+
+#begin sfx/guns/RifleShoot.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:sfx/guns/RifleShoot.mp3
+
+#begin sfx/menu/MenuClick.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:sfx/menu/MenuClick.mp3
+
+#begin sfx/menu/MenuHover.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:sfx/menu/MenuHover.mp3
+
+#begin sfx/player/GameOver.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:sfx/player/GameOver.mp3
+
+#begin sfx/player/MonkeyHit.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:sfx/player/MonkeyHit.mp3
+
+#begin sfx/player/MonkeyIdle.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:sfx/player/MonkeyIdle.mp3
+
+#begin sfx/player/MonkeyIdle02.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:sfx/player/MonkeyIdle02.mp3
+
+#begin sfx/player/MonkeyLook.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:sfx/player/MonkeyLook.mp3
+
+#begin sfx/player/MonkeyWalk.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:sfx/player/MonkeyWalk.mp3
 
 #begin spritefonts/PlanetaryContact.spritefont
 /importer:FontDescriptionImporter

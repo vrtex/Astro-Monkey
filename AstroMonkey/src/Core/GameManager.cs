@@ -37,6 +37,8 @@ namespace AstroMonkey.Core
             CurrentGame = game;
             //załadowanie grafik
             Graphics.SpriteContainer.Instance.LoadTextures(game);
+			Audio.SoundContainer.Instance.LoadSounds(game);
+			Audio.SoundContainer.Instance.LoadMusic(game);
 
 			//przekazanie ViewManagerowi możliwość sterowania grafiką
 			Graphics.ViewManager.Instance.graphics = graphics;

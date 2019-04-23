@@ -31,7 +31,7 @@ namespace AstroMonkey.UI
 			this.text = text;
 			this.fontName = fontName;
 			color = Util.Statics.AstroColor(28);
-			AnchorToWorldspace(1f);
+			AnchorToWorldspace(0.5f);
 		}
 
 		public void Load()
@@ -52,7 +52,7 @@ namespace AstroMonkey.UI
 		public override void Draw(SpriteBatch spriteBatch, Vector2 centerPos)
 		{
 			if(!enable) return;
-			spriteBatch.DrawString(SpriteContainer.Instance.GetFont(fontName), this.text, WorldspaceToScreenspace(centerPos), color);
+			spriteBatch.DrawString(SpriteContainer.Instance.GetFont(fontName), text, WorldspaceToScreenspace(centerPos), color);
 		}
 
 		public override void OnClick() { }
