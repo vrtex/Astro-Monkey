@@ -19,7 +19,7 @@ namespace AstroMonkey.Assets.Scenes
                 throw new ApplicationException("something went wrong");
             Graphics.ViewManager.Instance.PlayerTransform = playerObject.transform;
 
-			MediaPlayer.Play(Audio.SoundContainer.Instance.GetSong("01"));
+			//MediaPlayer.Play(Audio.SoundContainer.Instance.GetSong("01"));
 		}
     }
 }

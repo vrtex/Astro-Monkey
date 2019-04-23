@@ -61,8 +61,8 @@ namespace AstroMonkey.Graphics
             spriteBatch.Begin(SpriteSortMode.Deferred,
                             BlendState.AlphaBlend,
                             SamplerState.PointClamp, 
-							null, null, null,
-							//EffectContainer.Instance.GetEffect("LightOff"),
+							null, null,
+							EffectContainer.Instance.GetEffect("NoElectricity"),
 							Matrix.CreateTranslation(
                                 -PlayerTransform.position.X + spriteBatch.GraphicsDevice.Viewport.Width / 2,
                                 -PlayerTransform.position.Y + spriteBatch.GraphicsDevice.Viewport.Height / 2, 0));
@@ -89,8 +89,10 @@ namespace AstroMonkey.Graphics
 
             spriteBatch.Begin(SpriteSortMode.Deferred,
                             BlendState.AlphaBlend, 
-                            SamplerState.PointClamp, null, null, null,
-                            Matrix.CreateTranslation(
+                            SamplerState.PointClamp,
+							null, null,
+							EffectContainer.Instance.GetEffect("NoElectricity"),
+							Matrix.CreateTranslation(
                                 -PlayerTransform.position.X + spriteBatch.GraphicsDevice.Viewport.Width / 2,
                                 -PlayerTransform.position.Y + spriteBatch.GraphicsDevice.Viewport.Height / 2, 0));
 
