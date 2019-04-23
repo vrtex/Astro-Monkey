@@ -13,6 +13,12 @@
 
 #---------------------------------- Content ---------------------------------#
 
+#begin effects/LightOff.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:effects/LightOff.fx
+
 #begin gfx/Characters/Enemies/Alien01.png
 /importer:TextureImporter
 /processor:TextureProcessor

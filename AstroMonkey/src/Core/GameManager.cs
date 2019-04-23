@@ -35,8 +35,9 @@ namespace AstroMonkey.Core
         public void InitializeGame(Game game, GraphicsDeviceManager graphics)
         {
             CurrentGame = game;
-            //załadowanie grafik
+            //załadowanie grafik i dźwięków
             Graphics.SpriteContainer.Instance.LoadTextures(game);
+			Graphics.EffectContainer.Instance.LoadEffects(game);
 			Audio.SoundContainer.Instance.LoadSounds(game);
 			Audio.SoundContainer.Instance.LoadMusic(game);
 
@@ -47,7 +48,7 @@ namespace AstroMonkey.Core
 			Mouse.SetCursor(MouseCursor.FromTexture2D(Graphics.SpriteContainer.Instance.GetImage("mark"), 4, 4));
 
             //załadowanie sceny
-            SceneManager.Instance.LoadScene("menu");
+            SceneManager.Instance.LoadScene("level1");
 
             //przeszukiwanie obiektów i podpinanie referenzji do komponenetów
             //pod odpowiednie zarządzające klasy (animator, sprite, stack animator, stack sprite,...)
