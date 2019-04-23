@@ -7,6 +7,8 @@ namespace AstroMonkey.Assets.Objects
 {
     class Banana: Core.GameObject
     {
+        private Gameplay.InteractComponent interactComponent;
+
         public Banana(): this(new Core.Transform())
         {
         }
@@ -29,9 +31,11 @@ namespace AstroMonkey.Assets.Objects
 
         private void Load(Core.Transform _transform)
         {
-            transform = _transform;
             // Physics
             AddComponent(new CircleCollider(this, CollisionChanell.Item, Vector2.Zero, size / 2));
+
+            interactComponent = AddComponent(new Gameplay.InteractComponent(this));
+            interactComponent.OnInteract += InteractHnadler;
 
             List<Rectangle> idle01 = new List<Rectangle>();
             for(int i = 0; i < height; ++i) idle01.Add(new Rectangle(i * size, 0, size, size));
@@ -51,6 +55,22 @@ namespace AstroMonkey.Assets.Objects
                 true));
 
             GetComponent<Graphics.StackAnimator>().SetAnimation("Idle");
+        }
+
+        private void InteractHnadler(Gameplay.InteractComponent interactComponent, Core.GameObject interacting)
+        {
+            Console.WriteLine("banana interact");
+            Core.Transform newTransofrm = new Core.Transform(transform);
+            newTransofrm.position.X += 100;
+            newTransofrm.position.Y += 100;
+            Banana newBanana = new Banana(newTransofrm);
+            Core.GameManager.SpawnObject(newBanana);
+        }
+
+        public override void Destroy()
+        {
+            interactComponent.OnInteract -= InteractHnadler;
+            base.Destroy();
         }
     }
 }

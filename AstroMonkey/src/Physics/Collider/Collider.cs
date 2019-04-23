@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using AstroMonkey.Core;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -117,6 +118,16 @@ namespace AstroMonkey.Physics.Collider
         public ReactType GetReaction(CollisionChanell collisionChanell)
         {
             return reaction[collisionChanell];
+        }
+
+        public List<GameObject> GetOverlapingObjects()
+        {
+            List<GameObject> toReturn = new List<GameObject>();
+
+            foreach(var collider in collisons)
+                toReturn.Add(collider.Parent);
+
+            return toReturn.Distinct().ToList();
         }
 
         private void SetRotation()
