@@ -12,7 +12,12 @@ namespace AstroMonkey.Assets.Objects
         private int height = 21;
         private int size = 21;
 
-        public Player(): this(new Core.Transform())
+		private Audio.AudioSource walkSFX;
+		private Audio.AudioSource hitSFX;
+		private Audio.AudioSource idleSFX;
+		private Audio.AudioSource gameoverSFX;
+
+		public Player(): this(new Core.Transform())
         {
         }
         public Player(Core.Transform _transform): base(_transform)
@@ -32,11 +37,15 @@ namespace AstroMonkey.Assets.Objects
             // Physics
             AddComponent(new Body(this));
             AddComponent(new CircleCollider(this, CollisionChanell.Player, Vector2.Zero, size / 3));
-            //AddComponent(new CircleCollider(this, CollisionChanell.Hitbox, Vector2.Zero, size / 2));
+			//AddComponent(new CircleCollider(this, CollisionChanell.Hitbox, Vector2.Zero, size / 2));
 
+			walkSFX		= AddComponent(new Audio.AudioSource(this, Audio.SoundContainer.Instance.GetSoundEffect("MonkeyWalk")));
+			hitSFX		= AddComponent(new Audio.AudioSource(this, Audio.SoundContainer.Instance.GetSoundEffect("MonkeyHit")));
+			idleSFX		= AddComponent(new Audio.AudioSource(this, Audio.SoundContainer.Instance.GetSoundEffect("MonkeyIdle")));
+			gameoverSFX	= AddComponent(new Audio.AudioSource(this, Audio.SoundContainer.Instance.GetSoundEffect("GameOver")));
 
-            // Movement
-            Navigation.MovementComponent moveComp =  (Navigation.MovementComponent)AddComponent(new Navigation.MovementComponent(this));
+			// Movement
+			Navigation.MovementComponent moveComp =  (Navigation.MovementComponent)AddComponent(new Navigation.MovementComponent(this));
 
             AddComponent(new Input.InputComponent(this));
 
@@ -132,11 +141,18 @@ namespace AstroMonkey.Assets.Objects
             if(Util.Statics.IsNearlyEqual(currVel.Length(), 0, 0.001))
             {
                 GetComponent<Graphics.AnimatorContainer>().SetAnimation("Hold");
-            }
+				walkSFX.IsLooped = false;
+
+			}
             else
             {
                 GetComponent<Graphics.AnimatorContainer>().SetAnimation("HoldWalk");
-            }
+				if(walkSFX.IsLooped == false)
+				{
+					walkSFX.IsLooped = true;
+					walkSFX.Play();
+				}
+			}
             transform.rotation = (float)Math.PI * 0.5f + GetComponent<Navigation.MovementComponent>().CurrentDirection;
         }
     }
