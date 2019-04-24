@@ -35,7 +35,6 @@ namespace AstroMonkey.Input
 
         private void OnClick() //wykrycie kliknięcia w obszar elementu UI
 		{
-            Console.WriteLine("click " + (parent as UI.UIElement).position );
 			Vector2 mousePos = InputManager.Manager.MouseCursor;
 			Rectangle parentPos = (parent as UI.UIElement).position;
 			
@@ -87,7 +86,6 @@ namespace AstroMonkey.Input
         public override void Destroy()
         {
             base.Destroy();
-            Console.WriteLine("lol " + (parent as UI.UIElement).position );
             Input.InputManager.Manager.GetActionBinding("click").OnTrigger -= OnClick;
             InputManager.Manager.OnMouseMove -= MouseMove;
         }

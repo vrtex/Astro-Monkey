@@ -36,7 +36,6 @@ namespace AstroMonkey.Assets.Objects
 
         protected virtual void OnHit(Collider thisCollider, Collider otherCollider)
         {
-            Console.WriteLine("lol");
             Gameplay.Health enemyHealth = otherCollider.Parent.GetComponent<Gameplay.Health>();
             if(enemyHealth != null)
                 enemyHealth.DeadDamage(Damage);
