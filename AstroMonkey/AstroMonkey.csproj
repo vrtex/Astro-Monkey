@@ -105,6 +105,7 @@
     <Compile Include="Content\Assets\Projectiles\AlienBullet.cs" />
     <Compile Include="Content\Assets\Projectiles\BaseProjectile.cs" />
     <Compile Include="Content\Assets\Projectiles\BulletHit.cs" />
+    <Compile Include="Content\Assets\Projectiles\PistolBullet.cs" />
     <Compile Include="Content\Assets\Projectiles\Poop.cs" />
     <Compile Include="Content\Assets\Projectiles\Rocket.cs" />
     <Compile Include="Content\Assets\Scenes\Basement.cs" />
@@ -127,6 +128,7 @@
     <Compile Include="src\Core\SceneManager.cs" />
     <Compile Include="src\Core\Transform.cs" />
     <Compile Include="src\Gameplay\DamageInfo.cs" />
+    <Compile Include="src\Gameplay\Gun.cs" />
     <Compile Include="src\Gameplay\Health.cs" />
     <Compile Include="src\Gameplay\InteractComponent.cs" />
     <Compile Include="src\Gameplay\SuicideComponent.cs" />

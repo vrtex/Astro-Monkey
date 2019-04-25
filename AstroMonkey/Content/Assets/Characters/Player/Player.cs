@@ -40,6 +40,7 @@ namespace AstroMonkey.Assets.Objects
 			//AddComponent(new CircleCollider(this, CollisionChanell.Hitbox, Vector2.Zero, size / 2));
 
 			walkSFX		= AddComponent(new Audio.AudioSource(this, Audio.SoundContainer.Instance.GetSoundEffect("MonkeyWalk")));
+			walkSFX.Pitch = 0.5f;
 			hitSFX		= AddComponent(new Audio.AudioSource(this, Audio.SoundContainer.Instance.GetSoundEffect("MonkeyHit")));
 			idleSFX		= AddComponent(new Audio.AudioSource(this, Audio.SoundContainer.Instance.GetSoundEffect("MonkeyIdle")));
 			gameoverSFX	= AddComponent(new Audio.AudioSource(this, Audio.SoundContainer.Instance.GetSoundEffect("GameOver")));
@@ -47,6 +48,7 @@ namespace AstroMonkey.Assets.Objects
 			// Movement
 			Navigation.MovementComponent moveComp =  (Navigation.MovementComponent)AddComponent(new Navigation.MovementComponent(this));
 
+			AddComponent(new Gameplay.Gun(this));
             AddComponent(new Input.InputComponent(this));
 
 

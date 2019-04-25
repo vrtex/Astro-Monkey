@@ -13,6 +13,7 @@ namespace AstroMonkey.Input
         private readonly AxisBinding horizontalAxis;
         private Core.GameObject target = new Core.GameObject();
         private bool projectileToSpawn = false;
+		private Gameplay.Gun gun;
 
         private readonly string verticalBindingName = "move up";
         private readonly string horizontalBindingName = "move right";
@@ -40,6 +41,8 @@ namespace AstroMonkey.Input
 
             moveComp.CurrentFocus = target;
             InputManager.Manager.OnMouseMove += MoveTarget;
+
+			gun = Parent.GetComponent<Gameplay.Gun>();
         }
 
         private void Interact()
@@ -80,7 +83,6 @@ namespace AstroMonkey.Input
 
             lock(this)
                 projectileToSpawn = true;
-            // Core.GameManager.SpawnObject(projectile);
         }
 
         public override void Update(GameTime gameTime)
@@ -92,19 +94,8 @@ namespace AstroMonkey.Input
             {
                 lock(this)
                 {
-                    Assets.Objects.AlienBullet projectile = new Assets.Objects.AlienBullet(new Core.Transform(Parent.transform));
-
-                    Vector2 parentPosition = parent.transform.position;
-                    Vector2 targetPosition = Input.InputManager.Manager.MouseCursorInWorldSpace;
-                    Vector2 direction = targetPosition - parentPosition;
-                    direction.Normalize();
-
-                    projectile.GetComponent<Navigation.ProjectileMovementComponent>().Direction = direction;
-                    projectile.GetComponent<Navigation.ProjectileMovementComponent>().Velocity = 800f;
-
-                    projectile.Damage = new Gameplay.DamageInfo(parent, 10);
-
-                    Core.GameManager.SpawnObject(projectile);
+					Vector2 targetPosition = Input.InputManager.Manager.MouseCursorInWorldSpace;
+					gun.Shoot(targetPosition);
                     projectileToSpawn = false;
                 }
             }

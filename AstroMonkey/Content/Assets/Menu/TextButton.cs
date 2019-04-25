@@ -78,7 +78,6 @@ namespace AstroMonkey.Assets.Objects
 		public override void OnClick()
 		{
 			if(!enable) return;
-            //Audio.SoundContainer.Instance.GetSoundEffect("MenuClick").CreateInstance().Play();
             clickSFX.Play();
 			onClick?.Invoke(this);
 		}
@@ -88,7 +87,6 @@ namespace AstroMonkey.Assets.Objects
 			if(!enable) return;
 			if(!hover)
 			{
-                // Audio.SoundContainer.Instance.GetSoundEffect("MenuHover").CreateInstance().Play();
                 hoverSFX.Play();
 				color = Util.Statics.AstroColor(9);
 				hover = true;

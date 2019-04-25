@@ -14,7 +14,7 @@ namespace AstroMonkey.Assets.Objects
         private int height = 13;
         private int size = 21;
 
-        public Alien01() : this(new Core.Transform())
+		public Alien01() : this(new Core.Transform())
         {
         }
         public Alien01(Core.Transform _transform): base(_transform)
@@ -75,6 +75,15 @@ namespace AstroMonkey.Assets.Objects
                 true));
 
             GetComponent<Graphics.StackAnimator>().SetAnimation("Idle");
-        }
+
+			//AudioSource
+			walkSFX = AddComponent(new Audio.AudioSource(this, Audio.SoundContainer.Instance.GetSoundEffect("Alien01Walk")));
+			hitSFX = AddComponent(new Audio.AudioSource(this, Audio.SoundContainer.Instance.GetSoundEffect("Alien01Hit")));
+			idleSFX = AddComponent(new Audio.AudioSource(this, Audio.SoundContainer.Instance.GetSoundEffect("Alien01Idle")));
+			lookSFX = AddComponent(new Audio.AudioSource(this, Audio.SoundContainer.Instance.GetSoundEffect("Alien01Look")));
+
+			//ustawianie zwłok kosmity
+			corp = typeof(Alien01Dead);
+		}
     }
 }

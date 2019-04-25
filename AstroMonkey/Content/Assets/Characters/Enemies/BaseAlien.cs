@@ -1,16 +1,28 @@
-﻿using AstroMonkey.Physics;
+﻿using AstroMonkey.Core;
+using AstroMonkey.Physics;
 using AstroMonkey.Physics.Collider;
 using Microsoft.Xna.Framework;
+using System;
 
 namespace AstroMonkey.Assets.Objects
 {
     class BaseAlien : Core.GameObject
     {
-        protected Vector2 colliderOffset = Vector2.Zero;
-        protected float colliderRadius;
+        protected Vector2			colliderOffset = Vector2.Zero;
+        protected float				colliderRadius;
 
-        // Nabiał: czy to jest poprawana nazwa?
-        protected int healthBarOffset;
+		protected Audio.AudioSource walkSFX;
+		protected Audio.AudioSource hitSFX;
+		protected Audio.AudioSource idleSFX;
+		protected Audio.AudioSource lookSFX;
+
+		protected UI.HealthBar      healthBar;
+		protected Gameplay.Health   healthComponent;
+
+		protected Type				corp		= null;
+
+		// Nabiał: czy to jest poprawana nazwa?
+		protected int healthBarOffset;
 
         public BaseAlien(Core.Transform transform) : base(transform)
         {
@@ -23,9 +35,31 @@ namespace AstroMonkey.Assets.Objects
             AddComponent(new CircleCollider(this, CollisionChanell.Enemy, colliderOffset, colliderRadius));
 
             // HealthBar
-            Gameplay.Health healthComponent = AddComponent(new Gameplay.Health(this));
-            UI.HealthBar healthBar = AddComponent(new UI.HealthBar(this, healthBarOffset));
+            healthComponent = AddComponent(new Gameplay.Health(this));
+            healthBar = AddComponent(new UI.HealthBar(this, healthBarOffset));
             healthComponent.OnDamageTaken += healthBar.Refresh;
-        }
-    }
+			healthComponent.OnDamageTaken += OnDamage;
+
+			OnDestroy += SpawnCorps;
+		}
+
+		private void OnDamage(Gameplay.Health damaged, Gameplay.DamageInfo damageInfo)
+		{
+			hitSFX.Stop();
+			hitSFX.Play();
+		}
+
+		private void SpawnCorps(GameObject destroyed)
+		{
+			if(corp != null)
+			{
+				GameManager.SpawnObject(
+					(GameObject)Activator.CreateInstance(corp, new object[] {
+					new Vector2(transform.position.X, transform.position.Y),
+					new Vector2(SceneManager.scale, SceneManager.scale),
+					transform.rotation
+					}));
+			}
+		}
+	}
 }

@@ -29,8 +29,10 @@ namespace AstroMonkey.Assets.Objects
 
             // Physics
             AddComponent(new BoxCollider(this, CollisionChanell.Object, new Vector2(0, 0), 32, 12));
+			GetComponent<BoxCollider>().SetReaction(CollisionChanell.Bullets, ReactType.Ignore);
 
-            List<Rectangle> temp = new List<Rectangle>();
+
+			List<Rectangle> temp = new List<Rectangle>();
             for(int i = 0; i < 8; ++i)
             {
                 temp.Add(new Rectangle(i * 32, 0, 32, 32));

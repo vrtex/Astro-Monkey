@@ -25,6 +25,8 @@ namespace AstroMonkey.Assets.Objects
 		private int height = 32;
 		private int size = 32;
 
+		private Audio.AudioSource deadSFX;
+
 		private void Load(Core.Transform _transform)
 		{
 			transform = _transform;
@@ -52,6 +54,9 @@ namespace AstroMonkey.Assets.Objects
 				false));
 
 			GetComponent<Graphics.StackAnimator>().SetAnimation("Dead");
+
+			deadSFX = AddComponent(new Audio.AudioSource(this, Audio.SoundContainer.Instance.GetSoundEffect("Alien03Dead")));
+			deadSFX.Play();
 		}
 	}
 }

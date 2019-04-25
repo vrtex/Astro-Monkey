@@ -167,7 +167,12 @@ namespace AstroMonkey.Physics.Collider
             this.reaction = reaction;
         }
 
-        public Dictionary<CollisionChanell, ReactType> GetReaction()
+		public void SetReaction(CollisionChanell channel, ReactType reaction)
+		{
+			this.reaction[channel] = reaction;
+		}
+
+		public Dictionary<CollisionChanell, ReactType> GetReaction()
         {
             return reaction;
         }
@@ -180,7 +185,7 @@ namespace AstroMonkey.Physics.Collider
             {
                 case CollisionChanell.Player:
                     reaction.Add(CollisionChanell.Player, ReactType.Block);
-                    reaction.Add(CollisionChanell.Enemy, ReactType.Overlap);
+                    reaction.Add(CollisionChanell.Enemy, ReactType.Block);
                     reaction.Add(CollisionChanell.Item, ReactType.Overlap);
                     reaction.Add(CollisionChanell.Object, ReactType.Block);
                     reaction.Add(CollisionChanell.Hitbox, ReactType.Ignore);
@@ -189,7 +194,7 @@ namespace AstroMonkey.Physics.Collider
                     reaction.Add(CollisionChanell.InteractBullet, ReactType.Ignore);
                     break;
                 case CollisionChanell.Enemy:
-                    reaction.Add(CollisionChanell.Player, ReactType.Overlap);
+                    reaction.Add(CollisionChanell.Player, ReactType.Block);
                     reaction.Add(CollisionChanell.Enemy, ReactType.Block);
                     reaction.Add(CollisionChanell.Item, ReactType.Ignore);
                     reaction.Add(CollisionChanell.Object, ReactType.Block);

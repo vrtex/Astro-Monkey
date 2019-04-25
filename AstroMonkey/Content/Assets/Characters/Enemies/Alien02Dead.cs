@@ -25,6 +25,8 @@ namespace AstroMonkey.Assets.Objects
 		private int height = 21;
 		private int size = 21;
 
+		private Audio.AudioSource deadSFX;
+
 		private void Load(Core.Transform _transform)
 		{
 			transform = _transform;
@@ -37,13 +39,15 @@ namespace AstroMonkey.Assets.Objects
 
 			//UMIERANIE
 			List<Rectangle> dead02 = new List<Rectangle>();
-			for(int i = 0; i < height; ++i) dead02.Add(new Rectangle(i * size, size * 4, size, size));
+			for(int i = 0; i < height; ++i) dead02.Add(new Rectangle(i * size, size * 8, size, size));
 			List<Rectangle> dead03 = new List<Rectangle>();
-			for(int i = 0; i < height; ++i) dead03.Add(new Rectangle(i * size, size * 5, size, size));
+			for(int i = 0; i < height; ++i) dead03.Add(new Rectangle(i * size, size * 9, size, size));
 			List<Rectangle> dead04 = new List<Rectangle>();
-			for(int i = 0; i < height; ++i) dead04.Add(new Rectangle(i * size, size * 6, size, size));
+			for(int i = 0; i < height; ++i) dead04.Add(new Rectangle(i * size, size * 10, size, size));
 			List<Rectangle> dead05 = new List<Rectangle>();
-			for(int i = 0; i < height; ++i) dead05.Add(new Rectangle(i * size, size * 7, size, size));
+			for(int i = 0; i < height; ++i) dead05.Add(new Rectangle(i * size, size * 11, size, size));
+			List<Rectangle> dead06 = new List<Rectangle>();
+			for(int i = 0; i < height; ++i) dead06.Add(new Rectangle(i * size, size * 12, size, size));
 			GetComponent<Graphics.StackAnimator>().AddAnimation(
 				new Graphics.StackAnimation("Dead",
 				GetComponent<Graphics.Sprite>(),
@@ -52,6 +56,9 @@ namespace AstroMonkey.Assets.Objects
 				false));
 
 			GetComponent<Graphics.StackAnimator>().SetAnimation("Dead");
+
+			deadSFX = AddComponent(new Audio.AudioSource(this, Audio.SoundContainer.Instance.GetSoundEffect("Alien02Dead")));
+			deadSFX.Play();
 		}
 	}
 }

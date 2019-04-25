@@ -409,6 +409,18 @@
 /processorParam:TextureFormat=Color
 /build:gfx/Projectiles/BulletHit.png
 
+#begin gfx/Projectiles/PistolBullet.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:gfx/Projectiles/PistolBullet.png
+
 #begin gfx/Projectiles/Poop.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -774,6 +786,12 @@
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
 /build:sfx/player/MonkeyWalk.mp3
+
+#begin sfx/player/MonkeyWalk02.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:sfx/player/MonkeyWalk02.mp3
 
 #begin spritefonts/PlanetaryContact.spritefont
 /importer:FontDescriptionImporter
