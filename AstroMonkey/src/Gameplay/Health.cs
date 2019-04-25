@@ -12,8 +12,17 @@ namespace AstroMonkey.Gameplay
         public delegate void DamageEvent(Health damaged, DamageInfo damageInfo);
         public event DamageEvent OnDamageTaken;
 
-		public int maxHealth = 100;
-		public int health = 100;
+		private int maxHealth = 100;
+		private int health = 100;
+
+        public int MaxHealth{
+            get => maxHealth;
+            set{
+                float percentage = GetPercentage();
+                maxHealth = value;
+                health = (int)(percentage * maxHealth);
+            }
+        }
 
 		public Health(GameObject parent) : base(parent)
 		{
@@ -35,7 +44,7 @@ namespace AstroMonkey.Gameplay
 
         public float GetPercentage()
         {
-            return maxHealth == 0 ? 0f : (float)health / (float)maxHealth;
+            return MaxHealth == 0 ? 0f : (float)health / (float)MaxHealth;
         }
 	}
 }

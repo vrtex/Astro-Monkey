@@ -18,10 +18,10 @@ namespace AstroMonkey.Assets.Objects
 
 		protected UI.HealthBar      healthBar;
 		protected Gameplay.Health   healthComponent;
+        protected int               maxHealth = 100;
 
 		protected Type				corp		= null;
 
-		// Nabiał: czy to jest poprawana nazwa?
 		protected int healthBarOffset;
 
         public BaseAlien(Core.Transform transform) : base(transform)
@@ -36,6 +36,7 @@ namespace AstroMonkey.Assets.Objects
 
             // HealthBar
             healthComponent = AddComponent(new Gameplay.Health(this));
+            healthComponent.MaxHealth = maxHealth;
             healthBar = AddComponent(new UI.HealthBar(this, healthBarOffset));
             healthComponent.OnDamageTaken += healthBar.Refresh;
 			healthComponent.OnDamageTaken += OnDamage;

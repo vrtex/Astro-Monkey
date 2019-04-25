@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using AstroMonkey.Physics;
-using AstroMonkey.Physics.Collider;
+﻿using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 
 namespace AstroMonkey.Assets.Objects
@@ -21,6 +15,7 @@ namespace AstroMonkey.Assets.Objects
         {
             colliderRadius = size / 3;
             healthBarOffset = height * 5 / 3;
+            maxHealth = 100;
             Load(_transform);
         }
         public Alien02(Vector2 position, Vector2 scale, float rotation = 0f) : this(new Core.Transform(position, scale, rotation))
@@ -34,7 +29,8 @@ namespace AstroMonkey.Assets.Objects
         {
             base.Load(_transform);
 
-            List<Rectangle> idle01 = new List<Rectangle>();
+
+            List <Rectangle> idle01 = new List<Rectangle>();
             for(int i = 0; i < height; ++i) idle01.Add(new Rectangle(i * size, 0, size, size));
             AddComponent(new Graphics.Sprite(this, "alien02", idle01));
 
