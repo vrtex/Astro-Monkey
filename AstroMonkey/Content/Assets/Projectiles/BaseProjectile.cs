@@ -35,8 +35,6 @@ namespace AstroMonkey.Assets.Objects
 
         private void OnBlockingHit(Collider thisCollider, Collider otherCollider)
         {
-			Console.WriteLine("block destroy");
-
 			Destroy();
         }
 
@@ -47,7 +45,6 @@ namespace AstroMonkey.Assets.Objects
 				enemyHealth.DeadDamage(Damage);
 			else
 				return;
-			Console.WriteLine("overlap destroy");
             Destroy();
         }
 

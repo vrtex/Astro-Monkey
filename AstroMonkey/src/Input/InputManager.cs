@@ -29,7 +29,9 @@ namespace AstroMonkey.Input
         None,
         Left,
         Middle,
-        Right
+        Right,
+        WheelUp,
+        WheelDown
     };
 
     public class MouseInputEventArgs : EventArgs
@@ -224,6 +226,16 @@ namespace AstroMonkey.Input
                     OnMouseButtonPressed(new MouseInputEventArgs(EMouseButton.Middle, new Vector2(PreviousMouseState.X, PreviousMouseState.Y), new Vector2(newState.X, newState.Y), true));
                 else if(OnMouseButtonReleased != null)
                     OnMouseButtonReleased(new MouseInputEventArgs(EMouseButton.Middle, new Vector2(PreviousMouseState.X, PreviousMouseState.Y), new Vector2(newState.X, newState.Y)));
+            }
+
+            if(newState.ScrollWheelValue != PreviousMouseState.ScrollWheelValue)
+            {
+                OnMouseButtonPressed?.Invoke(new MouseInputEventArgs(
+                    newState.ScrollWheelValue - PreviousMouseState.ScrollWheelValue > 0 ?
+                        EMouseButton.WheelUp : EMouseButton.WheelDown,
+                    new Vector2(PreviousMouseState.X, PreviousMouseState.Y),
+                    new Vector2(newState.X, newState.Y), true
+                    ));
             }
         }
 

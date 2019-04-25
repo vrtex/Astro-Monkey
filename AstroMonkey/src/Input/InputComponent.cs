@@ -19,19 +19,27 @@ namespace AstroMonkey.Input
         private readonly string horizontalBindingName = "move right";
         private readonly string spawnBindingName = "spawn";
         private readonly string interactBindName = "interact";
+        private readonly string scrollUpBindName = "weapon up";
+        private readonly string scrollDownBindName = "weapon down";
 
         public InputComponent(Core.GameObject parent) : base(parent)
         {
             moveComp = parent.GetComponent<Navigation.MovementComponent>();
+			gun = Parent.GetComponent<Gameplay.Gun>();
+
             verticalAxis = new AxisBinding(Keys.S, Keys.W);
             horizontalAxis = new AxisBinding(Keys.D, Keys.A);
             ActionBinding spawnBinding = new ActionBinding(EMouseButton.Left);
             ActionBinding interactBinding = new ActionBinding(Keys.E);
+            ActionBinding scrollUpBinding = new ActionBinding(EMouseButton.WheelUp);
+            ActionBinding scrollDownBinding = new ActionBinding(EMouseButton.WheelDown);
 
             verticalAxis.OnUpdate += Move;
             horizontalAxis.OnUpdate += Move;
             spawnBinding.OnTrigger += Spawn;
             interactBinding.OnTrigger += Interact;
+            scrollDownBinding.OnTrigger += ChangeAmmoDown;
+            scrollUpBinding.OnTrigger += ChangeAmmoUp;
 
             InputManager.Manager.AddAxisBinding(verticalBindingName, verticalAxis);
             InputManager.Manager.AddAxisBinding(horizontalBindingName, horizontalAxis);
@@ -39,10 +47,21 @@ namespace AstroMonkey.Input
             InputManager.Manager.AddActionBinding(spawnBindingName, spawnBinding);
             InputManager.Manager.AddActionBinding(interactBindName, interactBinding);
 
+            InputManager.Manager.AddActionBinding(scrollDownBindName, scrollDownBinding);
+            InputManager.Manager.AddActionBinding(scrollUpBindName, scrollUpBinding);
+
             moveComp.CurrentFocus = target;
             InputManager.Manager.OnMouseMove += MoveTarget;
+        }
 
-			gun = Parent.GetComponent<Gameplay.Gun>();
+        private void ChangeAmmoDown()
+        {
+            gun.ChangeAmmo(false);
+        }
+
+        private void ChangeAmmoUp()
+        {
+            gun.ChangeAmmo(true);
         }
 
         private void Interact()
