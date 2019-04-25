@@ -52,15 +52,15 @@ namespace AstroMonkey.Assets.Objects
 
 		private void SpawnCorps(GameObject destroyed)
 		{
-			if(corp != null)
-			{
-				GameManager.SpawnObject(
-					(GameObject)Activator.CreateInstance(corp, new object[] {
-					new Vector2(transform.position.X, transform.position.Y),
-					new Vector2(SceneManager.scale, SceneManager.scale),
-					transform.rotation
-					}));
-			}
+            if(corp == null)
+                throw new ApplicationException("give me corpse dummy");
+
+			GameManager.SpawnObject(
+				(GameObject)Activator.CreateInstance(corp, new object[] {
+				new Vector2(transform.position.X, transform.position.Y),
+				new Vector2(SceneManager.scale, SceneManager.scale),
+				transform.rotation
+				}));
 		}
 	}
 }
