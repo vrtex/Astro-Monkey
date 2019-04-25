@@ -103,7 +103,6 @@ namespace AstroMonkey.Input
 
         public override void Destroy()
         {
-            base.Destroy();
 
             AxisBinding horizontalBinding = InputManager.Manager.GetAxisBinding(horizontalBindingName);
             AxisBinding verticalBinding = InputManager.Manager.GetAxisBinding(verticalBindingName);
@@ -118,6 +117,7 @@ namespace AstroMonkey.Input
             InputManager.Manager.RemoveBinding(spawnBindingName);
             InputManager.Manager.RemoveBinding(horizontalBindingName);
             InputManager.Manager.RemoveBinding(verticalBindingName);
+            base.Destroy();
         }
     }
 }

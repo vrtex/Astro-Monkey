@@ -11,13 +11,14 @@ namespace AstroMonkey.Assets.Objects
         public Gameplay.DamageInfo Damage { get; set; }
         Collider collider;
 		public SoundEffectInstance shootSound;
+        public float speed = 800f;
 
         public BaseProjectile(Core.Transform transform): base(transform)
         {
             collider = new CircleCollider(this, CollisionChanell.Bullets, Vector2.Zero, 3);
 
             // loleh
-            collider.GetReaction()[CollisionChanell.Enemy] = ReactType.Overlap;
+            collider.SetReaction(CollisionChanell.Enemy, ReactType.Overlap);
             // collider.SetReaction(reactions);
 
             collider.OnBeginOverlap += OnHit;

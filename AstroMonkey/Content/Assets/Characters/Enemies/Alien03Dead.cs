@@ -3,23 +3,20 @@ using Microsoft.Xna.Framework;
 
 namespace AstroMonkey.Assets.Objects
 {
-	class Alien03Dead: Core.GameObject
+	class Alien03Dead: BaseAlienDead
 	{
-		public Alien03Dead()
+		public Alien03Dead() : this(new Core.Transform())
 		{
-			Load(new Core.Transform(Vector2.Zero, Vector2.One, 0f));
 		}
 		public Alien03Dead(Core.Transform _transform) : base(_transform)
 		{
 			Load(_transform);
 		}
-		public Alien03Dead(Vector2 position, Vector2 scale, float rotation = 0f)
+		public Alien03Dead(Vector2 position, Vector2 scale, float rotation = 0f) : this(new Core.Transform(position, scale, rotation))
 		{
-			Load(new Core.Transform(position, scale, rotation));
 		}
-		public Alien03Dead(Vector2 position)
+		public Alien03Dead(Vector2 position) : this(new Core.Transform(position, Vector2.One))
 		{
-			Load(new Core.Transform(position, Vector2.One, 0f));
 		}
 
 		private int height = 32;
@@ -27,9 +24,8 @@ namespace AstroMonkey.Assets.Objects
 
 		private Audio.AudioSource deadSFX;
 
-		private void Load(Core.Transform _transform)
+		protected void Load(Core.Transform _transform)
 		{
-			transform = _transform;
 
 			List<Rectangle> dead01 = new List<Rectangle>();
 			for(int i = 0; i < height; ++i) dead01.Add(new Rectangle(i * size, size * 6, size, size));

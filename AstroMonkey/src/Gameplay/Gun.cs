@@ -24,7 +24,7 @@ namespace AstroMonkey.Gameplay
 			currentAmmo = ammoTypes.GetEnumerator();
 			currentAmmo.MoveNext();
 			currentAmmo.MoveNext();
-			currentAmmo.MoveNext();
+			//currentAmmo.MoveNext();
 
 			boomComp = Parent.AddComponent(new Audio.AudioSource(Parent, Audio.SoundContainer.Instance.GetSoundEffect("GunShoot")));
 		}
@@ -42,7 +42,8 @@ namespace AstroMonkey.Gameplay
 			direction.Normalize();
 
 			projectile.GetComponent<Navigation.ProjectileMovementComponent>().Direction = direction;
-			projectile.GetComponent<Navigation.ProjectileMovementComponent>().Velocity = 800f;
+			projectile.GetComponent<Navigation.ProjectileMovementComponent>().Velocity = projectile.speed;
+			//projectile.GetComponent<Navigation.ProjectileMovementComponent>().Velocity = 800f;
 
 			projectile.Damage = new DamageInfo(parent, 10);
 

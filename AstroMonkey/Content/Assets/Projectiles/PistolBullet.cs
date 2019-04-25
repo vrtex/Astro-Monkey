@@ -27,6 +27,7 @@ namespace AstroMonkey.Assets.Objects
 		{
 			AddComponent(new Graphics.Sprite(this, "pistolBullet", new List<Rectangle>() { new Rectangle(0, 0, 2, 4) }));
 			shootSound = Audio.SoundContainer.Instance.GetSoundEffect("PistolShoot").CreateInstance();
+            speed = 800f;
 		}
 	}
 }
