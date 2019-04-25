@@ -28,6 +28,14 @@ namespace AstroMonkey.Assets.Objects
         {
         }
 
+        public override void Destroy()
+        {
+            healthComponent.OnDamageTaken -= healthBar.Refresh;
+            healthComponent.OnDamageTaken -= OnDamage;
+            healthComponent.OnDepleted -= Die;
+            base.Destroy();
+        }
+
         protected virtual void Load(Core.Transform transform)
         {
             // Physics
@@ -40,17 +48,23 @@ namespace AstroMonkey.Assets.Objects
             healthBar = AddComponent(new UI.HealthBar(this, healthBarOffset));
             healthComponent.OnDamageTaken += healthBar.Refresh;
 			healthComponent.OnDamageTaken += OnDamage;
-
-			OnDestroy += SpawnCorps;
+            healthComponent.OnDepleted += Die;
 		}
 
-		private void OnDamage(Gameplay.Health damaged, Gameplay.DamageInfo damageInfo)
+
+        private void OnDamage(Gameplay.Health damaged, Gameplay.DamageInfo damageInfo)
 		{
 			hitSFX.Stop();
 			hitSFX.Play();
 		}
 
-		private void SpawnCorps(GameObject destroyed)
+        private void Die(Gameplay.Health damaged, Gameplay.DamageInfo damageInfo)
+        {
+            SpawnCorpse();
+            Destroy();
+        }
+
+        private void SpawnCorpse()
 		{
             if(corp == null)
                 throw new ApplicationException("give me corpse dummy");

@@ -11,6 +11,7 @@ namespace AstroMonkey.Gameplay
 	{
         public delegate void DamageEvent(Health damaged, DamageInfo damageInfo);
         public event DamageEvent OnDamageTaken;
+        public event DamageEvent OnDepleted;
 
 		private int maxHealth = 100;
 		private int health = 100;
@@ -38,7 +39,8 @@ namespace AstroMonkey.Gameplay
 			
 			if(health == 0)
 			{
-                Parent.Destroy();
+                OnDepleted?.Invoke(this, damage);
+                //Parent.Destroy();
 			}
 		}
 
