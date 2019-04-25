@@ -2,13 +2,10 @@
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AstroMonkey.Gameplay
 {
-	class Gun : Component
+    class Gun : Component
 	{
 		List<Type> ammoTypes = new List<Type>
 		{
@@ -23,10 +20,10 @@ namespace AstroMonkey.Gameplay
 		{
 			currentAmmo = ammoTypes.GetEnumerator();
 			currentAmmo.MoveNext();
-			currentAmmo.MoveNext();
-			//currentAmmo.MoveNext();
+            currentAmmo.MoveNext();
+            //currentAmmo.MoveNext();
 
-			boomComp = Parent.AddComponent(new Audio.AudioSource(Parent, Audio.SoundContainer.Instance.GetSoundEffect("GunShoot")));
+            boomComp = Parent.AddComponent(new Audio.AudioSource(Parent, Audio.SoundContainer.Instance.GetSoundEffect("GunShoot")));
 		}
 
 		public void Shoot(Vector2 targetPosition)
@@ -43,9 +40,8 @@ namespace AstroMonkey.Gameplay
 
 			projectile.GetComponent<Navigation.ProjectileMovementComponent>().Direction = direction;
 			projectile.GetComponent<Navigation.ProjectileMovementComponent>().Velocity = projectile.speed;
-			//projectile.GetComponent<Navigation.ProjectileMovementComponent>().Velocity = 800f;
 
-			projectile.Damage = new DamageInfo(parent, 10);
+			projectile.Damage = new DamageInfo(parent, projectile.baseDamage);
 
 			GameManager.SpawnObject(projectile);
 		}

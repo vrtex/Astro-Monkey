@@ -12,6 +12,7 @@ namespace AstroMonkey.Assets.Objects
         Collider collider;
 		public SoundEffectInstance shootSound;
         public float speed = 800f;
+        public int baseDamage = 10;
 
         public BaseProjectile(Core.Transform transform): base(transform)
         {
