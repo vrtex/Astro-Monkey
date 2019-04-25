@@ -196,7 +196,7 @@ namespace AstroMonkey.Physics
 
             // hacki soł macz
             tempGO.transform.position = point;
-            tempCC.SetCollisionChanell(c2.GetCollisionChanell());
+            tempCC.SetReaction(c2.GetReaction());
             ResolveCollision(c1, tempCC);
         }
 
