@@ -1,6 +1,7 @@
 ﻿using AstroMonkey.Physics;
 using AstroMonkey.Physics.Collider;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using System;
 
 namespace AstroMonkey.Assets.Objects
@@ -9,6 +10,7 @@ namespace AstroMonkey.Assets.Objects
     {
         public Gameplay.DamageInfo Damage { get; set; }
         Collider collider;
+		public SoundEffectInstance shootSound;
 
         public BaseProjectile(Core.Transform transform): base(transform)
         {
@@ -31,15 +33,19 @@ namespace AstroMonkey.Assets.Objects
 
         private void OnBlockingHit(Collider thisCollider, Collider otherCollider)
         {
-            Destroy();
+			Console.WriteLine("block destroy");
+
+			Destroy();
         }
 
         protected virtual void OnHit(Collider thisCollider, Collider otherCollider)
         {
-            Console.WriteLine("lol");
             Gameplay.Health enemyHealth = otherCollider.Parent.GetComponent<Gameplay.Health>();
-            if(enemyHealth != null)
-                enemyHealth.DeadDamage(Damage);
+			if(enemyHealth != null)
+				enemyHealth.DeadDamage(Damage);
+			else
+				return;
+			Console.WriteLine("overlap destroy");
             Destroy();
         }
 

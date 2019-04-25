@@ -19,7 +19,10 @@ namespace AstroMonkey.Assets.Objects
 		public int				value = 0;
 		public bool				hover = false;
 
-		public TextButton() : this(new Transform())
+        private Audio.AudioSource clickSFX;
+        private Audio.AudioSource hoverSFX;
+
+        public TextButton() : this(new Transform())
 		{
 		}
 		public TextButton(Transform _transform) : base(_transform)
@@ -52,7 +55,9 @@ namespace AstroMonkey.Assets.Objects
 		{
 			
 			AddComponent(new Input.InputUI(this));
-		}
+            clickSFX = AddComponent(new Audio.AudioSource(this, Audio.SoundContainer.Instance.GetSoundEffect("MenuClick")));
+            hoverSFX = AddComponent(new Audio.AudioSource(this, Audio.SoundContainer.Instance.GetSoundEffect("MenuHover")));
+        }
 
 		public override Vector2 WorldspaceToScreenspace(Vector2 centerPos)
 		{
@@ -73,7 +78,7 @@ namespace AstroMonkey.Assets.Objects
 		public override void OnClick()
 		{
 			if(!enable) return;
-			Audio.SoundContainer.Instance.GetSoundEffect("MenuClick").CreateInstance().Play();
+            clickSFX.Play();
 			onClick?.Invoke(this);
 		}
 
@@ -82,7 +87,7 @@ namespace AstroMonkey.Assets.Objects
 			if(!enable) return;
 			if(!hover)
 			{
-				Audio.SoundContainer.Instance.GetSoundEffect("MenuHover").CreateInstance().Play();
+                hoverSFX.Play();
 				color = Util.Statics.AstroColor(9);
 				hover = true;
 			}

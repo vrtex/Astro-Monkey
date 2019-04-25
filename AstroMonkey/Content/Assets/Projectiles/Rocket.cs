@@ -4,7 +4,7 @@ using System;
 
 namespace AstroMonkey.Assets.Objects
 {
-    class Rocket: Core.GameObject
+    class Rocket: BaseProjectile
     {
         public Rocket() : this(new Core.Transform())
         {
@@ -26,6 +26,7 @@ namespace AstroMonkey.Assets.Objects
         private void Load(Core.Transform _transform)
         {
             AddComponent(new Graphics.Sprite(this, "rocket", new List<Rectangle>() { new Rectangle(0, 0, 3, 5) }));
-        }
+			shootSound = Audio.SoundContainer.Instance.GetSoundEffect("LuncherShoot").CreateInstance();
+		}
     }
 }

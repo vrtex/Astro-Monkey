@@ -95,6 +95,7 @@ namespace AstroMonkey.Audio
 
 			//broń
 			sounds.Add("MonkeyWalk", game.Content.Load<SoundEffect>(@"sfx/player/MonkeyWalk"));
+			sounds.Add("MonkeyWalk02", game.Content.Load<SoundEffect>(@"sfx/player/MonkeyWalk02"));
 			sounds.Add("MonkeyLook", game.Content.Load<SoundEffect>(@"sfx/player/MonkeyLook"));
 			sounds.Add("MonkeyIdle02", game.Content.Load<SoundEffect>(@"sfx/player/MonkeyIdle02"));
 			sounds.Add("MonkeyIdle", game.Content.Load<SoundEffect>(@"sfx/player/MonkeyIdle"));

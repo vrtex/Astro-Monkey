@@ -13,7 +13,6 @@ namespace AstroMonkey.UI
     {
         EnemyHealthBar lifebar = null;
 
-
         public HealthBar(GameObject parent) : base(parent)
         {
             

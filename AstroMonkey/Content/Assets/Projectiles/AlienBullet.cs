@@ -28,7 +28,7 @@ namespace AstroMonkey.Assets.Objects
         private void Load(Core.Transform _transform)
         {
             AddComponent(new Graphics.Sprite(this, "alienBullet", new List<Rectangle>() { new Rectangle(0, 0, 3, 6) }));
-            
+			shootSound = Audio.SoundContainer.Instance.GetSoundEffect("Alien02Attack").CreateInstance();
         }
 
     }

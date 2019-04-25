@@ -82,6 +82,15 @@ namespace AstroMonkey.Assets.Objects
                 true));
 
             GetComponent<Graphics.StackAnimator>().SetAnimation("Idle");
-        }
+
+			//AudioSource
+			walkSFX = AddComponent(new Audio.AudioSource(this, Audio.SoundContainer.Instance.GetSoundEffect("Alien03Walk")));
+			hitSFX = AddComponent(new Audio.AudioSource(this, Audio.SoundContainer.Instance.GetSoundEffect("Alien03Hit")));
+			idleSFX = AddComponent(new Audio.AudioSource(this, Audio.SoundContainer.Instance.GetSoundEffect("Alien03Idle")));
+			lookSFX = AddComponent(new Audio.AudioSource(this, Audio.SoundContainer.Instance.GetSoundEffect("Alien03Look")));
+
+			//ustawianie zwłok kosmity
+			corp = typeof(Alien03Dead);
+		}
     }
 }
