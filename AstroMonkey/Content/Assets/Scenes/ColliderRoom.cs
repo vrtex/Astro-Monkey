@@ -26,7 +26,7 @@ namespace AstroMonkey.Assets.Scenes
             GameManager.SpawnObject(new Objects.Wall(new Vector2(32f * sceneScale * sceneScale + offsetX, 1 * 32f * sceneScale), new Vector2(sceneScale, sceneScale), 0));
             GameManager.SpawnObject(new Objects.Wall(new Vector2(32f * sceneScale * sceneScale + offsetX, 3 * 32f * sceneScale), new Vector2(sceneScale, sceneScale), (float)(Math.PI / 2)));
             GameManager.SpawnObject(new Objects.Wall(new Vector2(32f * sceneScale * sceneScale + offsetX, 5 * 32f * sceneScale), new Vector2(sceneScale, sceneScale), (float)(Math.PI)));
-            GameManager.SpawnObject(new Objects.Wall(new Vector2(32f * sceneScale * sceneScale + offsetX, 7 * 32f * sceneScale), new Vector2(sceneScale, sceneScale), -(float)(Math.PI / 2)));
+            GameManager.SpawnObject(new Objects.Wall(new Vector2(32f * sceneScale * sceneScale + offsetX, 7 * 32f * sceneScale), new Vector2(sceneScale, sceneScale), (float)((Math.PI / 2) + Math.PI)));
 
             GameManager.SpawnObject(new Objects.WallDoor(new Vector2(2 * 32f * sceneScale * sceneScale + offsetX, 1 * 32f * sceneScale), new Vector2(sceneScale, sceneScale), 0));
             GameManager.SpawnObject(new Objects.WallDoor(new Vector2(2 * 32f * sceneScale * sceneScale + offsetX, 3 * 32f * sceneScale), new Vector2(sceneScale, sceneScale), (float)(Math.PI / 2)));

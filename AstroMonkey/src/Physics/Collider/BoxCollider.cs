@@ -17,7 +17,7 @@ namespace AstroMonkey.Physics.Collider
             float epsilon = (float)Math.PI / 8;
             float rotation = Parent.transform.rotation;
 
-            if (Math.Abs(rotation - Math.PI / 2) < epsilon || Math.Abs(rotation + Math.PI / 2) < epsilon)
+            if (Math.Abs(rotation - Math.PI / 2) < epsilon || Math.Abs(rotation - Math.PI / 2 - Math.PI) < epsilon)
             {
                 this.height = width * scale;
                 this.width = height * scale;
