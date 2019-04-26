@@ -5,28 +5,34 @@ using System.Collections.Generic;
 
 namespace AstroMonkey.Gameplay
 {
-    class Gun : Component
-	{
-		List<Type> ammoTypes = new List<Type>
-		{
-			typeof(Assets.Objects.AlienBullet),
-			typeof(Assets.Objects.Rocket),
-			typeof(Assets.Objects.PistolBullet)
-		};
-		int currentAmmo = 0;
-		private Audio.AudioSource boomComp;
+    struct AmmoInfo
+    {
+        public float fireDelay;
+        public int currentAmount;
+    }
 
-        private Dictionary<Type, float> fireRates = new Dictionary<Type, float>
+    class Gun : Component
+    {
+        List<Type> ammoTypes = new List<Type>
         {
-            [typeof(Assets.Objects.AlienBullet)] = 0.1f,
-            [typeof(Assets.Objects.Rocket)] = 0.75f,
-            [typeof(Assets.Objects.PistolBullet)] =0.2f
+            typeof(Assets.Objects.AlienBullet),
+            typeof(Assets.Objects.Rocket),
+            typeof(Assets.Objects.PistolBullet)
+        };
+        int currentAmmoType = 0;
+        private Audio.AudioSource boomComp;
+
+        private Dictionary<Type, AmmoInfo> currentAmmoInfo = new Dictionary<Type, AmmoInfo>
+        {
+            [typeof(Assets.Objects.AlienBullet)] = new AmmoInfo { fireDelay = 0.1f, currentAmount = 10 },
+            [typeof(Assets.Objects.Rocket)] = new AmmoInfo { fireDelay = 0.75f, currentAmount = 3},
+            [typeof(Assets.Objects.PistolBullet)] = new AmmoInfo { fireDelay = 0.2f, currentAmount = 20}
         };
         private float cooldownLeft = 0f;
 
 		public Gun(GameObject parent) : base(parent)
 		{
-            currentAmmo = 0;
+            currentAmmoType = 0;
 
             boomComp = Parent.AddComponent(new Audio.AudioSource(Parent, Audio.SoundContainer.Instance.GetSoundEffect("GunShoot")));
 		}
@@ -35,7 +41,7 @@ namespace AstroMonkey.Gameplay
 		{
             if(cooldownLeft > 0)
                 return;
-			Assets.Objects.BaseProjectile projectile = (Assets.Objects.BaseProjectile)Activator.CreateInstance(ammoTypes[currentAmmo], new object[] {
+			Assets.Objects.BaseProjectile projectile = (Assets.Objects.BaseProjectile)Activator.CreateInstance(ammoTypes[currentAmmoType], new object[] {
 				new Transform(Parent.transform)});
 			boomComp.SoundEffect = projectile.shootSound;
 			boomComp.Play();
@@ -51,14 +57,14 @@ namespace AstroMonkey.Gameplay
 
 			GameManager.SpawnObject(projectile);
 
-            cooldownLeft = fireRates[ammoTypes[currentAmmo]];
+            cooldownLeft = currentAmmoInfo[ammoTypes[currentAmmoType]].fireDelay;
 		}
 
         public void ChangeAmmo(bool moveUp)
         {
-            currentAmmo += moveUp ? 1 : -1;
-            currentAmmo = currentAmmo % ammoTypes.Count;
-            while(currentAmmo < 0) currentAmmo += ammoTypes.Count;
+            currentAmmoType += moveUp ? 1 : -1;
+            currentAmmoType = currentAmmoType % ammoTypes.Count;
+            while(currentAmmoType < 0) currentAmmoType += ammoTypes.Count;
         }
 
         public override void Update(GameTime gameTime)

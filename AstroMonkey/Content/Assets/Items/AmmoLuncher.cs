@@ -5,7 +5,7 @@ using AstroMonkey.Physics.Collider;
 
 namespace AstroMonkey.Assets.Objects
 {
-    class AmmoLuncher: Core.GameObject
+    class AmmoLuncher: BaseAmmo
     {
         public AmmoLuncher() : this(new Core.Transform())
         {
@@ -24,13 +24,9 @@ namespace AstroMonkey.Assets.Objects
         {
         }
 
-        private int height = 16;
-        private int size = 16;
-
         private void Load(Core.Transform _transform)
         {
-            // Physics
-            AddComponent(new CircleCollider(this, CollisionChanell.Item, Vector2.Zero, size / 2));
+            base.Load(_transform);
 
             List<Rectangle> idle01 = new List<Rectangle>();
             for(int i = 0; i < height; ++i) idle01.Add(new Rectangle(i * size, 0, size, size));

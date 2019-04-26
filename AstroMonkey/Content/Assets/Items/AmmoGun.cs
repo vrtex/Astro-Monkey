@@ -6,11 +6,8 @@ using AstroMonkey.Physics.Collider;
 
 namespace AstroMonkey.Assets.Objects
 {
-    class AmmoGun: Core.GameObject
+    class AmmoGun: BaseAmmo
     {
-        private int height = 16;
-        private int size = 16;
-
         public AmmoGun() : this(new Core.Transform())
         {
         }
@@ -28,8 +25,9 @@ namespace AstroMonkey.Assets.Objects
         {
         }
 
-        private void Load(Core.Transform _transform)
+        protected override void Load(Core.Transform _transform)
         {
+            base.Load(_transform);
             // Physics
             AddComponent(new CircleCollider(this, CollisionChanell.Item, Vector2.Zero, size / 2));
 
