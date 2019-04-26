@@ -16,6 +16,14 @@ namespace AstroMonkey.Gameplay
 		int currentAmmo = 0;
 		private Audio.AudioSource boomComp;
 
+        private Dictionary<Type, float> fireRates = new Dictionary<Type, float>
+        {
+            [typeof(Assets.Objects.AlienBullet)] = 0.1f,
+            [typeof(Assets.Objects.Rocket)] = 0.75f,
+            [typeof(Assets.Objects.PistolBullet)] =0.2f
+        };
+        private float cooldownLeft = 0f;
+
 		public Gun(GameObject parent) : base(parent)
 		{
             currentAmmo = 0;
@@ -25,7 +33,8 @@ namespace AstroMonkey.Gameplay
 
 		public void Shoot(Vector2 targetPosition)
 		{
-
+            if(cooldownLeft > 0)
+                return;
 			Assets.Objects.BaseProjectile projectile = (Assets.Objects.BaseProjectile)Activator.CreateInstance(ammoTypes[currentAmmo], new object[] {
 				new Transform(Parent.transform)});
 			boomComp.SoundEffect = projectile.shootSound;
@@ -41,6 +50,8 @@ namespace AstroMonkey.Gameplay
 			projectile.Damage = new DamageInfo(parent, projectile.baseDamage);
 
 			GameManager.SpawnObject(projectile);
+
+            cooldownLeft = fireRates[ammoTypes[currentAmmo]];
 		}
 
         public void ChangeAmmo(bool moveUp)
@@ -49,5 +60,12 @@ namespace AstroMonkey.Gameplay
             currentAmmo = currentAmmo % ammoTypes.Count;
             while(currentAmmo < 0) currentAmmo += ammoTypes.Count;
         }
-	}
+
+        public override void Update(GameTime gameTime)
+        {
+            base.Update(gameTime);
+
+            cooldownLeft -= (float)gameTime.ElapsedGameTime.TotalSeconds;
+        }
+    }
 }
