@@ -7,7 +7,7 @@ namespace AstroMonkey.UI
     class Text: UIElement
     {
         public string			fontName	= "text";
-		public Color            color		= Color.White;
+		public Color            color		= Util.Statics.Colors.WHITE_1;
 		public string           text        = "";
 
 		public Text() : this(new Core.Transform())
@@ -30,7 +30,7 @@ namespace AstroMonkey.UI
 			this.anchorSize = anchorSize;
 			this.text = text;
 			this.fontName = fontName;
-			color = Util.Statics.AstroColor(28);
+			color = Util.Statics.Colors.WHITE_1;
 			AnchorToWorldspace(0.5f);
 		}
 

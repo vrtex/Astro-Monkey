@@ -11,13 +11,15 @@ namespace AstroMonkey.Assets.Objects
         public Gameplay.DamageInfo Damage { get; set; }
         Collider collider;
 		public SoundEffectInstance shootSound;
+        public float speed = 800f;
+        public int baseDamage = 10;
 
         public BaseProjectile(Core.Transform transform): base(transform)
         {
             collider = new CircleCollider(this, CollisionChanell.Bullets, Vector2.Zero, 3);
 
             // loleh
-            collider.GetReaction()[CollisionChanell.Enemy] = ReactType.Overlap;
+            collider.SetReaction(CollisionChanell.Enemy, ReactType.Overlap);
             // collider.SetReaction(reactions);
 
             collider.OnBeginOverlap += OnHit;
@@ -33,8 +35,6 @@ namespace AstroMonkey.Assets.Objects
 
         private void OnBlockingHit(Collider thisCollider, Collider otherCollider)
         {
-			Console.WriteLine("block destroy");
-
 			Destroy();
         }
 
@@ -45,7 +45,6 @@ namespace AstroMonkey.Assets.Objects
 				enemyHealth.DeadDamage(Damage);
 			else
 				return;
-			Console.WriteLine("overlap destroy");
             Destroy();
         }
 

@@ -2,13 +2,10 @@
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AstroMonkey.Gameplay
 {
-	class Gun : Component
+    class Gun : Component
 	{
 		List<Type> ammoTypes = new List<Type>
 		{
@@ -16,23 +13,20 @@ namespace AstroMonkey.Gameplay
 			typeof(Assets.Objects.Rocket),
 			typeof(Assets.Objects.PistolBullet)
 		};
-		List<Type>.Enumerator currentAmmo;
+		int currentAmmo = 0;
 		private Audio.AudioSource boomComp;
 
 		public Gun(GameObject parent) : base(parent)
 		{
-			currentAmmo = ammoTypes.GetEnumerator();
-			currentAmmo.MoveNext();
-			currentAmmo.MoveNext();
-			currentAmmo.MoveNext();
+            currentAmmo = 0;
 
-			boomComp = Parent.AddComponent(new Audio.AudioSource(Parent, Audio.SoundContainer.Instance.GetSoundEffect("GunShoot")));
+            boomComp = Parent.AddComponent(new Audio.AudioSource(Parent, Audio.SoundContainer.Instance.GetSoundEffect("GunShoot")));
 		}
 
 		public void Shoot(Vector2 targetPosition)
 		{
 
-			Assets.Objects.BaseProjectile projectile = (Assets.Objects.BaseProjectile)Activator.CreateInstance(currentAmmo.Current, new object[] {
+			Assets.Objects.BaseProjectile projectile = (Assets.Objects.BaseProjectile)Activator.CreateInstance(ammoTypes[currentAmmo], new object[] {
 				new Transform(Parent.transform)});
 			boomComp.SoundEffect = projectile.shootSound;
 			boomComp.Play();
@@ -42,11 +36,18 @@ namespace AstroMonkey.Gameplay
 			direction.Normalize();
 
 			projectile.GetComponent<Navigation.ProjectileMovementComponent>().Direction = direction;
-			projectile.GetComponent<Navigation.ProjectileMovementComponent>().Velocity = 800f;
+			projectile.GetComponent<Navigation.ProjectileMovementComponent>().Velocity = projectile.speed;
 
-			projectile.Damage = new DamageInfo(parent, 10);
+			projectile.Damage = new DamageInfo(parent, projectile.baseDamage);
 
 			GameManager.SpawnObject(projectile);
 		}
+
+        public void ChangeAmmo(bool moveUp)
+        {
+            currentAmmo += moveUp ? 1 : -1;
+            currentAmmo = currentAmmo % ammoTypes.Count;
+            while(currentAmmo < 0) currentAmmo += ammoTypes.Count;
+        }
 	}
 }

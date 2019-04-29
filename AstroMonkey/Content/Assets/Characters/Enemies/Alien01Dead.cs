@@ -3,23 +3,20 @@ using Microsoft.Xna.Framework;
 
 namespace AstroMonkey.Assets.Objects
 {
-	class Alien01Dead: Core.GameObject
+	class Alien01Dead: BaseAlienDead
 	{
-		public Alien01Dead()
+		public Alien01Dead() : this(new Core.Transform())
 		{
-			Load(new Core.Transform(Vector2.Zero, Vector2.One, 0f));
 		}
 		public Alien01Dead(Core.Transform _transform): base(_transform)
         {
 			Load(_transform);
 		}
-		public Alien01Dead(Vector2 position, Vector2 scale, float rotation = 0f)
+		public Alien01Dead(Vector2 position, Vector2 scale, float rotation = 0f) : this(new Core.Transform(position, scale, rotation))
 		{
-			Load(new Core.Transform(position, scale, rotation));
 		}
-		public Alien01Dead(Vector2 position)
+		public Alien01Dead(Vector2 position) : this(new Core.Transform(position, Vector2.One))
 		{
-			Load(new Core.Transform(position, Vector2.One, 0f));
 		}
 
 		private int height = 13;

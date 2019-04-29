@@ -7,6 +7,7 @@ using AstroMonkey.Core;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.IO;
+using AstroMonkey.UI;
 using Microsoft.Xna.Framework.Media;
 
 namespace AstroMonkey.Assets.Scenes
@@ -26,6 +27,7 @@ namespace AstroMonkey.Assets.Scenes
 
 			MediaPlayer.Play(Audio.SoundContainer.Instance.GetSong("menu"));
 
+            
 			objects.Add(new UI.Text("Astro Monkey", "planetary", new Vector2(0.5f, 0.05f), new Vector2(0.25f, 0.1f)));
 			mainMenu.Add(objects.Last() as UI.UIElement);
 
@@ -54,14 +56,17 @@ namespace AstroMonkey.Assets.Scenes
 			(objects.Last() as Objects.TextButton).onClick += QuitGame;
 			mainMenu.Add(objects.Last() as UI.UIElement);
 
-			//++++++++++++++++++++++++++++++++++++++ŁADOWANIE GRY++++++++++++++++++++++++++++++++++++++++++
-			objects.Add(new Objects.TextButton("Level 1", "planetary", new Vector2(0.1f, 0.3f), new Vector2(0.32f, 0.05f)));
+            //objects.Add(new UI.Slider(new Vector2(0.75f, 0.7f), new Vector2(0.32f, 0.05f), 0.5f));
+            //mainMenu.Add(objects.Last() as UI.UIElement);
+
+            //++++++++++++++++++++++++++++++++++++++ŁADOWANIE GRY++++++++++++++++++++++++++++++++++++++++++
+            objects.Add(new Objects.TextButton("Level 1", "planetary", new Vector2(0.1f, 0.3f), new Vector2(0.32f, 0.05f)));
 			(objects.Last() as Objects.TextButton).onClick += SetResolution;
 			loadGame.Add(objects.Last() as UI.UIElement);
 			(objects.Last() as UI.UIElement).enable = false;
 			(objects.Last() as Objects.TextButton).value = 0;
 
-			objects.Add(new Objects.TextButton("Level 2", "planetary", new Vector2(0.1f, 0.35f), new Vector2(0.34f, 0.05f)));
+			objects.Add(new Objects.TextButton("Generowana z pliku", "planetary", new Vector2(0.1f, 0.35f), new Vector2(0.34f, 0.05f)));
 			(objects.Last() as Objects.TextButton).onClick += PlayGame;
 			loadGame.Add(objects.Last() as UI.UIElement);
 			(objects.Last() as UI.UIElement).enable = false;

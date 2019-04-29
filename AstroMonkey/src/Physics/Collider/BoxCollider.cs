@@ -17,7 +17,7 @@ namespace AstroMonkey.Physics.Collider
             float epsilon = (float)Math.PI / 8;
             float rotation = Parent.transform.rotation;
 
-            if (Math.Abs(rotation - Math.PI / 2) < epsilon || Math.Abs(rotation + Math.PI / 2) < epsilon)
+            if (Math.Abs(rotation - Math.PI / 2) < epsilon || Math.Abs(rotation - Math.PI / 2 - Math.PI) < epsilon)
             {
                 this.height = width * scale;
                 this.width = height * scale;
@@ -32,12 +32,12 @@ namespace AstroMonkey.Physics.Collider
 
         public override void DrawBorder(SpriteBatch spriteBatch)
         {
-            Color borderColor = Color.Red;
+            Color borderColor = Util.Statics.Colors.DARK_RED;
             int thicknessOfBorder = 1;
 
             Texture2D pixel;
             pixel = new Texture2D(spriteBatch.GraphicsDevice, 1, 1, false, SurfaceFormat.Color);
-            pixel.SetData(new[] { Color.White });
+            pixel.SetData(new[] { Util.Statics.Colors.WHITE_1 });
 
             // Draw top line
             spriteBatch.Draw(pixel, new Rectangle((int)(this.GetPosition().X - width / 2), (int)(this.GetPosition().Y - height / 2), (int)width, thicknessOfBorder), borderColor);
@@ -57,7 +57,7 @@ namespace AstroMonkey.Physics.Collider
                 (int)width,
                 thicknessOfBorder), borderColor);
 
-            spriteBatch.DrawString(Graphics.SpriteContainer.Instance.GetFont("text"), this.parent.ToString().Split('.').Last(), GetPosition(), Color.Red);
+            spriteBatch.DrawString(Graphics.SpriteContainer.Instance.GetFont("text"), this.parent.ToString().Split('.').Last(), GetPosition(), Util.Statics.Colors.DARK_RED);
         }
     }
 }

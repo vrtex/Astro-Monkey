@@ -131,7 +131,7 @@ namespace AstroMonkey
 		protected override void Draw(GameTime gameTime)
         {
 			GraphicsDevice.SetRenderTarget(sceneContents);
-			GraphicsDevice.Clear(Color.Black);
+			GraphicsDevice.Clear(Util.Statics.Colors.BLACK);
 
             // TODO: Add your drawing code here
             Graphics.ViewManager.Instance.Render(spriteBatch);

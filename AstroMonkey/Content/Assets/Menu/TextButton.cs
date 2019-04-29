@@ -47,8 +47,8 @@ namespace AstroMonkey.Assets.Objects
 			this.anchorSize = anchorSize;
 			this.text = text;
 			this.fontName = fontName;
-			color = Util.Statics.AstroColor(28);
-			AnchorToWorldspace(0.5f);
+			color = Util.Statics.Colors.WHITE_1;
+            AnchorToWorldspace(0.5f);
 		}
 
 		public void Load()
@@ -88,8 +88,8 @@ namespace AstroMonkey.Assets.Objects
 			if(!hover)
 			{
                 hoverSFX.Play();
-				color = Util.Statics.AstroColor(9);
-				hover = true;
+                color = Util.Statics.Colors.ORANGE;
+                hover = true;
 			}
 		}
 		public override void OnExit()
@@ -97,7 +97,7 @@ namespace AstroMonkey.Assets.Objects
 			if(!enable) return;
 			if(hover)
 			{
-				color = Util.Statics.AstroColor(28);
+				color = Util.Statics.Colors.WHITE_1;
 				hover = false;
 			}
 			

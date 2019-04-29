@@ -49,6 +49,7 @@
     <Compile Include="Content\Assets\Characters\Enemies\Alien03.cs" />
     <Compile Include="Content\Assets\Characters\Enemies\Alien03Dead.cs" />
     <Compile Include="Content\Assets\Characters\Enemies\BaseAlien.cs" />
+    <Compile Include="Content\Assets\Characters\Enemies\BaseAlienDead.cs" />
     <Compile Include="Content\Assets\Characters\Player\Player.cs" />
     <Compile Include="Content\Assets\HUD\AmmoAmount.cs" />
     <Compile Include="Content\Assets\HUD\EnemyHealthBar.cs" />

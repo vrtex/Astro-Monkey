@@ -61,10 +61,13 @@ namespace AstroMonkey.Input
         private void FlipStatus()
         {
             status = !status;
-            if(status && OnTrigger != null)
-                OnTrigger();
-            else if(!status && OnRelease != null)
-                OnRelease();
+            if(status)
+                OnTrigger?.Invoke();
+            else if(!status)
+                OnRelease?.Invoke();
+
+            if(MouseButton == EMouseButton.WheelDown || MouseButton == EMouseButton.WheelUp)
+                status = false;
         }
     }
 }
