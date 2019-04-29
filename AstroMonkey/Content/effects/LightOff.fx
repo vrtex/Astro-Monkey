@@ -7,26 +7,15 @@
 	#define PS_SHADERMODEL ps_4_0_level_9_1
 #endif
 
+static const float PI = 3.14159265f;
 matrix WorldViewProjection;
 
-float resolutionRatio;
+float aspectRatio;
 float angle;
 
-struct VertexInput
+void MainVS()
 {
-	float4 Position : POSITION;
-};
 
-struct VertexOutput
-{
-	float4 Position : POSITION;
-	float4 ScreenPos : TEXCOORD0;
-};
-
-void MainVS(in VertexInput input, out VertexOutput output)
-{
-	//output.Position = mul(WorldViewProjection, input.Position);
-	//output.ScreenPos = output.Position / output.Position.w;
 }
 
 sampler TextureSampler: register(s0);//, float2 Tex: TEXCOORD0
@@ -34,25 +23,41 @@ float4 MainPS(float2 Tex : TEXCOORD0): COLOR0
 {
 	float minDis = 0.05;
 	float maxDis = 0.3;
+	float maxDiff = 30.0;
 
 	float4 Color = tex2D(TextureSampler, Tex);
 	float2 position = Tex.xy;
-	float distance = sqrt(pow(0.5 - position.x, 2) + pow(0.5 / resolutionRatio - position.y / resolutionRatio, 2));
-	if(distance > minDis && distance < maxDis)
+	float distance = sqrt(pow(0.5 - position.x, 2) + pow(0.5 / aspectRatio - position.y / aspectRatio, 2));
+
+	//obliczanie kąta pomiędzy punktem na ekranie a środkiem ekranu
+	float x = atan2(0.5 - position.y, 0.5 - position.x);
+	float pixelangle = x * 180 / PI;
+	if(x < 0) pixelangle = (2 * PI + x) * 180 / PI;
+
+	//normalizacja kąta, żeby 0 było na góże ekranu
+	pixelangle -= 90.0;
+	if(pixelangle < 0) pixelangle += 360.0;
+
+	//policzneie różnicy pomiędzy kątem pixela, a obrotem postaci
+	float diff = 0;
+	float degrees = angle * 360;
+	if(pixelangle < degrees)
+		diff = min(pixelangle + 360 - degrees, degrees - pixelangle);
+	else
+		diff = min(degrees + 360 - pixelangle, pixelangle - degrees);
+
+	if(diff < maxDiff)
 	{
-		//if()
-		Color.rgb = Color.rgb * lerp(1, 0, (distance - minDis) / (maxDis - minDis));
-		
+
 	}
-	if(distance >= maxDis)
+	else if(distance > minDis && distance < maxDis)
+	{
+		Color.rgb = Color.rgb * lerp(1, 0, (distance - minDis) / (maxDis - minDis));
+	}
+	else if(distance >= maxDis)
 	{
 		Color.rgb = 0;
 	}
-	//float angleFOV = (acos(dot(angle))));
-	/*if(angleFOV < 20f)
-	{
-		Color.r = saturate(Color.r * 2);
-	}*/
 
 	return Color;
 }

@@ -163,7 +163,7 @@ namespace AstroMonkey.Assets.Objects
 			}
             transform.rotation = (float)Math.PI * 0.5f + GetComponent<Navigation.MovementComponent>().CurrentDirection;
 
-			if(lightOff != null) lightOff.Parameters["angle"]?.SetValue(transform.rotation);
+			if(lightOff != null) lightOff.Parameters["angle"]?.SetValue(transform.rotation / ((float)Math.PI * 2));
 
 		}
     }

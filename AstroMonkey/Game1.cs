@@ -73,7 +73,7 @@ namespace AstroMonkey
 			Core.GameManager.Instance.InitializeGame(this, graphics);
 			sceneContents = new RenderTarget2D(GraphicsDevice, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height);
 			float ratio = ((float)graphics.PreferredBackBufferWidth) / ((float)graphics.PreferredBackBufferHeight);
-			Graphics.EffectContainer.Instance.GetEffect("LightOff").Parameters["resolutionRatio"].SetValue(ratio);
+			Graphics.EffectContainer.Instance.GetEffect("LightOff").Parameters["aspectRatio"].SetValue(ratio);
 
 			base.Initialize();
 
