@@ -20,7 +20,7 @@ namespace AstroMonkey.Graphics
             name = _image;
             image = SpriteContainer.Instance.GetImage(_image);
             rect = _rect;
-            color = Color.White;
+            color = Util.Statics.Colors.WHITE_1;
             anchor = Vector2.Zero;
             layer = _layer;
             stackOffset = 1;
