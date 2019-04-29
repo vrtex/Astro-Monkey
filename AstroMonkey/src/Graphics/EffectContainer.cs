@@ -33,7 +33,6 @@ namespace AstroMonkey.Graphics
 		public void LoadEffects(Game game)
 		{
 			effects.Add("LightOff", game.Content.Load<Effect>("effects/LightOff"));
-			effects.Add("NoElectricity", game.Content.Load<Effect>("effects/NoElectricity"));
 		}
 	}
 }

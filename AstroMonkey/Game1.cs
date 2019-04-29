@@ -18,7 +18,7 @@ namespace AstroMonkey
         GraphicsDeviceManager		graphics;
         SpriteBatch					spriteBatch;
         InputManager				inputManager;
-		RenderTarget2D				sceneContents;
+		RenderTarget2D              sceneContents;
 
 		public Game1()
         {
@@ -75,6 +75,9 @@ namespace AstroMonkey
 			float ratio = ((float)graphics.PreferredBackBufferWidth) / ((float)graphics.PreferredBackBufferHeight);
 			Graphics.EffectContainer.Instance.GetEffect("LightOff").Parameters["aspectRatio"].SetValue(ratio);
 
+			//Dodawanie aktywnych efektów do renderowania
+			//Graphics.ViewManager.Instance.activeEffects.Add(Graphics.EffectContainer.Instance.GetEffect("LightOff"));
+
 			base.Initialize();
 
         }
@@ -130,20 +133,7 @@ namespace AstroMonkey
 		/// 
 		protected override void Draw(GameTime gameTime)
         {
-			GraphicsDevice.SetRenderTarget(sceneContents);
-			GraphicsDevice.Clear(Util.Statics.Colors.BLACK);
-
-            // TODO: Add your drawing code here
-            Graphics.ViewManager.Instance.Render(spriteBatch);
-
-			GraphicsDevice.SetRenderTarget(null);
-
-			Texture2D result = sceneContents;
-
-			spriteBatch.Begin(effect: Graphics.EffectContainer.Instance.GetEffect("LightOff"));
-				spriteBatch.Draw(result, Vector2.Zero, Color.White);
-			spriteBatch.End();
-
+            Graphics.ViewManager.Instance.Render(spriteBatch, GraphicsDevice, sceneContents);
 
 			base.Draw(gameTime);
         }
