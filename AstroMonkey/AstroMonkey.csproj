@@ -1,0 +1,248 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{81CEAF9C-313E-4C1B-9B9B-71FA3D3D9B4E}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>AstroMonkey</RootNamespace>
+    <AssemblyName>AstroMonkey</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <MonoGamePlatform>DesktopGL</MonoGamePlatform>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\$(MonoGamePlatform)\$(Platform)\$(Configuration)\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;LINUX</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>false</Prefer32Bit>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
+    <OutputPath>bin\$(MonoGamePlatform)\$(Platform)\$(Configuration)\</OutputPath>
+    <DefineConstants>TRACE;LINUX</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>false</Prefer32Bit>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Icon.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Content\Assets\Characters\Enemies\Alien01.cs" />
+    <Compile Include="Content\Assets\Characters\Enemies\Alien01Dead.cs" />
+    <Compile Include="Content\Assets\Characters\Enemies\Alien02.cs" />
+    <Compile Include="Content\Assets\Characters\Enemies\Alien02Dead.cs" />
+    <Compile Include="Content\Assets\Characters\Enemies\Alien03.cs" />
+    <Compile Include="Content\Assets\Characters\Enemies\Alien03Dead.cs" />
+    <Compile Include="Content\Assets\Characters\Enemies\BaseAlien.cs" />
+    <Compile Include="Content\Assets\Characters\Enemies\BaseAlienDead.cs" />
+    <Compile Include="Content\Assets\Characters\Player\Player.cs" />
+    <Compile Include="Content\Assets\HUD\AmmoAmount.cs" />
+    <Compile Include="Content\Assets\HUD\EnemyHealthBar.cs" />
+    <Compile Include="Content\Assets\Items\BaseAmmo.cs" />
+    <Compile Include="Content\Assets\Menu\MenuCenter.cs" />
+    <Compile Include="Content\Assets\HUD\SimpleButton.cs" />
+    <Compile Include="Content\Assets\Items\AmmoGun.cs" />
+    <Compile Include="Content\Assets\Items\AmmoLuncher.cs" />
+    <Compile Include="Content\Assets\Items\AmmoRiffle.cs" />
+    <Compile Include="Content\Assets\Items\Banana.cs" />
+    <Compile Include="Content\Assets\Items\Nut.cs" />
+    <Compile Include="Content\Assets\Map\Floor\Floor.cs" />
+    <Compile Include="Content\Assets\Map\Floor\FloorCrate01.cs" />
+    <Compile Include="Content\Assets\Map\Floor\FloorCrate02.cs" />
+    <Compile Include="Content\Assets\Map\Floor\FloorCrate03.cs" />
+    <Compile Include="Content\Assets\Map\Floor\FloorCrate04.cs" />
+    <Compile Include="Content\Assets\Map\Floor\FloorCrate05.cs" />
+    <Compile Include="Content\Assets\Map\Floor\FloorCrate06.cs" />
+    <Compile Include="Content\Assets\Map\Floor\FloorPlatform01.cs" />
+    <Compile Include="Content\Assets\Map\Floor\FloorPlatform02.cs" />
+    <Compile Include="Content\Assets\Map\Floor\FloorPlatform03.cs" />
+    <Compile Include="Content\Assets\Map\Floor\FloorPlatformCrush01.cs" />
+    <Compile Include="Content\Assets\Map\Floor\FloorPlatformCrush02.cs" />
+    <Compile Include="Content\Assets\Map\Floor\FloorPlatformCrush03.cs" />
+    <Compile Include="Content\Assets\Map\Floor\FloorPlatformCrush04.cs" />
+    <Compile Include="Content\Assets\Map\Floor\FloorPlatformDirt01.cs" />
+    <Compile Include="Content\Assets\Map\Floor\FloorPlatformDirt02.cs" />
+    <Compile Include="Content\Assets\Map\Floor\FloorPlatformDirt03.cs" />
+    <Compile Include="Content\Assets\Map\Floor\FloorPlatformDirt04.cs" />
+    <Compile Include="Content\Assets\Map\Floor\FloorPlatformDirtyCrush01.cs" />
+    <Compile Include="Content\Assets\Map\Floor\FloorPlatformDirtyCrush02.cs" />
+    <Compile Include="Content\Assets\Map\Floor\FloorPlatformDirtyCrush03.cs" />
+    <Compile Include="Content\Assets\Map\Floor\FloorPlatformDirtyCrush04.cs" />
+    <Compile Include="Content\Assets\Map\Interactable\ButtonWall.cs" />
+    <Compile Include="Content\Assets\Map\Interactable\ButtonWallClicked.cs" />
+    <Compile Include="Content\Assets\Map\Interactable\Terminal.cs" />
+    <Compile Include="Content\Assets\Map\Interactable\TerminalOff.cs" />
+    <Compile Include="Content\Assets\Map\Objects\Armchair.cs" />
+    <Compile Include="Content\Assets\Map\Objects\Case.cs" />
+    <Compile Include="Content\Assets\Map\Objects\CaseCaffe.cs" />
+    <Compile Include="Content\Assets\Map\Objects\CaseMicrowave.cs" />
+    <Compile Include="Content\Assets\Map\Objects\Cockpit.cs" />
+    <Compile Include="Content\Assets\Map\Objects\Column.cs" />
+    <Compile Include="Content\Assets\Map\Objects\WallCorner.cs" />
+    <Compile Include="Content\Assets\Map\Objects\WallCornerPhillar.cs" />
+    <Compile Include="Content\Assets\Map\Objects\DoorLeft.cs" />
+    <Compile Include="Content\Assets\Map\Objects\DoorRight.cs" />
+    <Compile Include="Content\Assets\Map\Objects\Fridge.cs" />
+    <Compile Include="Content\Assets\Map\Objects\HalfWall.cs" />
+    <Compile Include="Content\Assets\Map\Objects\NeonSign.cs" />
+    <Compile Include="Content\Assets\Map\Objects\Table.cs" />
+    <Compile Include="Content\Assets\Map\Objects\Wall.cs" />
+    <Compile Include="Content\Assets\Map\Objects\WallDoor.cs" />
+    <Compile Include="Content\Assets\Menu\TextButton.cs" />
+    <Compile Include="Content\Assets\Projectiles\AlienBullet.cs" />
+    <Compile Include="Content\Assets\Projectiles\BaseProjectile.cs" />
+    <Compile Include="Content\Assets\Projectiles\BulletHit.cs" />
+    <Compile Include="Content\Assets\Projectiles\PistolBullet.cs" />
+    <Compile Include="Content\Assets\Projectiles\Poop.cs" />
+    <Compile Include="Content\Assets\Projectiles\Rocket.cs" />
+    <Compile Include="Content\Assets\Scenes\Basement.cs" />
+    <Compile Include="Content\Assets\Scenes\ColliderRoom.cs" />
+    <Compile Include="Content\Assets\Scenes\DevRoom.cs" />
+    <Compile Include="Content\Assets\Scenes\Level1.cs" />
+    <Compile Include="Content\Assets\Scenes\MainMenu.cs" />
+    <Compile Include="Game1.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="src\Audio\AudioManager.cs" />
+    <Compile Include="src\Audio\AudioSource.cs" />
+    <Compile Include="src\Audio\SoundContainer.cs" />
+    <Compile Include="src\Core\Component.cs" />
+    <Compile Include="src\Core\GameManager.cs" />
+    <Compile Include="src\Core\GameObject.cs" />
+    <Compile Include="src\Core\ObjectManager.cs" />
+    <Compile Include="src\Core\ObjectsDictionary.cs" />
+    <Compile Include="src\Core\Scene.cs" />
+    <Compile Include="src\Core\SceneManager.cs" />
+    <Compile Include="src\Core\Transform.cs" />
+    <Compile Include="src\Gameplay\DamageInfo.cs" />
+    <Compile Include="src\Gameplay\Gun.cs" />
+    <Compile Include="src\Gameplay\Health.cs" />
+    <Compile Include="src\Gameplay\InteractComponent.cs" />
+    <Compile Include="src\Gameplay\SuicideComponent.cs" />
+    <Compile Include="src\Graphics\EffectContainer.cs" />
+    <Compile Include="src\Input\InputUI.cs" />
+    <Compile Include="src\Navigation\ProjectileMovementComponent.cs" />
+    <Compile Include="src\Navigation\TeleportTo.cs" />
+    <Compile Include="src\Physics\Body.cs" />
+    <Compile Include="src\Physics\Collider\BoxCollider.cs" />
+    <Compile Include="src\Physics\Collider\CircleCollider.cs" />
+    <Compile Include="src\Physics\Collider\Collider.cs" />
+    <Compile Include="src\Physics\Collider\CollisionChanell.cs" />
+    <Compile Include="src\Physics\Collider\ReactType.cs" />
+    <Compile Include="src\Graphics\AnimationComponent.cs" />
+    <Compile Include="src\Graphics\AnimationManager.cs" />
+    <Compile Include="src\Graphics\AnimatorContainer.cs" />
+    <Compile Include="src\Graphics\StackAnimation.cs" />
+    <Compile Include="src\Graphics\StackAnimator.cs" />
+    <Compile Include="src\Graphics\ViewManager.cs" />
+    <Compile Include="src\Input\ActionBinding.cs" />
+    <Compile Include="src\Input\AxisBinding.cs" />
+    <Compile Include="src\Input\InputComponent.cs" />
+    <Compile Include="src\Input\InputManager.cs" />
+    <Compile Include="src\Graphics\Animation.cs" />
+    <Compile Include="src\Graphics\Animator.cs" />
+    <Compile Include="src\Graphics\Sprite.cs" />
+    <Compile Include="src\Graphics\SpriteContainer.cs" />
+    <Compile Include="src\Physics\PhysicsManager.cs" />
+    <Compile Include="src\Navigation\MovementComponent.cs" />
+    <Compile Include="src\UI\HealthBar.cs" />
+    <Compile Include="src\UI\Image.cs" />
+    <Compile Include="src\UI\Slider.cs" />
+    <Compile Include="src\UI\Text.cs" />
+    <Compile Include="src\UI\UIElement.cs" />
+    <Compile Include="src\Util\Enums.cs" />
+    <Compile Include="src\Util\Rect.cs" />
+    <Compile Include="src\Util\RNG.cs" />
+    <Compile Include="src\Util\Statics.cs" />
+    <Compile Include="src\Util\ViewComparable.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="MonoGame.Framework">
+      <HintPath>$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\DesktopGL\MonoGame.Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Icon.ico" />
+    <EmbeddedResource Include="Icon.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <MonoGameContentReference Include="Content\Content.mgcb" />
+    <None Include="$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\DesktopGL\x86\SDL2.dll">
+      <Link>x86\SDL2.dll</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\DesktopGL\x64\SDL2.dll">
+      <Link>x64\SDL2.dll</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\DesktopGL\x86\soft_oal.dll">
+      <Link>x86\soft_oal.dll</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\DesktopGL\x64\soft_oal.dll">
+      <Link>x64\soft_oal.dll</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\DesktopGL\x86\libSDL2-2.0.so.0">
+      <Link>x86\libSDL2-2.0.so.0</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\DesktopGL\x64\libSDL2-2.0.so.0">
+      <Link>x64\libSDL2-2.0.so.0</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\DesktopGL\x86\libopenal.so.1">
+      <Link>x86\libopenal.so.1</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\DesktopGL\x64\libopenal.so.1">
+      <Link>x64\libopenal.so.1</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\DesktopGL\libSDL2-2.0.0.dylib">
+      <Link>libSDL2-2.0.0.dylib</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\DesktopGL\libopenal.1.dylib">
+      <Link>libopenal.1.dylib</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\DesktopGL\MonoGame.Framework.dll.config">
+      <Link>MonoGame.Framework.dll.config</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="app.manifest" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Content\Map\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\effects\LightOff.fx" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
