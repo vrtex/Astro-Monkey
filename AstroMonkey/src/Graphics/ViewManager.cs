@@ -18,6 +18,8 @@ namespace AstroMonkey.Graphics
             set => _playerTransform = value;
         }
 
+		public List<Effect>                 activeEffects = new List<Effect>();
+
 		public GraphicsDeviceManager        graphics;
 
         public int ScreenSize;
@@ -56,12 +58,16 @@ namespace AstroMonkey.Graphics
             sprites.RemoveAll( x => x.Equals(sprite));
         }
 
-        public void Render(SpriteBatch spriteBatch)
+        public void Render(SpriteBatch spriteBatch, GraphicsDevice graphicsDevice, RenderTarget2D renderTarget2D)
         {
-            spriteBatch.Begin(SpriteSortMode.Deferred,
+			graphicsDevice.SetRenderTarget(renderTarget2D);
+			graphicsDevice.Clear(Util.Statics.Colors.BLACK);
+
+			spriteBatch.Begin(SpriteSortMode.Deferred,
                             BlendState.AlphaBlend,
-                            SamplerState.PointClamp, null, null, null,
-                            Matrix.CreateTranslation(
+                            SamplerState.PointClamp, 
+							null, null, null,
+							Matrix.CreateTranslation(
                                 -PlayerTransform.position.X + spriteBatch.GraphicsDevice.Viewport.Width / 2,
                                 -PlayerTransform.position.Y + spriteBatch.GraphicsDevice.Viewport.Height / 2, 0));
             
@@ -87,8 +93,9 @@ namespace AstroMonkey.Graphics
 
             spriteBatch.Begin(SpriteSortMode.Deferred,
                             BlendState.AlphaBlend, 
-                            SamplerState.PointClamp, null, null, null,
-                            Matrix.CreateTranslation(
+                            SamplerState.PointClamp,
+							null, null, null,
+							Matrix.CreateTranslation(
                                 -PlayerTransform.position.X + spriteBatch.GraphicsDevice.Viewport.Width / 2,
                                 -PlayerTransform.position.Y + spriteBatch.GraphicsDevice.Viewport.Height / 2, 0));
 
@@ -123,7 +130,24 @@ namespace AstroMonkey.Graphics
             PhysicsManager.DrawAllColliders(spriteBatch);
 
             spriteBatch.End();
-        }
+
+			graphicsDevice.SetRenderTarget(null);
+
+			Texture2D result = renderTarget2D;
+
+			foreach(Effect e in activeEffects)
+			{
+				spriteBatch.Begin(effect: e);
+					spriteBatch.Draw(result, Vector2.Zero, Color.White);
+				spriteBatch.End();
+			}
+			if(activeEffects.Count == 0)
+			{
+				spriteBatch.Begin();
+					spriteBatch.Draw(result, Vector2.Zero, Color.White);
+				spriteBatch.End();
+			}
+		}
         
     }
 }

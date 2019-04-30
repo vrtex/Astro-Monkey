@@ -54,11 +54,11 @@ namespace AstroMonkey.Assets.Objects
 
 		public override void OnEnter()
 		{
-			image.color = Color.Red;
+			image.color = Util.Statics.Colors.DARK_RED;
 		}
 		public override void OnExit()
 		{
-			image.color = Color.White;
+			image.color = Util.Statics.Colors.WHITE_1;
 		}
 
 	}

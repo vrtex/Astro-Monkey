@@ -7,7 +7,7 @@ namespace AstroMonkey.UI
     class Text: UIElement
     {
         public string			fontName	= "text";
-		public Color            color		= Color.White;
+		public Color            color		= Util.Statics.Colors.WHITE_1;
 		public string           text        = "";
 
 		public Text() : this(new Core.Transform())

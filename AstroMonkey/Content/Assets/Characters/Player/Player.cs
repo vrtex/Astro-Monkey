@@ -3,6 +3,8 @@ using Microsoft.Xna.Framework;
 using System;
 using AstroMonkey.Physics;
 using AstroMonkey.Physics.Collider;
+using Microsoft.Xna.Framework.Graphics;
+using System.Diagnostics;
 
 namespace AstroMonkey.Assets.Objects
 {
@@ -16,6 +18,8 @@ namespace AstroMonkey.Assets.Objects
 		private Audio.AudioSource hitSFX;
 		private Audio.AudioSource idleSFX;
 		private Audio.AudioSource gameoverSFX;
+
+		private Effect lightOff = null;
 
 		public Player(): this(new Core.Transform())
         {
@@ -133,7 +137,9 @@ namespace AstroMonkey.Assets.Objects
                 false));
 
             GetComponent<Graphics.StackAnimator>().SetAnimation("Hold");
-        }
+
+			lightOff = Graphics.EffectContainer.Instance.GetEffect("LightOff");
+		}
 
         public override void Update(GameTime gameTime)
         {
@@ -156,6 +162,9 @@ namespace AstroMonkey.Assets.Objects
 				}
 			}
             transform.rotation = (float)Math.PI * 0.5f + GetComponent<Navigation.MovementComponent>().CurrentDirection;
-        }
+
+			if(lightOff != null) lightOff.Parameters["angle"]?.SetValue(transform.rotation / ((float)Math.PI * 2));
+
+		}
     }
 }

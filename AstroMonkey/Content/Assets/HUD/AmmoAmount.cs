@@ -64,12 +64,12 @@ namespace AstroMonkey.Assets.Objects
 		public override void OnEnter()
 		{
 			if(!enable) return;
-			color = Color.Red;
+			color = Util.Statics.Colors.DARK_RED;
 		}
 		public override void OnExit()
 		{
 			if(!enable) return;
-			color = Color.White;
+			color = Util.Statics.Colors.WHITE_1;
 		}
 
 	}

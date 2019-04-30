@@ -15,11 +15,12 @@ namespace AstroMonkey
     /// </summary>
     public class Game1 : Game
     {
-        GraphicsDeviceManager graphics;
-        SpriteBatch spriteBatch;
-        InputManager inputManager;
+        GraphicsDeviceManager		graphics;
+        SpriteBatch					spriteBatch;
+        InputManager				inputManager;
+		RenderTarget2D              sceneContents;
 
-        public Game1()
+		public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
 			graphics.HardwareModeSwitch = true;
@@ -38,7 +39,7 @@ namespace AstroMonkey
         {
 			string[] lines = File.ReadAllLines("Content/settings/settings.ini");
 			int fullscreen = 0;
-			int resorution = 0;
+			int resolution = 0;
 			foreach(string line in lines)
 			{
 				Regex regexFullscreen = new Regex(@"fullscreen=[0-1]");
@@ -53,23 +54,30 @@ namespace AstroMonkey
 				foreach(Match m in resolutionMatch)
 				{
 					Group g1 = m.Groups[0];
-					resorution = int.Parse(g1.Value.Replace("resolution=", ""));
+					resolution = int.Parse(g1.Value.Replace("resolution=", ""));
 				}
 			}
 
 			if(fullscreen == 1)
 				graphics.IsFullScreen = true;
 
-			Vector2 res = Util.Statics.GetResolition(resorution);
+			Vector2 res = Util.Statics.GetResolition(resolution);
 
 			graphics.PreferredBackBufferWidth = (int)res.X;
             graphics.PreferredBackBufferHeight = (int)res.Y;
             graphics.ApplyChanges();
 
-            Graphics.ViewManager.Instance.ScreenSize = resorution;
+            Graphics.ViewManager.Instance.ScreenSize = resolution;
             IsMouseVisible = true;
 
 			Core.GameManager.Instance.InitializeGame(this, graphics);
+			sceneContents = new RenderTarget2D(GraphicsDevice, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height);
+			float ratio = ((float)graphics.PreferredBackBufferWidth) / ((float)graphics.PreferredBackBufferHeight);
+			Graphics.EffectContainer.Instance.GetEffect("LightOff").Parameters["aspectRatio"].SetValue(ratio);
+
+			//Dodawanie aktywnych efektów do renderowania
+			//Graphics.ViewManager.Instance.activeEffects.Add(Graphics.EffectContainer.Instance.GetEffect("LightOff"));
+
 			base.Initialize();
 
         }
@@ -118,18 +126,16 @@ namespace AstroMonkey
             base.Update(gameTime);
         }
 
-        /// <summary>
-        /// This is called when the game should draw itself.
-        /// </summary>
-        /// <param name="gameTime">Provides a snapshot of timing values.</param>
-        protected override void Draw(GameTime gameTime)
+		/// <summary>
+		/// This is called when the game should draw itself.
+		/// </summary>
+		/// <param name="gameTime">Provides a snapshot of timing values.</param>
+		/// 
+		protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.Black);
+            Graphics.ViewManager.Instance.Render(spriteBatch, GraphicsDevice, sceneContents);
 
-            // TODO: Add your drawing code here
-            Graphics.ViewManager.Instance.Render(spriteBatch);
-
-            base.Draw(gameTime);
+			base.Draw(gameTime);
         }
 
     }

@@ -1,7 +1,6 @@
 ﻿using Microsoft.Xna.Framework.Media;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,9 +20,6 @@ namespace AstroMonkey.Assets.Scenes
             Graphics.ViewManager.Instance.PlayerTransform = playerObject.transform;
 
 			//MediaPlayer.Play(Audio.SoundContainer.Instance.GetSong("01"));
-
-			Type type = typeof(Objects.Alien01Dead);
-			Debug.Write(type);
 		}
     }
 }

@@ -21,12 +21,12 @@ namespace AstroMonkey.Physics.Collider
 
         public override void DrawBorder(SpriteBatch spriteBatch)
         {
-            Color borderColor = Color.Red;
+            Color borderColor = Util.Statics.Colors.DARK_RED;
             int thicknessOfBorder = 1;
 
             Texture2D pixel;
             pixel = new Texture2D(spriteBatch.GraphicsDevice, 1, 1, false, SurfaceFormat.Color);
-            pixel.SetData(new[] { Color.White });
+            pixel.SetData(new[] { Util.Statics.Colors.WHITE_1 });
 
             float width = radius * 2;
             float height = radius * 2;
@@ -49,7 +49,7 @@ namespace AstroMonkey.Physics.Collider
                 (int)width,
                 thicknessOfBorder), borderColor);
 
-            spriteBatch.DrawString(Graphics.SpriteContainer.Instance.GetFont("text"), this.parent.ToString().Split('.').Last(), GetPosition(), Color.Red);
+            spriteBatch.DrawString(Graphics.SpriteContainer.Instance.GetFont("text"), this.parent.ToString().Split('.').Last(), GetPosition(), Util.Statics.Colors.DARK_RED);
         }
     }
 }
