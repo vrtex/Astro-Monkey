@@ -36,6 +36,7 @@ obj/
 Ankh.NoLoad
 
 /AstroMonkey/.vs
+AstroMonkey/bin
 
 #Tooling
 _ReSharper*/
