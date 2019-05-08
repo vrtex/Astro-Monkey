@@ -3,10 +3,6 @@ using AstroMonkey.Core;
 using AstroMonkey.Gameplay;
 using Microsoft.Xna.Framework;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AstroMonkey.Assets.Objects
 {
@@ -16,8 +12,8 @@ namespace AstroMonkey.Assets.Objects
         protected int size = 16;
 
         private Collider collider;
-        protected Type projectileType;
-        protected int count = 1;
+        public Type ProjectileType { get; protected set; }
+        public int Count { get; private set; } = 1;
 
         public BaseAmmo(Core.Transform transform) : base(transform)
         {
@@ -42,6 +38,9 @@ namespace AstroMonkey.Assets.Objects
             if(playerGun == null)
                 throw new ApplicationException("Monkey dosn't have a gun, big boo-boo");
 
+            bool acctepted = playerGun.RestoreAmmo(this);
+            if(acctepted)
+                Destroy();
 
         }
     }

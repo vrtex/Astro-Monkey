@@ -478,6 +478,12 @@
 #begin Map/AstroMonkey.tmx
 /copy:Map/AstroMonkey.tmx
 
+#begin Map/Level1.tmx
+/copy:Map/Level1.tmx
+
+#begin Map/Level2.tmx
+/copy:Map/Level2.tmx
+
 #begin settings/settings.ini
 /copy:settings/settings.ini
 

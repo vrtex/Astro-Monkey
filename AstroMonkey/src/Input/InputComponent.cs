@@ -21,6 +21,7 @@ namespace AstroMonkey.Input
         private readonly string interactBindName = "interact";
         private readonly string scrollUpBindName = "weapon up";
         private readonly string scrollDownBindName = "weapon down";
+        private readonly string reloadBindName = "reload";
 
         public InputComponent(Core.GameObject parent) : base(parent)
         {
@@ -33,6 +34,7 @@ namespace AstroMonkey.Input
             ActionBinding interactBinding = new ActionBinding(Keys.E);
             ActionBinding scrollUpBinding = new ActionBinding(EMouseButton.WheelUp);
             ActionBinding scrollDownBinding = new ActionBinding(EMouseButton.WheelDown);
+            ActionBinding reloadBinding = new ActionBinding(Keys.R);
 
             verticalAxis.OnUpdate += Move;
             horizontalAxis.OnUpdate += Move;
@@ -40,6 +42,7 @@ namespace AstroMonkey.Input
             interactBinding.OnTrigger += Interact;
             scrollDownBinding.OnTrigger += ChangeAmmoDown;
             scrollUpBinding.OnTrigger += ChangeAmmoUp;
+            reloadBinding.OnTrigger += Reload;
 
             InputManager.Manager.AddAxisBinding(verticalBindingName, verticalAxis);
             InputManager.Manager.AddAxisBinding(horizontalBindingName, horizontalAxis);
@@ -49,9 +52,15 @@ namespace AstroMonkey.Input
 
             InputManager.Manager.AddActionBinding(scrollDownBindName, scrollDownBinding);
             InputManager.Manager.AddActionBinding(scrollUpBindName, scrollUpBinding);
+            InputManager.Manager.AddActionBinding(reloadBindName, reloadBinding);
 
             moveComp.CurrentFocus = target;
             InputManager.Manager.OnMouseMove += MoveTarget;
+        }
+
+        private void Reload()
+        {
+            gun.Reload();
         }
 
         private void ChangeAmmoDown()

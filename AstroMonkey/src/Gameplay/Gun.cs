@@ -27,13 +27,13 @@ namespace AstroMonkey.Gameplay
             new AmmoInfo { clip = new AmmoClip(typeof(Rocket), 3, 20, 2f), fireDelay = 0.75f},
             new AmmoInfo { clip = new AmmoClip(typeof(PistolBullet), 5, 50, 0.5f), fireDelay = 0.2f},
         };
-        private int currentClipIndex = 0;
+        private int currentClipIndex;
         private AmmoClip currentClip;
         private float delayLeft = 0f;
 
 		public Gun(GameObject parent) : base(parent)
 		{
-            currentClipIndex = 0;
+            currentClipIndex = 1;
             currentClip = ammoClips[currentClipIndex];
 
             ShootSoundComponent = Parent.AddComponent(new Audio.AudioSource(Parent, Audio.SoundContainer.Instance.GetSoundEffect("GunShoot")));
@@ -62,7 +62,6 @@ namespace AstroMonkey.Gameplay
 			projectile.Damage = new DamageInfo(parent, projectile.baseDamage);
 
 			GameManager.SpawnObject(projectile);
-            Console.WriteLine(currentClip);
 
             delayLeft = ammoClips[currentClipIndex].fireDelay;
 		}
@@ -85,6 +84,41 @@ namespace AstroMonkey.Gameplay
             currentClip.Update(gameTime);
 
             delayLeft -= (float)gameTime.ElapsedGameTime.TotalSeconds;
+        }
+
+        public void Reload()
+        {
+            currentClip.StartReload();
+        }
+
+        public bool RestoreAmmo(Type ammoType, int amount)
+        {
+            AmmoClip clip = ammoClips.Find(x => x.clip.ammoType == ammoType);
+
+            if(clip == null)
+                throw new ApplicationException("restoring unexisting ammo");
+
+            if(clip.IsFull())
+                return false;
+
+            clip.RestoreAmmo(amount);
+            Console.WriteLine("restore");
+            Console.WriteLine(this);
+
+            return true;
+        }
+
+        public bool RestoreAmmo(BaseAmmo ammoPack)
+        {
+            return RestoreAmmo(ammoPack.ProjectileType, ammoPack.Count);
+        }
+
+        public override string ToString()
+        {
+            String toReturn = "Gun on: " + parent;
+            foreach(AmmoClip clip in ammoClips)
+                toReturn += "\n" + clip;
+            return toReturn;
         }
     }
 }

@@ -35,21 +35,33 @@ namespace AstroMonkey.Gameplay
 
         public void Update(GameTime gameTime)
         {
-            Reload((float)gameTime.ElapsedGameTime.TotalSeconds);
+            TryReload((float)gameTime.ElapsedGameTime.TotalSeconds);
 
         }
 
-        private void Reload(float elapsedTime)
+        private void TryReload(float elapsedTime)
         {
-            if(currentlyInClip != 0)
+            if(reloadLeft <= 0)
                 return;
 
             reloadLeft -= elapsedTime;
             if(reloadLeft > 0)
                 return;
-            int toMove = Math.Min(clipSize, ammoReserves);
+            int toMove = Math.Min(clipSize - currentlyInClip, ammoReserves);
             ammoReserves -= toMove;
-            currentlyInClip = toMove;
+            currentlyInClip += toMove;
+            Console.WriteLine("reloaded");
+        }
+
+        public bool IsFull()
+        {
+            return currentlyInClip + ammoReserves == clipSize + maxAmmo;
+        }
+
+        public void RestoreAmmo(int amount)
+        {
+            ammoReserves += amount;
+            ammoReserves = MathHelper.Clamp(ammoReserves, 0, maxAmmo + clipSize);
         }
 
         public BaseProjectile GetProjectile(Transform parentTransorm)
@@ -57,15 +69,23 @@ namespace AstroMonkey.Gameplay
             if(currentlyInClip == 0)
                 return null;
 
+            reloadLeft = -1.0f;
+
             BaseProjectile toReturn = (BaseProjectile)Activator.CreateInstance(ammoType, new object[] {
                 new Transform(parentTransorm)}
             );
 
             currentlyInClip--;
             if(currentlyInClip == 0)
-                reloadLeft = reloadTime;
+                StartReload();
 
             return toReturn;
+        }
+
+        public void StartReload()
+        {
+            Console.WriteLine("reload");
+            reloadLeft = reloadTime;
         }
 
         public override string ToString()
