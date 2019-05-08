@@ -2,19 +2,18 @@
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
+using AstroMonkey.Assets.Objects;
 
 namespace AstroMonkey.Gameplay
 {
     struct AmmoInfo
     {
-
-        public Type bulletType;
+        public AmmoClip clip;
         public float fireDelay;
-        public int currentAmount;
 
-        public static implicit operator Type(AmmoInfo ammoInfo)
+        public static implicit operator AmmoClip(AmmoInfo ammoInfo)
         {
-            return ammoInfo.bulletType;
+            return ammoInfo.clip;
         }
     }
 
@@ -22,28 +21,34 @@ namespace AstroMonkey.Gameplay
     {
         private Audio.AudioSource ShootSoundComponent;
 
-        private List<AmmoInfo> ammoTypes = new List<AmmoInfo>
+        private List<AmmoInfo> ammoClips = new List<AmmoInfo>
         {
-            new AmmoInfo { bulletType = typeof(Assets.Objects.AlienBullet), fireDelay = 0.1f, currentAmount = 10 },
-            new AmmoInfo { bulletType = typeof(Assets.Objects.Rocket), fireDelay = 0.75f, currentAmount = 3},
-            new AmmoInfo { bulletType = typeof(Assets.Objects.PistolBullet), fireDelay = 0.2f, currentAmount = 20}
+            new AmmoInfo { clip = new AmmoClip(typeof(AlienBullet), 10, 100, 0.5f), fireDelay = 0.1f},
+            new AmmoInfo { clip = new AmmoClip(typeof(Rocket), 3, 20, 2f), fireDelay = 0.75f},
+            new AmmoInfo { clip = new AmmoClip(typeof(PistolBullet), 5, 50, 0.5f), fireDelay = 0.2f},
         };
-        private int currentAmmoType = 0;
-        private float cooldownLeft = 0f;
+        private int currentClipIndex = 0;
+        private AmmoClip currentClip;
+        private float delayLeft = 0f;
 
 		public Gun(GameObject parent) : base(parent)
 		{
-            currentAmmoType = 0;
+            currentClipIndex = 0;
+            currentClip = ammoClips[currentClipIndex];
 
             ShootSoundComponent = Parent.AddComponent(new Audio.AudioSource(Parent, Audio.SoundContainer.Instance.GetSoundEffect("GunShoot")));
 		}
 
 		public void Shoot(Vector2 targetPosition)
 		{
-            if(cooldownLeft > 0)
+            if(delayLeft > 0)
                 return;
-			Assets.Objects.BaseProjectile projectile = (Assets.Objects.BaseProjectile)Activator.CreateInstance(ammoTypes[currentAmmoType], new object[] {
-				new Transform(Parent.transform)});
+            BaseProjectile projectile =
+                currentClip.GetProjectile(parent.transform);
+
+            if(projectile == null)
+                return;
+
 			ShootSoundComponent.SoundEffect = projectile.shootSound;
 			ShootSoundComponent.Play();
 
@@ -57,25 +62,29 @@ namespace AstroMonkey.Gameplay
 			projectile.Damage = new DamageInfo(parent, projectile.baseDamage);
 
 			GameManager.SpawnObject(projectile);
+            Console.WriteLine(currentClip);
 
-            cooldownLeft = ammoTypes[currentAmmoType].fireDelay;
+            delayLeft = ammoClips[currentClipIndex].fireDelay;
 		}
 
         public void ChangeAmmo(bool moveUp)
         {
-            if(cooldownLeft > 0)
+            if(delayLeft > 0)
                 return;
-            currentAmmoType += moveUp ? 1 : -1;
-            currentAmmoType = currentAmmoType % ammoTypes.Count;
-            while(currentAmmoType < 0) currentAmmoType += ammoTypes.Count;
-            Console.WriteLine(ammoTypes[currentAmmoType].bulletType);
+            currentClipIndex += moveUp ? 1 : -1;
+            currentClipIndex = currentClipIndex % ammoClips.Count;
+            while(currentClipIndex < 0) currentClipIndex += ammoClips.Count;
+
+            currentClip = ammoClips[currentClipIndex];
+            Console.WriteLine(ammoClips[currentClipIndex].clip.ammoType);
         }
 
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
+            currentClip.Update(gameTime);
 
-            cooldownLeft -= (float)gameTime.ElapsedGameTime.TotalSeconds;
+            delayLeft -= (float)gameTime.ElapsedGameTime.TotalSeconds;
         }
     }
 }
