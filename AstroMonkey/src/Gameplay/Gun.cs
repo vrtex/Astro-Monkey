@@ -6,12 +6,12 @@ using AstroMonkey.Assets.Objects;
 
 namespace AstroMonkey.Gameplay
 {
-    struct AmmoInfo
+    struct ClipInfo
     {
         public AmmoClip clip;
         public float fireDelay;
 
-        public static implicit operator AmmoClip(AmmoInfo ammoInfo)
+        public static implicit operator AmmoClip(ClipInfo ammoInfo)
         {
             return ammoInfo.clip;
         }
@@ -19,22 +19,26 @@ namespace AstroMonkey.Gameplay
 
     class Gun : Component
     {
+        public delegate void GunEvent(Gun gun);
+        public event GunEvent OnWeaponChange;
+        public event GunEvent OnAmmoChange;
+
         private Audio.AudioSource ShootSoundComponent;
 
-        private List<AmmoInfo> ammoClips = new List<AmmoInfo>
+        private List<ClipInfo> ammoClips = new List<ClipInfo>
         {
-            new AmmoInfo { clip = new AmmoClip(typeof(AlienBullet), 10, 100, 0.5f), fireDelay = 0.1f},
-            new AmmoInfo { clip = new AmmoClip(typeof(Rocket), 3, 20, 2f), fireDelay = 0.75f},
-            new AmmoInfo { clip = new AmmoClip(typeof(PistolBullet), 5, 50, 0.5f), fireDelay = 0.2f},
+            new ClipInfo { clip = new AmmoClip(typeof(AlienBullet), 10, 100, 0.5f), fireDelay = 0.1f},
+            new ClipInfo { clip = new AmmoClip(typeof(Rocket), 3, 20, 2f), fireDelay = 0.75f},
+            new ClipInfo { clip = new AmmoClip(typeof(PistolBullet), 5, 50, 0.5f), fireDelay = 0.2f},
         };
         private int currentClipIndex;
-        private AmmoClip currentClip;
+        public AmmoClip currentClip { get; private set; }
         private float delayLeft = 0f;
 
 		public Gun(GameObject parent) : base(parent)
 		{
             currentClipIndex = 1;
-            currentClip = ammoClips[currentClipIndex];
+            ChangeAmmo(false);
 
             ShootSoundComponent = Parent.AddComponent(new Audio.AudioSource(Parent, Audio.SoundContainer.Instance.GetSoundEffect("GunShoot")));
 		}
@@ -64,6 +68,7 @@ namespace AstroMonkey.Gameplay
 			projectile.Damage = new DamageInfo(parent, projectile.baseDamage);
 
 			GameManager.SpawnObject(projectile);
+            OnAmmoChange?.Invoke(this);
 
             delayLeft = ammoClips[currentClipIndex].fireDelay;
 		}
@@ -76,8 +81,21 @@ namespace AstroMonkey.Gameplay
             currentClipIndex = currentClipIndex % ammoClips.Count;
             while(currentClipIndex < 0) currentClipIndex += ammoClips.Count;
 
+
+            // TODO: add clip loading/unloading
+
+            if(currentClip != null)
+                currentClip.onReload -= ReloadHandler;
+
             currentClip = ammoClips[currentClipIndex];
+            OnWeaponChange?.Invoke(this);
+            currentClip.onReload += ReloadHandler;
             Console.WriteLine(ammoClips[currentClipIndex].clip.ammoType);
+        }
+
+        private void ReloadHandler(AmmoClip clip)
+        {
+            OnAmmoChange?.Invoke(this);
         }
 
         public override void Update(GameTime gameTime)
@@ -104,8 +122,7 @@ namespace AstroMonkey.Gameplay
                 return false;
 
             clip.RestoreAmmo(amount);
-            Console.WriteLine("restore");
-            Console.WriteLine(this);
+            OnAmmoChange?.Invoke(this);
 
             return true;
         }

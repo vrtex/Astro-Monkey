@@ -87,10 +87,7 @@ namespace AstroMonkey.Assets.Objects
 		{
 			base.Update(gameTime);
 
-			if(aiAttack != null)
-			{
-				aiAttack.Update(gameTime);
-			}
+			aiAttack.Update(gameTime);
 		}
 	}
 }

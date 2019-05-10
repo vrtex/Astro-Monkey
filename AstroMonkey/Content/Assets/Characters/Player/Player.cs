@@ -19,6 +19,8 @@ namespace AstroMonkey.Assets.Objects
 		private Audio.AudioSource idleSFX;
 		private Audio.AudioSource gameoverSFX;
 
+        UI.PlayerHUD hud;
+
 		private Effect lightOff = null;
 
 		public Player(): this(new Core.Transform())
@@ -37,7 +39,6 @@ namespace AstroMonkey.Assets.Objects
 
         private void Load(Core.Transform _transform)
         {
-
             // Physics
             AddComponent(new Body(this));
             AddComponent(new CircleCollider(this, CollisionChanell.Player, Vector2.Zero, size / 3));
@@ -55,12 +56,12 @@ namespace AstroMonkey.Assets.Objects
 			AddComponent(new Gameplay.Gun(this));
             AddComponent(new Input.InputComponent(this));
 
+			AddComponent(new Gameplay.Health(this));
+            hud = Core.GameManager.SpawnObject(new UI.PlayerHUD(this));
 
             List<Rectangle> idle01 = new List<Rectangle>();
             for(int i = 0; i < height; ++i) idle01.Add(new Rectangle(i * size, 0, size, size));
             AddComponent(new Graphics.Sprite(this, "monkey", idle01));
-
-			AddComponent(new Gameplay.Health(this));
 
 			AddComponent(new Graphics.StackAnimator(this));
 
@@ -166,5 +167,11 @@ namespace AstroMonkey.Assets.Objects
 			if(lightOff != null) lightOff.Parameters["angle"]?.SetValue(transform.rotation / ((float)Math.PI * 2));
 
 		}
+
+        public override void Destroy()
+        {
+            hud.Destroy();
+            base.Destroy();
+        }
     }
 }

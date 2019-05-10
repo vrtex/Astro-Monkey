@@ -96,7 +96,7 @@ namespace AstroMonkey.Assets.Scenes
             GameManager.SpawnObject(new Objects.Terminal(new Vector2(96f, 3f), new Vector2(sceneScale, sceneScale), (float)(Math.PI)));
             GameManager.SpawnObject(new Objects.ButtonWall(new Vector2(0f, 3f), new Vector2(sceneScale, sceneScale), (float)(Math.PI)));
 
-			GameManager.SpawnObject(new Objects.AmmoAmount());
+			// GameManager.SpawnObject(new Objects.AmmoAmount());
             //GameManager.SpawnObject(new Objects.SimpleButton());
 
         }
