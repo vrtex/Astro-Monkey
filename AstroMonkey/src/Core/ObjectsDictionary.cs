@@ -23,22 +23,22 @@ namespace AstroMonkey.Core
             [3] = new Tuple<Type, float>(typeof(Assets.Objects.FloorPlatform03), upRotation),
 
             // floor dirty
-            [4] = new Tuple<Type, float>(typeof(Assets.Objects.FloorPlatformDirt01), upRotation),
-            [5] = new Tuple<Type, float>(typeof(Assets.Objects.FloorPlatformDirt02), upRotation),
-            [6] = new Tuple<Type, float>(typeof(Assets.Objects.FloorPlatformDirt03), upRotation),
-            [7] = new Tuple<Type, float>(typeof(Assets.Objects.FloorPlatformDirt04), upRotation),
+            [5] = new Tuple<Type, float>(typeof(Assets.Objects.FloorPlatformDirt01), upRotation),
+            [6] = new Tuple<Type, float>(typeof(Assets.Objects.FloorPlatformDirt02), upRotation),
+            [7] = new Tuple<Type, float>(typeof(Assets.Objects.FloorPlatformDirt03), upRotation),
+            [8] = new Tuple<Type, float>(typeof(Assets.Objects.FloorPlatformDirt04), upRotation),
 
             // floor crushed
-            [8] = new Tuple<Type, float>(typeof(Assets.Objects.FloorPlatformCrush01), upRotation),
-            [9] = new Tuple<Type, float>(typeof(Assets.Objects.FloorPlatformCrush02), upRotation),
-            [10] = new Tuple<Type, float>(typeof(Assets.Objects.FloorPlatformCrush03), upRotation),
-            [11] = new Tuple<Type, float>(typeof(Assets.Objects.FloorPlatformCrush04), upRotation),
+            [9] = new Tuple<Type, float>(typeof(Assets.Objects.FloorPlatformCrush01), upRotation),
+            [10] = new Tuple<Type, float>(typeof(Assets.Objects.FloorPlatformCrush02), upRotation),
+            [11] = new Tuple<Type, float>(typeof(Assets.Objects.FloorPlatformCrush03), upRotation),
+            [12] = new Tuple<Type, float>(typeof(Assets.Objects.FloorPlatformCrush04), upRotation),
 
             // floor crushed and dirty
-            [11] = new Tuple<Type, float>(typeof(Assets.Objects.FloorPlatformDirtyCrush01), upRotation),
-            [12] = new Tuple<Type, float>(typeof(Assets.Objects.FloorPlatformDirtyCrush02), upRotation),
-            [13] = new Tuple<Type, float>(typeof(Assets.Objects.FloorPlatformDirtyCrush03), upRotation),
-            [14] = new Tuple<Type, float>(typeof(Assets.Objects.FloorPlatformDirtyCrush04), upRotation),
+            [13] = new Tuple<Type, float>(typeof(Assets.Objects.FloorPlatformDirtyCrush01), upRotation),
+            [14] = new Tuple<Type, float>(typeof(Assets.Objects.FloorPlatformDirtyCrush02), upRotation),
+            [15] = new Tuple<Type, float>(typeof(Assets.Objects.FloorPlatformDirtyCrush03), upRotation),
+            [16] = new Tuple<Type, float>(typeof(Assets.Objects.FloorPlatformDirtyCrush04), upRotation),
 
             // floor crate
             [21] = new Tuple<Type, float>(typeof(Assets.Objects.FloorCrate01), upRotation),
@@ -48,8 +48,8 @@ namespace AstroMonkey.Core
             [25] = new Tuple<Type, float>(typeof(Assets.Objects.FloorCrate05), upRotation),
             [26] = new Tuple<Type, float>(typeof(Assets.Objects.FloorCrate06), upRotation),
 
-			// exit level
-			[41] = new Tuple<Type, float>(typeof(Assets.Objects.FloorExit), upRotation),
+            // exit level
+            [41] = new Tuple<Type, float>(typeof(Assets.Objects.FloorExit), upRotation),
 
             // FLOOR END
 
