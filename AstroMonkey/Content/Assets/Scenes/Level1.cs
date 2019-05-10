@@ -28,7 +28,7 @@ namespace AstroMonkey.Assets.Scenes
 				}
 			}
 
-			//MediaPlayer.Play(Audio.SoundContainer.Instance.GetSong("01"));
+			MediaPlayer.Play(Audio.SoundContainer.Instance.GetSong("01"));
 		}
     }
 }
