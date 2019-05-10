@@ -30,7 +30,7 @@ namespace AstroMonkey.Gameplay
 
 		}
 
-		public void DeadDamage(DamageInfo damage)
+		public void DealDamage(DamageInfo damage)
 		{
 			health = health - damage.value;
 			if(health < 0) health = 0;

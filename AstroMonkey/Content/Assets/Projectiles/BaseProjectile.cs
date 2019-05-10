@@ -42,7 +42,7 @@ namespace AstroMonkey.Assets.Objects
         {
             Gameplay.Health enemyHealth = otherCollider.Parent.GetComponent<Gameplay.Health>();
 			if(enemyHealth != null)
-				enemyHealth.DeadDamage(Damage);
+				enemyHealth.DealDamage(Damage);
 			else
 				return;
             Destroy();

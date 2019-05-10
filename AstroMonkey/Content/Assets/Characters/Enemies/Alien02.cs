@@ -36,8 +36,8 @@ namespace AstroMonkey.Assets.Objects
 
             AddComponent(new Graphics.StackAnimator(this));
 
-            //STANIE
-            List<Rectangle> idle02 = new List<Rectangle>();
+			//STANIE
+			List<Rectangle> idle02 = new List<Rectangle>();
             for(int i = 0; i < height; ++i) idle02.Add(new Rectangle(i * size, size * 1, size, size));
             GetComponent<Graphics.StackAnimator>().AddAnimation(
                 new Graphics.StackAnimation("Idle",
@@ -102,6 +102,9 @@ namespace AstroMonkey.Assets.Objects
 
 			//ustawianie zwłok kosmity
 			corp = typeof(Alien02Dead);
+
+			Gameplay.Gun gun = AddComponent(new Gameplay.Gun(this));
+			//Tu powinno być ustaleny typ pocisków i takie tam
 		}
     }
 }

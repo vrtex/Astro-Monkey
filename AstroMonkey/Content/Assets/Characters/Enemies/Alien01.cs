@@ -66,7 +66,7 @@ namespace AstroMonkey.Assets.Objects
                 new Graphics.StackAnimation("Attack",
                 GetComponent<Graphics.Sprite>(),
                 new List<List<Rectangle>> { idle01, attack01 },
-                266,
+                166,
                 true));
 
             GetComponent<Graphics.StackAnimator>().SetAnimation("Idle");
