@@ -16,8 +16,8 @@ namespace AstroMonkey.UI
         public float value;
         private String text;
 
-        public delegate void clickEvent(Slider slider);
-        public event clickEvent onClick;
+        public delegate void SliderEvent(Slider slider);
+        public event SliderEvent onChange;
 
         private Color color = Util.Statics.Colors.WHITE_1;
         private Audio.AudioSource clickSFX;
@@ -26,10 +26,11 @@ namespace AstroMonkey.UI
 
         public Slider(Core.Transform _transform) : base(_transform)
         {
+            InputManager.Manager.OnMouseButtonReleased += ReleaseSlider;
+            Load();
+        }
 
-		}
-
-		public Slider(Vector2 anchorPosition, Vector2 anchorSize, float value, String text) : this(new Core.Transform())
+        public Slider(Vector2 anchorPosition, Vector2 anchorSize, float value, String text) : this(new Core.Transform())
 		{
 			this.anchorPosition = anchorPosition;
 			this.anchorSize = anchorSize;
@@ -37,7 +38,6 @@ namespace AstroMonkey.UI
             this.text = text;
             AnchorToWorldspace(0.5f);
 
-            Load();
 
             drawSliderBackground();
         }
@@ -102,13 +102,18 @@ namespace AstroMonkey.UI
 
         public override void OnClick()
         {
-            if (!enable) return;
+            if(!enable) return;
+            InputManager.Manager.OnMouseMove += UpdateCursorPosition;
+            FollowCursor();
+        }
+
+        private void FollowCursor()
+        {
             value = (InputManager.Manager.MouseCursor.X - position.X) / 300;
             value = MathHelper.Clamp(value, 0, 1);
-            if (value < 0.13f)
+            if(value < 0.13f)
                 value = 0f;
-
-            onClick?.Invoke(this);
+            onChange?.Invoke(this);
         }
 
         //public override void OnClick()
@@ -126,5 +131,24 @@ namespace AstroMonkey.UI
         {
             color = Util.Statics.Colors.WHITE_1;
         }
-	}
+
+        private void ReleaseSlider(MouseInputEventArgs mouseArgs)
+        {
+            if(mouseArgs.Button != EMouseButton.Left)
+                return;
+            InputManager.Manager.OnMouseMove -= UpdateCursorPosition;
+        }
+
+        private void UpdateCursorPosition(MouseInputEventArgs mouseArgs)
+        {
+            FollowCursor();
+        }
+
+        public override void Destroy()
+        {
+            InputManager.Manager.OnMouseMove -= UpdateCursorPosition;
+            InputManager.Manager.OnMouseButtonReleased -= ReleaseSlider;
+            base.Destroy();
+        }
+    }
 }
