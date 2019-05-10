@@ -63,46 +63,58 @@ namespace AstroMonkey.Assets.Scenes
             //mainMenu.Add(objects.Last() as UI.UIElement);
 
             //++++++++++++++++++++++++++++++++++++++ŁADOWANIE GRY++++++++++++++++++++++++++++++++++++++++++
-            objects.Add(new Objects.TextButton("Level 1", "planetary", new Vector2(0.1f, 0.3f), new Vector2(0.32f, 0.05f)));
+            objects.Add(new Objects.TextButton("Level 1", "planetary", new Vector2(0.1f, 0.15f), new Vector2(0.32f, 0.05f)));
 			(objects.Last() as Objects.TextButton).onClick += SetResolution;
 			loadGame.Add(objects.Last() as UI.UIElement);
 			(objects.Last() as UI.UIElement).enable = false;
 			(objects.Last() as Objects.TextButton).value = 0;
 
-			objects.Add(new Objects.TextButton("Generowana z pliku", "planetary", new Vector2(0.1f, 0.35f), new Vector2(0.34f, 0.05f)));
+			objects.Add(new Objects.TextButton("Level 2", "planetary", new Vector2(0.1f, 0.2f), new Vector2(0.34f, 0.05f)));
 			(objects.Last() as Objects.TextButton).onClick += PlayGame;
 			loadGame.Add(objects.Last() as UI.UIElement);
 			(objects.Last() as UI.UIElement).enable = false;
 			(objects.Last() as Objects.TextButton).value = 1;
 
-			objects.Add(new Objects.TextButton("Level 3", "planetary", new Vector2(0.1f, 0.4f), new Vector2(0.34f, 0.05f)));
+			objects.Add(new Objects.TextButton("Level 3", "planetary", new Vector2(0.1f, 0.25f), new Vector2(0.34f, 0.05f)));
 			(objects.Last() as Objects.TextButton).onClick += PlayGame;
 			loadGame.Add(objects.Last() as UI.UIElement);
 			(objects.Last() as UI.UIElement).enable = false;
 			(objects.Last() as Objects.TextButton).value = 2;
 
-			objects.Add(new Objects.TextButton("Level 4", "planetary", new Vector2(0.1f, 0.45f), new Vector2(0.34f, 0.05f)));
+			objects.Add(new Objects.TextButton("Level 4", "planetary", new Vector2(0.1f, 0.3f), new Vector2(0.34f, 0.05f)));
 			(objects.Last() as Objects.TextButton).onClick += PlayGame;
 			loadGame.Add(objects.Last() as UI.UIElement);
 			(objects.Last() as UI.UIElement).enable = false;
 			(objects.Last() as Objects.TextButton).value = 3;
 
-			objects.Add(new Objects.TextButton("Dev Room", "planetary", new Vector2(0.1f, 0.50f), new Vector2(0.34f, 0.05f)));
+			objects.Add(new Objects.TextButton("Level 5", "planetary", new Vector2(0.1f, 0.35f), new Vector2(0.34f, 0.05f)));
 			(objects.Last() as Objects.TextButton).onClick += PlayGame;
 			loadGame.Add(objects.Last() as UI.UIElement);
 			(objects.Last() as UI.UIElement).enable = false;
 			(objects.Last() as Objects.TextButton).value = 4;
 
-			objects.Add(new Objects.TextButton("Collider Room", "planetary", new Vector2(0.1f, 0.55f), new Vector2(0.35f, 0.05f)));
+			objects.Add(new Objects.TextButton("Level 6", "planetary", new Vector2(0.1f, 0.4f), new Vector2(0.35f, 0.05f)));
 			(objects.Last() as Objects.TextButton).onClick += PlayGame;
 			loadGame.Add(objects.Last() as UI.UIElement);
 			(objects.Last() as UI.UIElement).enable = false;
 			(objects.Last() as Objects.TextButton).value = 5;
 
+			objects.Add(new Objects.TextButton("Dev Room", "planetary", new Vector2(0.1f, 0.45f), new Vector2(0.34f, 0.05f)));
+			(objects.Last() as Objects.TextButton).onClick += PlayGame;
+			loadGame.Add(objects.Last() as UI.UIElement);
+			(objects.Last() as UI.UIElement).enable = false;
+			(objects.Last() as Objects.TextButton).value = 6;
+
+			objects.Add(new Objects.TextButton("Collider Room", "planetary", new Vector2(0.1f, 0.5f), new Vector2(0.35f, 0.05f)));
+			(objects.Last() as Objects.TextButton).onClick += PlayGame;
+			loadGame.Add(objects.Last() as UI.UIElement);
+			(objects.Last() as UI.UIElement).enable = false;
+			(objects.Last() as Objects.TextButton).value = 7;
+
 			//++++++++++++++++++++++++++++++++++++++++++OPCJE++++++++++++++++++++++++++++++++++++++++++++++
-			
+
 			//(objects.Last() as Objects.TextButton).onClick += SetFullscreen;
-			
+
 			//(objects.Last() as UI.UIElement).enable = false;
 
 			objects.Add(new Objects.TextButton("[ ] Fullscreen", "planetary", new Vector2(0.1f, 0.2f), new Vector2(0.32f, 0.05f)));
@@ -197,25 +209,33 @@ namespace AstroMonkey.Assets.Scenes
 
 			if(textButton.value == 0)
 			{
-				GameManager.Instance.NextScene = "devroom";
+				GameManager.Instance.NextScene = "level1";
 			}
 			else if(textButton.value == 1)
 			{
-				GameManager.Instance.NextScene = "level1";
+				GameManager.Instance.NextScene = "level2";
 			}
 			else if(textButton.value == 2)
 			{
-				GameManager.Instance.NextScene = "devroom";
+				GameManager.Instance.NextScene = "level3";
 			}
 			else if(textButton.value == 3)
 			{
-				GameManager.Instance.NextScene = "devroom";
+				GameManager.Instance.NextScene = "level4";
 			}
 			else if(textButton.value == 4)
 			{
-				GameManager.Instance.NextScene = "devroom";
+				GameManager.Instance.NextScene = "level5";
 			}
 			else if(textButton.value == 5)
+			{
+				GameManager.Instance.NextScene = "level6";
+			}
+			else if(textButton.value == 6)
+			{
+				GameManager.Instance.NextScene = "devroom";
+			}
+			else if(textButton.value == 7)
 			{
 				GameManager.Instance.NextScene = "colliderroom";
 			}

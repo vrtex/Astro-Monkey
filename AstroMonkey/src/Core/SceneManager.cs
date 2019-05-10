@@ -19,6 +19,11 @@ namespace AstroMonkey.Core
             scenes.Add("colliderroom", new Assets.Scenes.ColliderRoom());
 			scenes.Add("menu", new Assets.Scenes.MainMenu());
             scenes.Add("level1", new Assets.Scenes.Level1());
+			scenes.Add("level2", new Assets.Scenes.Level2());
+			scenes.Add("level3", new Assets.Scenes.Level3());
+			scenes.Add("level4", new Assets.Scenes.Level4());
+			scenes.Add("level5", new Assets.Scenes.Level5());
+			scenes.Add("level6", new Assets.Scenes.Level6());
 		}
 
         public void LoadScene(string name)

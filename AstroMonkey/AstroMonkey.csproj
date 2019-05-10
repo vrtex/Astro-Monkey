@@ -54,6 +54,7 @@
     <Compile Include="Content\Assets\HUD\AmmoAmount.cs" />
     <Compile Include="Content\Assets\HUD\EnemyHealthBar.cs" />
     <Compile Include="Content\Assets\Items\BaseAmmo.cs" />
+    <Compile Include="Content\Assets\Map\Floor\FloorExit.cs" />
     <Compile Include="Content\Assets\Menu\MenuCenter.cs" />
     <Compile Include="Content\Assets\HUD\SimpleButton.cs" />
     <Compile Include="Content\Assets\Items\AmmoGun.cs" />
@@ -114,6 +115,11 @@
     <Compile Include="Content\Assets\Scenes\ColliderRoom.cs" />
     <Compile Include="Content\Assets\Scenes\DevRoom.cs" />
     <Compile Include="Content\Assets\Scenes\Level1.cs" />
+    <Compile Include="Content\Assets\Scenes\Level2.cs" />
+    <Compile Include="Content\Assets\Scenes\Level3.cs" />
+    <Compile Include="Content\Assets\Scenes\Level4.cs" />
+    <Compile Include="Content\Assets\Scenes\Level5.cs" />
+    <Compile Include="Content\Assets\Scenes\Level6.cs" />
     <Compile Include="Content\Assets\Scenes\MainMenu.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="Program.cs" />

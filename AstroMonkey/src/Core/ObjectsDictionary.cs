@@ -48,6 +48,9 @@ namespace AstroMonkey.Core
             [25] = new Tuple<Type, float>(typeof(Assets.Objects.FloorCrate05), upRotation),
             [26] = new Tuple<Type, float>(typeof(Assets.Objects.FloorCrate06), upRotation),
 
+			// exit level
+			[41] = new Tuple<Type, float>(typeof(Assets.Objects.FloorExit), upRotation),
+
             // FLOOR END
 
             // FURNITURE BEGIN
