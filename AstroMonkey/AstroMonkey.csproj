@@ -129,6 +129,7 @@
     <Compile Include="src\Core\Scene.cs" />
     <Compile Include="src\Core\SceneManager.cs" />
     <Compile Include="src\Core\Transform.cs" />
+    <Compile Include="src\Gameplay\AIAttack.cs" />
     <Compile Include="src\Gameplay\AmmoClip.cs" />
     <Compile Include="src\Gameplay\DamageInfo.cs" />
     <Compile Include="src\Gameplay\Gun.cs" />

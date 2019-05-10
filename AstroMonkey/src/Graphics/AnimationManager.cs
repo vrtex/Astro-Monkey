@@ -44,7 +44,14 @@ namespace AstroMonkey.Graphics
                             {
                                 if(a.currentAnim.currentFrame == (a.currentAnim as Animation).frames.Count)
                                 {
-                                    a.currentAnim.currentFrame = 0;
+									if(a.nextAnim != "")
+									{
+										a.currentAnim.currentFrame = 0;
+										a.SetAnimation(a.nextAnim);
+										a.nextAnim = "";
+										continue;
+									}
+									a.currentAnim.currentFrame = 0;
                                 }
                                 sprite.rect[0] = (a.currentAnim as Animation).frames[a.currentAnim.currentFrame];
                             }
@@ -52,7 +59,14 @@ namespace AstroMonkey.Graphics
                             {
                                 if(a.currentAnim.currentFrame == (a.currentAnim as StackAnimation).frames.Count)
                                 {
-                                    a.currentAnim.currentFrame = 0;
+									if(a.nextAnim != "")
+									{
+										a.currentAnim.currentFrame = 0;
+										a.SetAnimation(a.nextAnim);
+										a.nextAnim = "";
+										continue;
+									}
+									a.currentAnim.currentFrame = 0;
                                 }
                                 sprite.rect = (a.currentAnim as StackAnimation).frames[a.currentAnim.currentFrame];
                             }
@@ -65,7 +79,14 @@ namespace AstroMonkey.Graphics
                                 {
                                     ++a.currentAnim.currentFrame;
                                 }
-                                sprite.rect[0] = (a.currentAnim as Animation).frames[a.currentAnim.currentFrame];
+								else if(a.nextAnim != "")
+								{
+									a.currentAnim.currentFrame = 0;
+									a.SetAnimation(a.nextAnim);
+									a.nextAnim = "";
+									continue;
+								}
+								sprite.rect[0] = (a.currentAnim as Animation).frames[a.currentAnim.currentFrame];
                             }
                             else
                             {
@@ -73,7 +94,14 @@ namespace AstroMonkey.Graphics
                                 {
                                     ++a.currentAnim.currentFrame;
                                 }
-                                sprite.rect = (a.currentAnim as StackAnimation).frames[a.currentAnim.currentFrame];
+								else if(a.nextAnim != "")
+								{
+									a.currentAnim.currentFrame = 0;
+									a.SetAnimation(a.nextAnim);
+									a.nextAnim = "";
+									continue;
+								}
+								sprite.rect = (a.currentAnim as StackAnimation).frames[a.currentAnim.currentFrame];
                             }
                         }
                             

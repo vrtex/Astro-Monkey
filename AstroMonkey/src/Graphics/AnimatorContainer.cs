@@ -10,11 +10,17 @@ namespace AstroMonkey.Graphics
     {
         public  Dictionary<string, AnimationComponent>  animations  = new Dictionary<string, AnimationComponent>();
         public  AnimationComponent                      currentAnim = null;
+		public  string									nextAnim    = "";
 
         public AnimatorContainer(Core.GameObject go) : base(go)
         {
 
         }
+
+		public void SetNextAnimation(string name)
+		{
+			nextAnim = name;
+		}
 
         public void SetAnimation(string name)
         {
