@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,10 +26,12 @@ namespace AstroMonkey.Assets.Scenes
 		{
 			base.Load();
 
-			MediaPlayer.Play(Audio.SoundContainer.Instance.GetSong("menu"));
+            //MediaPlayer.Volume = Util.Statics.musicVolume;
+            MediaPlayer.IsRepeating = true;
+            MediaPlayer.Volume = Util.Statics.musicVolume;
+            MediaPlayer.Play(Audio.SoundContainer.Instance.GetSong("menu"));
 
-            
-			objects.Add(new UI.Text("Astro Monkey", "planetary", new Vector2(0.5f, 0.05f), new Vector2(0.25f, 0.1f)));
+            objects.Add(new UI.Text("Astro Monkey", "planetary", new Vector2(0.5f, 0.05f), new Vector2(0.25f, 0.1f)));
 			mainMenu.Add(objects.Last() as UI.UIElement);
 
 			Objects.MenuCenter mc = new Objects.MenuCenter(Graphics.ViewManager.Instance.WinSize()/2, new Vector2(0f, 0f), 0f);
@@ -97,9 +100,9 @@ namespace AstroMonkey.Assets.Scenes
 			(objects.Last() as Objects.TextButton).value = 5;
 
 			//++++++++++++++++++++++++++++++++++++++++++OPCJE++++++++++++++++++++++++++++++++++++++++++++++
-			//objects.Add(new UI.Slider(new Vector2(0.1f, 0.2f), new Vector2(0.32f, 0.05f), 1f));
+			
 			//(objects.Last() as Objects.TextButton).onClick += SetFullscreen;
-			//settings.Add(objects.Last() as UI.UIElement);
+			
 			//(objects.Last() as UI.UIElement).enable = false;
 
 			objects.Add(new Objects.TextButton("[ ] Fullscreen", "planetary", new Vector2(0.1f, 0.2f), new Vector2(0.32f, 0.05f)));
@@ -143,12 +146,22 @@ namespace AstroMonkey.Assets.Scenes
 			(objects.Last() as UI.UIElement).enable = false;
 			(objects.Last() as Objects.TextButton).value = 5;
 
-			objects.Add(new UI.Text(" ", "planetary", new Vector2(0.1f, 0.65f), new Vector2(0.25f, 0.05f)));
+			objects.Add(new UI.Text(" ", "planetary", new Vector2(0.1f, 0.1f), new Vector2(0.25f, 0.05f)));
 			settings.Add(objects.Last() as UI.UIElement);
 			(objects.Last() as UI.UIElement).enable = false;
 
-			//+++++++++++++++++++++++++++++++++++++++++AUTORZY+++++++++++++++++++++++++++++++++++++++++++++
-			objects.Add(new UI.Text("Jakub Czaja", "planetary", new Vector2(0.1f, 0.15f), new Vector2(0.25f, 0.1f)));
+            objects.Add(new UI.Slider(new Vector2(0.1f, 0.60f), new Vector2(0.32f, 0.05f), Util.Statics.musicVolume, "Music"));
+            (objects.Last() as UI.Slider).onClick += SetMusicVolume;
+            settings.Add(objects.Last() as UI.UIElement);
+            (objects.Last() as UI.UIElement).enable = false;
+
+            objects.Add(new UI.Slider(new Vector2(0.1f, 0.65f), new Vector2(0.32f, 0.05f), Util.Statics.soundVolume, "Sound"));
+            (objects.Last() as UI.Slider).onClick += SetSoundVolume;
+            settings.Add(objects.Last() as UI.UIElement);
+            (objects.Last() as UI.UIElement).enable = false;
+
+            //+++++++++++++++++++++++++++++++++++++++++AUTORZY+++++++++++++++++++++++++++++++++++++++++++++
+            objects.Add(new UI.Text("Jakub Czaja", "planetary", new Vector2(0.1f, 0.15f), new Vector2(0.25f, 0.1f)));
 			authors.Add(objects.Last() as UI.UIElement);
 			(objects.Last() as UI.UIElement).enable = false;
 
@@ -263,12 +276,37 @@ namespace AstroMonkey.Assets.Scenes
 
 			(settings[7] as UI.Text).text = "Restart game to apply changes";
 			string[] lines = { "fullscreen=" + (Graphics.ViewManager.Instance.graphics.IsFullScreen ? "1" : "0"),
-								"resolution=" + currResolution.ToString()};
+								"resolution=" + currResolution.ToString(),
+                                "sound=" + (int)Util.Statics.Map(Util.Statics.soundVolume, 0f, 1f, 0f, 100f),
+                                "music=" + (int)Util.Statics.Map(Util.Statics.musicVolume, 0f, 1f, 0f, 100f)};
 
-			File.WriteAllLines("Content/settings/settings.ini", lines);
+            File.WriteAllLines("Content/settings/settings.ini", lines);
 		}
 
-		void OffAllSetting()
+        void SetSoundVolume(UI.Slider slider)
+        {
+            Util.Statics.soundVolume = slider.value;
+
+            string[] lines = { "fullscreen=" + (Graphics.ViewManager.Instance.graphics.IsFullScreen ? "1" : "0"),
+                                "resolution=" + currResolution.ToString(),
+                                "sound=" + (int)Util.Statics.Map(Util.Statics.soundVolume, 0f, 1f, 0f, 100f),
+                                "music=" + (int)Util.Statics.Map(Util.Statics.musicVolume, 0f, 1f, 0f, 100f)};
+            File.WriteAllLines("Content/settings/settings.ini", lines);
+        }
+
+        void SetMusicVolume(UI.Slider slider)
+        {
+            Util.Statics.musicVolume = slider.value;
+            MediaPlayer.Volume = Util.Statics.musicVolume;
+
+            string[] lines = { "fullscreen=" + (Graphics.ViewManager.Instance.graphics.IsFullScreen ? "1" : "0"),
+                                "resolution=" + currResolution.ToString(),
+                                "sound=" + (int)Util.Statics.Map(Util.Statics.soundVolume, 0f, 1f, 0f, 100f),
+                                "music=" + (int)Util.Statics.Map(Util.Statics.musicVolume, 0f, 1f, 0f, 100f)};
+            File.WriteAllLines("Content/settings/settings.ini", lines);
+        }
+
+        void OffAllSetting()
 		{
 			if(Graphics.ViewManager.Instance.graphics.IsFullScreen)
 				(settings[0] as Objects.TextButton).text = "[X] Fullscreen";
@@ -301,10 +339,12 @@ namespace AstroMonkey.Assets.Scenes
 				Graphics.ViewManager.Instance.graphics.IsFullScreen = true;
 			}
 			(settings[7] as UI.Text).text = "Restart game to apply changes";
-			string[] lines = { "fullscreen=" + (Graphics.ViewManager.Instance.graphics.IsFullScreen ? "1" : "0"),
-								"resolution=" + currResolution.ToString()};
+            string[] lines = { "fullscreen=" + (Graphics.ViewManager.Instance.graphics.IsFullScreen ? "1" : "0"),
+                                "resolution=" + currResolution.ToString(),
+                                "sound=" + (int)Util.Statics.Map(Util.Statics.soundVolume, 0f, 1f, 0f, 100f),
+                                "music=" + (int)Util.Statics.Map(Util.Statics.musicVolume, 0f, 1f, 0f, 100f)};
 
-			File.WriteAllLines("Content/settings/settings.ini", lines);
+            File.WriteAllLines("Content/settings/settings.ini", lines);
 		}
 	}
 }
