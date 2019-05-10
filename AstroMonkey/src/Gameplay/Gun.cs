@@ -50,7 +50,9 @@ namespace AstroMonkey.Gameplay
                 return;
 
 			ShootSoundComponent.SoundEffect = projectile.shootSound;
-			ShootSoundComponent.Play();
+
+
+            ShootSoundComponent.Play();
 
 			Vector2 parentPosition = parent.transform.position;
 			Vector2 direction = targetPosition - parentPosition;

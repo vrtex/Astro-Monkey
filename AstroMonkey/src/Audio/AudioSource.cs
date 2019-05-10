@@ -54,6 +54,7 @@ namespace AstroMonkey.Audio
 			soundEffect.Pitch = pitch * (float)((Util.RNG.random.NextDouble() * 2.0) - 1.0);
 			emitter.Position = new Vector3(parent.transform.position, 0f) + offset;
             soundEffect.Apply3D(AudioManager.Instance.playerListener, emitter);
+            soundEffect.Volume = Util.Statics.soundVolume;
             soundEffect.Play();
         }
 
