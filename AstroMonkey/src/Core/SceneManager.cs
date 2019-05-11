@@ -24,6 +24,9 @@ namespace AstroMonkey.Core
 			scenes.Add("level4", new Assets.Scenes.Level4());
 			scenes.Add("level5", new Assets.Scenes.Level5());
 			scenes.Add("level6", new Assets.Scenes.Level6());
+			scenes.Add("level7", new Assets.Scenes.Level7());
+			scenes.Add("level8", new Assets.Scenes.Level8());
+			scenes.Add("level9", new Assets.Scenes.Level9());
 		}
 
         public void LoadScene(string name)

@@ -16,6 +16,8 @@ namespace AstroMonkey.Assets.Objects
 		protected Audio.AudioSource hitSFX;
 		protected Audio.AudioSource idleSFX;
 		protected Audio.AudioSource lookSFX;
+		public Audio.AudioSource attackSFX;
+		public Audio.AudioSource nearSFX;
 
 		protected UI.HealthBar      healthBar;
 		protected Gameplay.Health   healthComponent;

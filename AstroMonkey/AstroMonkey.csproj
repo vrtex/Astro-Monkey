@@ -120,6 +120,9 @@
     <Compile Include="Content\Assets\Scenes\Level4.cs" />
     <Compile Include="Content\Assets\Scenes\Level5.cs" />
     <Compile Include="Content\Assets\Scenes\Level6.cs" />
+    <Compile Include="Content\Assets\Scenes\Level7.cs" />
+    <Compile Include="Content\Assets\Scenes\Level8.cs" />
+    <Compile Include="Content\Assets\Scenes\Level9.cs" />
     <Compile Include="Content\Assets\Scenes\MainMenu.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="Program.cs" />

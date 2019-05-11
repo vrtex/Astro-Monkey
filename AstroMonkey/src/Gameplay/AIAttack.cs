@@ -44,6 +44,7 @@ namespace AstroMonkey.Gameplay
 						else
 						{
 							target.GetComponent<Health>().DealDamage(new DamageInfo(parent, damage));
+							(parent as Assets.Objects.BaseAlien).attackSFX.Play();
 						}
 					}
 					else

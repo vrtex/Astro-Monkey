@@ -74,7 +74,7 @@ namespace AstroMonkey.Assets.Objects
                 new List<List<Rectangle>> {
                     idle01, attack01, attack02
                 },
-                196,
+                166,
                 true));
 
             GetComponent<Graphics.StackAnimator>().SetAnimation("Idle");
@@ -84,6 +84,8 @@ namespace AstroMonkey.Assets.Objects
 			hitSFX = AddComponent(new Audio.AudioSource(this, Audio.SoundContainer.Instance.GetSoundEffect("Alien03Hit")));
 			idleSFX = AddComponent(new Audio.AudioSource(this, Audio.SoundContainer.Instance.GetSoundEffect("Alien03Idle")));
 			lookSFX = AddComponent(new Audio.AudioSource(this, Audio.SoundContainer.Instance.GetSoundEffect("Alien03Look")));
+			attackSFX = AddComponent(new Audio.AudioSource(this, Audio.SoundContainer.Instance.GetSoundEffect("Alien03Attack")));
+			nearSFX = AddComponent(new Audio.AudioSource(this, Audio.SoundContainer.Instance.GetSoundEffect("Alien03Near")));
 
 			//ustawianie zwłok kosmity
 			corp = typeof(Alien03Dead);

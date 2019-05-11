@@ -99,6 +99,8 @@ namespace AstroMonkey.Assets.Objects
 			hitSFX = AddComponent(new Audio.AudioSource(this, Audio.SoundContainer.Instance.GetSoundEffect("Alien02Hit")));
 			idleSFX = AddComponent(new Audio.AudioSource(this, Audio.SoundContainer.Instance.GetSoundEffect("Alien02Idle")));
 			lookSFX = AddComponent(new Audio.AudioSource(this, Audio.SoundContainer.Instance.GetSoundEffect("Alien02Look")));
+			attackSFX = AddComponent(new Audio.AudioSource(this, Audio.SoundContainer.Instance.GetSoundEffect("Alien02Attack")));
+			nearSFX = AddComponent(new Audio.AudioSource(this, Audio.SoundContainer.Instance.GetSoundEffect("Alien02Near")));
 
 			//ustawianie zwłok kosmity
 			corp = typeof(Alien02Dead);

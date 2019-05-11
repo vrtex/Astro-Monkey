@@ -103,9 +103,6 @@ namespace AstroMonkey
             //Dodawanie aktywnych efektów do renderowania
             //Graphics.ViewManager.Instance.activeEffects.Add(Graphics.EffectContainer.Instance.GetEffect("LightOff"));
 
-            
-
-
 			base.Initialize();
 
         }

@@ -99,17 +99,35 @@ namespace AstroMonkey.Assets.Scenes
 			(objects.Last() as UI.UIElement).enable = false;
 			(objects.Last() as Objects.TextButton).value = 5;
 
-			objects.Add(new Objects.TextButton("Dev Room", "planetary", new Vector2(0.1f, 0.45f), new Vector2(0.34f, 0.05f)));
+			objects.Add(new Objects.TextButton("Level 7", "planetary", new Vector2(0.1f, 0.45f), new Vector2(0.34f, 0.05f)));
 			(objects.Last() as Objects.TextButton).onClick += PlayGame;
 			loadGame.Add(objects.Last() as UI.UIElement);
 			(objects.Last() as UI.UIElement).enable = false;
 			(objects.Last() as Objects.TextButton).value = 6;
 
-			objects.Add(new Objects.TextButton("Collider Room", "planetary", new Vector2(0.1f, 0.5f), new Vector2(0.35f, 0.05f)));
+			objects.Add(new Objects.TextButton("Level 8", "planetary", new Vector2(0.1f, 0.5f), new Vector2(0.35f, 0.05f)));
 			(objects.Last() as Objects.TextButton).onClick += PlayGame;
 			loadGame.Add(objects.Last() as UI.UIElement);
 			(objects.Last() as UI.UIElement).enable = false;
 			(objects.Last() as Objects.TextButton).value = 7;
+
+			objects.Add(new Objects.TextButton("Level 9", "planetary", new Vector2(0.1f, 0.55f), new Vector2(0.35f, 0.05f)));
+			(objects.Last() as Objects.TextButton).onClick += PlayGame;
+			loadGame.Add(objects.Last() as UI.UIElement);
+			(objects.Last() as UI.UIElement).enable = false;
+			(objects.Last() as Objects.TextButton).value = 8;
+
+			objects.Add(new Objects.TextButton("Dev Room", "planetary", new Vector2(0.1f, 0.6f), new Vector2(0.34f, 0.05f)));
+			(objects.Last() as Objects.TextButton).onClick += PlayGame;
+			loadGame.Add(objects.Last() as UI.UIElement);
+			(objects.Last() as UI.UIElement).enable = false;
+			(objects.Last() as Objects.TextButton).value = 9;
+
+			objects.Add(new Objects.TextButton("Collider Room", "planetary", new Vector2(0.1f, 0.65f), new Vector2(0.35f, 0.05f)));
+			(objects.Last() as Objects.TextButton).onClick += PlayGame;
+			loadGame.Add(objects.Last() as UI.UIElement);
+			(objects.Last() as UI.UIElement).enable = false;
+			(objects.Last() as Objects.TextButton).value = 10;
 
 			//++++++++++++++++++++++++++++++++++++++++++OPCJE++++++++++++++++++++++++++++++++++++++++++++++
 
@@ -238,9 +256,21 @@ namespace AstroMonkey.Assets.Scenes
 			}
 			else if(textButton.value == 6)
 			{
-				GameManager.Instance.NextScene = "devroom";
+				GameManager.Instance.NextScene = "level7";
 			}
 			else if(textButton.value == 7)
+			{
+				GameManager.Instance.NextScene = "level8";
+			}
+			else if(textButton.value == 8)
+			{
+				GameManager.Instance.NextScene = "level9";
+			}
+			else if(textButton.value == 9)
+			{
+				GameManager.Instance.NextScene = "devroom";
+			}
+			else if(textButton.value == 10)
 			{
 				GameManager.Instance.NextScene = "colliderroom";
 			}

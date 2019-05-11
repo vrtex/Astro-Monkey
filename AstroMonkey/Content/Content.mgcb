@@ -484,6 +484,27 @@
 #begin Map/Level2.tmx
 /copy:Map/Level2.tmx
 
+#begin Map/Level3.tmx
+/copy:Map/Level3.tmx
+
+#begin Map/Level4.tmx
+/copy:Map/Level4.tmx
+
+#begin Map/Level5.tmx
+/copy:Map/Level5.tmx
+
+#begin Map/Level6.tmx
+/copy:Map/Level6.tmx
+
+#begin Map/Level7.tmx
+/copy:Map/Level7.tmx
+
+#begin Map/Level8.tmx
+/copy:Map/Level8.tmx
+
+#begin Map/Level9.tmx
+/copy:Map/Level9.tmx
+
 #begin settings/settings.ini
 /copy:settings/settings.ini
 
