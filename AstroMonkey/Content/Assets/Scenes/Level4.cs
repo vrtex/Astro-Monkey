@@ -26,7 +26,27 @@ namespace AstroMonkey.Assets.Scenes
 				{
 					(o as Objects.BaseAlien).aiAttack.target = playerObject;
 				}
+				else if(o is Objects.Door)
+				{
+					doors.Add(o);
+				}
+				else if(o is Objects.Terminal)
+				{
+					interactives.Add(o);
+				}
 			}
+
+			Gameplay.DoorTerminal dt = interactives[2].GetComponent<Gameplay.DoorTerminal>();
+			dt.doors.Add(doors[4]);
+			dt.doors.Add(doors[5]);
+
+			dt = interactives[1].GetComponent<Gameplay.DoorTerminal>();
+			dt.doors.Add(doors[2]);
+			dt.doors.Add(doors[3]);
+
+			dt = interactives[0].GetComponent<Gameplay.DoorTerminal>();
+			dt.doors.Add(doors[0]);
+			dt.doors.Add(doors[1]);
 
 			MediaPlayer.Play(Audio.SoundContainer.Instance.GetSong("02_03"));
 		}

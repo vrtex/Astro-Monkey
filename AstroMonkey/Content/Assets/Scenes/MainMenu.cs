@@ -64,7 +64,7 @@ namespace AstroMonkey.Assets.Scenes
 
             //++++++++++++++++++++++++++++++++++++++ŁADOWANIE GRY++++++++++++++++++++++++++++++++++++++++++
             objects.Add(new Objects.TextButton("Level 1", "planetary", new Vector2(0.1f, 0.15f), new Vector2(0.32f, 0.05f)));
-			(objects.Last() as Objects.TextButton).onClick += SetResolution;
+			(objects.Last() as Objects.TextButton).onClick += PlayGame;
 			loadGame.Add(objects.Last() as UI.UIElement);
 			(objects.Last() as UI.UIElement).enable = false;
 			(objects.Last() as Objects.TextButton).value = 0;

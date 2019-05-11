@@ -14,7 +14,7 @@ namespace AstroMonkey.Physics.Collider
         private Dictionary<CollisionChanell, ReactType> reaction;
         private Vector2 relativePosition;
         protected float scale;
-
+		
         private bool temp;
 
         public delegate void ColliderEvent(Collider thisCollider, Collider otherCollider);
@@ -24,7 +24,9 @@ namespace AstroMonkey.Physics.Collider
 
         public List<Collider> collisons = new List<Collider>();
 
-        public Collider(
+		public bool isActive = true;
+
+		public Collider(
             GameObject gameObject,
             CollisionChanell collisionChanell = CollisionChanell.Object,
             Vector2 relativePosition = new Vector2(),

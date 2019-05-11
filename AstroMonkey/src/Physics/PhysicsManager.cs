@@ -81,6 +81,7 @@ namespace AstroMonkey.Physics
 
         private static void CheckColliderType(Collider.Collider movable, Collider.Collider stable)
         {
+			if(!movable.isActive || !stable.isActive) return;
             if (IsCircle(movable)) // 1: CIR
             {
                 Collider.CircleCollider c1 = (CircleCollider) movable;

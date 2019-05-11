@@ -10,10 +10,11 @@ namespace AstroMonkey.Core
     {
         protected float sceneScale = SceneManager.scale;
 
-        public List<GameObject> objects        = new List<GameObject>();
+        public List<GameObject> objects			= new List<GameObject>();
+		public List<GameObject> doors			= new List<GameObject>();
+		public List<GameObject> interactives	= new List<GameObject>();
 
-
-        public virtual void Reset() { }
+		public virtual void Reset() { }
 
         public virtual void Load()
         {
@@ -21,7 +22,9 @@ namespace AstroMonkey.Core
             foreach(GameObject obj in objects)
                 obj.Destroy();
             objects.Clear();
-        }
+			doors.Clear();
+			interactives.Clear();
+		}
 
         public void LoadFromFile(string filepath)
         {
@@ -75,6 +78,11 @@ namespace AstroMonkey.Core
                 new Vector2(sceneScale, sceneScale),
                 objectInfo.Item2
                 );
+
+			if(index == 217)
+			{
+				spawnTransform.position.Y += 1;
+			}
 
             GameObject spawned = (GameObject)Activator.CreateInstance(objectInfo.Item1, new object[] {spawnTransform});
 
