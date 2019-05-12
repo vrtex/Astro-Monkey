@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using System;
+using AstroMonkey.Physics.Collider;
 
 namespace AstroMonkey.Assets.Objects
 {
@@ -20,9 +21,13 @@ namespace AstroMonkey.Assets.Objects
         {
 		}
 
+		private float size = 32;
+
 		private void Load(Core.Transform _transform)
 		{
-			
+			AddComponent(new CircleCollider(this, CollisionChanell.InteractPlayer, new Vector2(0, 0), size));
+
+			AddComponent(new Gameplay.ChangeLevel(this));
 		}
 	}
 }

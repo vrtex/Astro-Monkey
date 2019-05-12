@@ -146,6 +146,7 @@
     <Compile Include="src\Gameplay\Gun.cs" />
     <Compile Include="src\Gameplay\Health.cs" />
     <Compile Include="src\Gameplay\InteractComponent.cs" />
+    <Compile Include="src\Gameplay\ChangeLevel.cs" />
     <Compile Include="src\Gameplay\SuicideComponent.cs" />
     <Compile Include="src\Graphics\EffectContainer.cs" />
     <Compile Include="src\Input\InputUI.cs" />

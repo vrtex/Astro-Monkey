@@ -34,6 +34,10 @@ namespace AstroMonkey.Assets.Scenes
 				{
 					interactives.Add(o);
 				}
+				else if(o is Objects.FloorExit)
+				{
+					(o as Objects.FloorExit).GetComponent<Gameplay.ChangeLevel>().nextLevel = "level4";
+				}
 			}
 
 			Gameplay.DoorTerminal dt = interactives[0].GetComponent<Gameplay.DoorTerminal>();
