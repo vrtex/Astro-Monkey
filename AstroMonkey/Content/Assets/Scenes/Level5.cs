@@ -64,6 +64,8 @@ namespace AstroMonkey.Assets.Scenes
 			doors[11].GetComponent<Graphics.StackAnimator>().SetAnimation("Close");
 
 			MediaPlayer.Play(Audio.SoundContainer.Instance.GetSong("02_03"));
+
+			Physics.PhysicsManager.player = playerObject.GetComponent<Physics.Collider.Collider>();
 		}
 	}
 }

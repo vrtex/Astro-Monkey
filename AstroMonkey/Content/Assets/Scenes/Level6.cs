@@ -50,6 +50,8 @@ namespace AstroMonkey.Assets.Scenes
 			doors[3].GetComponent<Graphics.StackAnimator>().SetAnimation("Close");
 
 			MediaPlayer.Play(Audio.SoundContainer.Instance.GetSong("03_01"));
+
+			Physics.PhysicsManager.player = playerObject.GetComponent<Physics.Collider.Collider>();
 		}
 	}
 }

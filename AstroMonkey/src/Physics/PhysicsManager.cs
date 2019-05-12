@@ -24,8 +24,11 @@ namespace AstroMonkey.Physics
             new CircleCollider(tempGO, CollisionChanell.Object, Vector2.Zero, 1, true);
         private static List<ColliderEventInfo> ColliderEvents = new List<ColliderEventInfo>();
 
+		public static Collider.Collider			player			= null;
+		public static float                     physicsRange	= 12f; //do jakiej odległości (w kratkach) od gracza aktualizuje się fizyka
 
-        public enum Direction
+
+		public enum Direction
         {
             LEFT,
             RIGHT,
@@ -68,7 +71,7 @@ namespace AstroMonkey.Physics
                     {
                         colliders.ForEach(c2 =>
                         {
-                            if (!c1.Equals(c2))
+                            if (!c1.Equals(c2) && player != null)
                             {
                                 CheckColliderType(c1, c2);
                             }
@@ -82,7 +85,8 @@ namespace AstroMonkey.Physics
         private static void CheckColliderType(Collider.Collider movable, Collider.Collider stable)
         {
 			if(!movable.isActive || !stable.isActive) return;
-            if (IsCircle(movable)) // 1: CIR
+			if(GetDistanceBetween(movable, player) > physicsRange * 32 * SceneManager.scale) return;
+			if (IsCircle(movable)) // 1: CIR
             {
                 Collider.CircleCollider c1 = (CircleCollider) movable;
                 if (IsCircle(stable)) // 2: CIR

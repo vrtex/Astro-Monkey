@@ -69,6 +69,8 @@ namespace AstroMonkey.Assets.Scenes
 
 			Graphics.ViewManager.Instance.activeEffects.Clear();
 			Graphics.ViewManager.Instance.activeEffects.Add(Graphics.EffectContainer.Instance.GetEffect("LightOff"));
+
+			Physics.PhysicsManager.player = playerObject.GetComponent<Physics.Collider.Collider>();
 		}
 	}
 }

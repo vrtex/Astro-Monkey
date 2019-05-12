@@ -45,6 +45,8 @@ namespace AstroMonkey.Assets.Scenes
 			dt.doors.Add(doors[1]);
 
 			MediaPlayer.Play(Audio.SoundContainer.Instance.GetSong("01"));
+
+			Physics.PhysicsManager.player = playerObject.GetComponent<Physics.Collider.Collider>();
 		}
     }
 }
