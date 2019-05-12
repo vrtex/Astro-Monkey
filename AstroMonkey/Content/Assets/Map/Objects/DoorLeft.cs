@@ -29,7 +29,11 @@ namespace AstroMonkey.Assets.Objects
 
             AddComponent(new Graphics.Sprite(this, "doorLeft", idle01));
 
-        }
+			//kolizje na framugach
+			openCollider = AddComponent(new BoxCollider(this, CollisionChanell.Object, new Vector2(-12, 10), 5, 12)); //lewa
+			openCollider.isActive = false;
+
+		}
     }
 
 }

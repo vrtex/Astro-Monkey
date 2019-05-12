@@ -52,6 +52,11 @@ namespace AstroMonkey.Assets.Scenes
 			dt.doors.Add(doors[0]);
 			dt.doors.Add(doors[1]);
 
+			doors[6].GetComponent<Graphics.Sprite>().rect = (doors[2] as Objects.Door).open03;
+			doors[6].GetComponent<Graphics.StackAnimator>().SetAnimation("Close");
+			doors[7].GetComponent<Graphics.Sprite>().rect = (doors[3] as Objects.Door).open03;
+			doors[7].GetComponent<Graphics.StackAnimator>().SetAnimation("Close");
+
 			MediaPlayer.Play(Audio.SoundContainer.Instance.GetSong("02_03"));
 		}
 	}

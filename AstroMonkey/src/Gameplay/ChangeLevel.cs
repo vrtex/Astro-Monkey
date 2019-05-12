@@ -20,10 +20,7 @@ namespace AstroMonkey.Gameplay
 
 		public void OnEnter(Collider c1, Collider c2)
 		{
-			Debug.WriteLine("enter!");
 			GameManager.Instance.NextScene = nextLevel;
 		}
-
-
 	}
 }

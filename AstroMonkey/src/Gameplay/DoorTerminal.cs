@@ -29,13 +29,15 @@ namespace AstroMonkey.Gameplay
 					{
 						(d as Assets.Objects.Door).isOpen = false;
 						d.GetComponent<Graphics.StackAnimator>().SetAnimation("Close");
-						d.GetComponent<Physics.Collider.Collider>().isActive = true;
+						(d as Assets.Objects.Door).openCollider.isActive = false;
+						(d as Assets.Objects.Door).closeCollider.isActive = true;
 					}
 					else
 					{
 						(d as Assets.Objects.Door).isOpen = true;
 						d.GetComponent<Graphics.StackAnimator>().SetAnimation("Open");
-						d.GetComponent<Physics.Collider.Collider>().isActive = false;
+						(d as Assets.Objects.Door).openCollider.isActive = true;
+						(d as Assets.Objects.Door).closeCollider.isActive = false;
 					}
 				}
 			}

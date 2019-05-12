@@ -21,7 +21,7 @@ namespace AstroMonkey.Assets.Objects
         {
 		}
 
-		private float size = 32;
+		private float size = 25;
 
 		private void Load(Core.Transform _transform)
 		{

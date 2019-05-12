@@ -9,6 +9,9 @@ namespace AstroMonkey.Assets.Objects
 {
 	class Door: Core.GameObject
 	{
+		public Collider         closeCollider = null;
+		public Collider         openCollider = null;
+
 		public Door() : this(new Core.Transform())
         {
 		}
@@ -28,13 +31,16 @@ namespace AstroMonkey.Assets.Objects
 		protected int height = 32;
 		protected int size = 32;
 		protected List<Rectangle> idle01 = new List<Rectangle>();
+		public List<Rectangle> open03 = new List<Rectangle>();
 		public bool isOpen = false;
 
 		protected virtual void Load(Core.Transform _transform)
 		{
 			transform = _transform;
 
-			AddComponent(new BoxCollider(this, CollisionChanell.Object, new Vector2(0, 10), 32, 12));
+			//kolizja na zamkniętych drzwiach
+			closeCollider = AddComponent(new BoxCollider(this, CollisionChanell.Object, new Vector2(0, 10), 32, 12));
+			
 
 			for(int i = 0; i < height; ++i) idle01.Add(new Rectangle(i * size, 0, size, size));
 
@@ -45,7 +51,6 @@ namespace AstroMonkey.Assets.Objects
 			for(int i = 0; i < height; ++i) open01.Add(new Rectangle(i * size, size, size, size));
 			List<Rectangle> open02 = new List<Rectangle>();
 			for(int i = 0; i < height; ++i) open02.Add(new Rectangle(i * size, size * 2, size, size));
-			List<Rectangle> open03 = new List<Rectangle>();
 			for(int i = 0; i < height; ++i) open03.Add(new Rectangle(i * size, size * 3, size, size));
 			GetComponent<Graphics.StackAnimator>().AddAnimation(
 				new Graphics.StackAnimation("Open",
