@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -37,7 +38,8 @@ namespace AstroMonkey.Assets.Objects
 			List<Rectangle> temp = new List<Rectangle>();
 			temp.Add(new Rectangle(0, 0, 32, 32));
 
-			AddComponent(new Graphics.Sprite(this, "navitionPoint", temp));
+			AddComponent(new Graphics.Sprite(this, "navigationPoint", temp));
+
 #endif
 
 		}

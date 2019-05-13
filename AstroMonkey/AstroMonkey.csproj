@@ -152,6 +152,8 @@
     <Compile Include="src\Gameplay\SuicideComponent.cs" />
     <Compile Include="src\Graphics\EffectContainer.cs" />
     <Compile Include="src\Input\InputUI.cs" />
+    <Compile Include="src\Navigation\NavigationAgent.cs" />
+    <Compile Include="src\Navigation\NavigationManager.cs" />
     <Compile Include="src\Navigation\ProjectileMovementComponent.cs" />
     <Compile Include="src\Navigation\TeleportTo.cs" />
     <Compile Include="src\Physics\Body.cs" />

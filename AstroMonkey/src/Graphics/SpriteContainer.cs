@@ -62,8 +62,11 @@ namespace AstroMonkey.Graphics
             images.Add("buttonWall", game.Content.Load<Texture2D>(@"gfx/Map/Interactable/buttonWall"));
             images.Add("buttonClicked", game.Content.Load<Texture2D>(@"gfx/Map/Interactable/buttonClicked"));
 
-            //przedmioty
-            images.Add("banana", game.Content.Load<Texture2D>(@"gfx/Items/Banana"));
+			//nawigacja
+			images.Add("navigationPoint", game.Content.Load<Texture2D>(@"gfx/Map/Interactable/navPoint"));
+
+			//przedmioty
+			images.Add("banana", game.Content.Load<Texture2D>(@"gfx/Items/Banana"));
             images.Add("nut", game.Content.Load<Texture2D>(@"gfx/Items/Nut"));
             images.Add("ammoRiffle", game.Content.Load<Texture2D>(@"gfx/Items/AmmoRiffle"));
             images.Add("ammoGun", game.Content.Load<Texture2D>(@"gfx/Items/AmmoGun"));
