@@ -175,6 +175,18 @@
 /processorParam:TextureFormat=Color
 /build:gfx/Map/Interactable/buttonWall.png
 
+#begin gfx/Map/Interactable/navPoint.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:gfx/Map/Interactable/navPoint.png
+
 #begin gfx/Map/Interactable/terminal.png
 /importer:TextureImporter
 /processor:TextureProcessor

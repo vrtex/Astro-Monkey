@@ -18,7 +18,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
     <DebugSymbols>true</DebugSymbols>
     <OutputPath>bin\$(MonoGamePlatform)\$(Platform)\$(Configuration)\</OutputPath>
-    <DefineConstants>TRACE;DEBUG;LINUX</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;LINUX,DRAW_NAVIGATION</DefineConstants>
     <DebugType>full</DebugType>
     <PlatformTarget>AnyCPU</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>
@@ -56,6 +56,7 @@
     <Compile Include="Content\Assets\HUD\EnemyHealthBar.cs" />
     <Compile Include="Content\Assets\Items\BaseAmmo.cs" />
     <Compile Include="Content\Assets\Map\Floor\FloorExit.cs" />
+    <Compile Include="Content\Assets\Map\Interactable\NavPoint.cs" />
     <Compile Include="Content\Assets\Map\Objects\Door.cs" />
     <Compile Include="Content\Assets\Menu\MenuCenter.cs" />
     <Compile Include="Content\Assets\HUD\SimpleButton.cs" />

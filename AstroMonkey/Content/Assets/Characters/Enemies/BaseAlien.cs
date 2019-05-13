@@ -9,25 +9,26 @@ namespace AstroMonkey.Assets.Objects
 {
 	class BaseAlien: Core.GameObject
 	{
-		protected Vector2           colliderOffset = Vector2.Zero;
-		protected float             colliderRadius;
+		protected Vector2					colliderOffset = Vector2.Zero;
+		protected float						colliderRadius;
 
-		protected Audio.AudioSource walkSFX;
-		protected Audio.AudioSource hitSFX;
-		protected Audio.AudioSource idleSFX;
-		protected Audio.AudioSource lookSFX;
-		public Audio.AudioSource attackSFX;
-		public Audio.AudioSource nearSFX;
+		protected Audio.AudioSource			walkSFX;
+		protected Audio.AudioSource			hitSFX;
+		protected Audio.AudioSource			idleSFX;
+		protected Audio.AudioSource			lookSFX;
+		public Audio.AudioSource			attackSFX;
+		public Audio.AudioSource			nearSFX;
 
-		protected UI.HealthBar      healthBar;
-		protected Gameplay.Health   healthComponent;
-		protected int               maxHealth = 100;
+		protected UI.HealthBar				healthBar;
+		protected Gameplay.Health			healthComponent;
+		protected int						maxHealth = 100;
 
-		protected Type              corp        = null;
+		protected Type						corp        = null;
 
-		protected int				healthBarOffset;
+		protected int						healthBarOffset;
 
-		public Gameplay.AIAttack	aiAttack;
+		public Gameplay.AIAttack			aiAttack;
+		public Navigation.NavigationAgent   navigation;
 
 		public BaseAlien(Core.Transform transform) : base(transform)
 		{
@@ -57,6 +58,7 @@ namespace AstroMonkey.Assets.Objects
 
 			// AI
 			aiAttack = AddComponent(new Gameplay.AIAttack(this));
+			navigation = AddComponent(new Navigation.NavigationAgent(this));
 		}
 
 
