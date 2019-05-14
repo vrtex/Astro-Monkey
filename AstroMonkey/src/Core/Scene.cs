@@ -10,9 +10,10 @@ namespace AstroMonkey.Core
     {
         protected float sceneScale = SceneManager.scale;
 
-        public List<GameObject> objects			= new List<GameObject>();
-		public List<GameObject> doors			= new List<GameObject>();
-		public List<GameObject> interactives	= new List<GameObject>();
+        public List<GameObject>					objects				= new List<GameObject>();
+		public List<GameObject>					doors				= new List<GameObject>();
+		public List<GameObject>					interactives		= new List<GameObject>();
+		public List<Assets.Objects.NavPoint>	navigationPoints	= new List<Assets.Objects.NavPoint>();
 
 		public virtual void Reset() { }
 
@@ -47,7 +48,19 @@ namespace AstroMonkey.Core
 
                 Regex regex = new Regex(@"<data encoding=.csv.>(.*?)<\/data>");
                 MatchCollection matches = regex.Matches(file);
-                // Console.WriteLine(matches.Count);
+				// Console.WriteLine(matches.Count);
+
+				//Zapisanie informacji o punktach nawigacyjnych
+				int groupIndex = 0;
+				Util.NavPointPosition[,] navTypes = new Util.NavPointPosition[mapWidth, mapHeight];
+				for(int x = 0; x < mapWidth; ++x)
+				{
+					for(int y = 0; y < mapWidth; ++y)
+					{
+						navTypes[x, y] = Util.NavPointPosition.None;
+					}
+				}
+
                 foreach(Match m in matches)
                 {
                     GroupCollection groups = m.Groups;
@@ -61,9 +74,21 @@ namespace AstroMonkey.Core
                             continue;
 
                         SpwanUsingTypeIndex(i % mapWidth, i / mapWidth, index);
-                    }
-                }
-            }
+						if(groupIndex == 0) //podłoga
+						{
+							navTypes[i % mapWidth, i / mapWidth] = Util.NavPointPosition.All;
+						}
+						else if(groupIndex == 1) //meble
+						{
+							if(ObjectsDictionary.navPos.ContainsKey(index))
+								navTypes[i % mapWidth, i / mapWidth] = ObjectsDictionary.navPos[index];
+						}
+					}					
+					++groupIndex;
+				}
+				SpawnNavigationPoints(navTypes);
+
+			}
             GameManager.FinalizeSpwaning();
         }
 
@@ -88,6 +113,101 @@ namespace AstroMonkey.Core
 
             GameManager.SpawnObject(spawned);
         }
+
+		private void SpawnNavigationPoints(Util.NavPointPosition[,] navTypes)
+		{
+			float spacing = 32;
+			float innerSpacing = 8;
+
+			for(int x = 0; x < navTypes.GetLength(0); ++x)
+			{
+				for(int y = 0; y < navTypes.GetLength(1); ++y)
+				{
+					if(navTypes[x, y] == Util.NavPointPosition.All
+					|| navTypes[x, y] == Util.NavPointPosition.Up
+					|| navTypes[x, y] == Util.NavPointPosition.UpLeft
+					|| navTypes[x, y] == Util.NavPointPosition.Left
+					|| navTypes[x, y] == Util.NavPointPosition.CornerUpLeft
+					|| navTypes[x, y] == Util.NavPointPosition.CornerDownLeft
+					|| navTypes[x, y] == Util.NavPointPosition.CornerUpRight)
+					{
+						Transform spawnTransform = new Transform(
+							new Vector2(x * spacing, y * spacing) * sceneScale + new Vector2(-innerSpacing, -innerSpacing) * sceneScale,
+							new Vector2(sceneScale, sceneScale)
+							);
+
+						GameObject spawned = (GameObject)Activator.CreateInstance(typeof(Assets.Objects.NavPoint), new object[] {spawnTransform});
+						GameManager.SpawnObject(spawned);
+						navigationPoints.Add(spawned as Assets.Objects.NavPoint);
+					}
+					if(navTypes[x, y] == Util.NavPointPosition.All
+					|| navTypes[x, y] == Util.NavPointPosition.Up
+					|| navTypes[x, y] == Util.NavPointPosition.UpRight
+					|| navTypes[x, y] == Util.NavPointPosition.Right
+					|| navTypes[x, y] == Util.NavPointPosition.CornerDownRight
+					|| navTypes[x, y] == Util.NavPointPosition.CornerUpRight
+					|| navTypes[x, y] == Util.NavPointPosition.CornerUpLeft)
+					{
+						Transform spawnTransform = new Transform(
+							new Vector2(x * spacing, y * spacing) * sceneScale + new Vector2(innerSpacing, -innerSpacing) * sceneScale,
+							new Vector2(sceneScale, sceneScale)
+							);
+
+						GameObject spawned = (GameObject)Activator.CreateInstance(typeof(Assets.Objects.NavPoint), new object[] {spawnTransform});
+						GameManager.SpawnObject(spawned);
+						navigationPoints.Add(spawned as Assets.Objects.NavPoint);
+					}
+					if(navTypes[x, y] == Util.NavPointPosition.All
+					|| navTypes[x, y] == Util.NavPointPosition.Down
+					|| navTypes[x, y] == Util.NavPointPosition.DownRight
+					|| navTypes[x, y] == Util.NavPointPosition.Right
+					|| navTypes[x, y] == Util.NavPointPosition.CornerUpRight
+					|| navTypes[x, y] == Util.NavPointPosition.CornerDownLeft
+					|| navTypes[x, y] == Util.NavPointPosition.CornerDownRight)
+					{
+						Transform spawnTransform = new Transform(
+							new Vector2(x * spacing, y * spacing) * sceneScale + new Vector2(innerSpacing, innerSpacing) * sceneScale,
+							new Vector2(sceneScale, sceneScale)
+							);
+
+						GameObject spawned = (GameObject)Activator.CreateInstance(typeof(Assets.Objects.NavPoint), new object[] {spawnTransform});
+						GameManager.SpawnObject(spawned);
+						navigationPoints.Add(spawned as Assets.Objects.NavPoint);
+					}
+					if(navTypes[x, y] == Util.NavPointPosition.All
+					|| navTypes[x, y] == Util.NavPointPosition.Down
+					|| navTypes[x, y] == Util.NavPointPosition.DownLeft
+					|| navTypes[x, y] == Util.NavPointPosition.Left
+					|| navTypes[x, y] == Util.NavPointPosition.CornerDownRight
+					|| navTypes[x, y] == Util.NavPointPosition.CornerUpLeft
+					|| navTypes[x, y] == Util.NavPointPosition.CornerDownLeft)
+					{
+						Transform spawnTransform = new Transform(
+							new Vector2(x * spacing, y * spacing) * sceneScale + new Vector2(-innerSpacing, innerSpacing) * sceneScale,
+							new Vector2(sceneScale, sceneScale)
+							);
+
+						GameObject spawned = (GameObject)Activator.CreateInstance(typeof(Assets.Objects.NavPoint), new object[] {spawnTransform});
+						GameManager.SpawnObject(spawned);
+						navigationPoints.Add(spawned as Assets.Objects.NavPoint);
+					}
+				}
+			}
+
+			foreach(Assets.Objects.NavPoint nav in navigationPoints)
+			{
+				foreach(Assets.Objects.NavPoint innernav in navigationPoints)
+				{
+					if(nav != innernav)
+					{
+						if(Vector2.Distance(nav.transform.position, innernav.transform.position) < (innerSpacing * 2 + 1f) * sceneScale)
+						{
+							nav.neighbors.Add(innernav);
+						}
+					}
+				}
+			}
+		}
 
         public virtual void UnLoad()
         {

@@ -18,4 +18,22 @@ namespace AstroMonkey.Util
 		MiddleBottom	= 7,
 		MiddleRight		= 8
 	}
+
+	public enum NavPointPosition
+	{
+		None				= 0,
+		UpLeft				= 1,
+		UpRight				= 2,
+		Up					= 3,
+		DownRight			= 4,
+		Right				= 6,
+		CornerUpRight		= 7,
+		DownLeft			= 8,
+		Left				= 9,
+		CornerUpLeft		= 11,
+		Down				= 12,
+		CornerDownLeft		= 13,
+		CornerDownRight		= 14,
+		All					= 15
+	}
 }
