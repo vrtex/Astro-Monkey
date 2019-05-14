@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using AstroMonkey.Core;
 using Microsoft.Xna.Framework;
+using System.Diagnostics;
 
 namespace AstroMonkey.Gameplay
 {
@@ -31,7 +32,7 @@ namespace AstroMonkey.Gameplay
 
         private void Suicide(object sender, System.Timers.ElapsedEventArgs e)
         {
-            Console.WriteLine("suicide");
+            Debug.WriteLine("suicide");
             GameManager.DestroyObject(parent);
         }
     }

@@ -25,6 +25,8 @@ namespace AstroMonkey.Assets.Scenes
 				if(o is Objects.BaseAlien)
 				{
 					(o as Objects.BaseAlien).aiAttack.target = playerObject;
+					(o as Objects.BaseAlien).navigation.LoadNavigation();
+					(o as Objects.BaseAlien).navigation.target = playerObject;
 				}
 				else if(o is Objects.Door)
 				{

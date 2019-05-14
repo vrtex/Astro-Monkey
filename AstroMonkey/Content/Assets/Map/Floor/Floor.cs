@@ -12,7 +12,6 @@ namespace AstroMonkey.Assets.Objects
 
         public Floor(Core.Transform transform): base(transform)
         {
-		
 
 		}
     }

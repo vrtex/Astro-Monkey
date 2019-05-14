@@ -25,8 +25,10 @@ namespace AstroMonkey.Gameplay
 			
 		}
 
-		public void Update(GameTime gameTime)
+		public override void Update(GameTime gameTime)
 		{
+			base.Update(gameTime);
+
 			if(target != null)
 			{
 				if(Vector2.Distance(target.transform.position, parent.transform.position) <= attackDistance)

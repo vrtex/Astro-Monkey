@@ -36,4 +36,11 @@ namespace AstroMonkey.Util
 		CornerDownRight		= 14,
 		All					= 15
 	}
+
+	public enum EnemyState
+	{
+		Idle				= 0,
+		Walk				= 1,
+		Attack				= 2
+	}
 }

@@ -29,6 +29,9 @@ namespace AstroMonkey.Assets.Objects
 
 		public Gameplay.AIAttack			aiAttack;
 		public Navigation.NavigationAgent   navigation;
+		public Navigation.MovementComponent movement;
+
+		public Util.EnemyState              state = Util.EnemyState.Idle;
 
 		public BaseAlien(Core.Transform transform) : base(transform)
 		{
@@ -58,6 +61,7 @@ namespace AstroMonkey.Assets.Objects
 
 			// AI
 			aiAttack = AddComponent(new Gameplay.AIAttack(this));
+			movement = AddComponent(new Navigation.MovementComponent(this));
 			navigation = AddComponent(new Navigation.NavigationAgent(this));
 		}
 
@@ -90,11 +94,6 @@ namespace AstroMonkey.Assets.Objects
 		public override void Update(GameTime gameTime)
 		{
 			base.Update(gameTime);
-
-			if(aiAttack != null)
-			{
-				aiAttack.Update(gameTime);
-			}
 		}
 	}
 }
