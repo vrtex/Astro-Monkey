@@ -13,26 +13,34 @@ namespace AstroMonkey.UI
     {
         private Health health;
         private Gun gun;
-        private Text ammoDisplay;
+
+        private Image healthBar;
+        private AmmoDisplay ammoDisplay;
+        //private Text ammoDisplay;
 
         public PlayerHUD(GameObject parent)
         {
             health = parent.GetComponent<Health>();
             gun = parent.GetComponent<Gun>();
 
-            // health.OnDamageTaken += HealthChanged;
+            //health.OnDamageTaken += HealthChanged;
             gun.OnAmmoChange += GunChange;
             gun.OnWeaponChange += GunChange;
 
-            ammoDisplay = GameManager.SpawnObject(new Text("0/0", "planetary", new Vector2(0.8f, 0.8f), new Vector2(0.1f, 0.1f)));
+            ammoDisplay = GameManager.SpawnObject(new AmmoDisplay(parent));
+
+            healthBar = GameManager.SpawnObject(new Image(new Transform(parent.transform)));
+            healthBar.image = new Graphics.Sprite(healthBar, "bar", new List<Rectangle>() { new Rectangle(0, 0, 20, 2) }, 100);
+
             GunChange(gun);
         }
 
         private void GunChange(Gun gun)
         {
             AmmoInfo currentAmmo = gun.currentClip.GetAmmoInfo();
-            ammoDisplay.SetText("" + currentAmmo.loaded + "/" + currentAmmo.reservesLeft + "\n" +
-                gun.currentClip.ammoType.Name);
+            ammoDisplay.SetAmmoCount(currentAmmo);
+            //ammoDisplay.SetText("" + currentAmmo.loaded + "/" + currentAmmo.reservesLeft + "\n" +
+            //    gun.currentClip.ammoType.Name);
             // TODO: change this to picture
         }
 
@@ -46,6 +54,7 @@ namespace AstroMonkey.UI
             gun.OnWeaponChange -= GunChange;
             gun.OnAmmoChange -= GunChange;
 
+            healthBar.Destroy();
             ammoDisplay.Destroy();
             base.Destroy();
         }

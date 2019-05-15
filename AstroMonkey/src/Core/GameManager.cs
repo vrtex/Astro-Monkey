@@ -27,9 +27,6 @@ namespace AstroMonkey.Core
 
         static GameManager()
         {
-            Input.ActionBinding bind = new Input.ActionBinding(Microsoft.Xna.Framework.Input.Keys.O);
-            bind.OnTrigger += swap;
-            Input.InputManager.Manager.AddActionBinding("ee", bind);
         }
 
         public void InitializeGame(Game game, GraphicsDeviceManager graphics)
@@ -144,20 +141,6 @@ namespace AstroMonkey.Core
                     SceneManager.Instance.LoadScene(Instance.nextScene);
                     Instance.nextScene = null;
                 }
-        }
-
-        private static void swap()
-        {
-            Instance.nextScene = "";
-            lock(Instance.nextScene)
-            {
-                Instance.nextScene = Instance.bongo ? "basement" : "devroom";
-                //if(!Instance.bongo)
-                //    SceneManager.Instance.LoadScene("basement");
-                //else
-                //    SceneManager.Instance.LoadScene("devroom");
-            }
-            Instance.bongo = !Instance.bongo;
         }
     }
 }

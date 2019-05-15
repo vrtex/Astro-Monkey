@@ -9,6 +9,7 @@ namespace AstroMonkey.Core
         public static Dictionary<string, Scene> scenes = new Dictionary<string, Scene>();
 
         public Scene    currScene = null;
+        private Scene heldScene;
 
         public static float scale = 3f;
 
@@ -21,9 +22,12 @@ namespace AstroMonkey.Core
             scenes.Add("level1", new Assets.Scenes.Level1());
 		}
 
-        public void LoadScene(string name)
+        public void LoadScene(string name, bool hold = false)
         {
-            currScene?.UnLoad();
+            if(!hold)
+                currScene?.UnLoad();
+            else
+                heldScene = currScene;
 
             GameManager.FinalizeSpwaning();
 
@@ -36,6 +40,13 @@ namespace AstroMonkey.Core
             //foreach(GameObject go in currScene.objects)
             //    GameManager.SpawnObject(go);
 
+        }
+
+        public void Restore()
+        {
+            currScene.UnLoad();
+            currScene = heldScene;
+            heldScene = null;
         }
     }
 }

@@ -162,6 +162,7 @@
     <Compile Include="src\Graphics\SpriteContainer.cs" />
     <Compile Include="src\Physics\PhysicsManager.cs" />
     <Compile Include="src\Navigation\MovementComponent.cs" />
+    <Compile Include="src\UI\AmmoDisplay.cs" />
     <Compile Include="src\UI\HealthBar.cs" />
     <Compile Include="src\UI\Image.cs" />
     <Compile Include="src\UI\PlayerHUD.cs" />

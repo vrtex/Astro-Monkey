@@ -23,6 +23,7 @@ namespace AstroMonkey.UI
 		// public override Vector2 WorldspaceToScreenspace(Vector2 centerPos) { return Vector2.Zero; }
 		public override void Draw(SpriteBatch spriteBatch, Vector2 centerPos)
         {
+            // spriteBatch.Draw(Graphics.SpriteContainer.Instance.GetImage("bar"), new Vector2(100, 100));
             spriteBatch.Draw(image.image, WorldspaceToScreenspace(centerPos));
         }
 		public override void OnClick() { }
