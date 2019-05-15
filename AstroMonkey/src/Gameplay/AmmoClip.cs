@@ -9,8 +9,20 @@ using AstroMonkey.Core;
 
 namespace AstroMonkey.Gameplay
 {
+    struct AmmoInfo
+    {
+        public Type type;
+        public int loaded;
+        public int clipSize;
+        public int reservesLeft;
+        public int max;
+    }
+
     class AmmoClip
     {
+        public delegate void ClipEvent(AmmoClip clip);
+        public event ClipEvent onReload;
+
         public Type ammoType { get; private set; }
         private int currentlyInClip;
         private int clipSize;
@@ -36,7 +48,6 @@ namespace AstroMonkey.Gameplay
         public void Update(GameTime gameTime)
         {
             TryReload((float)gameTime.ElapsedGameTime.TotalSeconds);
-
         }
 
         private void TryReload(float elapsedTime)
@@ -50,7 +61,19 @@ namespace AstroMonkey.Gameplay
             int toMove = Math.Min(clipSize - currentlyInClip, ammoReserves);
             ammoReserves -= toMove;
             currentlyInClip += toMove;
-            Console.WriteLine("reloaded");
+            onReload?.Invoke(this);
+        }
+
+        public AmmoInfo GetAmmoInfo()
+        {
+            return new AmmoInfo
+            {
+                type = ammoType,
+                loaded = currentlyInClip,
+                clipSize = this.clipSize,
+                reservesLeft = ammoReserves,
+                max = maxAmmo
+            };
         }
 
         public bool IsFull()
@@ -84,7 +107,6 @@ namespace AstroMonkey.Gameplay
 
         public void StartReload()
         {
-            Console.WriteLine("reload");
             reloadLeft = reloadTime;
         }
 
