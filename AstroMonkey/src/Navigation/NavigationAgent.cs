@@ -12,11 +12,11 @@ namespace AstroMonkey.Navigation
 	{
 		public  GameObject                          target				= null;
 		public	List<Assets.Objects.NavPoint>       path				= new List<Assets.Objects.NavPoint>();
-		public  Queue<Assets.Objects.NavPoint>      tempPath            = new Queue<Assets.Objects.NavPoint>();
+		public  Util.MinHeap<Assets.Objects.NavPoint>	tempPath        = new Util.MinHeap<Assets.Objects.NavPoint>();
 		public  List<Assets.Objects.NavPoint>       pathToClear         = new List<Assets.Objects.NavPoint>();
 		public  Assets.Objects.NavPoint             currNavPoint		= null;
 
-		public	float                               distanceToStop		= 1f * 32f * SceneManager.scale;
+		public	float                               distanceToStop		= 0.8f * 32f * SceneManager.scale;
 		public  float                               distanceToReact		= 12f * 32f * SceneManager.scale;
 		public  float                               distanceToNextStep  = 0.4f * 32f * SceneManager.scale;
 
@@ -31,7 +31,7 @@ namespace AstroMonkey.Navigation
 		{
 			foreach(Assets.Objects.NavPoint nav in SceneManager.Instance.currScene.navigationPoints)
 			{
-				if(Vector2.Distance(parent.transform.position, nav.transform.position) < distanceToStop)
+				if(Vector2.Distance(parent.transform.position, nav.transform.position) < distanceToStop / 2)
 				{
 					currNavPoint = nav;
 					break;
@@ -68,7 +68,9 @@ namespace AstroMonkey.Navigation
 					parent.transform.rotation = (float)Math.PI * 0.5f + movement.CurrentDirection;
 					if(Vector2.Distance(path[0].transform.position, parent.transform.position) < distanceToNextStep)
 					{
+						currNavPoint = path.ElementAt(0);
 						path.RemoveAt(0);
+						if(path.Count == 0) movement.AddMovementInput(Vector2.Zero);
 					}
 				}
 				else
@@ -76,6 +78,8 @@ namespace AstroMonkey.Navigation
 					Vector2 temp = target.transform.position - parent.transform.position;
 					movement.AddMovementInput(Vector2.Zero);
 					parent.transform.rotation = (float)(Math.PI * 0.5 + Math.Atan2(temp.Y, temp.X));
+					currNavPoint = path.ElementAt(0);
+					path.Clear();
 				}
 			}
 		}
@@ -83,56 +87,66 @@ namespace AstroMonkey.Navigation
 		private void FindPath()
 		{
 			Search();
-			/*path.Add(currNavPoint);
 
-			for(int i = 0; i < 40; ++i)
-			{
-				path.Add(path.Last().neighbors[Util.RNG.random.Next(0, path.Last().neighbors.Count)]);
-			}*/
 			parent.GetComponent<Graphics.StackAnimator>().SetAnimation("Walk");
 		}
 
 		private void Search()
 		{
-			tempPath.Enqueue(currNavPoint);
-			tempPath.Last().visited = true;
-			pathToClear.Add(tempPath.Last());
+			var openList = new List<Assets.Objects.NavPoint>();
+			var closedList = new List<Assets.Objects.NavPoint>();
+			float g = 0f; //odległość od początku
 
-			while(tempPath.Count != 0)
+			openList.Add(currNavPoint);
+			currNavPoint.parent = null;
+
+			Assets.Objects.NavPoint current = null;
+
+			while(openList.Count > 0)
 			{
-				Assets.Objects.NavPoint front = tempPath.Peek();
-				foreach(Assets.Objects.NavPoint next in front.neighbors)
-				{
-					if(!next.visited)
-					{
-						tempPath.Enqueue(next);
-						next.visited = true;
-						next.parent = front;
-						pathToClear.Add(next);
+				var lowest = openList.Min(l => l.F);
+				current = openList.First(l => l.F == lowest);
 
-						if(Vector2.Distance(target.transform.position, next.transform.position) < distanceToStop)
+				closedList.Add(current);
+				openList.Remove(current);
+
+				if(closedList.FirstOrDefault(l => Vector2.Distance(l.transform.position, target.transform.position) < distanceToStop) != null)
+					break;
+
+				g += 32f * SceneManager.scale;
+
+				foreach(var neighbor in current.neighbors)
+				{
+					if(closedList.FirstOrDefault(l => l.transform == neighbor.transform) != null)
+						continue;
+
+					if(openList.FirstOrDefault(l => l.transform == neighbor.transform) == null)
+					{
+						neighbor.G = g;
+						neighbor.H = heuristic(neighbor.transform.position, target.transform.position);
+						neighbor.F = neighbor.G + neighbor.H;
+						neighbor.parent = current;
+
+						openList.Insert(0, neighbor);
+					}
+					else
+					{
+						if(g + neighbor.H < neighbor.F)
 						{
-							while(tempPath.Count != 0)
-							{
-								path.Add(tempPath.Dequeue());
-							}
-							break;
+							neighbor.G = g;
+							neighbor.F = neighbor.G + neighbor.H;
+							neighbor.parent = current;
 						}
 					}
 				}
 			}
 
-			ClearVisited();
-		}
-
-		private void ClearVisited()
-		{
-			foreach(Assets.Objects.NavPoint nav in pathToClear)
+			path.Clear();
+			while(current.parent != null)
 			{
-				nav.visited = false;
-				nav.parent = null;
+				path.Add(current);
+				current = current.parent;
 			}
-			pathToClear.Clear();
 		}
 
 		private float heuristic(Vector2 a, Vector2 b)

@@ -11,8 +11,10 @@ namespace AstroMonkey.Assets.Objects
 	class NavPoint: Core.GameObject
 	{
 		public List<NavPoint>       neighbors	= new List<NavPoint>();
-		public bool                 visited     = false;
 		public NavPoint             parent      = null;
+		public float				F			= 0; //suma G + H
+		public float                G			= 0; //odległość od punktu startu
+		public float                H			= 0; //przewidywane dystans do końca
 
 		public NavPoint() : this(new Core.Transform())
         {
