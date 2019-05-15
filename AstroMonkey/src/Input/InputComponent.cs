@@ -58,6 +58,11 @@ namespace AstroMonkey.Input
             InputManager.Manager.OnMouseMove += MoveTarget;
         }
 
+        private void TogglePause()
+        {
+            throw new System.NotImplementedException();
+        }
+
         private void Reload()
         {
             gun.Reload();
