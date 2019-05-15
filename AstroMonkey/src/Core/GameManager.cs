@@ -11,7 +11,6 @@ namespace AstroMonkey.Core
         private Game CurrentGame;
         private List<GameObject> toSpawn = new List<GameObject>();
         private List<GameObject> toDestroy = new List<GameObject>();
-        private bool bongo = false;
         private String nextScene = null;
 		public String NextScene
 		{
@@ -27,6 +26,20 @@ namespace AstroMonkey.Core
 
         static GameManager()
         {
+            Input.ActionBinding pauseBinding = new Input.ActionBinding(Keys.Z);
+            pauseBinding.OnTrigger += TogglePause;
+            Input.InputManager.Manager.AddActionBinding("pause", pauseBinding);
+        }
+
+        private static void TogglePause()
+        {
+            Scene currScene = SceneManager.Instance.currScene;
+            bool paused = currScene.GetType() == typeof(Assets.Scenes.MainMenu);
+            if(!paused)
+                SceneManager.Instance.LoadScene("menu", true);
+            else
+                SceneManager.Instance.Restore();
+            // throw new NotImplementedException();
         }
 
         public void InitializeGame(Game game, GraphicsDeviceManager graphics)
