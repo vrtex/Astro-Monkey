@@ -10,7 +10,9 @@ namespace AstroMonkey.Assets.Objects
 {
 	class NavPoint: Core.GameObject
 	{
-		public List<NavPoint>       neighbors = new List<NavPoint>();
+		public List<NavPoint>       neighbors	= new List<NavPoint>();
+		public bool                 visited     = false;
+		public NavPoint             parent      = null;
 
 		public NavPoint() : this(new Core.Transform())
         {

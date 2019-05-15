@@ -154,6 +154,7 @@
     <Compile Include="src\Input\InputUI.cs" />
     <Compile Include="src\Navigation\NavigationAgent.cs" />
     <Compile Include="src\Navigation\NavigationManager.cs" />
+    <Compile Include="src\Navigation\Node.cs" />
     <Compile Include="src\Navigation\ProjectileMovementComponent.cs" />
     <Compile Include="src\Navigation\TeleportTo.cs" />
     <Compile Include="src\Physics\Body.cs" />
