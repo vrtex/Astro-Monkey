@@ -15,7 +15,7 @@ namespace AstroMonkey.Assets.Objects
         private int size = 21;
 
 		private Audio.AudioSource walkSFX;
-		private Audio.AudioSource hitSFX;
+		public Audio.AudioSource hitSFX;
 		private Audio.AudioSource idleSFX;
 		private Audio.AudioSource gameoverSFX;
 

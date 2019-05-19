@@ -36,7 +36,7 @@ namespace AstroMonkey.Gameplay
 			if(health < 0) health = 0;
 
             OnDamageTaken?.Invoke(this, damage);
-			
+
 			if(health == 0)
 			{
                 OnDepleted?.Invoke(this, damage);

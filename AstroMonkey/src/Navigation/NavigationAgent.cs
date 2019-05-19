@@ -15,13 +15,15 @@ namespace AstroMonkey.Navigation
 		public  Assets.Objects.NavPoint             currNavPoint		= null;
 
 		public	float                               distanceToStop		= 0.6f * 32f * SceneManager.scale;
-		public  float                               distanceToReact		= 12f * 32f * SceneManager.scale;
+		public  float                               distanceToReact		= 9f * 32f * SceneManager.scale;
 		public  float                               distanceToNextStep  = 0.6f * 32f * SceneManager.scale;
 
 		public  float                               pathTimer			= 1f;
 		public  float                               pathReactionTime	= 1f;
 
-		public  MovementComponent					movement		= null;
+		public  MovementComponent					movement			= null;
+
+		private bool                                roar                = true;
 
 		public NavigationAgent(GameObject parent) : base(parent)
 		{
@@ -55,7 +57,7 @@ namespace AstroMonkey.Navigation
 			{
 				if(distance < distanceToReact && distance > distanceToStop)
 				{
-					Roar();
+					Search();
 				}
 			}
 			else
@@ -92,12 +94,6 @@ namespace AstroMonkey.Navigation
 			}
 		}
 
-		private void Roar()
-		{
-			Search();
-			(parent as Assets.Objects.BaseAlien).lookSFX.Play();
-		}
-
 		private void Search()
 		{
 			Vector2 targetPosition = target.transform.position;
@@ -122,9 +118,16 @@ namespace AstroMonkey.Navigation
 					break;
 
 				g += 32f * SceneManager.scale;
+				if(g > (distanceToReact + 2f) * 32f * SceneManager.scale) //przekroczenie maksymalnej odległości między graczem, kosmitą
+				{
+					current.parent = null;
+					break;
+				}
 
 				foreach(var neighbor in current.neighbors)
 				{
+					if(!neighbor.isActive) continue;
+
 					if(closedList.FirstOrDefault(l => l.transform == neighbor.transform) != null)
 						continue;
 
@@ -154,6 +157,12 @@ namespace AstroMonkey.Navigation
 			{
 				path.Add(current);
 				current = current.parent;
+			}
+
+			if(roar && path.Count() > 0)
+			{
+				roar = false;
+				(parent as Assets.Objects.BaseAlien).lookSFX.Play();
 			}
 		}
 
