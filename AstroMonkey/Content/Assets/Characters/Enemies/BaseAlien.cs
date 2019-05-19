@@ -15,7 +15,7 @@ namespace AstroMonkey.Assets.Objects
 		protected Audio.AudioSource			walkSFX;
 		protected Audio.AudioSource			hitSFX;
 		protected Audio.AudioSource			idleSFX;
-		protected Audio.AudioSource			lookSFX;
+		public Audio.AudioSource			lookSFX;
 		public Audio.AudioSource			attackSFX;
 		public Audio.AudioSource			nearSFX;
 
@@ -31,6 +31,8 @@ namespace AstroMonkey.Assets.Objects
 		public Navigation.NavigationAgent   navigation;
 		public Navigation.MovementComponent movement;
 
+		public Graphics.StackAnimator       anim;
+
 		public Util.EnemyState              state = Util.EnemyState.Idle;
 
 		public BaseAlien(Core.Transform transform) : base(transform)
@@ -42,6 +44,14 @@ namespace AstroMonkey.Assets.Objects
 			healthComponent.OnDamageTaken -= healthBar.Refresh;
 			healthComponent.OnDamageTaken -= OnDamage;
 			healthComponent.OnDepleted -= Die;
+
+			walkSFX.Stop();
+			hitSFX.Stop();
+			idleSFX.Stop();
+			lookSFX.Stop();
+			attackSFX.Stop();
+			nearSFX.Stop();
+
 			base.Destroy();
 		}
 
@@ -63,6 +73,9 @@ namespace AstroMonkey.Assets.Objects
 			aiAttack = AddComponent(new Gameplay.AIAttack(this));
 			movement = AddComponent(new Navigation.MovementComponent(this));
 			navigation = AddComponent(new Navigation.NavigationAgent(this));
+
+			// Visual
+			anim = AddComponent(new Graphics.StackAnimator(this));
 		}
 
 
@@ -94,6 +107,24 @@ namespace AstroMonkey.Assets.Objects
 		public override void Update(GameTime gameTime)
 		{
 			base.Update(gameTime);
+
+			if(Util.Statics.IsNearlyEqual(movement.CurrentVelocity.Length(), 0, 0.001))
+			{
+				if(state != Util.EnemyState.Attack)
+				{
+					anim.SetAnimation("Idle");
+				}
+				walkSFX.IsLooped = false;
+			}
+			else
+			{
+				anim.SetAnimation("Walk");
+				if(walkSFX.IsLooped == false)
+				{
+					walkSFX.IsLooped = true;
+					walkSFX.Play();
+				}
+			}
 		}
 	}
 }

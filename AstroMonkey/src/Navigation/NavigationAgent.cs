@@ -12,15 +12,16 @@ namespace AstroMonkey.Navigation
 	{
 		public  GameObject                          target				= null;
 		public	List<Assets.Objects.NavPoint>       path				= new List<Assets.Objects.NavPoint>();
-		public  Util.MinHeap<Assets.Objects.NavPoint>	tempPath        = new Util.MinHeap<Assets.Objects.NavPoint>();
-		public  List<Assets.Objects.NavPoint>       pathToClear         = new List<Assets.Objects.NavPoint>();
 		public  Assets.Objects.NavPoint             currNavPoint		= null;
 
-		public	float                               distanceToStop		= 0.8f * 32f * SceneManager.scale;
+		public	float                               distanceToStop		= 0.6f * 32f * SceneManager.scale;
 		public  float                               distanceToReact		= 12f * 32f * SceneManager.scale;
-		public  float                               distanceToNextStep  = 0.4f * 32f * SceneManager.scale;
+		public  float                               distanceToNextStep  = 0.6f * 32f * SceneManager.scale;
 
-		public  Navigation.MovementComponent        movement		= null;
+		public  float                               pathTimer			= 1f;
+		public  float                               pathReactionTime	= 1f;
+
+		public  MovementComponent					movement		= null;
 
 		public NavigationAgent(GameObject parent) : base(parent)
 		{
@@ -31,7 +32,7 @@ namespace AstroMonkey.Navigation
 		{
 			foreach(Assets.Objects.NavPoint nav in SceneManager.Instance.currScene.navigationPoints)
 			{
-				if(Vector2.Distance(parent.transform.position, nav.transform.position) < distanceToStop / 2)
+				if(Vector2.Distance(parent.transform.position, nav.transform.position) < distanceToStop / 1.5)
 				{
 					currNavPoint = nav;
 					break;
@@ -52,16 +53,23 @@ namespace AstroMonkey.Navigation
 			float distance = Vector2.Distance(target.transform.position, parent.transform.position);
 			if(path.Count == 0)
 			{
-				parent.GetComponent<Graphics.StackAnimator>().SetAnimation("Idle");
 				if(distance < distanceToReact && distance > distanceToStop)
 				{
-					FindPath();
+					Roar();
 				}
 			}
 			else
 			{
 				if(distance > distanceToStop)
 				{
+					pathTimer -= gameTime.ElapsedGameTime.Milliseconds / 1000f;
+					if(pathTimer <= 0)
+					{
+						pathTimer = pathReactionTime;
+						Search();
+					}
+					if(path.Count == 0) return;
+
 					Vector2 temp = path[0].transform.position - parent.transform.position;
 					temp.Normalize();
 					movement.AddMovementInput(temp);
@@ -84,15 +92,15 @@ namespace AstroMonkey.Navigation
 			}
 		}
 
-		private void FindPath()
+		private void Roar()
 		{
 			Search();
-
-			parent.GetComponent<Graphics.StackAnimator>().SetAnimation("Walk");
+			(parent as Assets.Objects.BaseAlien).lookSFX.Play();
 		}
 
 		private void Search()
 		{
+			Vector2 targetPosition = target.transform.position;
 			var openList = new List<Assets.Objects.NavPoint>();
 			var closedList = new List<Assets.Objects.NavPoint>();
 			float g = 0f; //odległość od początku
@@ -110,7 +118,7 @@ namespace AstroMonkey.Navigation
 				closedList.Add(current);
 				openList.Remove(current);
 
-				if(closedList.FirstOrDefault(l => Vector2.Distance(l.transform.position, target.transform.position) < distanceToStop) != null)
+				if(closedList.FirstOrDefault(l => Vector2.Distance(l.transform.position, targetPosition) < distanceToStop) != null)
 					break;
 
 				g += 32f * SceneManager.scale;
@@ -123,7 +131,7 @@ namespace AstroMonkey.Navigation
 					if(openList.FirstOrDefault(l => l.transform == neighbor.transform) == null)
 					{
 						neighbor.G = g;
-						neighbor.H = heuristic(neighbor.transform.position, target.transform.position);
+						neighbor.H = heuristic(neighbor.transform.position, targetPosition);
 						neighbor.F = neighbor.G + neighbor.H;
 						neighbor.parent = current;
 

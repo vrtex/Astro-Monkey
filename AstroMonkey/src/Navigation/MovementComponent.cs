@@ -33,7 +33,6 @@ namespace AstroMonkey.Navigation
             parent.transform.position += CurrentVelocity * (float)gameTime.ElapsedGameTime.TotalSeconds * Speed;
             if(CurrentFocus != null)
             {
-                // Console.WriteLine(CurrentFocus.transform);
                 Vector2 currentPosition = parent.transform.position;
                 Vector2 lookDirection = CurrentFocus.transform.position - currentPosition;
                 lookDirection.Normalize();

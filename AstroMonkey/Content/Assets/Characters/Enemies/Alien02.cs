@@ -29,12 +29,12 @@ namespace AstroMonkey.Assets.Objects
         {
             base.Load(_transform);
 
+			healthComponent.MaxHealth = 120;
+			movement.Speed = 150f;
 
-            List <Rectangle> idle01 = new List<Rectangle>();
+			List <Rectangle> idle01 = new List<Rectangle>();
             for(int i = 0; i < height; ++i) idle01.Add(new Rectangle(i * size, 0, size, size));
             AddComponent(new Graphics.Sprite(this, "alien02", idle01));
-
-            AddComponent(new Graphics.StackAnimator(this));
 
 			//STANIE
 			List<Rectangle> idle02 = new List<Rectangle>();
@@ -101,6 +101,12 @@ namespace AstroMonkey.Assets.Objects
 			lookSFX = AddComponent(new Audio.AudioSource(this, Audio.SoundContainer.Instance.GetSoundEffect("Alien02Look")));
 			attackSFX = AddComponent(new Audio.AudioSource(this, Audio.SoundContainer.Instance.GetSoundEffect("Alien02Attack")));
 			nearSFX = AddComponent(new Audio.AudioSource(this, Audio.SoundContainer.Instance.GetSoundEffect("Alien02Near")));
+			walkSFX.Pitch = 0.2f;
+			hitSFX.Pitch = 0.2f;
+			idleSFX.Pitch = 0.2f;
+			lookSFX.Pitch = 0.2f;
+			attackSFX.Pitch = 0.2f;
+			nearSFX.Pitch = 0.2f;
 
 			//ustawianie zwłok kosmity
 			corp = typeof(Alien02Dead);

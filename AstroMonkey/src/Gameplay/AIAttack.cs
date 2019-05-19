@@ -12,7 +12,7 @@ namespace AstroMonkey.Gameplay
 	{
 		public	Core.GameObject					target				= null;
 
-		public	float							attackDistance		= 110f;
+		public	float							attackDistance		= 1.25f * 32f * Core.SceneManager.scale;
 		public	float							cooldown			= 1.5f;
 		public  float							currCooldown		= 0f;
 
@@ -35,8 +35,9 @@ namespace AstroMonkey.Gameplay
 				{
 					if(currCooldown <= 0)
 					{
-						parent.GetComponent<Graphics.StackAnimator>().SetAnimation("Attack");
-						parent.GetComponent<Graphics.StackAnimator>().SetNextAnimation("Idle");
+						(parent as Assets.Objects.BaseAlien).state = Util.EnemyState.Attack;
+						(parent as Assets.Objects.BaseAlien).anim.SetAnimation("Attack");
+						(parent as Assets.Objects.BaseAlien).anim.SetNextAnimation("Idle");
 						currCooldown = cooldown;
 
 						if(shoot)

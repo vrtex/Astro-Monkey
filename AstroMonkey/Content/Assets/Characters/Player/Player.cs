@@ -23,6 +23,8 @@ namespace AstroMonkey.Assets.Objects
 
 		private Effect lightOff = null;
 
+		private Navigation.MovementComponent    movement = null;
+
 		public Player(): this(new Core.Transform())
         {
         }
@@ -45,13 +47,15 @@ namespace AstroMonkey.Assets.Objects
 			//AddComponent(new CircleCollider(this, CollisionChanell.Hitbox, Vector2.Zero, size / 2));
 
 			walkSFX		= AddComponent(new Audio.AudioSource(this, Audio.SoundContainer.Instance.GetSoundEffect("MonkeyWalk")));
-			walkSFX.Pitch = 0.5f;
+			walkSFX.Pitch = 0.2f;
 			hitSFX		= AddComponent(new Audio.AudioSource(this, Audio.SoundContainer.Instance.GetSoundEffect("MonkeyHit")));
+			hitSFX.Pitch = 0.2f;
 			idleSFX		= AddComponent(new Audio.AudioSource(this, Audio.SoundContainer.Instance.GetSoundEffect("MonkeyIdle")));
+			idleSFX.Pitch = 0.2f;
 			gameoverSFX	= AddComponent(new Audio.AudioSource(this, Audio.SoundContainer.Instance.GetSoundEffect("GameOver")));
 
 			// Movement
-			Navigation.MovementComponent moveComp =  (Navigation.MovementComponent)AddComponent(new Navigation.MovementComponent(this));
+			movement =  (Navigation.MovementComponent)AddComponent(new Navigation.MovementComponent(this));
 
 			AddComponent(new Gameplay.Gun(this));
             AddComponent(new Input.InputComponent(this));
@@ -146,7 +150,7 @@ namespace AstroMonkey.Assets.Objects
         {
             base.Update(gameTime);
 
-            Vector2 currVel = GetComponent<Navigation.MovementComponent>().CurrentVelocity;
+            Vector2 currVel = movement.CurrentVelocity;
             if(Util.Statics.IsNearlyEqual(currVel.Length(), 0, 0.001))
             {
                 GetComponent<Graphics.AnimatorContainer>().SetAnimation("Hold");
@@ -170,7 +174,12 @@ namespace AstroMonkey.Assets.Objects
 
         public override void Destroy()
         {
-            hud.Destroy();
+			walkSFX.Stop();
+			hitSFX.Stop();
+			idleSFX.Stop();
+			gameoverSFX.Stop();
+
+			hud.Destroy();
             base.Destroy();
         }
     }
