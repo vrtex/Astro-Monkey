@@ -102,6 +102,9 @@ namespace AstroMonkey.Audio
 			sounds.Add("MonkeyIdle", game.Content.Load<SoundEffect>(@"sfx/player/MonkeyIdle"));
 			sounds.Add("MonkeyHit", game.Content.Load<SoundEffect>(@"sfx/player/MonkeyHit"));
 			sounds.Add("GameOver", game.Content.Load<SoundEffect>(@"sfx/player/GameOver"));
+
+			//inne
+			sounds.Add("Computer", game.Content.Load<SoundEffect>(@"sfx/Computer"));
 		}
 
 		public void LoadMusic(Game game)

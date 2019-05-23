@@ -46,10 +46,12 @@ namespace AstroMonkey.Gameplay
 			if(isOn)
 			{
 				parent.GetComponent<Graphics.StackAnimator>().SetAnimation("On");
+				(parent as Assets.Objects.Terminal).computerSFX.Play();
 			}
 			else
 			{
 				parent.GetComponent<Graphics.StackAnimator>().SetAnimation("Off");
+				(parent as Assets.Objects.Terminal).computerSFX.Play();
 			}
 			
 		}
