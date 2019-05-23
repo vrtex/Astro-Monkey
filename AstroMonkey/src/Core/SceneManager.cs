@@ -28,14 +28,12 @@ namespace AstroMonkey.Core
 			scenes.Add("level7", new Assets.Scenes.Level7());
 			scenes.Add("level8", new Assets.Scenes.Level8());
 			scenes.Add("level9", new Assets.Scenes.Level9());
+			scenes.Add("pause", new Assets.Scenes.Pause());
 		}
 
-        public void LoadScene(string name, bool hold = false)
+        public void LoadScene(string name/*, bool hold = false*/)
         {
-            if(!hold)
-                currScene?.UnLoad();
-            else
-                heldScene = currScene;
+            currScene?.UnLoad();
 
             GameManager.FinalizeSpwaning();
 
@@ -44,17 +42,23 @@ namespace AstroMonkey.Core
                 currScene.Load();
             else
                 throw new ApplicationException("Unknown scene " + name);
+        }
 
-            //foreach(GameObject go in currScene.objects)
-            //    GameManager.SpawnObject(go);
-
+        public void PauseScene()
+        {
+            heldScene = currScene; //zapisanie curr sceny do heldScene
+            currScene = null; //usunięcie referencji currSceny
+            LoadScene("pause"); //wczytanie menu pauzy
         }
 
         public void Restore()
         {
             currScene.UnLoad();
-            currScene = heldScene;
-            heldScene = null;
+            GameManager.FinalizeSpwaning();
+            currScene = heldScene; // dodanie do curr gry
+            var player = currScene.GetObjectsByClass<Assets.Objects.Player>();
+            Graphics.ViewManager.Instance.PlayerTransform = player[0].transform;
+            heldScene = null; //usunięcie tymczasowej referencji do gry
         }
     }
 }

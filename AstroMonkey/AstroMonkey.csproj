@@ -128,6 +128,7 @@
     <Compile Include="Content\Assets\Scenes\Level8.cs" />
     <Compile Include="Content\Assets\Scenes\Level9.cs" />
     <Compile Include="Content\Assets\Scenes\MainMenu.cs" />
+    <Compile Include="Content\Assets\Scenes\Pause.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
