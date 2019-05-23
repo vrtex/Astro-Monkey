@@ -245,7 +245,6 @@ namespace AstroMonkey.Core
 							&& y * spacing * sceneScale >= d.transform.position.Y - sceneScale
 							&& y * spacing * sceneScale <= d.transform.position.Y + sceneScale)
 							{
-								Console.WriteLine((x * spacing * sceneScale) + " " + (y * spacing * sceneScale) + " " + d.transform.position);
 								d.navPoints.Add(spawned as Assets.Objects.NavPoint);
 								(spawned as Assets.Objects.NavPoint).isActive = false;
 							}

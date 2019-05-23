@@ -31,9 +31,8 @@ namespace AstroMonkey.Assets.Objects
 
 			healthComponent.MaxHealth = 220;
 			movement.Speed = 180f;
-			navigation.distanceToNextStep = 0.8f * 32f * Core.SceneManager.scale;
-			navigation.distanceToStop = 1.4f * 32f * Core.SceneManager.scale;
-			aiAttack.attackDistance = 2f * 32f * Core.SceneManager.scale;
+			navigation.distanceToStop = 0.8f * 32f * Core.SceneManager.scale;
+			aiAttack.attackDistance = 1.4f * 32f * Core.SceneManager.scale;
 
 			List<Rectangle> idle01 = new List<Rectangle>();
             for(int i = 0; i < height; ++i) idle01.Add(new Rectangle(i * size, 0, size, size));

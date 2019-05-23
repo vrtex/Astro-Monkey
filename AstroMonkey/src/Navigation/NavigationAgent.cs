@@ -14,12 +14,12 @@ namespace AstroMonkey.Navigation
 		public	List<Assets.Objects.NavPoint>       path				= new List<Assets.Objects.NavPoint>();
 		public  Assets.Objects.NavPoint             currNavPoint		= null;
 
-		public	float                               distanceToStop		= 0.6f * 32f * SceneManager.scale;
+		public	float                               distanceToStop		= 0.7f * 32f * SceneManager.scale;
 		public  float                               distanceToReact		= 9f * 32f * SceneManager.scale;
 		public  float                               distanceToNextStep  = 0.6f * 32f * SceneManager.scale;
 
-		public  float                               pathTimer			= 1f;
-		public  float                               pathReactionTime	= 1f;
+		public  float                               pathTimer			= 1.8f;
+		public  float                               pathReactionTime	= 1.8f;
 
 		public  MovementComponent					movement			= null;
 
@@ -55,9 +55,14 @@ namespace AstroMonkey.Navigation
 			float distance = Vector2.Distance(target.transform.position, parent.transform.position);
 			if(path.Count == 0)
 			{
-				if(distance < distanceToReact && distance > distanceToStop)
+				pathTimer -= gameTime.ElapsedGameTime.Milliseconds / 1000f;
+				if(pathTimer <= 0)
 				{
-					Search();
+					if(distance < distanceToReact && distance > distanceToStop)
+					{
+						Search();
+						pathTimer = pathReactionTime;
+					}
 				}
 			}
 			else
@@ -75,7 +80,6 @@ namespace AstroMonkey.Navigation
 					Vector2 temp = path[0].transform.position - parent.transform.position;
 					temp.Normalize();
 					movement.AddMovementInput(temp);
-					//parent.transform.rotation = (float)Math.PI * 0.5f + movement.CurrentDirection;
 					if(Vector2.Distance(path[0].transform.position, parent.transform.position) < distanceToNextStep)
 					{
 						currNavPoint = path.ElementAt(0);
@@ -87,7 +91,6 @@ namespace AstroMonkey.Navigation
 				{
 					Vector2 temp = target.transform.position - parent.transform.position;
 					movement.AddMovementInput(Vector2.Zero);
-					//parent.transform.rotation = (float)(Math.PI * 0.5 + Math.Atan2(temp.Y, temp.X));
 					currNavPoint = path.ElementAt(0);
 					path.Clear();
 				}
@@ -101,10 +104,10 @@ namespace AstroMonkey.Navigation
 			var closedList = new List<Assets.Objects.NavPoint>();
 			float g = 0f; //odległość od początku
 			bool goodDistance = false;
-			int stepGuardian = 0;
 
 			openList.Add(currNavPoint);
 			currNavPoint.parent = null;
+			currNavPoint.steps = 0;
 
 			Assets.Objects.NavPoint current = null;
 
@@ -115,12 +118,6 @@ namespace AstroMonkey.Navigation
 
 				closedList.Add(current);
 				openList.Remove(current);
-				++stepGuardian;
-				if(stepGuardian > 80)
-				{
-					goodDistance = false;
-					break;
-				}
 
 				if(closedList.FirstOrDefault(l => Vector2.Distance(l.transform.position, targetPosition) < distanceToStop) != null)
 				{
@@ -129,15 +126,16 @@ namespace AstroMonkey.Navigation
 				}
 
 				g += 32f * SceneManager.scale;
-				if(g > distanceToReact * 32f * SceneManager.scale) //przekroczenie maksymalnej odległości między graczem, kosmitą
+				if(g > (distanceToReact + 2f) * 32f * SceneManager.scale) //przekroczenie maksymalnej odległości między graczem, kosmitą
 				{
-					current.parent = null;
+					goodDistance = false;
 					break;
 				}
 
 				foreach(var neighbor in current.neighbors)
 				{
 					if(!neighbor.isActive) continue;
+					if(current.steps > 10) continue;
 
 					if(closedList.FirstOrDefault(l => l.transform == neighbor.transform) != null)
 						continue;
@@ -148,6 +146,7 @@ namespace AstroMonkey.Navigation
 						neighbor.H = heuristic(neighbor.transform.position, targetPosition);
 						neighbor.F = neighbor.G + neighbor.H;
 						neighbor.parent = current;
+						neighbor.steps = current.steps + 1;
 
 						openList.Insert(0, neighbor);
 					}
@@ -158,6 +157,7 @@ namespace AstroMonkey.Navigation
 							neighbor.G = g;
 							neighbor.F = neighbor.G + neighbor.H;
 							neighbor.parent = current;
+							neighbor.steps = current.steps + 1;
 						}
 					}
 				}
@@ -166,6 +166,7 @@ namespace AstroMonkey.Navigation
 			path.Clear();
 			if(goodDistance)
 			{
+				//currNavPoint = current;
 				while(current.parent != null)
 				{
 					path.Add(current);
