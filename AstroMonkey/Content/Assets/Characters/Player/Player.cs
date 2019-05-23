@@ -5,6 +5,7 @@ using AstroMonkey.Physics;
 using AstroMonkey.Physics.Collider;
 using Microsoft.Xna.Framework.Graphics;
 using System.Diagnostics;
+using AstroMonkey.Gameplay;
 
 namespace AstroMonkey.Assets.Objects
 {
@@ -57,10 +58,14 @@ namespace AstroMonkey.Assets.Objects
 			// Movement
 			movement =  (Navigation.MovementComponent)AddComponent(new Navigation.MovementComponent(this));
 
-			AddComponent(new Gameplay.Gun(this));
+			var gun = AddComponent(new Gun(this));
+            gun.AddAmmoClip(new ClipInfo { clip = new AmmoClip(typeof(Rocket), 3, 20, 2f), fireDelay = 0.75f });
+            gun.AddAmmoClip(new ClipInfo { clip = new AmmoClip(typeof(PistolBullet), 5, 50, 0.5f), fireDelay = 0.2f });
+            gun.ChangeAmmo(true);
             AddComponent(new Input.InputComponent(this));
 
-			AddComponent(new Gameplay.Health(this));
+			var healthComponent = AddComponent(new Gameplay.Health(this));
+            healthComponent.OnDamageTaken += OnDamageTaken;
             hud = Core.GameManager.SpawnObject(new UI.PlayerHUD(this));
 
             List<Rectangle> idle01 = new List<Rectangle>();
@@ -145,6 +150,11 @@ namespace AstroMonkey.Assets.Objects
 
 			lightOff = Graphics.EffectContainer.Instance.GetEffect("LightOff");
 		}
+
+        private void OnDamageTaken(Health damaged, DamageInfo damageInfo)
+        {
+            hitSFX.Play();
+        }
 
         public override void Update(GameTime gameTime)
         {

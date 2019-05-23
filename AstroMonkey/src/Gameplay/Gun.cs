@@ -25,12 +25,12 @@ namespace AstroMonkey.Gameplay
 
         private Audio.AudioSource ShootSoundComponent;
 
-        private List<ClipInfo> ammoClips = new List<ClipInfo>
-        {
-            new ClipInfo { clip = new AmmoClip(typeof(AlienBullet), 10, 100, 0.5f), fireDelay = 0.1f},
-            new ClipInfo { clip = new AmmoClip(typeof(Rocket), 3, 20, 2f), fireDelay = 0.75f},
-            new ClipInfo { clip = new AmmoClip(typeof(PistolBullet), 5, 50, 0.5f), fireDelay = 0.2f},
-        };
+        private List<ClipInfo> ammoClips = new List<ClipInfo>();
+        //{
+        //    new ClipInfo { clip = new AmmoClip(typeof(AlienBullet), 10, 100, 0.5f), fireDelay = 0.1f},
+        //    new ClipInfo { clip = new AmmoClip(typeof(Rocket), 3, 20, 2f), fireDelay = 0.75f},
+        //    new ClipInfo { clip = new AmmoClip(typeof(PistolBullet), 5, 50, 0.5f), fireDelay = 0.2f},
+        //};
         private int currentClipIndex;
         public AmmoClip currentClip { get; private set; }
         private float delayLeft = 0f;
@@ -38,7 +38,6 @@ namespace AstroMonkey.Gameplay
 		public Gun(GameObject parent) : base(parent)
 		{
             currentClipIndex = 1;
-            ChangeAmmo(false);
 
             ShootSoundComponent = Parent.AddComponent(new Audio.AudioSource(Parent, Audio.SoundContainer.Instance.GetSoundEffect("GunShoot")));
 		}
@@ -75,6 +74,8 @@ namespace AstroMonkey.Gameplay
 
         public void ChangeAmmo(bool moveUp)
         {
+            if(ammoClips.Count == 0)
+                return;
             if(delayLeft > 0)
                 return;
             currentClipIndex += moveUp ? 1 : -1;
@@ -138,6 +139,12 @@ namespace AstroMonkey.Gameplay
             foreach(AmmoClip clip in ammoClips)
                 toReturn += "\n" + clip;
             return toReturn;
+        }
+
+        public void AddAmmoClip(ClipInfo clip)
+        {
+            ammoClips.Add(clip);
+            ChangeAmmo(true);
         }
     }
 }
