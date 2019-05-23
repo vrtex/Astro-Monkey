@@ -9,7 +9,9 @@ namespace AstroMonkey.Assets.Objects
     {
         private float size = 12;
 
-        public Terminal() : this(new Core.Transform())
+		public Audio.AudioSource computerSFX;
+
+		public Terminal() : this(new Core.Transform())
         {
         }
 
@@ -31,8 +33,11 @@ namespace AstroMonkey.Assets.Objects
             // Physics
             AddComponent(new CircleCollider(this, CollisionChanell.InteractPlayer, new Vector2(-4, 0), size));
 
+			computerSFX = AddComponent(new Audio.AudioSource(this, Audio.SoundContainer.Instance.GetSoundEffect("Computer")));
+			computerSFX.Pitch = 0.2f;
+			
 			//Ustawienie animacji włączonego i wyłączonego terminala
-            List<Rectangle> onTerminal = new List<Rectangle>();
+			List<Rectangle> onTerminal = new List<Rectangle>();
 			for(int i = 0; i < 32; ++i) onTerminal.Add(new Rectangle(i * 32, 0, 32, 32));
 			List<Rectangle> offTerminal = new List<Rectangle>();
 			for(int i = 0; i < 32; ++i) offTerminal.Add(new Rectangle(i * 32, 32, 32, 32));

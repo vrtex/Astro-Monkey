@@ -99,6 +99,7 @@ namespace AstroMonkey.Navigation
 
 		private void Search()
 		{
+            return;
 			Vector2 targetPosition = target.transform.position;
 			var openList = new List<Assets.Objects.NavPoint>();
 			var closedList = new List<Assets.Objects.NavPoint>();
