@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using System.Diagnostics;
+using AstroMonkey.Navigation;
 
 namespace AstroMonkey.Gameplay
 {
@@ -29,26 +30,28 @@ namespace AstroMonkey.Gameplay
 		{
 			base.Update(gameTime);
 
+            Assets.Objects.BaseAlien alien = parent as Assets.Objects.BaseAlien;
+            alien.GetComponent<MovementComponent>().CurrentFocus = target;
 			if(target != null)
 			{
 				if(Vector2.Distance(target.transform.position, parent.transform.position) <= attackDistance)
 				{
 					if(currCooldown <= 0)
 					{
-						(parent as Assets.Objects.BaseAlien).state = Util.EnemyState.Attack;
-						(parent as Assets.Objects.BaseAlien).anim.SetAnimation("Attack");
-						(parent as Assets.Objects.BaseAlien).anim.SetNextAnimation("Idle");
+                        alien.state = Util.EnemyState.Attack;
+						alien.anim.SetAnimation("Attack");
+						alien.anim.SetNextAnimation("Idle");
 						currCooldown = cooldown;
 
 						if(shoot)
 						{
 							parent.GetComponent<Gun>().Shoot(target.transform.position);
-						}
+                            parent.GetComponent<Gun>().StopShooting();
+                        }
 						else
 						{
 							target.GetComponent<Health>().DealDamage(new DamageInfo(parent, damage));
 							(parent as Assets.Objects.BaseAlien).attackSFX.Play();
-							(target as Assets.Objects.Player).hitSFX.Play();
 						}
 					}
 					else

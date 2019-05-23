@@ -112,7 +112,11 @@ namespace AstroMonkey.Assets.Objects
 			corp = typeof(Alien02Dead);
 
 			Gameplay.Gun gun = AddComponent(new Gameplay.Gun(this));
-			//Tu powinno być ustaleny typ pocisków i takie tam
-		}
+            gun.AddAmmoClip(Gameplay.Gun.alienClip);
+            aiAttack.shoot = true;
+            aiAttack.attackDistance = 6 * 32f * Core.SceneManager.scale;
+
+            navigation.distanceToStop = 5 * 32f * Core.SceneManager.scale;
+        }
     }
 }

@@ -75,9 +75,10 @@ namespace AstroMonkey.Audio
 			sounds.Add("Alien03Idle", game.Content.Load<SoundEffect>(@"sfx/alien03/Alien03Idle"));
 			sounds.Add("Alien03Look", game.Content.Load<SoundEffect>(@"sfx/alien03/Alien03Look"));
 			sounds.Add("Alien03Walk", game.Content.Load<SoundEffect>(@"sfx/alien03/Alien03Walk"));
+            sounds.Add("Alien03Near", game.Content.Load<SoundEffect>(@"sfx/alien03/Alien03Look"));
 
-			//broń
-			sounds.Add("GunReload", game.Content.Load<SoundEffect>(@"sfx/guns/GunReload"));
+            //broń
+            sounds.Add("GunReload", game.Content.Load<SoundEffect>(@"sfx/guns/GunReload"));
 			sounds.Add("GunShoot", game.Content.Load<SoundEffect>(@"sfx/guns/GunShoot"));
 			sounds.Add("LuncherHit", game.Content.Load<SoundEffect>(@"sfx/guns/LuncherHit"));
 			sounds.Add("LuncherReload", game.Content.Load<SoundEffect>(@"sfx/guns/LuncherReload"));

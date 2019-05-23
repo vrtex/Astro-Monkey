@@ -75,7 +75,7 @@ namespace AstroMonkey.Navigation
 					Vector2 temp = path[0].transform.position - parent.transform.position;
 					temp.Normalize();
 					movement.AddMovementInput(temp);
-					parent.transform.rotation = (float)Math.PI * 0.5f + movement.CurrentDirection;
+					//parent.transform.rotation = (float)Math.PI * 0.5f + movement.CurrentDirection;
 					if(Vector2.Distance(path[0].transform.position, parent.transform.position) < distanceToNextStep)
 					{
 						currNavPoint = path.ElementAt(0);
@@ -87,7 +87,7 @@ namespace AstroMonkey.Navigation
 				{
 					Vector2 temp = target.transform.position - parent.transform.position;
 					movement.AddMovementInput(Vector2.Zero);
-					parent.transform.rotation = (float)(Math.PI * 0.5 + Math.Atan2(temp.Y, temp.X));
+					//parent.transform.rotation = (float)(Math.PI * 0.5 + Math.Atan2(temp.Y, temp.X));
 					currNavPoint = path.ElementAt(0);
 					path.Clear();
 				}

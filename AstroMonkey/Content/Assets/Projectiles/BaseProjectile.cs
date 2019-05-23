@@ -9,7 +9,7 @@ namespace AstroMonkey.Assets.Objects
     class BaseProjectile: Core.GameObject
     {
         public Gameplay.DamageInfo Damage { get; set; }
-        Collider collider;
+        protected Collider collider;
 		public SoundEffectInstance shootSound;
         public float speed = 800f;
         public int baseDamage = 10;
@@ -17,10 +17,6 @@ namespace AstroMonkey.Assets.Objects
         public BaseProjectile(Core.Transform transform): base(transform)
         {
             collider = new CircleCollider(this, CollisionChanell.Bullets, Vector2.Zero, 3);
-
-            // loleh
-            collider.SetReaction(CollisionChanell.Enemy, ReactType.Overlap);
-            // collider.SetReaction(reactions);
 
             collider.OnBeginOverlap += OnHit;
             collider.OnBlockingCollision += OnBlockingHit;
