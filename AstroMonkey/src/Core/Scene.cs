@@ -17,6 +17,46 @@ namespace AstroMonkey.Core
 
 		public virtual void Reset() { }
 
+        public virtual void AddToSpawnQueue()
+        {
+            foreach (GameObject go in objects)
+            {
+                GameManager.QueueSpawn(go);
+            }
+
+            foreach (GameObject go in doors)
+            {
+                GameManager.QueueSpawn(go);
+            }
+
+            foreach (GameObject go in interactives)
+            {
+                GameManager.QueueSpawn(go);
+            }
+
+            GameManager.FinalizeSpwaning();
+        }
+
+        public virtual void AddToDestroyQueue()
+        {
+            foreach (GameObject go in objects)
+            {
+                GameManager.QueueDestroy(go);
+            }
+
+            foreach (GameObject go in doors)
+            {
+                GameManager.QueueDestroy(go);
+            }
+
+            foreach (GameObject go in interactives)
+            {
+                GameManager.QueueDestroy(go);
+            }
+
+            GameManager.FinalizeSpwaning();
+        }
+
         public virtual void Load()
         {
             // ??

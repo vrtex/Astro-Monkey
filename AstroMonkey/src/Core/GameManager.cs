@@ -26,7 +26,7 @@ namespace AstroMonkey.Core
 
         static GameManager()
         {
-            Input.ActionBinding pauseBinding = new Input.ActionBinding(Keys.Z);
+            Input.ActionBinding pauseBinding = new Input.ActionBinding(Keys.P);
             pauseBinding.OnTrigger += TogglePause;
             Input.InputManager.Manager.AddActionBinding("pause", pauseBinding);
         }
@@ -34,12 +34,16 @@ namespace AstroMonkey.Core
         private static void TogglePause()
         {
             Scene currScene = SceneManager.Instance.currScene;
-            bool paused = currScene.GetType() == typeof(Assets.Scenes.MainMenu);
-            if(!paused)
-                SceneManager.Instance.LoadScene("menu", true);
-            else
+            bool paused = currScene.GetType() == typeof(Assets.Scenes.Pause);
+            if (paused)
+            {
                 SceneManager.Instance.Restore();
-            // throw new NotImplementedException();
+            }
+            else
+            {
+                SceneManager.Instance.PauseScene();
+
+            }
         }
 
         public void InitializeGame(Game game, GraphicsDeviceManager graphics)
@@ -81,7 +85,7 @@ namespace AstroMonkey.Core
             gameObject.Destroy();
         }
 
-        private static void QueueDestroy(GameObject gameObject)
+        public static void QueueDestroy(GameObject gameObject)
         {
             lock(Instance.toDestroy)
             {
@@ -89,7 +93,15 @@ namespace AstroMonkey.Core
             }
         }
 
-		public Game GetGame()
+        public static void QueueSpawn(GameObject gameObject)
+        {
+            lock (Instance.toSpawn)
+            {
+                Instance.toSpawn.Add(gameObject);
+            }
+        }
+
+        public Game GetGame()
 		{
 			return CurrentGame;
 		}

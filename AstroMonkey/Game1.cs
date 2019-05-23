@@ -19,14 +19,22 @@ namespace AstroMonkey
         SpriteBatch					spriteBatch;
         InputManager				inputManager;
 		RenderTarget2D              sceneContents;
+        public static Game1 self;
 
-		public Game1()
+        public Game1()
         {
+            self = this;
+
             graphics = new GraphicsDeviceManager(this);
 			graphics.HardwareModeSwitch = true;
 			graphics.SynchronizeWithVerticalRetrace = true;
 			Content.RootDirectory = "Content";
             inputManager = InputManager.Manager;
+        }
+
+        public void Quit()
+        {
+            Exit();
         }
 
         /// <summary>
