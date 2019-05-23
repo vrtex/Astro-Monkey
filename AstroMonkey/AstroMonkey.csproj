@@ -115,6 +115,8 @@
     <Compile Include="Content\Assets\Projectiles\Poop.cs" />
     <Compile Include="Content\Assets\Projectiles\RifleBullet.cs" />
     <Compile Include="Content\Assets\Projectiles\Rocket.cs" />
+    <Compile Include="Content\Assets\Projectiles\ShotgunPellet.cs" />
+    <Compile Include="Content\Assets\Projectiles\ShotgunProjectile.cs" />
     <Compile Include="Content\Assets\Scenes\Basement.cs" />
     <Compile Include="Content\Assets\Scenes\ColliderRoom.cs" />
     <Compile Include="Content\Assets\Scenes\DevRoom.cs" />

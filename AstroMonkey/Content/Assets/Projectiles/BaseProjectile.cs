@@ -1,4 +1,5 @@
-﻿using AstroMonkey.Physics;
+﻿using AstroMonkey.Core;
+using AstroMonkey.Physics;
 using AstroMonkey.Physics.Collider;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
@@ -27,6 +28,17 @@ namespace AstroMonkey.Assets.Objects
             suicideComponent.Start(3000);
             AddComponent(new Navigation.ProjectileMovementComponent(this));
             // Damage = new Gameplay.DamageInfo(null, 10);
+        }
+
+        public virtual void Start(Vector2 target, GameObject parent)
+        {
+            Vector2 direction = target - parent.transform.position;
+            direction.Normalize();
+
+            GetComponent<Navigation.ProjectileMovementComponent>().Direction = direction;
+            GetComponent<Navigation.ProjectileMovementComponent>().Velocity = speed;
+
+            Damage = new Gameplay.DamageInfo(parent, baseDamage);
         }
 
         private void OnBlockingHit(Collider thisCollider, Collider otherCollider)

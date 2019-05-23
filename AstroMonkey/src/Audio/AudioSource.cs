@@ -52,7 +52,7 @@ namespace AstroMonkey.Audio
             if(soundEffect == null)
                 return;
 			soundEffect.Pitch = pitch * (float)((Util.RNG.random.NextDouble() * 2.0) - 1.0);
-			emitter.Position = new Vector3(parent.transform.position, 0f) + offset;
+			emitter.Position = new Vector3(parent.transform.position.X, 0f, parent.transform.position.Y) + offset;
             soundEffect.Apply3D(AudioManager.Instance.playerListener, emitter);
             soundEffect.Volume = Util.Statics.soundVolume;
             soundEffect.Play();

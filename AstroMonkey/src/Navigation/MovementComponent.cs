@@ -34,7 +34,6 @@ namespace AstroMonkey.Navigation
             parent.transform.position += CurrentVelocity * (float)gameTime.ElapsedGameTime.TotalSeconds * Speed;
             parent.transform.rotation = GetNextRotation(previousPosition);
             CurrentDirection = parent.transform.rotation;
-            Console.WriteLine(parent.transform.rotation);
         }
 
         private float GetNextRotation(Vector2 previousPosition)
