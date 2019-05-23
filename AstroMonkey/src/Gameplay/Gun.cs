@@ -24,6 +24,7 @@ namespace AstroMonkey.Gameplay
         public static readonly ClipInfo rifleClip = new ClipInfo { clip = new AmmoClip(typeof(RifleBullet), 25, 150, 0.5f), fireDelay = 0.15f };
         public static readonly ClipInfo alienClip = new ClipInfo() { clip = new AmmoClip(typeof(AlienBullet), 10, 100, 0.5f), fireDelay = 0.1f };
         public static readonly ClipInfo launcherClip = new ClipInfo { clip = new AmmoClip(typeof(Rocket), 3, 20, 2f), fireDelay = 0.75f };
+        public static readonly ClipInfo shotgunClip = new ClipInfo { clip = new AmmoClip(typeof(ShotgunProjectile), 500, 2000, 1.5f), fireDelay = 0.45f };
 
 
         public delegate void GunEvent(Gun gun);
@@ -62,19 +63,11 @@ namespace AstroMonkey.Gameplay
 
 			ShootSoundComponent.SoundEffect = projectile.shootSound;
 
+			GameManager.SpawnObject(projectile);
+            projectile.Start(targetPosition, parent);
 
             ShootSoundComponent.Play();
 
-			Vector2 parentPosition = parent.transform.position;
-			Vector2 direction = targetPosition - parentPosition;
-			direction.Normalize();
-
-			projectile.GetComponent<Navigation.ProjectileMovementComponent>().Direction = direction;
-			projectile.GetComponent<Navigation.ProjectileMovementComponent>().Velocity = projectile.speed;
-
-			projectile.Damage = new DamageInfo(parent, projectile.baseDamage);
-
-			GameManager.SpawnObject(projectile);
             OnAmmoChange?.Invoke(this);
             shooting = true;
 
@@ -95,7 +88,6 @@ namespace AstroMonkey.Gameplay
             currentClipIndex += moveUp ? 1 : -1;
             currentClipIndex = currentClipIndex % ammoClips.Count;
             while(currentClipIndex < 0) currentClipIndex += ammoClips.Count;
-
 
             // TODO: add clip loading/unloading
 
