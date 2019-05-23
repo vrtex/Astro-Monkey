@@ -9,8 +9,10 @@ namespace AstroMonkey.Assets.Objects
 {
 	class Door: Core.GameObject
 	{
-		public Collider         closeCollider = null;
-		public Collider         openCollider = null;
+		public Collider         closeCollider	= null;
+		public Collider         openCollider	= null;
+
+		public List<NavPoint>   navPoints		= new List<NavPoint>();
 
 		public Door() : this(new Core.Transform())
         {

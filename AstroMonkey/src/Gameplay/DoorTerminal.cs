@@ -31,6 +31,10 @@ namespace AstroMonkey.Gameplay
 						d.GetComponent<Graphics.StackAnimator>().SetAnimation("Close");
 						(d as Assets.Objects.Door).openCollider.isActive = false;
 						(d as Assets.Objects.Door).closeCollider.isActive = true;
+						foreach(Assets.Objects.NavPoint nav in (d as Assets.Objects.Door).navPoints)
+						{
+							nav.isActive = false;
+						}
 					}
 					else
 					{
@@ -38,6 +42,10 @@ namespace AstroMonkey.Gameplay
 						d.GetComponent<Graphics.StackAnimator>().SetAnimation("Open");
 						(d as Assets.Objects.Door).openCollider.isActive = true;
 						(d as Assets.Objects.Door).closeCollider.isActive = false;
+						foreach(Assets.Objects.NavPoint nav in (d as Assets.Objects.Door).navPoints)
+						{
+							nav.isActive = true;
+						}
 					}
 				}
 			}

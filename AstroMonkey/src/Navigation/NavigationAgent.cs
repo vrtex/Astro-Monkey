@@ -100,6 +100,8 @@ namespace AstroMonkey.Navigation
 			var openList = new List<Assets.Objects.NavPoint>();
 			var closedList = new List<Assets.Objects.NavPoint>();
 			float g = 0f; //odległość od początku
+			bool goodDistance = false;
+			int stepGuardian = 0;
 
 			openList.Add(currNavPoint);
 			currNavPoint.parent = null;
@@ -113,12 +115,21 @@ namespace AstroMonkey.Navigation
 
 				closedList.Add(current);
 				openList.Remove(current);
+				++stepGuardian;
+				if(stepGuardian > 80)
+				{
+					goodDistance = false;
+					break;
+				}
 
 				if(closedList.FirstOrDefault(l => Vector2.Distance(l.transform.position, targetPosition) < distanceToStop) != null)
+				{
+					goodDistance = true;
 					break;
+				}
 
 				g += 32f * SceneManager.scale;
-				if(g > (distanceToReact + 2f) * 32f * SceneManager.scale) //przekroczenie maksymalnej odległości między graczem, kosmitą
+				if(g > distanceToReact * 32f * SceneManager.scale) //przekroczenie maksymalnej odległości między graczem, kosmitą
 				{
 					current.parent = null;
 					break;
@@ -153,10 +164,13 @@ namespace AstroMonkey.Navigation
 			}
 
 			path.Clear();
-			while(current.parent != null)
+			if(goodDistance)
 			{
-				path.Add(current);
-				current = current.parent;
+				while(current.parent != null)
+				{
+					path.Add(current);
+					current = current.parent;
+				}
 			}
 
 			if(roar && path.Count() > 0)
