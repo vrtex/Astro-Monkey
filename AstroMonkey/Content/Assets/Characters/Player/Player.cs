@@ -59,12 +59,15 @@ namespace AstroMonkey.Assets.Objects
 			movement =  (Navigation.MovementComponent)AddComponent(new Navigation.MovementComponent(this));
 
 			var gun = AddComponent(new Gun(this));
-            gun.AddAmmoClip(new ClipInfo { clip = new AmmoClip(typeof(Rocket), 3, 20, 2f), fireDelay = 0.75f });
-            gun.AddAmmoClip(new ClipInfo { clip = new AmmoClip(typeof(PistolBullet), 5, 50, 0.5f), fireDelay = 0.2f });
-            gun.ChangeAmmo(true);
+            //gun.AddAmmoClip(new ClipInfo { clip = new AmmoClip(typeof(Rocket), 3, 20, 2f), fireDelay = 0.75f });
+            //gun.AddAmmoClip(new ClipInfo { clip = new AmmoClip(typeof(PistolBullet), 5, 50, 0.5f), fireDelay = 0.2f });
+            //gun.AddAmmoClip(new ClipInfo { clip = new AmmoClip(typeof(RifleBullet), 25, 150, 0.5f), fireDelay = 0.15f });
+            gun.AddAmmoClip(Gun.pistolClip);
+            gun.AddAmmoClip(Gun.rifleClip);
+            gun.AddAmmoClip(Gun.launcherClip);
             AddComponent(new Input.InputComponent(this));
 
-			var healthComponent = AddComponent(new Gameplay.Health(this));
+            Health healthComponent = AddComponent(new Gameplay.Health(this));
             healthComponent.OnDamageTaken += OnDamageTaken;
             hud = Core.GameManager.SpawnObject(new UI.PlayerHUD(this));
 
@@ -176,7 +179,7 @@ namespace AstroMonkey.Assets.Objects
 					walkSFX.Play();
 				}
 			}
-            transform.rotation = (float)Math.PI * 0.5f + GetComponent<Navigation.MovementComponent>().CurrentDirection;
+            transform.rotation = (float)GetComponent<Navigation.MovementComponent>().CurrentDirection;
 
 			if(lightOff != null) lightOff.Parameters["angle"]?.SetValue(transform.rotation / ((float)Math.PI * 2));
 

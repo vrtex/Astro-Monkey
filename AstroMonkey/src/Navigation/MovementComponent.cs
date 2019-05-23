@@ -30,14 +30,28 @@ namespace AstroMonkey.Navigation
 
         public override void Update(GameTime gameTime)
         {
+            Vector2 previousPosition = parent.transform.position;
             parent.transform.position += CurrentVelocity * (float)gameTime.ElapsedGameTime.TotalSeconds * Speed;
+            parent.transform.rotation = GetNextRotation(previousPosition);
+            CurrentDirection = parent.transform.rotation;
+            Console.WriteLine(parent.transform.rotation);
+        }
+
+        private float GetNextRotation(Vector2 previousPosition)
+        {
+            Vector2 lookDirection = new Vector2();
             if(CurrentFocus != null)
             {
-                Vector2 currentPosition = parent.transform.position;
-                Vector2 lookDirection = CurrentFocus.transform.position - currentPosition;
-                lookDirection.Normalize();
-                CurrentDirection = (float)Math.Atan2(lookDirection.Y, lookDirection.X);
+                lookDirection = parent.transform.position - CurrentFocus.transform.position;
             }
+            else
+            {
+                if(previousPosition == parent.transform.position)
+                    return parent.transform.rotation;
+                lookDirection = parent.transform.position - previousPosition;
+            }
+            lookDirection *= -1;
+            return (float)(Math.PI * 0.5 + Math.Atan2(lookDirection.Y, lookDirection.X));
         }
     }
 }
