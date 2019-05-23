@@ -40,6 +40,8 @@ namespace AstroMonkey.Core
                     Group g2 = m.Groups[2];
                     mapWidth = int.Parse(g1.Value);
                     mapHeight = int.Parse(g2.Value);
+                    Console.WriteLine(mapWidth);
+                    Console.WriteLine(mapHeight);
                 }
 
                 Regex regex = new Regex(@"<data encoding=.csv.>(.*?)<\/data>");
@@ -59,6 +61,7 @@ namespace AstroMonkey.Core
 
                         SpwanUsingTypeIndex(i % mapWidth, i / mapWidth, index);
                     }
+                    // TODO this thing
                 }
             }
             GameManager.FinalizeSpwaning();
