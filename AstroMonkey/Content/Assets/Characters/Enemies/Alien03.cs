@@ -28,14 +28,16 @@ namespace AstroMonkey.Assets.Objects
         protected override void Load(Core.Transform _transform)
         {
             base.Load(_transform);
-            GetComponent<Gameplay.Health>().MaxHealth = 150;
 
-            List<Rectangle> idle01 = new List<Rectangle>();
+			healthComponent.MaxHealth = 220;
+			movement.Speed = 180f;
+			navigation.distanceToNextStep = 0.8f * 32f * Core.SceneManager.scale;
+			navigation.distanceToStop = 1.4f * 32f * Core.SceneManager.scale;
+			aiAttack.attackDistance = 2f * 32f * Core.SceneManager.scale;
+
+			List<Rectangle> idle01 = new List<Rectangle>();
             for(int i = 0; i < height; ++i) idle01.Add(new Rectangle(i * size, 0, size, size));
             AddComponent(new Graphics.Sprite(this, "alien03", idle01));
-
-            AddComponent(new Graphics.StackAnimator(this));
-
 
             //STANIE
             List<Rectangle> idle02 = new List<Rectangle>();
@@ -74,7 +76,7 @@ namespace AstroMonkey.Assets.Objects
                 new List<List<Rectangle>> {
                     idle01, attack01, attack02
                 },
-                196,
+                166,
                 true));
 
             GetComponent<Graphics.StackAnimator>().SetAnimation("Idle");
@@ -84,6 +86,14 @@ namespace AstroMonkey.Assets.Objects
 			hitSFX = AddComponent(new Audio.AudioSource(this, Audio.SoundContainer.Instance.GetSoundEffect("Alien03Hit")));
 			idleSFX = AddComponent(new Audio.AudioSource(this, Audio.SoundContainer.Instance.GetSoundEffect("Alien03Idle")));
 			lookSFX = AddComponent(new Audio.AudioSource(this, Audio.SoundContainer.Instance.GetSoundEffect("Alien03Look")));
+			attackSFX = AddComponent(new Audio.AudioSource(this, Audio.SoundContainer.Instance.GetSoundEffect("Alien03Attack")));
+			nearSFX = AddComponent(new Audio.AudioSource(this, Audio.SoundContainer.Instance.GetSoundEffect("Alien03Near")));
+			walkSFX.Pitch = 0.2f;
+			hitSFX.Pitch = 0.2f;
+			idleSFX.Pitch = 0.2f;
+			lookSFX.Pitch = 0.2f;
+			attackSFX.Pitch = 0.2f;
+			nearSFX.Pitch = 0.2f;
 
 			//ustawianie zwłok kosmity
 			corp = typeof(Alien03Dead);

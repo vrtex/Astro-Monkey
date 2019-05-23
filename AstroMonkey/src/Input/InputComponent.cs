@@ -17,10 +17,11 @@ namespace AstroMonkey.Input
 
         private readonly string verticalBindingName = "move up";
         private readonly string horizontalBindingName = "move right";
-        private readonly string spawnBindingName = "spawn";
+        private readonly string shootBindingName = "shoot";
         private readonly string interactBindName = "interact";
         private readonly string scrollUpBindName = "weapon up";
         private readonly string scrollDownBindName = "weapon down";
+        private readonly string reloadBindName = "reload";
 
         public InputComponent(Core.GameObject parent) : base(parent)
         {
@@ -29,29 +30,48 @@ namespace AstroMonkey.Input
 
             verticalAxis = new AxisBinding(Keys.S, Keys.W);
             horizontalAxis = new AxisBinding(Keys.D, Keys.A);
-            ActionBinding spawnBinding = new ActionBinding(EMouseButton.Left);
+            ActionBinding shootBinding = new ActionBinding(EMouseButton.Left);
             ActionBinding interactBinding = new ActionBinding(Keys.E);
             ActionBinding scrollUpBinding = new ActionBinding(EMouseButton.WheelUp);
             ActionBinding scrollDownBinding = new ActionBinding(EMouseButton.WheelDown);
+            ActionBinding reloadBinding = new ActionBinding(Keys.R);
 
             verticalAxis.OnUpdate += Move;
             horizontalAxis.OnUpdate += Move;
-            spawnBinding.OnTrigger += Spawn;
+            shootBinding.OnTrigger += StartShooting;
+            shootBinding.OnRelease += StopShooting;
             interactBinding.OnTrigger += Interact;
             scrollDownBinding.OnTrigger += ChangeAmmoDown;
             scrollUpBinding.OnTrigger += ChangeAmmoUp;
+            reloadBinding.OnTrigger += Reload;
 
             InputManager.Manager.AddAxisBinding(verticalBindingName, verticalAxis);
             InputManager.Manager.AddAxisBinding(horizontalBindingName, horizontalAxis);
 
-            InputManager.Manager.AddActionBinding(spawnBindingName, spawnBinding);
+            InputManager.Manager.AddActionBinding(shootBindingName, shootBinding);
             InputManager.Manager.AddActionBinding(interactBindName, interactBinding);
 
             InputManager.Manager.AddActionBinding(scrollDownBindName, scrollDownBinding);
             InputManager.Manager.AddActionBinding(scrollUpBindName, scrollUpBinding);
+            InputManager.Manager.AddActionBinding(reloadBindName, reloadBinding);
 
             moveComp.CurrentFocus = target;
             InputManager.Manager.OnMouseMove += MoveTarget;
+        }
+
+        private void StopShooting()
+        {
+            gun.StopShooting();
+        }
+
+        private void TogglePause()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        private void Reload()
+        {
+            gun.Reload();
         }
 
         private void ChangeAmmoDown()
@@ -97,11 +117,11 @@ namespace AstroMonkey.Input
             target.transform.position = InputManager.Manager.MouseCursor + parent.transform.position - Statics.GetResolition(ViewManager.Instance.ScreenSize) / 2f;
         }
 
-        private void Spawn()
+        private void StartShooting()
         {
-
-            lock(this)
-                projectileToSpawn = true;
+            gun.Shoot(InputManager.Manager.MouseCursorInWorldSpace);
+            //lock(this)
+            //    projectileToSpawn = true;
         }
 
         public override void Update(GameTime gameTime)
@@ -129,11 +149,11 @@ namespace AstroMonkey.Input
             horizontalAxis.OnUpdate -= Move;
             verticalAxis.OnUpdate -= Move;
 
-            ActionBinding spawnBinding = InputManager.Manager.GetActionBinding(spawnBindingName);
+            ActionBinding spawnBinding = InputManager.Manager.GetActionBinding(shootBindingName);
 
-            spawnBinding.OnTrigger -= Spawn;
+            spawnBinding.OnTrigger -= StartShooting;
 
-            InputManager.Manager.RemoveBinding(spawnBindingName);
+            InputManager.Manager.RemoveBinding(shootBindingName);
             InputManager.Manager.RemoveBinding(horizontalBindingName);
             InputManager.Manager.RemoveBinding(verticalBindingName);
             base.Destroy();

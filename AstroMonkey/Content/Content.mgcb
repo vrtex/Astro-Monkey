@@ -175,6 +175,18 @@
 /processorParam:TextureFormat=Color
 /build:gfx/Map/Interactable/buttonWall.png
 
+#begin gfx/Map/Interactable/navPoint.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:gfx/Map/Interactable/navPoint.png
+
 #begin gfx/Map/Interactable/terminal.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -478,6 +490,33 @@
 #begin Map/AstroMonkey.tmx
 /copy:Map/AstroMonkey.tmx
 
+#begin Map/Level1.tmx
+/copy:Map/Level1.tmx
+
+#begin Map/Level2.tmx
+/copy:Map/Level2.tmx
+
+#begin Map/Level3.tmx
+/copy:Map/Level3.tmx
+
+#begin Map/Level4.tmx
+/copy:Map/Level4.tmx
+
+#begin Map/Level5.tmx
+/copy:Map/Level5.tmx
+
+#begin Map/Level6.tmx
+/copy:Map/Level6.tmx
+
+#begin Map/Level7.tmx
+/copy:Map/Level7.tmx
+
+#begin Map/Level8.tmx
+/copy:Map/Level8.tmx
+
+#begin Map/Level9.tmx
+/copy:Map/Level9.tmx
+
 #begin settings/settings.ini
 /copy:settings/settings.ini
 
@@ -678,6 +717,12 @@
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
 /build:sfx/bottle_pop_2.wav;sfx/test_sound.wav
+
+#begin sfx/Computer.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:sfx/Computer.mp3
 
 #begin sfx/guns/GunReload.mp3
 /importer:Mp3Importer

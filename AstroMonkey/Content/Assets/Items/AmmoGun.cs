@@ -1,7 +1,5 @@
 ﻿using System.Collections.Generic;
 using Microsoft.Xna.Framework;
-using System;
-using AstroMonkey.Physics;
 using AstroMonkey.Physics.Collider;
 
 namespace AstroMonkey.Assets.Objects
@@ -14,6 +12,7 @@ namespace AstroMonkey.Assets.Objects
 
         public AmmoGun(Core.Transform _transform) : base(_transform)
         {
+            ProjectileType = typeof(PistolBullet);
             Load(_transform);
         }
 
@@ -28,8 +27,6 @@ namespace AstroMonkey.Assets.Objects
         protected override void Load(Core.Transform _transform)
         {
             base.Load(_transform);
-            // Physics
-            AddComponent(new CircleCollider(this, CollisionChanell.Item, Vector2.Zero, size / 2));
 
             List<Rectangle> idle01 = new List<Rectangle>();
             for(int i = 0; i < height; ++i) idle01.Add(new Rectangle(i * size, 0, size, size));

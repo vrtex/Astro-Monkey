@@ -30,13 +30,13 @@ namespace AstroMonkey.Gameplay
 
 		}
 
-		public void DeadDamage(DamageInfo damage)
+		public void DealDamage(DamageInfo damage)
 		{
 			health = health - damage.value;
 			if(health < 0) health = 0;
 
             OnDamageTaken?.Invoke(this, damage);
-			
+
 			if(health == 0)
 			{
                 OnDepleted?.Invoke(this, damage);

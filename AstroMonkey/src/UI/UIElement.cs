@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Diagnostics;
+using AstroMonkey.Graphics;
 
 namespace AstroMonkey.UI
 {
@@ -41,7 +42,15 @@ namespace AstroMonkey.UI
 			position.Height = (int)Math.Floor(anchorSize.Y * windowSize);
 		}
 
-		public virtual Vector2 WorldspaceToScreenspace(Vector2 centerPos) { return Vector2.Zero; }
+        public virtual Vector2 WorldspaceToScreenspace(Vector2 centerPos)
+        {
+            Vector2 tempPos = Vector2.Zero;
+            tempPos = centerPos - ViewManager.Instance.WinSize() / 2;
+            tempPos.X += position.X;
+            tempPos.Y += position.Y;
+
+            return tempPos;
+        }
 		public virtual void Draw(SpriteBatch spriteBatch, Vector2 centerPos) {}
 		public virtual void OnClick() {}
 		public virtual void OnEnter() {}

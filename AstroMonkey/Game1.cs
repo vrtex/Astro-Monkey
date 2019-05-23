@@ -19,14 +19,22 @@ namespace AstroMonkey
         SpriteBatch					spriteBatch;
         InputManager				inputManager;
 		RenderTarget2D              sceneContents;
+        public static Game1 self;
 
-		public Game1()
+        public Game1()
         {
+            self = this;
+
             graphics = new GraphicsDeviceManager(this);
 			graphics.HardwareModeSwitch = true;
 			graphics.SynchronizeWithVerticalRetrace = true;
 			Content.RootDirectory = "Content";
             inputManager = InputManager.Manager;
+        }
+
+        public void Quit()
+        {
+            Exit();
         }
 
         /// <summary>
@@ -40,25 +48,50 @@ namespace AstroMonkey
 			string[] lines = File.ReadAllLines("Content/settings/settings.ini");
 			int fullscreen = 0;
 			int resolution = 0;
+            int sound = 0;
+            int music = 0;
+            
 			foreach(string line in lines)
 			{
-				Regex regexFullscreen = new Regex(@"fullscreen=[0-1]");
+                Debug.WriteLine(line);
+                Regex regexFullscreen = new Regex(@"fullscreen=[0-1]");
 				Regex regexResolution = new Regex(@"resolution=[0-9]");
+				Regex regexSound = new Regex(@"sound=[0-9]{1,3}");
+				Regex regexMusic = new Regex(@"music=[0-9]{1,3}");
+
 				MatchCollection fullscreenMatch = regexFullscreen.Matches(line);
 				foreach(Match m in fullscreenMatch)
 				{
 					Group g1 = m.Groups[0];
 					fullscreen = int.Parse(g1.Value.Replace("fullscreen=", ""));
 				}
+
 				MatchCollection resolutionMatch = regexResolution.Matches(line);
 				foreach(Match m in resolutionMatch)
 				{
 					Group g1 = m.Groups[0];
 					resolution = int.Parse(g1.Value.Replace("resolution=", ""));
 				}
-			}
 
-			if(fullscreen == 1)
+                MatchCollection soundMatch = regexSound.Matches(line);
+                foreach (Match m in soundMatch)
+                {
+                    Group g1 = m.Groups[0];
+                    sound = int.Parse(g1.Value.Replace("sound=", ""));
+                }
+
+                MatchCollection musicMatch = regexMusic.Matches(line);
+                foreach (Match m in musicMatch)
+                {
+                    Group g1 = m.Groups[0];
+                    music = int.Parse(g1.Value.Replace("music=", ""));
+                }
+            }
+
+            Util.Statics.soundVolume = Util.Statics.Map((float)sound, 0f, 100f, 0f, 1f);
+            Util.Statics.musicVolume = Util.Statics.Map((float)music, 0f, 100f, 0f, 1f);
+
+            if (fullscreen == 1)
 				graphics.IsFullScreen = true;
 
 			Vector2 res = Util.Statics.GetResolition(resolution);
@@ -75,8 +108,8 @@ namespace AstroMonkey
 			float ratio = ((float)graphics.PreferredBackBufferWidth) / ((float)graphics.PreferredBackBufferHeight);
 			Graphics.EffectContainer.Instance.GetEffect("LightOff").Parameters["aspectRatio"].SetValue(ratio);
 
-			//Dodawanie aktywnych efektów do renderowania
-			//Graphics.ViewManager.Instance.activeEffects.Add(Graphics.EffectContainer.Instance.GetEffect("LightOff"));
+            //Dodawanie aktywnych efektów do renderowania
+            //Graphics.ViewManager.Instance.activeEffects.Add(Graphics.EffectContainer.Instance.GetEffect("LightOff"));
 
 			base.Initialize();
 

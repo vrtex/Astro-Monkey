@@ -24,12 +24,17 @@ namespace AstroMonkey.UI
 			Load();
 		}
 
-		public void SetText(string text, string fontName, Vector2 anchorPosition, Vector2 anchorSize)
+        public void SetText(string text)
+        {
+            this.text = text;
+        }
+
+        public void SetText(string text, string fontName, Vector2 anchorPosition, Vector2 anchorSize)
 		{
 			this.anchorPosition = anchorPosition;
 			this.anchorSize = anchorSize;
-			this.text = text;
 			this.fontName = fontName;
+            SetText(text);
 			color = Util.Statics.Colors.WHITE_1;
 			AnchorToWorldspace(0.5f);
 		}

@@ -11,7 +11,6 @@ namespace AstroMonkey.Core
         private Game CurrentGame;
         private List<GameObject> toSpawn = new List<GameObject>();
         private List<GameObject> toDestroy = new List<GameObject>();
-        private bool bongo = false;
         private String nextScene = null;
 		public String NextScene
 		{
@@ -27,9 +26,24 @@ namespace AstroMonkey.Core
 
         static GameManager()
         {
-            Input.ActionBinding bind = new Input.ActionBinding(Microsoft.Xna.Framework.Input.Keys.O);
-            bind.OnTrigger += swap;
-            Input.InputManager.Manager.AddActionBinding("ee", bind);
+            Input.ActionBinding pauseBinding = new Input.ActionBinding(Keys.P);
+            pauseBinding.OnTrigger += TogglePause;
+            Input.InputManager.Manager.AddActionBinding("pause", pauseBinding);
+        }
+
+        private static void TogglePause()
+        {
+            Scene currScene = SceneManager.Instance.currScene;
+            bool paused = currScene.GetType() == typeof(Assets.Scenes.Pause);
+            if (paused)
+            {
+                SceneManager.Instance.Restore();
+            }
+            else
+            {
+                SceneManager.Instance.PauseScene();
+
+            }
         }
 
         public void InitializeGame(Game game, GraphicsDeviceManager graphics)
@@ -48,7 +62,7 @@ namespace AstroMonkey.Core
 			Mouse.SetCursor(MouseCursor.FromTexture2D(Graphics.SpriteContainer.Instance.GetImage("mark"), 4, 4));
 
             //załadowanie sceny
-            SceneManager.Instance.LoadScene("level1");
+            SceneManager.Instance.LoadScene("menu");
 
             //przeszukiwanie obiektów i podpinanie referenzji do komponenetów
             //pod odpowiednie zarządzające klasy (animator, sprite, stack animator, stack sprite,...)
@@ -71,7 +85,7 @@ namespace AstroMonkey.Core
             gameObject.Destroy();
         }
 
-        private static void QueueDestroy(GameObject gameObject)
+        public static void QueueDestroy(GameObject gameObject)
         {
             lock(Instance.toDestroy)
             {
@@ -79,7 +93,15 @@ namespace AstroMonkey.Core
             }
         }
 
-		public Game GetGame()
+        public static void QueueSpawn(GameObject gameObject)
+        {
+            lock (Instance.toSpawn)
+            {
+                Instance.toSpawn.Add(gameObject);
+            }
+        }
+
+        public Game GetGame()
 		{
 			return CurrentGame;
 		}
@@ -144,20 +166,6 @@ namespace AstroMonkey.Core
                     SceneManager.Instance.LoadScene(Instance.nextScene);
                     Instance.nextScene = null;
                 }
-        }
-
-        private static void swap()
-        {
-            Instance.nextScene = "";
-            lock(Instance.nextScene)
-            {
-                Instance.nextScene = Instance.bongo ? "basement" : "devroom";
-                //if(!Instance.bongo)
-                //    SceneManager.Instance.LoadScene("basement");
-                //else
-                //    SceneManager.Instance.LoadScene("devroom");
-            }
-            Instance.bongo = !Instance.bongo;
         }
     }
 }

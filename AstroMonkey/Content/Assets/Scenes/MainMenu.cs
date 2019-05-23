@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,11 +25,14 @@ namespace AstroMonkey.Assets.Scenes
 		public override void Load()
 		{
 			base.Load();
+			Graphics.ViewManager.Instance.activeEffects.Clear();
 
-			MediaPlayer.Play(Audio.SoundContainer.Instance.GetSong("menu"));
+			//MediaPlayer.Volume = Util.Statics.musicVolume;
+			MediaPlayer.IsRepeating = true;
+            MediaPlayer.Volume = Util.Statics.musicVolume;
+            MediaPlayer.Play(Audio.SoundContainer.Instance.GetSong("menu"));
 
-            
-			objects.Add(new UI.Text("Astro Monkey", "planetary", new Vector2(0.5f, 0.05f), new Vector2(0.25f, 0.1f)));
+            objects.Add(new UI.Text("Astro Monkey", "planetary", new Vector2(0.5f, 0.05f), new Vector2(0.25f, 0.1f)));
 			mainMenu.Add(objects.Last() as UI.UIElement);
 
 			Objects.MenuCenter mc = new Objects.MenuCenter(Graphics.ViewManager.Instance.WinSize()/2, new Vector2(0f, 0f), 0f);
@@ -60,46 +64,76 @@ namespace AstroMonkey.Assets.Scenes
             //mainMenu.Add(objects.Last() as UI.UIElement);
 
             //++++++++++++++++++++++++++++++++++++++ŁADOWANIE GRY++++++++++++++++++++++++++++++++++++++++++
-            objects.Add(new Objects.TextButton("Level 1", "planetary", new Vector2(0.1f, 0.3f), new Vector2(0.32f, 0.05f)));
-			(objects.Last() as Objects.TextButton).onClick += SetResolution;
+            objects.Add(new Objects.TextButton("Level 1", "planetary", new Vector2(0.1f, 0.15f), new Vector2(0.32f, 0.05f)));
+			(objects.Last() as Objects.TextButton).onClick += PlayGame;
 			loadGame.Add(objects.Last() as UI.UIElement);
 			(objects.Last() as UI.UIElement).enable = false;
 			(objects.Last() as Objects.TextButton).value = 0;
 
-			objects.Add(new Objects.TextButton("Generowana z pliku", "planetary", new Vector2(0.1f, 0.35f), new Vector2(0.34f, 0.05f)));
+			objects.Add(new Objects.TextButton("Level 2", "planetary", new Vector2(0.1f, 0.2f), new Vector2(0.34f, 0.05f)));
 			(objects.Last() as Objects.TextButton).onClick += PlayGame;
 			loadGame.Add(objects.Last() as UI.UIElement);
 			(objects.Last() as UI.UIElement).enable = false;
 			(objects.Last() as Objects.TextButton).value = 1;
 
-			objects.Add(new Objects.TextButton("Level 3", "planetary", new Vector2(0.1f, 0.4f), new Vector2(0.34f, 0.05f)));
+			objects.Add(new Objects.TextButton("Level 3", "planetary", new Vector2(0.1f, 0.25f), new Vector2(0.34f, 0.05f)));
 			(objects.Last() as Objects.TextButton).onClick += PlayGame;
 			loadGame.Add(objects.Last() as UI.UIElement);
 			(objects.Last() as UI.UIElement).enable = false;
 			(objects.Last() as Objects.TextButton).value = 2;
 
-			objects.Add(new Objects.TextButton("Level 4", "planetary", new Vector2(0.1f, 0.45f), new Vector2(0.34f, 0.05f)));
+			objects.Add(new Objects.TextButton("Level 4", "planetary", new Vector2(0.1f, 0.3f), new Vector2(0.34f, 0.05f)));
 			(objects.Last() as Objects.TextButton).onClick += PlayGame;
 			loadGame.Add(objects.Last() as UI.UIElement);
 			(objects.Last() as UI.UIElement).enable = false;
 			(objects.Last() as Objects.TextButton).value = 3;
 
-			objects.Add(new Objects.TextButton("Dev Room", "planetary", new Vector2(0.1f, 0.50f), new Vector2(0.34f, 0.05f)));
+			objects.Add(new Objects.TextButton("Level 5", "planetary", new Vector2(0.1f, 0.35f), new Vector2(0.34f, 0.05f)));
 			(objects.Last() as Objects.TextButton).onClick += PlayGame;
 			loadGame.Add(objects.Last() as UI.UIElement);
 			(objects.Last() as UI.UIElement).enable = false;
 			(objects.Last() as Objects.TextButton).value = 4;
 
-			objects.Add(new Objects.TextButton("Collider Room", "planetary", new Vector2(0.1f, 0.55f), new Vector2(0.35f, 0.05f)));
+			objects.Add(new Objects.TextButton("Level 6", "planetary", new Vector2(0.1f, 0.4f), new Vector2(0.35f, 0.05f)));
 			(objects.Last() as Objects.TextButton).onClick += PlayGame;
 			loadGame.Add(objects.Last() as UI.UIElement);
 			(objects.Last() as UI.UIElement).enable = false;
 			(objects.Last() as Objects.TextButton).value = 5;
 
+			objects.Add(new Objects.TextButton("Level 7", "planetary", new Vector2(0.1f, 0.45f), new Vector2(0.34f, 0.05f)));
+			(objects.Last() as Objects.TextButton).onClick += PlayGame;
+			loadGame.Add(objects.Last() as UI.UIElement);
+			(objects.Last() as UI.UIElement).enable = false;
+			(objects.Last() as Objects.TextButton).value = 6;
+
+			objects.Add(new Objects.TextButton("Level 8", "planetary", new Vector2(0.1f, 0.5f), new Vector2(0.35f, 0.05f)));
+			(objects.Last() as Objects.TextButton).onClick += PlayGame;
+			loadGame.Add(objects.Last() as UI.UIElement);
+			(objects.Last() as UI.UIElement).enable = false;
+			(objects.Last() as Objects.TextButton).value = 7;
+
+			objects.Add(new Objects.TextButton("Level 9", "planetary", new Vector2(0.1f, 0.55f), new Vector2(0.35f, 0.05f)));
+			(objects.Last() as Objects.TextButton).onClick += PlayGame;
+			loadGame.Add(objects.Last() as UI.UIElement);
+			(objects.Last() as UI.UIElement).enable = false;
+			(objects.Last() as Objects.TextButton).value = 8;
+
+			objects.Add(new Objects.TextButton("Dev Room", "planetary", new Vector2(0.1f, 0.6f), new Vector2(0.34f, 0.05f)));
+			(objects.Last() as Objects.TextButton).onClick += PlayGame;
+			loadGame.Add(objects.Last() as UI.UIElement);
+			(objects.Last() as UI.UIElement).enable = false;
+			(objects.Last() as Objects.TextButton).value = 9;
+
+			objects.Add(new Objects.TextButton("Collider Room", "planetary", new Vector2(0.1f, 0.65f), new Vector2(0.35f, 0.05f)));
+			(objects.Last() as Objects.TextButton).onClick += PlayGame;
+			loadGame.Add(objects.Last() as UI.UIElement);
+			(objects.Last() as UI.UIElement).enable = false;
+			(objects.Last() as Objects.TextButton).value = 10;
+
 			//++++++++++++++++++++++++++++++++++++++++++OPCJE++++++++++++++++++++++++++++++++++++++++++++++
-			//objects.Add(new UI.Slider(new Vector2(0.1f, 0.2f), new Vector2(0.32f, 0.05f), 1f));
+
 			//(objects.Last() as Objects.TextButton).onClick += SetFullscreen;
-			//settings.Add(objects.Last() as UI.UIElement);
+
 			//(objects.Last() as UI.UIElement).enable = false;
 
 			objects.Add(new Objects.TextButton("[ ] Fullscreen", "planetary", new Vector2(0.1f, 0.2f), new Vector2(0.32f, 0.05f)));
@@ -143,12 +177,27 @@ namespace AstroMonkey.Assets.Scenes
 			(objects.Last() as UI.UIElement).enable = false;
 			(objects.Last() as Objects.TextButton).value = 5;
 
-			objects.Add(new UI.Text(" ", "planetary", new Vector2(0.1f, 0.65f), new Vector2(0.25f, 0.05f)));
+			objects.Add(new UI.Text(" ", "planetary", new Vector2(0.1f, 0.1f), new Vector2(0.25f, 0.05f)));
 			settings.Add(objects.Last() as UI.UIElement);
 			(objects.Last() as UI.UIElement).enable = false;
 
-			//+++++++++++++++++++++++++++++++++++++++++AUTORZY+++++++++++++++++++++++++++++++++++++++++++++
-			objects.Add(new UI.Text("Jakub Czaja", "planetary", new Vector2(0.1f, 0.15f), new Vector2(0.25f, 0.1f)));
+            objects.Add(new UI.Slider(new Vector2(0.1f, 0.60f), new Vector2(0.32f, 0.05f), Util.Statics.musicVolume, "Music"));
+            (objects.Last() as UI.Slider).onChange += SetMusicVolume;
+            settings.Add(objects.Last() as UI.UIElement);
+            (objects.Last() as UI.UIElement).enable = false;
+
+            objects.Add(new UI.Slider(new Vector2(0.1f, 0.65f), new Vector2(0.32f, 0.05f), Util.Statics.soundVolume, "Sound"));
+            (objects.Last() as UI.Slider).onChange += SetSoundVolume;
+            settings.Add(objects.Last() as UI.UIElement);
+            (objects.Last() as UI.UIElement).enable = false;
+
+            objects.Add(new Objects.TextButton("Save settings", "planetary", new Vector2(0.1f, 0.8f), new Vector2(0.35f, 0.05f)));
+            (objects.Last() as Objects.TextButton).onClick += ForceSettingsSave;
+            settings.Add(objects.Last() as UI.UIElement);
+            (objects.Last() as UI.UIElement).enable = false;
+
+            //+++++++++++++++++++++++++++++++++++++++++AUTORZY+++++++++++++++++++++++++++++++++++++++++++++
+            objects.Add(new UI.Text("Jakub Czaja", "planetary", new Vector2(0.1f, 0.15f), new Vector2(0.25f, 0.1f)));
 			authors.Add(objects.Last() as UI.UIElement);
 			(objects.Last() as UI.UIElement).enable = false;
 
@@ -178,31 +227,51 @@ namespace AstroMonkey.Assets.Scenes
 			OffAllSetting();
 		}
 
-		void PlayGame(Objects.TextButton textButton)
+        void PlayGame(Objects.TextButton textButton)
 		{
 			MediaPlayer.Stop();
 
 			if(textButton.value == 0)
 			{
-				GameManager.Instance.NextScene = "devroom";
+				GameManager.Instance.NextScene = "level1";
 			}
 			else if(textButton.value == 1)
 			{
-				GameManager.Instance.NextScene = "level1";
+				GameManager.Instance.NextScene = "level2";
 			}
 			else if(textButton.value == 2)
 			{
-				GameManager.Instance.NextScene = "devroom";
+				GameManager.Instance.NextScene = "level3";
 			}
 			else if(textButton.value == 3)
 			{
-				GameManager.Instance.NextScene = "devroom";
+				GameManager.Instance.NextScene = "level4";
 			}
 			else if(textButton.value == 4)
 			{
-				GameManager.Instance.NextScene = "devroom";
+				GameManager.Instance.NextScene = "level5";
 			}
 			else if(textButton.value == 5)
+			{
+				GameManager.Instance.NextScene = "level6";
+			}
+			else if(textButton.value == 6)
+			{
+				GameManager.Instance.NextScene = "level7";
+			}
+			else if(textButton.value == 7)
+			{
+				GameManager.Instance.NextScene = "level8";
+			}
+			else if(textButton.value == 8)
+			{
+				GameManager.Instance.NextScene = "level9";
+			}
+			else if(textButton.value == 9)
+			{
+				GameManager.Instance.NextScene = "devroom";
+			}
+			else if(textButton.value == 10)
 			{
 				GameManager.Instance.NextScene = "colliderroom";
 			}
@@ -237,6 +306,7 @@ namespace AstroMonkey.Assets.Scenes
 
 		void QuitGame(Objects.TextButton textButton)
 		{
+            SaveSettings();
 			GameManager.Instance.GetGame().Exit();
 		}
 
@@ -262,13 +332,37 @@ namespace AstroMonkey.Assets.Scenes
 			OffAllSetting();
 
 			(settings[7] as UI.Text).text = "Restart game to apply changes";
-			string[] lines = { "fullscreen=" + (Graphics.ViewManager.Instance.graphics.IsFullScreen ? "1" : "0"),
-								"resolution=" + currResolution.ToString()};
 
-			File.WriteAllLines("Content/settings/settings.ini", lines);
+            SaveSettings();
 		}
 
-		void OffAllSetting()
+        void SetSoundVolume(UI.Slider slider)
+        {
+            Util.Statics.soundVolume = slider.value;
+        }
+
+        void SetMusicVolume(UI.Slider slider)
+        {
+            Util.Statics.musicVolume = slider.value;
+            MediaPlayer.Volume = Util.Statics.musicVolume;
+        }
+
+        private void ForceSettingsSave(Objects.TextButton textButton)
+        {
+            SaveSettings();
+            CloseAllSection();
+        }
+
+        void SaveSettings()
+        {
+            string[] lines = { "fullscreen=" + (Graphics.ViewManager.Instance.graphics.IsFullScreen ? "1" : "0"),
+                                "resolution=" + currResolution.ToString(),
+                                "sound=" + (int)Util.Statics.Map(Util.Statics.soundVolume, 0f, 1f, 0f, 100f),
+                                "music=" + (int)Util.Statics.Map(Util.Statics.musicVolume, 0f, 1f, 0f, 100f)};
+            File.WriteAllLines("Content/settings/settings.ini", lines);
+        }
+
+        void OffAllSetting()
 		{
 			if(Graphics.ViewManager.Instance.graphics.IsFullScreen)
 				(settings[0] as Objects.TextButton).text = "[X] Fullscreen";
@@ -301,10 +395,53 @@ namespace AstroMonkey.Assets.Scenes
 				Graphics.ViewManager.Instance.graphics.IsFullScreen = true;
 			}
 			(settings[7] as UI.Text).text = "Restart game to apply changes";
-			string[] lines = { "fullscreen=" + (Graphics.ViewManager.Instance.graphics.IsFullScreen ? "1" : "0"),
-								"resolution=" + currResolution.ToString()};
-
-			File.WriteAllLines("Content/settings/settings.ini", lines);
+            SaveSettings();
 		}
-	}
+
+        public override void UnLoad()
+        {
+            foreach(GameObject obj in objects)
+            {
+                Objects.TextButton button = obj as Objects.TextButton;
+                if(button == null)
+                    continue;
+                button.onClick -= LoadGame;
+                button.onClick -= PlayGame;
+                button.onClick -= SetFullscreen;
+                button.onClick -= SetResolution;
+                button.onClick -= Settings;
+            }
+            foreach(GameObject obj in objects)
+            {
+                Slider slider = obj as Slider;
+                if(slider == null)
+                    continue;
+                slider.onChange -= SetSoundVolume;
+                slider.onChange -= SetMusicVolume;
+            }
+            foreach(UIElement obj in settings)
+            {
+                Objects.TextButton button = obj as Objects.TextButton;
+                if(button == null)
+                    continue;
+                button.onClick -= LoadGame;
+                button.onClick -= PlayGame;
+                button.onClick -= SetFullscreen;
+                button.onClick -= SetResolution;
+                button.onClick -= Settings;
+            }
+            foreach(UIElement obj in loadGame)
+            {
+                Objects.TextButton button = obj as Objects.TextButton;
+                if(button == null)
+                    continue;
+                button.onClick -= LoadGame;
+                button.onClick -= PlayGame;
+                button.onClick -= SetFullscreen;
+                button.onClick -= SetResolution;
+                button.onClick -= Settings;
+            }
+            base.UnLoad();
+        }
+    }
 }

@@ -2,50 +2,68 @@
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
+using AstroMonkey.Assets.Objects;
 
 namespace AstroMonkey.Gameplay
 {
-    struct AmmoInfo
+    struct ClipInfo
     {
-
-        public Type bulletType;
+        public AmmoClip clip;
         public float fireDelay;
-        public int currentAmount;
 
-        public static implicit operator Type(AmmoInfo ammoInfo)
+        public static implicit operator AmmoClip(ClipInfo ammoInfo)
         {
-            return ammoInfo.bulletType;
+            return ammoInfo.clip;
         }
     }
 
+
     class Gun : Component
     {
-        private Audio.AudioSource ShootSoundComponent;
+        public static readonly ClipInfo pistolClip = new ClipInfo() { clip = new AmmoClip(typeof(PistolBullet), 5, 50, 0.5f), fireDelay = 0.2f };
+        public static readonly ClipInfo rifleClip = new ClipInfo { clip = new AmmoClip(typeof(RifleBullet), 25, 150, 0.5f), fireDelay = 0.15f };
+        public static readonly ClipInfo alienClip = new ClipInfo() { clip = new AmmoClip(typeof(AlienBullet), 10, 100, 0.5f), fireDelay = 0.1f };
+        public static readonly ClipInfo launcherClip = new ClipInfo { clip = new AmmoClip(typeof(Rocket), 3, 20, 2f), fireDelay = 0.75f };
 
-        private List<AmmoInfo> ammoTypes = new List<AmmoInfo>
-        {
-            new AmmoInfo { bulletType = typeof(Assets.Objects.AlienBullet), fireDelay = 0.1f, currentAmount = 10 },
-            new AmmoInfo { bulletType = typeof(Assets.Objects.Rocket), fireDelay = 0.75f, currentAmount = 3},
-            new AmmoInfo { bulletType = typeof(Assets.Objects.PistolBullet), fireDelay = 0.2f, currentAmount = 20}
-        };
-        private int currentAmmoType = 0;
-        private float cooldownLeft = 0f;
+
+        public delegate void GunEvent(Gun gun);
+        public event GunEvent OnWeaponChange;
+        public event GunEvent OnAmmoChange;
+
+        private Audio.AudioSource ShootSoundComponent;
+        private bool shooting = false;
+
+        private List<ClipInfo> ammoClips = new List<ClipInfo>();
+        //{
+        //    new ClipInfo { clip = new AmmoClip(typeof(AlienBullet), 10, 100, 0.5f), fireDelay = 0.1f},
+        //    new ClipInfo { clip = new AmmoClip(typeof(Rocket), 3, 20, 2f), fireDelay = 0.75f},
+        //    new ClipInfo { clip = new AmmoClip(typeof(PistolBullet), 5, 50, 0.5f), fireDelay = 0.2f},
+        //};
+        private int currentClipIndex;
+        public AmmoClip currentClip { get; private set; }
+        private float delayLeft = 0f;
 
 		public Gun(GameObject parent) : base(parent)
 		{
-            currentAmmoType = 0;
+            currentClipIndex = 1;
 
             ShootSoundComponent = Parent.AddComponent(new Audio.AudioSource(Parent, Audio.SoundContainer.Instance.GetSoundEffect("GunShoot")));
 		}
 
 		public void Shoot(Vector2 targetPosition)
 		{
-            if(cooldownLeft > 0)
+            if(delayLeft > 0)
                 return;
-			Assets.Objects.BaseProjectile projectile = (Assets.Objects.BaseProjectile)Activator.CreateInstance(ammoTypes[currentAmmoType], new object[] {
-				new Transform(Parent.transform)});
+            BaseProjectile projectile =
+                currentClip.GetProjectile(parent.transform);
+
+            if(projectile == null)
+                return;
+
 			ShootSoundComponent.SoundEffect = projectile.shootSound;
-			ShootSoundComponent.Play();
+
+
+            ShootSoundComponent.Play();
 
 			Vector2 parentPosition = parent.transform.position;
 			Vector2 direction = targetPosition - parentPosition;
@@ -57,25 +75,93 @@ namespace AstroMonkey.Gameplay
 			projectile.Damage = new DamageInfo(parent, projectile.baseDamage);
 
 			GameManager.SpawnObject(projectile);
+            OnAmmoChange?.Invoke(this);
+            shooting = true;
 
-            cooldownLeft = ammoTypes[currentAmmoType].fireDelay;
+            delayLeft = ammoClips[currentClipIndex].fireDelay;
 		}
+
+        public void StopShooting()
+        {
+            shooting = false;
+        }
 
         public void ChangeAmmo(bool moveUp)
         {
-            if(cooldownLeft > 0)
+            if(ammoClips.Count == 0)
                 return;
-            currentAmmoType += moveUp ? 1 : -1;
-            currentAmmoType = currentAmmoType % ammoTypes.Count;
-            while(currentAmmoType < 0) currentAmmoType += ammoTypes.Count;
-            Console.WriteLine(ammoTypes[currentAmmoType].bulletType);
+            if(delayLeft > 0)
+                return;
+            currentClipIndex += moveUp ? 1 : -1;
+            currentClipIndex = currentClipIndex % ammoClips.Count;
+            while(currentClipIndex < 0) currentClipIndex += ammoClips.Count;
+
+
+            // TODO: add clip loading/unloading
+
+            if(currentClip != null)
+                currentClip.onReload -= ReloadHandler;
+
+            currentClip = ammoClips[currentClipIndex];
+            OnWeaponChange?.Invoke(this);
+            currentClip.onReload += ReloadHandler;
+            Console.WriteLine(ammoClips[currentClipIndex].clip.ammoType);
+        }
+
+        private void ReloadHandler(AmmoClip clip)
+        {
+            OnAmmoChange?.Invoke(this);
         }
 
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
+            currentClip.Update(gameTime);
 
-            cooldownLeft -= (float)gameTime.ElapsedGameTime.TotalSeconds;
+            if(shooting)
+                Shoot(Input.InputManager.Manager.MouseCursorInWorldSpace);
+
+            delayLeft -= (float)gameTime.ElapsedGameTime.TotalSeconds;
+        }
+
+        public void Reload()
+        {
+            currentClip.StartReload();
+        }
+
+        public bool RestoreAmmo(Type ammoType, int amount)
+        {
+            AmmoClip clip = ammoClips.Find(x => x.clip.ammoType == ammoType);
+
+            if(clip == null)
+                throw new ApplicationException("restoring unexisting ammo");
+
+            if(clip.IsFull())
+                return false;
+
+            clip.RestoreAmmo(amount);
+            OnAmmoChange?.Invoke(this);
+
+            return true;
+        }
+
+        public bool RestoreAmmo(BaseAmmo ammoPack)
+        {
+            return RestoreAmmo(ammoPack.ProjectileType, ammoPack.Count);
+        }
+
+        public override string ToString()
+        {
+            String toReturn = "Gun on: " + parent;
+            foreach(AmmoClip clip in ammoClips)
+                toReturn += "\n" + clip;
+            return toReturn;
+        }
+
+        public void AddAmmoClip(ClipInfo clip)
+        {
+            ammoClips.Add(clip);
+            ChangeAmmo(true);
         }
     }
 }

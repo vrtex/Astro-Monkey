@@ -5,6 +5,7 @@ using AstroMonkey.Physics;
 using AstroMonkey.Physics.Collider;
 using Microsoft.Xna.Framework.Graphics;
 using System.Diagnostics;
+using AstroMonkey.Gameplay;
 
 namespace AstroMonkey.Assets.Objects
 {
@@ -15,11 +16,15 @@ namespace AstroMonkey.Assets.Objects
         private int size = 21;
 
 		private Audio.AudioSource walkSFX;
-		private Audio.AudioSource hitSFX;
+		public Audio.AudioSource hitSFX;
 		private Audio.AudioSource idleSFX;
 		private Audio.AudioSource gameoverSFX;
 
+        UI.PlayerHUD hud;
+
 		private Effect lightOff = null;
+
+		private Navigation.MovementComponent    movement = null;
 
 		public Player(): this(new Core.Transform())
         {
@@ -37,30 +42,38 @@ namespace AstroMonkey.Assets.Objects
 
         private void Load(Core.Transform _transform)
         {
-
             // Physics
             AddComponent(new Body(this));
             AddComponent(new CircleCollider(this, CollisionChanell.Player, Vector2.Zero, size / 3));
 			//AddComponent(new CircleCollider(this, CollisionChanell.Hitbox, Vector2.Zero, size / 2));
 
 			walkSFX		= AddComponent(new Audio.AudioSource(this, Audio.SoundContainer.Instance.GetSoundEffect("MonkeyWalk")));
-			walkSFX.Pitch = 0.5f;
+			walkSFX.Pitch = 0.2f;
 			hitSFX		= AddComponent(new Audio.AudioSource(this, Audio.SoundContainer.Instance.GetSoundEffect("MonkeyHit")));
+			hitSFX.Pitch = 0.2f;
 			idleSFX		= AddComponent(new Audio.AudioSource(this, Audio.SoundContainer.Instance.GetSoundEffect("MonkeyIdle")));
+			idleSFX.Pitch = 0.2f;
 			gameoverSFX	= AddComponent(new Audio.AudioSource(this, Audio.SoundContainer.Instance.GetSoundEffect("GameOver")));
 
 			// Movement
-			Navigation.MovementComponent moveComp =  (Navigation.MovementComponent)AddComponent(new Navigation.MovementComponent(this));
+			movement =  (Navigation.MovementComponent)AddComponent(new Navigation.MovementComponent(this));
 
-			AddComponent(new Gameplay.Gun(this));
+			var gun = AddComponent(new Gun(this));
+            //gun.AddAmmoClip(new ClipInfo { clip = new AmmoClip(typeof(Rocket), 3, 20, 2f), fireDelay = 0.75f });
+            //gun.AddAmmoClip(new ClipInfo { clip = new AmmoClip(typeof(PistolBullet), 5, 50, 0.5f), fireDelay = 0.2f });
+            //gun.AddAmmoClip(new ClipInfo { clip = new AmmoClip(typeof(RifleBullet), 25, 150, 0.5f), fireDelay = 0.15f });
+            gun.AddAmmoClip(Gun.pistolClip);
+            gun.AddAmmoClip(Gun.rifleClip);
+            gun.AddAmmoClip(Gun.launcherClip);
             AddComponent(new Input.InputComponent(this));
 
+            Health healthComponent = AddComponent(new Gameplay.Health(this));
+            healthComponent.OnDamageTaken += OnDamageTaken;
+            hud = Core.GameManager.SpawnObject(new UI.PlayerHUD(this));
 
             List<Rectangle> idle01 = new List<Rectangle>();
             for(int i = 0; i < height; ++i) idle01.Add(new Rectangle(i * size, 0, size, size));
             AddComponent(new Graphics.Sprite(this, "monkey", idle01));
-
-			AddComponent(new Gameplay.Health(this));
 
 			AddComponent(new Graphics.StackAnimator(this));
 
@@ -141,11 +154,16 @@ namespace AstroMonkey.Assets.Objects
 			lightOff = Graphics.EffectContainer.Instance.GetEffect("LightOff");
 		}
 
+        private void OnDamageTaken(Health damaged, DamageInfo damageInfo)
+        {
+            hitSFX.Play();
+        }
+
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
 
-            Vector2 currVel = GetComponent<Navigation.MovementComponent>().CurrentVelocity;
+            Vector2 currVel = movement.CurrentVelocity;
             if(Util.Statics.IsNearlyEqual(currVel.Length(), 0, 0.001))
             {
                 GetComponent<Graphics.AnimatorContainer>().SetAnimation("Hold");
@@ -161,10 +179,21 @@ namespace AstroMonkey.Assets.Objects
 					walkSFX.Play();
 				}
 			}
-            transform.rotation = (float)Math.PI * 0.5f + GetComponent<Navigation.MovementComponent>().CurrentDirection;
+            transform.rotation = (float)GetComponent<Navigation.MovementComponent>().CurrentDirection;
 
 			if(lightOff != null) lightOff.Parameters["angle"]?.SetValue(transform.rotation / ((float)Math.PI * 2));
 
 		}
+
+        public override void Destroy()
+        {
+			walkSFX.Stop();
+			hitSFX.Stop();
+			idleSFX.Stop();
+			gameoverSFX.Stop();
+
+			hud.Destroy();
+            base.Destroy();
+        }
     }
 }
