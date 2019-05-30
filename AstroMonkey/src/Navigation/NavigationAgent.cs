@@ -17,6 +17,7 @@ namespace AstroMonkey.Navigation
 		public	float                               distanceToStop		= 0.7f * 32f * SceneManager.scale;
 		public  float                               distanceToReact		= 9f * 32f * SceneManager.scale;
 		public  float                               distanceToNextStep  = 0.6f * 32f * SceneManager.scale;
+		public  float                               distanceToRush      = 2f * 32f * SceneManager.scale;
 
 		public  float                               pathTimer			= 1.8f;
 		public  float                               pathReactionTime	= 1.8f;
@@ -67,7 +68,14 @@ namespace AstroMonkey.Navigation
 			}
 			else
 			{
-				if(distance > distanceToStop)
+				if(distance <= distanceToRush && distanceToRush != -1)
+				{
+					Vector2 temp = target.transform.position - parent.transform.position;
+					temp.Normalize();
+					movement.AddMovementInput(temp);
+
+				}
+				else if(distance > distanceToStop)
 				{
 					pathTimer -= gameTime.ElapsedGameTime.Milliseconds / 1000f;
 					if(pathTimer <= 0)
@@ -99,7 +107,7 @@ namespace AstroMonkey.Navigation
 
 		private void Search()
 		{
-            return;
+            //return;
 			Vector2 targetPosition = target.transform.position;
 			var openList = new List<Assets.Objects.NavPoint>();
 			var closedList = new List<Assets.Objects.NavPoint>();
