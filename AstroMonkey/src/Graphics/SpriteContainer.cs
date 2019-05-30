@@ -39,7 +39,7 @@ namespace AstroMonkey.Graphics
             images.Add("floorCrate", game.Content.Load<Texture2D>(@"gfx/Map/Floor/FloorCrate"));
 
             //otoczenie
-            images.Add("wall", game.Content.Load<Texture2D>(@"gfx /Map/Objects/wall"));
+            images.Add("wall", game.Content.Load<Texture2D>(@"gfx/Map/Objects/wall"));
             images.Add("wallDoor", game.Content.Load<Texture2D>(@"gfx/Map/Objects/wallDoor"));
             images.Add("corner", game.Content.Load<Texture2D>(@"gfx/Map/Objects/corner"));
             images.Add("cornerPhillar", game.Content.Load<Texture2D>(@"gfx/Map/Objects/cornerPhillar"));
@@ -55,9 +55,15 @@ namespace AstroMonkey.Graphics
             images.Add("half-wall", game.Content.Load<Texture2D>(@"gfx/Map/Objects/half-wall"));
             images.Add("doorRight", game.Content.Load<Texture2D>(@"gfx/Map/Objects/DoorRight"));
             images.Add("doorLeft", game.Content.Load<Texture2D>(@"gfx/Map/Objects/DoorLeft"));
+			images.Add("wall02", game.Content.Load<Texture2D>(@"gfx/Map/Objects/wall02"));
+			images.Add("wall03", game.Content.Load<Texture2D>(@"gfx/Map/Objects/wall03"));
+			images.Add("wall04", game.Content.Load<Texture2D>(@"gfx/Map/Objects/wall04"));
+			images.Add("wall05", game.Content.Load<Texture2D>(@"gfx/Map/Objects/wall05"));
+			images.Add("wall06", game.Content.Load<Texture2D>(@"gfx/Map/Objects/wall06"));
+			images.Add("wall07", game.Content.Load<Texture2D>(@"gfx/Map/Objects/wall07"));
 
-            //interaktywne
-            images.Add("terminal", game.Content.Load<Texture2D>(@"gfx/Map/Interactable/terminal"));
+			//interaktywne
+			images.Add("terminal", game.Content.Load<Texture2D>(@"gfx/Map/Interactable/terminal"));
             images.Add("terminalOff", game.Content.Load<Texture2D>(@"gfx/Map/Interactable/terminalOff"));
             images.Add("buttonWall", game.Content.Load<Texture2D>(@"gfx/Map/Interactable/buttonWall"));
             images.Add("buttonClicked", game.Content.Load<Texture2D>(@"gfx/Map/Interactable/buttonClicked"));

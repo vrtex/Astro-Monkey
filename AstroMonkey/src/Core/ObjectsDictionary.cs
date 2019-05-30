@@ -176,6 +176,42 @@ namespace AstroMonkey.Core
             [220] = new Tuple<Type, float>(typeof(Assets.Objects.ButtonWallClicked), downRotation),
             [240] = new Tuple<Type, float>(typeof(Assets.Objects.ButtonWallClicked), leftRotation),
 
+			// wall 2
+            [241] = new Tuple<Type, float>(typeof(Assets.Objects.Wall02), upRotation),
+			[261] = new Tuple<Type, float>(typeof(Assets.Objects.Wall02), rightRotation),
+			[281] = new Tuple<Type, float>(typeof(Assets.Objects.Wall02), downRotation),
+			[301] = new Tuple<Type, float>(typeof(Assets.Objects.Wall02), leftRotation),
+
+			// wall 3
+            [242] = new Tuple<Type, float>(typeof(Assets.Objects.Wall03), upRotation),
+			[262] = new Tuple<Type, float>(typeof(Assets.Objects.Wall03), rightRotation),
+			[282] = new Tuple<Type, float>(typeof(Assets.Objects.Wall03), downRotation),
+			[302] = new Tuple<Type, float>(typeof(Assets.Objects.Wall03), leftRotation),
+
+			// wall 4
+            [243] = new Tuple<Type, float>(typeof(Assets.Objects.Wall04), upRotation),
+			[263] = new Tuple<Type, float>(typeof(Assets.Objects.Wall04), rightRotation),
+			[283] = new Tuple<Type, float>(typeof(Assets.Objects.Wall04), downRotation),
+			[303] = new Tuple<Type, float>(typeof(Assets.Objects.Wall04), leftRotation),
+
+			// wall 5
+            [244] = new Tuple<Type, float>(typeof(Assets.Objects.Wall05), upRotation),
+			[264] = new Tuple<Type, float>(typeof(Assets.Objects.Wall05), rightRotation),
+			[284] = new Tuple<Type, float>(typeof(Assets.Objects.Wall05), downRotation),
+			[304] = new Tuple<Type, float>(typeof(Assets.Objects.Wall05), leftRotation),
+
+			// wall 6
+            [245] = new Tuple<Type, float>(typeof(Assets.Objects.Wall06), upRotation),
+			[265] = new Tuple<Type, float>(typeof(Assets.Objects.Wall06), rightRotation),
+			[285] = new Tuple<Type, float>(typeof(Assets.Objects.Wall06), downRotation),
+			[305] = new Tuple<Type, float>(typeof(Assets.Objects.Wall06), leftRotation),
+
+			// wall 7
+            [246] = new Tuple<Type, float>(typeof(Assets.Objects.Wall07), upRotation),
+			[266] = new Tuple<Type, float>(typeof(Assets.Objects.Wall07), rightRotation),
+			[286] = new Tuple<Type, float>(typeof(Assets.Objects.Wall07), downRotation),
+			[306] = new Tuple<Type, float>(typeof(Assets.Objects.Wall07), leftRotation),
+
             // FURNITURE END
 
             // ITEMS BEGIN
@@ -332,6 +368,42 @@ namespace AstroMonkey.Core
 			[195] = Util.NavPointPosition.None,
 			[215] = Util.NavPointPosition.None,
 			[235] = Util.NavPointPosition.None,
-        };
+
+			// wall 2
+			[241] = Util.NavPointPosition.Up,
+			[261] = Util.NavPointPosition.Right,
+			[281] = Util.NavPointPosition.Down,
+			[301] = Util.NavPointPosition.Left,
+
+			// wall 3
+            [242] = Util.NavPointPosition.Up,
+			[262] = Util.NavPointPosition.Right,
+			[282] = Util.NavPointPosition.Down,
+			[302] = Util.NavPointPosition.Left,
+
+			// wall 4
+            [243] = Util.NavPointPosition.Up,
+			[263] = Util.NavPointPosition.Right,
+			[283] = Util.NavPointPosition.Down,
+			[303] = Util.NavPointPosition.Left,
+
+			// wall 5
+            [244] = Util.NavPointPosition.Up,
+			[264] = Util.NavPointPosition.Right,
+			[284] = Util.NavPointPosition.Down,
+			[304] = Util.NavPointPosition.Left,
+
+			// wall 6
+            [245] = Util.NavPointPosition.Up,
+			[265] = Util.NavPointPosition.Right,
+			[285] = Util.NavPointPosition.Down,
+			[305] = Util.NavPointPosition.Left,
+
+			// wall 7
+            [246] = Util.NavPointPosition.Up,
+			[266] = Util.NavPointPosition.Right,
+			[286] = Util.NavPointPosition.Down,
+			[306] = Util.NavPointPosition.Left,
+		};
 	}
 }
