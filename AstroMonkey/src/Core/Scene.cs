@@ -163,7 +163,11 @@ namespace AstroMonkey.Core
 
 			if(index == 217)
 			{
-				spawnTransform.position.Y += 1;
+				spawnTransform.position.Y += 4f * SceneManager.scale;
+			}
+			if(index >= 212 && index <= 214)
+			{
+				spawnTransform.position.Y -= 0.7f * 32f * SceneManager.scale;
 			}
 
             GameObject spawned = (GameObject)Activator.CreateInstance(objectInfo.Item1, new object[] {spawnTransform});

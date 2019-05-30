@@ -54,7 +54,20 @@ namespace AstroMonkey.Navigation
 			if(target == null) return;
 
 			float distance = Vector2.Distance(target.transform.position, parent.transform.position);
-			if(path.Count == 0)
+			if(distance <= distanceToRush && distanceToRush != -1)
+			{
+				if(distance > distanceToStop)
+				{
+					Vector2 temp = target.transform.position - parent.transform.position;
+					temp.Normalize();
+					movement.AddMovementInput(temp);
+				}
+				else
+				{
+					movement.AddMovementInput(Vector2.Zero);
+				}
+			}
+			else if(path.Count == 0)
 			{
 				pathTimer -= gameTime.ElapsedGameTime.Milliseconds / 1000f;
 				if(pathTimer <= 0)
@@ -68,14 +81,7 @@ namespace AstroMonkey.Navigation
 			}
 			else
 			{
-				if(distance <= distanceToRush && distanceToRush != -1)
-				{
-					Vector2 temp = target.transform.position - parent.transform.position;
-					temp.Normalize();
-					movement.AddMovementInput(temp);
-
-				}
-				else if(distance > distanceToStop)
+				if(distance > distanceToStop)
 				{
 					pathTimer -= gameTime.ElapsedGameTime.Milliseconds / 1000f;
 					if(pathTimer <= 0)

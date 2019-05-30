@@ -20,12 +20,14 @@ namespace AstroMonkey.Audio
             set
             {
                 _playerTransorm = value;
-                playerListener.Position = new Vector3(_playerTransorm.position, 0);
+                playerListener.Position = new Vector3(_playerTransorm.position.X, 0, _playerTransorm.position.Y);
             }
         }
         public AudioListener playerListener = new AudioListener();
 
-        private AudioManager()
+		public float maxSoundDistance = 8f * 32f * SceneManager.scale;
+
+		private AudioManager()
         {
         }
     }

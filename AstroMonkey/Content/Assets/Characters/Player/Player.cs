@@ -151,6 +151,8 @@ namespace AstroMonkey.Assets.Objects
             GetComponent<Graphics.StackAnimator>().SetAnimation("Hold");
 
 			lightOff = Graphics.EffectContainer.Instance.GetEffect("LightOff");
+
+			Audio.AudioManager.Instance.PlayerTransform = transform;
 		}
 
         private void OnDamageTaken(Health damaged, DamageInfo damageInfo)
@@ -177,6 +179,10 @@ namespace AstroMonkey.Assets.Objects
 					walkSFX.IsLooped = true;
 					walkSFX.Play();
 				}
+				else
+				{
+					walkSFX.RandPitch();
+				}
 			}
 
 			if(lightOff != null) lightOff.Parameters["angle"]?.SetValue(transform.rotation / ((float)Math.PI * 2));
@@ -185,6 +191,8 @@ namespace AstroMonkey.Assets.Objects
 
         public override void Destroy()
         {
+			Audio.AudioManager.Instance.PlayerTransform = null;
+
 			walkSFX.Stop();
 			hitSFX.Stop();
 			idleSFX.Stop();
