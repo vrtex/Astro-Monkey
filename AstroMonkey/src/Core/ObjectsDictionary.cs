@@ -297,7 +297,7 @@ namespace AstroMonkey.Core
 			[203] = Util.NavPointPosition.DownRight,
 			[223] = Util.NavPointPosition.DownLeft,
 
-            // door left
+           //door left
             [164] = Util.NavPointPosition.Right,
 			[184] = Util.NavPointPosition.Down,
 			[204] = Util.NavPointPosition.Left,
@@ -308,7 +308,7 @@ namespace AstroMonkey.Core
 			[185] = Util.NavPointPosition.Up,
 			[205] = Util.NavPointPosition.Right,
 			[225] = Util.NavPointPosition.Down,
-
+			
             // half wall
             [166] = Util.NavPointPosition.None,
 			[186] = Util.NavPointPosition.None,

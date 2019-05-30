@@ -58,13 +58,12 @@ namespace AstroMonkey.Assets.Objects
 			// Movement
 			movement =  (Navigation.MovementComponent)AddComponent(new Navigation.MovementComponent(this));
 
-			var gun = AddComponent(new Gun(this));
-            //gun.AddAmmoClip(new ClipInfo { clip = new AmmoClip(typeof(Rocket), 3, 20, 2f), fireDelay = 0.75f });
-            //gun.AddAmmoClip(new ClipInfo { clip = new AmmoClip(typeof(PistolBullet), 5, 50, 0.5f), fireDelay = 0.2f });
-            //gun.AddAmmoClip(new ClipInfo { clip = new AmmoClip(typeof(RifleBullet), 25, 150, 0.5f), fireDelay = 0.15f });
+            Gun gun = AddComponent(new Gun(this));
             gun.AddAmmoClip(Gun.pistolClip);
             gun.AddAmmoClip(Gun.rifleClip);
             gun.AddAmmoClip(Gun.launcherClip);
+            gun.AddAmmoClip(Gun.shotgunClip);
+
             AddComponent(new Input.InputComponent(this));
 
             Health healthComponent = AddComponent(new Gameplay.Health(this));
@@ -179,7 +178,6 @@ namespace AstroMonkey.Assets.Objects
 					walkSFX.Play();
 				}
 			}
-            transform.rotation = (float)GetComponent<Navigation.MovementComponent>().CurrentDirection;
 
 			if(lightOff != null) lightOff.Parameters["angle"]?.SetValue(transform.rotation / ((float)Math.PI * 2));
 

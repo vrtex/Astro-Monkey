@@ -71,7 +71,9 @@ namespace AstroMonkey.Core
         {
             int mapWidth = 0;
             int mapHeight = 0;
-            using(StreamReader fs = File.OpenText(filepath))
+			Util.NavPointPosition[,] navTypes = null;
+
+			using(StreamReader fs = File.OpenText(filepath))
             {
                 string file = fs.ReadToEnd();
                 file = Regex.Replace(file, @"\n", "");
@@ -90,11 +92,11 @@ namespace AstroMonkey.Core
 
                 Regex regex = new Regex(@"<data encoding=.csv.>(.*?)<\/data>");
                 MatchCollection matches = regex.Matches(file);
-				// Console.WriteLine(matches.Count);
 
 				//Zapisanie informacji o punktach nawigacyjnych
 				int groupIndex = 0;
-				Util.NavPointPosition[,] navTypes = new Util.NavPointPosition[mapWidth, mapHeight];
+				navTypes = new Util.NavPointPosition[mapWidth, mapHeight];
+
 				for(int x = 0; x < mapWidth; ++x)
 				{
 					for(int y = 0; y < mapWidth; ++y)
@@ -128,11 +130,24 @@ namespace AstroMonkey.Core
 					}					
 					++groupIndex;
 				}
-				SpawnNavigationPoints(navTypes);
-
+				
 			}
             GameManager.FinalizeSpwaning();
-        }
+
+			foreach(GameObject o in objects)
+			{
+				if(o is Assets.Objects.Door)
+				{
+					doors.Add(o);
+				}
+				else if(o is Assets.Objects.Terminal)
+				{
+					interactives.Add(o);
+				}
+			}
+			SpawnNavigationPoints(navTypes);
+
+		}
 
         private void SpwanUsingTypeIndex(int x, int y, int index)
         {
@@ -181,6 +196,17 @@ namespace AstroMonkey.Core
 						GameObject spawned = (GameObject)Activator.CreateInstance(typeof(Assets.Objects.NavPoint), new object[] {spawnTransform});
 						GameManager.SpawnObject(spawned);
 						navigationPoints.Add(spawned as Assets.Objects.NavPoint);
+						foreach(Assets.Objects.Door d in doors)
+						{
+							if(x * spacing * sceneScale >= d.transform.position.X - 0.01f
+							&& x * spacing * sceneScale <= d.transform.position.X + 0.01f
+							&& y * spacing * sceneScale >= d.transform.position.Y - 0.01f
+							&& y * spacing * sceneScale <= d.transform.position.Y + 0.01f)
+							{
+								d.navPoints.Add(spawned as Assets.Objects.NavPoint);
+								(spawned as Assets.Objects.NavPoint).isActive = false;
+							}
+						}
 					}
 					if(navTypes[x, y] == Util.NavPointPosition.All
 					|| navTypes[x, y] == Util.NavPointPosition.Up
@@ -198,6 +224,17 @@ namespace AstroMonkey.Core
 						GameObject spawned = (GameObject)Activator.CreateInstance(typeof(Assets.Objects.NavPoint), new object[] {spawnTransform});
 						GameManager.SpawnObject(spawned);
 						navigationPoints.Add(spawned as Assets.Objects.NavPoint);
+						foreach(Assets.Objects.Door d in doors)
+						{
+							if(x * spacing * sceneScale >= d.transform.position.X - 0.01f
+							&& x * spacing * sceneScale <= d.transform.position.X + 0.01f
+							&& y * spacing * sceneScale >= d.transform.position.Y - 0.01f
+							&& y * spacing * sceneScale <= d.transform.position.Y + 0.01f)
+							{
+								d.navPoints.Add(spawned as Assets.Objects.NavPoint);
+								(spawned as Assets.Objects.NavPoint).isActive = false;
+							}
+						}
 					}
 					if(navTypes[x, y] == Util.NavPointPosition.All
 					|| navTypes[x, y] == Util.NavPointPosition.Down
@@ -215,6 +252,17 @@ namespace AstroMonkey.Core
 						GameObject spawned = (GameObject)Activator.CreateInstance(typeof(Assets.Objects.NavPoint), new object[] {spawnTransform});
 						GameManager.SpawnObject(spawned);
 						navigationPoints.Add(spawned as Assets.Objects.NavPoint);
+						foreach(Assets.Objects.Door d in doors)
+						{
+							if(x * spacing * sceneScale >= d.transform.position.X - 0.01f
+							&& x * spacing * sceneScale <= d.transform.position.X + 0.01f
+							&& y * spacing * sceneScale >= d.transform.position.Y - 0.01f
+							&& y * spacing * sceneScale <= d.transform.position.Y + 0.01f)
+							{
+								d.navPoints.Add(spawned as Assets.Objects.NavPoint);
+								(spawned as Assets.Objects.NavPoint).isActive = false;
+							}
+						}
 					}
 					if(navTypes[x, y] == Util.NavPointPosition.All
 					|| navTypes[x, y] == Util.NavPointPosition.Down
@@ -232,6 +280,17 @@ namespace AstroMonkey.Core
 						GameObject spawned = (GameObject)Activator.CreateInstance(typeof(Assets.Objects.NavPoint), new object[] {spawnTransform});
 						GameManager.SpawnObject(spawned);
 						navigationPoints.Add(spawned as Assets.Objects.NavPoint);
+						foreach(Assets.Objects.Door d in doors)
+						{
+							if(x * spacing * sceneScale >= d.transform.position.X - sceneScale
+							&& x * spacing * sceneScale <= d.transform.position.X + sceneScale
+							&& y * spacing * sceneScale >= d.transform.position.Y - sceneScale
+							&& y * spacing * sceneScale <= d.transform.position.Y + sceneScale)
+							{
+								d.navPoints.Add(spawned as Assets.Objects.NavPoint);
+								(spawned as Assets.Objects.NavPoint).isActive = false;
+							}
+						}
 					}
 				}
 			}

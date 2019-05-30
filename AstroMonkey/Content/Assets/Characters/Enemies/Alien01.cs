@@ -30,7 +30,7 @@ namespace AstroMonkey.Assets.Objects
             base.Load(transform);
 
 			healthComponent.MaxHealth = 70;
-			movement.Speed = 210f;
+			movement.Speed = 220f;
 
             List<Rectangle> idle01 = new List<Rectangle>();
             for(int i = 0; i < height; ++i) idle01.Add(new Rectangle(i * size, 0, size, size));

@@ -117,6 +117,8 @@ namespace AstroMonkey.Assets.Objects
             aiAttack.attackDistance = 6 * 32f * Core.SceneManager.scale;
 
             navigation.distanceToStop = 5 * 32f * Core.SceneManager.scale;
+
+			navigation.distanceToRush = -1;
         }
     }
 }

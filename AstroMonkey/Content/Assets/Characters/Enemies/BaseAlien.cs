@@ -108,7 +108,7 @@ namespace AstroMonkey.Assets.Objects
 		{
 			base.Update(gameTime);
 
-			if(Util.Statics.IsNearlyEqual(movement.CurrentVelocity.Length(), 0, 0.001))
+			if(Util.Statics.IsNearlyEqual(movement.CurrentVelocity.Length(), 0, 0.01))
 			{
 				if(state != Util.EnemyState.Attack)
 				{

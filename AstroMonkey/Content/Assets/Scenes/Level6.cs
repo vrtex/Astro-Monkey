@@ -28,14 +28,6 @@ namespace AstroMonkey.Assets.Scenes
 					(o as Objects.BaseAlien).navigation.LoadNavigation();
 					(o as Objects.BaseAlien).navigation.target = playerObject;
 				}
-				else if(o is Objects.Door)
-				{
-					doors.Add(o);
-				}
-				else if(o is Objects.Terminal)
-				{
-					interactives.Add(o);
-				}
 				else if(o is Objects.FloorExit)
 				{
 					(o as Objects.FloorExit).GetComponent<Gameplay.ChangeLevel>().nextLevel = "level7";
