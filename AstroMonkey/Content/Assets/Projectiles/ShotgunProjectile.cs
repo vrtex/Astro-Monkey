@@ -24,8 +24,6 @@ namespace AstroMonkey.Assets.Objects
                     (float)(Math.Sin(angle))
                     );
 
-                Console.WriteLine(offset);
-
                 offset *= 5 * 32f * SceneManager.scale;
 
                 var pellet = GameManager.SpawnObject(new ShotgunPellet(new Transform(transform)));

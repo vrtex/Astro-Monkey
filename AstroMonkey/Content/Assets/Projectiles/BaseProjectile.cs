@@ -41,7 +41,7 @@ namespace AstroMonkey.Assets.Objects
             Damage = new Gameplay.DamageInfo(parent, baseDamage);
         }
 
-        private void OnBlockingHit(Collider thisCollider, Collider otherCollider)
+        protected void OnBlockingHit(Collider thisCollider, Collider otherCollider)
         {
 			Destroy();
         }
