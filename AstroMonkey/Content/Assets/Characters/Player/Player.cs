@@ -157,6 +157,13 @@ namespace AstroMonkey.Assets.Objects
 
         private void OnDamageTaken(Health damaged, DamageInfo damageInfo)
         {
+            //float val = damaged.GetPercentage();
+            //float a = val * 2;
+            //Graphics.EffectContainer.Instance.GetEffect("BloodScreen").Parameters["health"].SetValue(val);
+            double time = Game1.totalGameTime.TotalSeconds;
+            Graphics.EffectContainer.Instance.GetEffect("BloodScreen").Parameters["time"].SetValue((float)time);
+            //Console.WriteLine(time);
+
             hitSFX.Play();
         }
 

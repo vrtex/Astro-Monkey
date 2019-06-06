@@ -39,10 +39,9 @@ namespace AstroMonkey.Core
             {
                 SceneManager.Instance.Restore();
             }
-            else
+            else if(currScene.GetType() != typeof(Assets.Scenes.MainMenu))
             {
                 SceneManager.Instance.PauseScene();
-
             }
         }
 

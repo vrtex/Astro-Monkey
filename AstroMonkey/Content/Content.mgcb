@@ -13,6 +13,12 @@
 
 #---------------------------------- Content ---------------------------------#
 
+#begin effects/BloodScreen.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:effects/BloodScreen.fx
+
 #begin effects/LightOff.fx
 /importer:EffectImporter
 /processor:EffectProcessor
@@ -486,6 +492,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:gfx/Projectiles/AlienBullet.png
+
+#begin gfx/Projectiles/BloodScreen.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:gfx/Projectiles/BloodScreen.png
 
 #begin gfx/Projectiles/BulletHit.png
 /importer:TextureImporter

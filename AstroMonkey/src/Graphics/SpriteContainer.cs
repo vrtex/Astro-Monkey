@@ -27,9 +27,10 @@ namespace AstroMonkey.Graphics
             images.Add("bulletHit", game.Content.Load<Texture2D>(@"gfx/Projectiles/BulletHit"));
             images.Add("alienBullet", game.Content.Load<Texture2D>(@"gfx/Projectiles/AlienBullet"));
 			images.Add("pistolBullet", game.Content.Load<Texture2D>(@"gfx/Projectiles/PistolBullet"));
+			//images.Add("bloodScreen", game.Content.Load<Texture2D>(@"gfx/Projectiles/BloodScreen"));
 
-			//postacie
-			images.Add("monkey", game.Content.Load<Texture2D>(@"gfx/Characters/Player/monkey"));
+            //postacie
+            images.Add("monkey", game.Content.Load<Texture2D>(@"gfx/Characters/Player/monkey"));
             images.Add("alien01", game.Content.Load<Texture2D>(@"gfx/Characters/Enemies/Alien01"));
             images.Add("alien02", game.Content.Load<Texture2D>(@"gfx/Characters/Enemies/Alien02"));
             images.Add("alien03", game.Content.Load<Texture2D>(@"gfx/Characters/Enemies/Alien03"));

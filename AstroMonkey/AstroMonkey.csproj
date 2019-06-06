@@ -270,6 +270,7 @@
     <Folder Include="Content\Map\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\effects\BloodScreen.fx" />
     <Content Include="Content\effects\LightOff.fx" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
