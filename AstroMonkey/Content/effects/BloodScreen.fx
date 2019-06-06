@@ -10,7 +10,7 @@
 float health = 0;
 float time = 0;
 float currTime;
-Texture2D BloodScreen;
+Texture2D bloodScreen = NULL;
 
 matrix WorldViewProjection;
 
@@ -22,7 +22,7 @@ sampler2D SpriteTextureSampler = sampler_state {
 
 SamplerState TextureSampler = sampler_state
 {
-	Texture = <BloodScreen>;
+	Texture = <bloodScreen>;
 };
 
 struct VertexShaderInput
