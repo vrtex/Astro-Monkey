@@ -29,5 +29,10 @@ namespace AstroMonkey.Graphics
         {
             manager.widgets.Add(toAdd);
         }
+
+        public static void RemoveWidget(Widget toRemove)
+        {
+            manager.widgets.Remove(toRemove);
+        }
     }
 }
