@@ -87,10 +87,6 @@ namespace AstroMonkey.Graphics
             Vector2 toReturn = new Vector2();
 
             Rectangle rect = GetDestinationRectangle();
-            Console.WriteLine(rect);
-            Console.WriteLine(ViewManager.Instance.graphics.PreferredBackBufferWidth);
-            Console.WriteLine(ViewManager.Instance.graphics.PreferredBackBufferHeight);
-            Console.WriteLine((rect.X + rect.Width) / ViewManager.Instance.graphics.PreferredBackBufferWidth);
 
             toReturn.X = (float)(rect.X + rect.Width) / (float)ViewManager.Instance.graphics.PreferredBackBufferWidth;
             toReturn.Y = (float)(rect.Y + rect.Height) / (float)ViewManager.Instance.graphics.PreferredBackBufferHeight;

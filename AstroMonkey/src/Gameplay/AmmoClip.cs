@@ -21,7 +21,8 @@ namespace AstroMonkey.Gameplay
     class AmmoClip
     {
         public delegate void ClipEvent(AmmoClip clip);
-        public event ClipEvent onReload;
+        public event ClipEvent OnReload;
+        public bool IsReloading { get; private set; } = false;
 
         public Type ammoType { get; private set; }
         private int currentlyInClip;
@@ -53,15 +54,19 @@ namespace AstroMonkey.Gameplay
         private void TryReload(float elapsedTime)
         {
             if(reloadLeft <= 0)
+            {
+                IsReloading = false;
                 return;
+            }
 
+            IsReloading = true;
             reloadLeft -= elapsedTime;
             if(reloadLeft > 0)
                 return;
             int toMove = Math.Min(clipSize - currentlyInClip, ammoReserves);
             ammoReserves -= toMove;
             currentlyInClip += toMove;
-            onReload?.Invoke(this);
+            OnReload?.Invoke(this);
         }
 
         public AmmoInfo GetAmmoInfo()
@@ -108,6 +113,11 @@ namespace AstroMonkey.Gameplay
         public void StartReload()
         {
             reloadLeft = reloadTime;
+        }
+
+        public float GetReloadLeft()
+        {
+            return reloadLeft / reloadTime;
         }
 
         public override string ToString()
