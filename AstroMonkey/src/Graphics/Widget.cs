@@ -14,7 +14,7 @@ namespace AstroMonkey.Graphics
         public bool stretchX = false;
         public bool stretchY = false;
 
-        protected Vector2 position;
+        public Vector2 position { get; protected set; }
         protected Vector2 size;
         protected Vector2 scale = Vector2.One;
 
@@ -82,11 +82,18 @@ namespace AstroMonkey.Graphics
                               ViewManager.Instance.graphics.PreferredBackBufferHeight * size.Y);
         }
 
-        public virtual Vector2 getScreenEndPoint()
+        public virtual Vector2 GetScreenEndPoint()
         {
             Vector2 toReturn = new Vector2();
 
-            toReturn.X = position.X;
+            Rectangle rect = GetDestinationRectangle();
+            Console.WriteLine(rect);
+            Console.WriteLine(ViewManager.Instance.graphics.PreferredBackBufferWidth);
+            Console.WriteLine(ViewManager.Instance.graphics.PreferredBackBufferHeight);
+            Console.WriteLine((rect.X + rect.Width) / ViewManager.Instance.graphics.PreferredBackBufferWidth);
+
+            toReturn.X = (float)(rect.X + rect.Width) / (float)ViewManager.Instance.graphics.PreferredBackBufferWidth;
+            toReturn.Y = (float)(rect.Y + rect.Height) / (float)ViewManager.Instance.graphics.PreferredBackBufferHeight;
 
             return toReturn;
         }
