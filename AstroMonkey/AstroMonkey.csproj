@@ -162,6 +162,7 @@
     <Compile Include="src\Gameplay\ChangeLevel.cs" />
     <Compile Include="src\Gameplay\SuicideComponent.cs" />
     <Compile Include="src\Graphics\EffectContainer.cs" />
+    <Compile Include="src\Graphics\ProgressBarWidget.cs" />
     <Compile Include="src\Graphics\TextWidget.cs" />
     <Compile Include="src\Graphics\Widget.cs" />
     <Compile Include="src\Graphics\WidgetManager.cs" />

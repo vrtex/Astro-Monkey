@@ -20,7 +20,10 @@ namespace AstroMonkey.Audio
             set
             {
                 _playerTransorm = value;
-                playerListener.Position = new Vector3(_playerTransorm.position.X, 0, _playerTransorm.position.Y);
+                if(_playerTransorm != null)
+                    playerListener.Position = new Vector3(_playerTransorm.position.X, 0, _playerTransorm.position.Y);
+                else
+                    playerListener.Position = new Vector3();
             }
         }
         public AudioListener playerListener = new AudioListener();
