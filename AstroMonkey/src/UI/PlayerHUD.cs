@@ -17,14 +17,14 @@ namespace AstroMonkey.UI
 
         private ProgressBarWidget healthBarWidget = new ProgressBarWidget(new Vector2(0.1f, 0.9f), new Vector2(0.3f, 0.05f))
         {
-            Texture = SpriteContainer.Instance.GetImage("bar"),
-            SourceRectangle = new Rectangle(0, 0, 40, 2)
+            Texture = SpriteContainer.Instance.GetImage("bananabar"),
+            SourceRectangle = new Rectangle(0, 0, 80, 4)
         };
 
         private Widget healthBarBackground = new Widget(new Vector2(0.1f, 0.9f), new Vector2(0.3f, 0.05f))
         {
-            Texture = SpriteContainer.Instance.GetImage("bar"),
-            SourceRectangle = new Rectangle(0, 2, 40, 2),
+            Texture = SpriteContainer.Instance.GetImage("bananabar"),
+            SourceRectangle = new Rectangle(0, 4, 80, 4),
             ZOrder = -1
         };
 
@@ -67,7 +67,8 @@ namespace AstroMonkey.UI
 
             float barSize = iconEnd.X - currentGunWidget.position.X;
             reloadBar = new ProgressBarWidget(new Vector2(currentGunWidget.position.X, iconEnd.Y + 0.01f), new Vector2(barSize, 0))
-            { Texture = SpriteContainer.Instance.GetImage("bar") };
+            { Texture = SpriteContainer.Instance.GetImage("reloadTime"), SourceRectangle = new Rectangle(0, 0, 80, 4) };
+            reloadBar.SetProgress(0);
             WidgetManager.AddWidget(reloadBar);
 
             GunChange(gun);
