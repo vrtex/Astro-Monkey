@@ -49,6 +49,7 @@ namespace AstroMonkey.Assets.Scenes
         public override void UnLoad()
         {
             scenes.Clear();
+            Input.InputManager.Manager.GetActionBinding(bindName).OnTrigger -= ProgressScenes;
             Input.InputManager.Manager.RemoveBinding(bindName);
 
             base.UnLoad();
