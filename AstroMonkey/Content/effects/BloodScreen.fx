@@ -7,28 +7,23 @@
 	#define PS_SHADERMODEL ps_4_0_level_9_1
 #endif
 
-//float health = 0;
 float time = 0;
 float currTime;
-Texture2D bloodScreen;
+
 
 matrix WorldViewProjection;
 
 Texture2D SpriteTexture;
-
-SamplerState SpriteTextureSampler = sampler_state {
-	Texture = <SpriteTexture>;
-};
+Texture2D BloodScreen;
 
 SamplerState TextureSampler = sampler_state
 {
-	Texture = <bloodScreen>;
+	Texture = <SpriteTexture>;
 };
 
-struct VertexShaderInput
+SamplerState NormalSampler = sampler_state
 {
-	float4 Position : POSITION0;
-	float4 Color : COLOR0;
+	Texture = <BloodScreen>;
 };
 
 struct VertexShaderOutput
@@ -38,23 +33,28 @@ struct VertexShaderOutput
 	float2 TextureCoordinates : TEXCOORD0;
 };
 
-float4 MainPS(VertexShaderOutput input) : COLOR
+float4 MainPS(float4 pos : SV_POSITION, float4 color : COLOR0, float2 texCoord : TEXCOORD0) : SV_TARGET0
 {
-	float4 color = tex2D(SpriteTextureSampler, input.TextureCoordinates) * input.Color;
-	float2 position = input.TextureCoordinates.xy;
-
-	float4 c2 = bloodScreen.Sample(TextureSampler, float2(0, 0));
-
+	float4 tex = SpriteTexture.Sample(TextureSampler, texCoord);
+	
+	//nic się nie zmienia
+	
+	float4 normal = BloodScreen.Sample(NormalSampler, texCoord);
 	if (currTime < time + .2) {
-		color.r = color.r + color.r * (currTime - time) * 2;
+		normal.r = normal.r * (currTime - time) * 2;
+		normal.g = normal.g * (currTime - time) * 2;
+		normal.b = normal.b * (currTime - time) * 2;
+	}
+	else {
+		normal.r = 0;
+		normal.g = 0;
+		normal.b = 0;
 	}
 
-	return c2 + color;
-
-	
+	return normal + tex;
 }
 
-technique BasicColorDrawing
+technique SpriteDrawing
 {
 	pass P0
 	{

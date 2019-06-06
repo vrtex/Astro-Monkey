@@ -170,8 +170,7 @@ namespace AstroMonkey
             }
 
             Graphics.EffectContainer.Instance.GetEffect("BloodScreen").Parameters["currTime"].SetValue((float)totalGameTime.TotalSeconds);
-            var a = blood_screen;
-            Graphics.EffectContainer.Instance.GetEffect("BloodScreen").Parameters["bloodScreen"].SetValue(blood_screen);
+            Graphics.EffectContainer.Instance.GetEffect("BloodScreen").Parameters["NormalSampler+BloodScreen"].SetValue(blood_screen);
 
 
             //Debug.WriteLine(xxx);
