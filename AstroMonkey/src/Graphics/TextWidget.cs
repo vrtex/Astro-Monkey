@@ -10,17 +10,17 @@ namespace AstroMonkey.Graphics
 {
     class TextWidget : Widget
     {
-        private string value;
+        private string displayString = "";
         public Color Color = Color.White;
         public SpriteFont font = Graphics.SpriteContainer.Instance.GetFont("planetary");
         Vector2 textScale = new Vector2(1, 1);
         Vector2 textSize = new Vector2();
 
-        public string Value {
-            get => value;
+        public string DisplayString {
+            get => displayString;
             set
             {
-                this.value = value;
+                this.displayString = value;
                 textSize = font.MeasureString(value);
                 var graphics = ViewManager.Instance.graphics;
                 Vector2 screenSize = new Vector2(graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight);
@@ -42,7 +42,7 @@ namespace AstroMonkey.Graphics
         public override void Draw(SpriteBatch spriteBatch)
         {
             System.Console.WriteLine(GetPixelPosition());
-            spriteBatch.DrawString(font, Value, GetPixelPosition(), Color, 0, new Vector2(), textScale, SpriteEffects.None, 0);
+            spriteBatch.DrawString(font, DisplayString, GetPixelPosition(), Color, 0, new Vector2(), textScale, SpriteEffects.None, 0);
         }
     }
 }
