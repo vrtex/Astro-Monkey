@@ -42,7 +42,7 @@ namespace AstroMonkey.Assets.Scenes
 			objects.Add(new Objects.TextButton("New Game", "planetary", new Vector2(0.75f, 0.2f), new Vector2(0.25f, 0.05f)));
 			(objects.Last() as Objects.TextButton).onClick += PlayGame;
 			mainMenu.Add(objects.Last() as UI.UIElement);
-			(objects.Last() as Objects.TextButton).value = 0;
+			(objects.Last() as Objects.TextButton).value = -1;
 
 			objects.Add(new Objects.TextButton("Load Game", "planetary", new Vector2(0.75f, 0.3f), new Vector2(0.26f, 0.05f)));
 			(objects.Last() as Objects.TextButton).onClick += LoadGame;
@@ -231,7 +231,11 @@ namespace AstroMonkey.Assets.Scenes
 		{
 			MediaPlayer.Stop();
 
-			if(textButton.value == 0)
+			if(textButton.value == -1)
+			{
+				GameManager.Instance.NextScene = "begin";
+			}
+			else if(textButton.value == 0)
 			{
 				GameManager.Instance.NextScene = "level1";
 			}
