@@ -30,6 +30,7 @@ namespace AstroMonkey.Gameplay
         public delegate void GunEvent(Gun gun);
         public event GunEvent OnWeaponChange;
         public event GunEvent OnAmmoChange;
+        public event GunEvent OnReloadProgress;
 
         private Audio.AudioSource ShootSoundComponent;
         private bool shooting = false;
@@ -89,15 +90,12 @@ namespace AstroMonkey.Gameplay
             currentClipIndex = currentClipIndex % ammoClips.Count;
             while(currentClipIndex < 0) currentClipIndex += ammoClips.Count;
 
-            // TODO: add clip loading/unloading
-
             if(currentClip != null)
-                currentClip.onReload -= ReloadHandler;
+                currentClip.OnReload -= ReloadHandler;
 
             currentClip = ammoClips[currentClipIndex];
             OnWeaponChange?.Invoke(this);
-            currentClip.onReload += ReloadHandler;
-            Console.WriteLine(ammoClips[currentClipIndex].clip.ammoType);
+            currentClip.OnReload += ReloadHandler;
         }
 
         private void ReloadHandler(AmmoClip clip)
@@ -109,6 +107,8 @@ namespace AstroMonkey.Gameplay
         {
             base.Update(gameTime);
             currentClip.Update(gameTime);
+            if(currentClip.IsReloading)
+                OnReloadProgress?.Invoke(this);
 
             if(shooting)
                 Shoot(Input.InputManager.Manager.MouseCursorInWorldSpace);
@@ -140,6 +140,16 @@ namespace AstroMonkey.Gameplay
         public bool RestoreAmmo(BaseAmmo ammoPack)
         {
             return RestoreAmmo(ammoPack.ProjectileType, ammoPack.Count);
+        }
+
+        public bool IsReloading()
+        {
+            return currentClip.IsReloading;
+        }
+
+        public float GetReloadLeft()
+        {
+            return currentClip.GetReloadLeft();
         }
 
         public override string ToString()
