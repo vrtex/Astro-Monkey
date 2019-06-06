@@ -20,7 +20,8 @@ namespace AstroMonkey.Graphics
             //interfejs
             images.Add("mark", game.Content.Load<Texture2D>(@"gfx/UI/HUD/mark"));
             images.Add("bar", game.Content.Load<Texture2D>(@"gfx/UI/HUD/bar"));
-            images.Add("gunIcons", game.Content.Load<Texture2D>(@"gfx/HUD/guns"));
+			images.Add("bananabar", game.Content.Load<Texture2D>(@"gfx/UI/HUD/bananabar"));
+			images.Add("gunIcons", game.Content.Load<Texture2D>(@"gfx/HUD/guns"));
 
             //efekty
             images.Add("poop", game.Content.Load<Texture2D>(@"gfx/Projectiles/Poop")); 
@@ -84,15 +85,15 @@ namespace AstroMonkey.Graphics
 			fonts.Add("planetary", game.Content.Load<SpriteFont>(@"spritefonts/PlanetaryContact"));
 
 			//sceny
-			images.Add("scene01", game.Content.Load<Texture2D>(@"gfx/Scenes/scene01"));
-			images.Add("scene02", game.Content.Load<Texture2D>(@"gfx/Scenes/scene02"));
-			images.Add("scene03", game.Content.Load<Texture2D>(@"gfx/Scenes/scene03"));
-			images.Add("scene04", game.Content.Load<Texture2D>(@"gfx/Scenes/scene04"));
-			images.Add("scene05", game.Content.Load<Texture2D>(@"gfx/Scenes/scene05"));
-			images.Add("scene06", game.Content.Load<Texture2D>(@"gfx/Scenes/scene06"));
-			images.Add("scene07", game.Content.Load<Texture2D>(@"gfx/Scenes/scene07"));
-			images.Add("scene08", game.Content.Load<Texture2D>(@"gfx/Scenes/scene08"));
-			images.Add("scene09", game.Content.Load<Texture2D>(@"gfx/Scenes/scene09"));
+			images.Add("scene1", game.Content.Load<Texture2D>(@"gfx/Scenes/scene01"));
+			images.Add("scene2", game.Content.Load<Texture2D>(@"gfx/Scenes/scene02"));
+			images.Add("scene3", game.Content.Load<Texture2D>(@"gfx/Scenes/scene03"));
+			images.Add("scene4", game.Content.Load<Texture2D>(@"gfx/Scenes/scene04"));
+			images.Add("scene5", game.Content.Load<Texture2D>(@"gfx/Scenes/scene05"));
+			images.Add("scene6", game.Content.Load<Texture2D>(@"gfx/Scenes/scene06"));
+			images.Add("scene7", game.Content.Load<Texture2D>(@"gfx/Scenes/scene07"));
+			images.Add("scene8", game.Content.Load<Texture2D>(@"gfx/Scenes/scene08"));
+			images.Add("scene9", game.Content.Load<Texture2D>(@"gfx/Scenes/scene09"));
 			images.Add("scene10", game.Content.Load<Texture2D>(@"gfx/Scenes/scene10"));
 		}
 
