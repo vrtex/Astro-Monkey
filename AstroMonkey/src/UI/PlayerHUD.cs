@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using AstroMonkey.Core;
 using AstroMonkey.Gameplay;
 using Microsoft.Xna.Framework;
+using AstroMonkey.Assets.Objects;
 
 namespace AstroMonkey.UI
 {
@@ -16,7 +14,14 @@ namespace AstroMonkey.UI
 
         private Image healthBar;
         private AmmoDisplay ammoDisplay;
-        //private Text ammoDisplay;
+
+        private Dictionary<Type, Graphics.Widget> gunIcons = new Dictionary<Type, Graphics.Widget>
+        {
+            [typeof(PistolBullet)] = new Graphics.Widget(new Vector2(0.8f, 0.8f)),
+            [typeof(RifleBullet)] = new Graphics.Widget(new Vector2(0.8f, 0.8f)),
+            [typeof(Rocket)] = new Graphics.Widget(new Vector2(0.8f, 0.8f)),
+            [typeof(ShotgunProjectile)] = new Graphics.Widget(new Vector2(0.8f, 0.8f))
+        };
 
         public PlayerHUD(GameObject parent)
         {

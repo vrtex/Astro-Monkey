@@ -105,11 +105,20 @@ namespace AstroMonkey
 
 			Core.GameManager.Instance.InitializeGame(this, graphics);
 			sceneContents = new RenderTarget2D(GraphicsDevice, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height);
-			float ratio = ((float)graphics.PreferredBackBufferWidth) / ((float)graphics.PreferredBackBufferHeight);
+            float ratio = ((float)graphics.PreferredBackBufferWidth) / ((float)graphics.PreferredBackBufferHeight);
 			Graphics.EffectContainer.Instance.GetEffect("LightOff").Parameters["aspectRatio"].SetValue(ratio);
 
             //Dodawanie aktywnych efektów do renderowania
             //Graphics.ViewManager.Instance.activeEffects.Add(Graphics.EffectContainer.Instance.GetEffect("LightOff"));
+
+            //Graphics.Widget widget = new Graphics.Widget(new Vector2(), new Vector2(1, 0.5f));
+            //widget.Texture = Graphics.SpriteContainer.Instance.GetImage("bar");
+            //widget.SourceRectangle = new Rectangle(0, 2, 40, 2);
+
+            Graphics.TextWidget textWidget = new Graphics.TextWidget(new Vector2(0.9f, 0.9f), new Vector2(0.1f, 0.1f));
+            textWidget.Value = "hellO";
+
+            Graphics.WidgetManager.AddWidget(textWidget);
 
 			base.Initialize();
 
@@ -167,6 +176,8 @@ namespace AstroMonkey
 		protected override void Draw(GameTime gameTime)
         {
             Graphics.ViewManager.Instance.Render(spriteBatch, GraphicsDevice, sceneContents);
+
+            Graphics.WidgetManager.Render(spriteBatch, GraphicsDevice);
 
 			base.Draw(gameTime);
         }
