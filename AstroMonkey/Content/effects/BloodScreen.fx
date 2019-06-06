@@ -7,16 +7,16 @@
 	#define PS_SHADERMODEL ps_4_0_level_9_1
 #endif
 
-float health = 0;
+//float health = 0;
 float time = 0;
 float currTime;
-Texture2D bloodScreen = NULL;
+Texture2D bloodScreen;
 
 matrix WorldViewProjection;
 
 Texture2D SpriteTexture;
 
-sampler2D SpriteTextureSampler = sampler_state {
+SamplerState SpriteTextureSampler = sampler_state {
 	Texture = <SpriteTexture>;
 };
 
@@ -43,11 +43,13 @@ float4 MainPS(VertexShaderOutput input) : COLOR
 	float4 color = tex2D(SpriteTextureSampler, input.TextureCoordinates) * input.Color;
 	float2 position = input.TextureCoordinates.xy;
 
+	float4 c2 = bloodScreen.Sample(TextureSampler, float2(0, 0));
+
 	if (currTime < time + .2) {
 		color.r = color.r + color.r * (currTime - time) * 2;
 	}
 
-	return color;
+	return c2 + color;
 
 	
 }
