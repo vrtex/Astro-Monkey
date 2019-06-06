@@ -21,6 +21,7 @@ namespace AstroMonkey.Graphics
             images.Add("mark", game.Content.Load<Texture2D>(@"gfx/UI/HUD/mark"));
             images.Add("bar", game.Content.Load<Texture2D>(@"gfx/UI/HUD/bar"));
 			images.Add("bananabar", game.Content.Load<Texture2D>(@"gfx/UI/HUD/bananabar"));
+			images.Add("reloadTime", game.Content.Load<Texture2D>(@"gfx/UI/HUD/reloadTime"));
 			images.Add("gunIcons", game.Content.Load<Texture2D>(@"gfx/HUD/guns"));
 
             //efekty
