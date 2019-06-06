@@ -20,9 +20,9 @@ namespace AstroMonkey.Assets.Scenes
         {
             base.Load();
 
-            MediaPlayer.IsRepeating = true;
-            MediaPlayer.Volume = Util.Statics.musicVolume;
-            MediaPlayer.Play(Audio.SoundContainer.Instance.GetSong("menu"));
+            //MediaPlayer.IsRepeating = true;
+            //MediaPlayer.Volume = Util.Statics.musicVolume;
+            //MediaPlayer.Play(Audio.SoundContainer.Instance.GetSong("menu"));
 
             objects.Add(new UI.Text("Astro Monkey", "planetary", new Vector2(0.5f, 0.05f), new Vector2(0.25f, 0.1f)));
 

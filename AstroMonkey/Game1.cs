@@ -20,6 +20,8 @@ namespace AstroMonkey
         InputManager				inputManager;
 		RenderTarget2D              sceneContents;
         public static Game1 self;
+        public static System.TimeSpan totalGameTime;
+        Texture2D blood_screen;
 
         public Game1()
         {
@@ -126,6 +128,7 @@ namespace AstroMonkey
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // TODO: use this.Content to load your game content here
+            blood_screen = Content.Load<Texture2D>(@"gfx/Projectiles/BloodScreen");
         }
 
         /// <summary>
@@ -144,17 +147,25 @@ namespace AstroMonkey
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
+            totalGameTime = gameTime.TotalGameTime;
+
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
             Core.GameManager.UpdateScene();
             Core.GameManager.FinalizeSpwaning();
-            Graphics.AnimationManager.Instance.Update(gameTime.ElapsedGameTime.TotalSeconds);
+            Graphics.AnimationManager.Instance.Update(gameTime.ElapsedGameTime.TotalSeconds);            
+
             foreach(Core.GameObject go in Core.SceneManager.Instance.currScene.objects)
             {
                 go.Update(gameTime);
             }
 
+            Graphics.EffectContainer.Instance.GetEffect("BloodScreen").Parameters["currTime"].SetValue((float)totalGameTime.TotalSeconds);
+            Graphics.EffectContainer.Instance.GetEffect("BloodScreen").Parameters["NormalSampler+BloodScreen"].SetValue(blood_screen);
+
+
+            //Debug.WriteLine(xxx);
 
             PhysicsManager.ResolveAllCollision();
             base.Update(gameTime);
@@ -167,11 +178,11 @@ namespace AstroMonkey
 		/// 
 		protected override void Draw(GameTime gameTime)
         {
+
+
             Graphics.ViewManager.Instance.Render(spriteBatch, GraphicsDevice, sceneContents);
 
             Graphics.WidgetManager.Render(spriteBatch, GraphicsDevice);
-
-			base.Draw(gameTime);
         }
 
     }
