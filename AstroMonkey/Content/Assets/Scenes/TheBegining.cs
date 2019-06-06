@@ -28,23 +28,23 @@ namespace AstroMonkey.Assets.Scenes
 			}
 			scenesText.Add(new Graphics.TextWidget(new Vector2(0.01f, 0.01f)));
 			scenesText.Last().ZOrder = 1;
-			scenesText.Last().DisplayString = "5";
+			scenesText.Last().DisplayString = "and it ran to get a gun";
 
 			scenesText.Add(new Graphics.TextWidget(new Vector2(0.01f, 0.01f)));
 			scenesText.Last().ZOrder = 1;
-			scenesText.Last().DisplayString = "4";
+			scenesText.Last().DisplayString = "It switched control to autopilot";
 
 			scenesText.Add(new Graphics.TextWidget(new Vector2(0.01f, 0.01f)));
 			scenesText.Last().ZOrder = 1;
-			scenesText.Last().DisplayString = "3";
+			scenesText.Last().DisplayString = "It was the only commander who could save the expedition. ";
 
 			scenesText.Add(new Graphics.TextWidget(new Vector2(0.01f, 0.01f)));
 			scenesText.Last().ZOrder = 1;
-			scenesText.Last().DisplayString = "2";
+			scenesText.Last().DisplayString = "However, evil aliens attacked her along the way. ";
 
 			scenesText.Add(new Graphics.TextWidget(new Vector2(0.01f, 0.01f)));
 			scenesText.Last().ZOrder = 1;
-			scenesText.Last().DisplayString = "Monkey go into space";
+			scenesText.Last().DisplayString = "The monkey was sent on a journey to Mars.";
 
 			Graphics.WidgetManager.AddWidget(scenes.Last());
 			Graphics.WidgetManager.AddWidget(scenesText.Last());

@@ -40,7 +40,10 @@ namespace AstroMonkey.Assets.Scenes
 
 			MediaPlayer.Play(Audio.SoundContainer.Instance.GetSong("01"));
 
-			Physics.PhysicsManager.player = playerObject.GetComponent<Physics.Collider.Collider>();
+            Graphics.ViewManager.Instance.activeEffects.Clear();
+            Graphics.ViewManager.Instance.activeEffects.Add(Graphics.EffectContainer.Instance.GetEffect("BloodScreen"));
+
+            Physics.PhysicsManager.player = playerObject.GetComponent<Physics.Collider.Collider>();
 		}
     }
 }
