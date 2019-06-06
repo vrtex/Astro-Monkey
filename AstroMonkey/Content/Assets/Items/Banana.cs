@@ -2,12 +2,14 @@
 using Microsoft.Xna.Framework;
 using System;
 using AstroMonkey.Physics.Collider;
+using AstroMonkey.Core;
 
 namespace AstroMonkey.Assets.Objects
 {
     class Banana: Core.GameObject
     {
         private Gameplay.InteractComponent interactComponent;
+        private Collider collider;
 
         public Banana(): this(new Core.Transform())
         {
@@ -32,7 +34,8 @@ namespace AstroMonkey.Assets.Objects
         private void Load(Core.Transform _transform)
         {
             // Physics
-            AddComponent(new CircleCollider(this, CollisionChanell.Item, Vector2.Zero, size / 2));
+            collider = AddComponent(new CircleCollider(this, CollisionChanell.Item, Vector2.Zero, size / 2));
+            collider.OnBeginOverlap += CheckCollision;
 
             interactComponent = AddComponent(new Gameplay.InteractComponent(this));
             interactComponent.OnInteract += InteractHnadler;
@@ -57,6 +60,17 @@ namespace AstroMonkey.Assets.Objects
             GetComponent<Graphics.StackAnimator>().SetAnimation("Idle");
         }
 
+        private void CheckCollision(Collider thisCollider, Collider otherCollider)
+        {
+            GameObject other = otherCollider.Parent;
+            Player player = other as Player;
+            if(player == null)
+                return;
+
+            Gameplay.Health health = player.GetComponent<Gameplay.Health>();
+            
+        }
+
         private void InteractHnadler(Gameplay.InteractComponent interactComponent, Core.GameObject interacting)
         {
             Console.WriteLine("banana interact");
@@ -70,6 +84,8 @@ namespace AstroMonkey.Assets.Objects
         public override void Destroy()
         {
             interactComponent.OnInteract -= InteractHnadler;
+            collider.OnBeginOverlap -= CheckCollision;
+            collider.Destroy();
             base.Destroy();
         }
     }

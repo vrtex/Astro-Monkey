@@ -28,7 +28,7 @@ namespace AstroMonkey.UI
             ZOrder = -1
         };
 
-        private TextWidget ammoDisplayWidget = new TextWidget(new Vector2());
+        private TextWidget ammoDisplayWidget;// set this after gun icon is set
 
         private Dictionary<Type, Graphics.Widget> gunIcons = new Dictionary<Type, Graphics.Widget>
         {
@@ -42,7 +42,7 @@ namespace AstroMonkey.UI
             { Texture = SpriteContainer.Instance.GetImage("gunIcons"), SourceRectangle = new Rectangle(60, 0, 20, 20), Scale = new Vector2(3, 3)}
         };
 
-        private Widget currentGunWiget;
+        private Widget currentGunWidget;
 
         public PlayerHUD(GameObject parent)
         {
@@ -53,32 +53,29 @@ namespace AstroMonkey.UI
             gun.OnAmmoChange += GunChange;
             gun.OnWeaponChange += GunChange;
 
-            // ammoDisplay = GameManager.SpawnObject(new AmmoDisplay(parent));
-
             WidgetManager.AddWidget(healthBarWidget);
             WidgetManager.AddWidget(healthBarBackground);
+
+            currentGunWidget = gunIcons[typeof(PistolBullet)];
+            Console.WriteLine("LOL " + currentGunWidget.GetScreenEndPoint());
+            ammoDisplayWidget = new TextWidget(new Vector2(currentGunWidget.GetScreenEndPoint().X, currentGunWidget.position.Y));
             WidgetManager.AddWidget(ammoDisplayWidget);
 
-
-
             GunChange(gun);
+
         }
 
         private void GunChange(Gun gun)
         {
             AmmoInfo currentAmmo = gun.currentClip.GetAmmoInfo();
-            // ammoDisplay.SetAmmoCount(currentAmmo);
 
-            WidgetManager.RemoveWidget(currentGunWiget);
-            currentGunWiget = gunIcons[currentAmmo.type];
-            WidgetManager.AddWidget(currentGunWiget);
+            WidgetManager.RemoveWidget(currentGunWidget);
+            currentGunWidget = gunIcons[currentAmmo.type];
+            WidgetManager.AddWidget(currentGunWidget);
 
             string ammoString = currentAmmo.loaded.ToString() + "/" + currentAmmo.reservesLeft.ToString();
             ammoDisplayWidget.DisplayString = ammoString;
 
-            //ammoDisplay.SetText("" + currentAmmo.loaded + "/" + currentAmmo.reservesLeft + "\n" +
-            //    gun.currentClip.ammoType.Name);
-            // TODO: change this to picture
         }
 
         private void HealthChanged(Health damaged, DamageInfo damageInfo)
@@ -91,9 +88,9 @@ namespace AstroMonkey.UI
             gun.OnWeaponChange -= GunChange;
             gun.OnAmmoChange -= GunChange;
 
-            // ammoDisplay.Destroy();
-
             WidgetManager.RemoveWidget(healthBarWidget);
+            WidgetManager.RemoveWidget(currentGunWidget);
+            WidgetManager.RemoveWidget(ammoDisplayWidget);
 
             base.Destroy();
         }

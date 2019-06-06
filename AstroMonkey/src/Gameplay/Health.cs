@@ -1,4 +1,5 @@
 ﻿using AstroMonkey.Core;
+using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -43,6 +44,13 @@ namespace AstroMonkey.Gameplay
                 //Parent.Destroy();
 			}
 		}
+
+        public void Restore(int toRestore)
+        {
+            health += toRestore;
+            health = MathHelper.Clamp(health, 0, maxHealth);
+            OnDamageTaken?.Invoke(this, new DamageInfo(null, -toRestore));
+        }
 
         public float GetPercentage()
         {

@@ -41,7 +41,6 @@ namespace AstroMonkey.Graphics
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            System.Console.WriteLine(GetPixelPosition());
             spriteBatch.DrawString(font, DisplayString, GetPixelPosition(), Color, 0, new Vector2(), textScale, SpriteEffects.None, 0);
         }
     }
