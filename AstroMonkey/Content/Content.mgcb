@@ -703,6 +703,18 @@
 /processorParam:TextureFormat=Color
 /build:gfx/UI/HUD/mark.png
 
+#begin gfx/UI/HUD/reloadTime.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:gfx/UI/HUD/reloadTime.png
+
 #begin Map/AstroMonkey.tmx
 /copy:Map/AstroMonkey.tmx
 
