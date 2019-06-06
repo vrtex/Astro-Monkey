@@ -4,6 +4,7 @@ using AstroMonkey.Core;
 using AstroMonkey.Gameplay;
 using Microsoft.Xna.Framework;
 using AstroMonkey.Assets.Objects;
+using AstroMonkey.Graphics;
 
 namespace AstroMonkey.UI
 {
@@ -15,12 +16,16 @@ namespace AstroMonkey.UI
         private Image healthBar;
         private AmmoDisplay ammoDisplay;
 
+        private ProgressBarWidget healthBarWidget;
+        private Widget healthBarBackground;
+
         private Dictionary<Type, Graphics.Widget> gunIcons = new Dictionary<Type, Graphics.Widget>
         {
-            [typeof(PistolBullet)] = new Graphics.Widget(new Vector2(0.8f, 0.8f)),
-            [typeof(RifleBullet)] = new Graphics.Widget(new Vector2(0.8f, 0.8f)),
-            [typeof(Rocket)] = new Graphics.Widget(new Vector2(0.8f, 0.8f)),
-            [typeof(ShotgunProjectile)] = new Graphics.Widget(new Vector2(0.8f, 0.8f))
+            [typeof(PistolBullet)] = new Widget(new Vector2(0.8f, 0.8f))
+            { Texture = SpriteContainer.Instance.GetImage(""), SourceRectangle = new Rectangle()},
+            [typeof(RifleBullet)] = new Widget(new Vector2(0.8f, 0.8f)),
+            [typeof(Rocket)] = new Widget(new Vector2(0.8f, 0.8f)),
+            [typeof(ShotgunProjectile)] = new Widget(new Vector2(0.8f, 0.8f))
         };
 
         public PlayerHUD(GameObject parent)
@@ -28,7 +33,7 @@ namespace AstroMonkey.UI
             health = parent.GetComponent<Health>();
             gun = parent.GetComponent<Gun>();
 
-            //health.OnDamageTaken += HealthChanged;
+            health.OnDamageTaken += HealthChanged;
             gun.OnAmmoChange += GunChange;
             gun.OnWeaponChange += GunChange;
 
@@ -36,6 +41,24 @@ namespace AstroMonkey.UI
 
             healthBar = GameManager.SpawnObject(new Image(new Transform(parent.transform)));
             healthBar.image = new Graphics.Sprite(healthBar, "bar", new List<Rectangle>() { new Rectangle(0, 0, 20, 2) }, 100);
+
+
+            healthBarWidget = new ProgressBarWidget(new Vector2(0.1f, 0.9f), new Vector2(0.3f, 0.05f))
+            {
+                Texture = SpriteContainer.Instance.GetImage("bar"),
+                SourceRectangle = new Rectangle(0, 0, 40, 2)
+            };
+            WidgetManager.AddWidget(healthBarWidget);
+
+            healthBarBackground = new Widget(new Vector2(0.1f, 0.9f), new Vector2(0.3f, 0.05f))
+            {
+                Texture = SpriteContainer.Instance.GetImage("bar"),
+                SourceRectangle = new Rectangle(0, 2, 40, 2),
+                ZOrder = -1
+            };
+            WidgetManager.AddWidget(healthBarBackground);
+
+
 
             GunChange(gun);
         }
@@ -51,7 +74,7 @@ namespace AstroMonkey.UI
 
         private void HealthChanged(Health damaged, DamageInfo damageInfo)
         {
-            throw new NotImplementedException();
+            healthBarWidget.SetProgress(damaged.GetPercentage());
         }
 
         public override void Destroy()
@@ -61,6 +84,9 @@ namespace AstroMonkey.UI
 
             healthBar.Destroy();
             ammoDisplay.Destroy();
+
+            WidgetManager.RemoveWidget(healthBarWidget);
+
             base.Destroy();
         }
     }

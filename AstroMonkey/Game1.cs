@@ -115,8 +115,9 @@ namespace AstroMonkey
             //widget.Texture = Graphics.SpriteContainer.Instance.GetImage("bar");
             //widget.SourceRectangle = new Rectangle(0, 2, 40, 2);
 
-            Graphics.TextWidget textWidget = new Graphics.TextWidget(new Vector2(0.9f, 0.9f), new Vector2(0.1f, 0.1f));
-            textWidget.Value = "hellO";
+            Graphics.ProgressBarWidget textWidget = new Graphics.ProgressBarWidget(new Vector2(0.9f, 0.9f), new Vector2(0.1f, 0.1f));
+            textWidget.Texture = Graphics.SpriteContainer.Instance.GetImage("poop");
+            textWidget.SetProgress(0.5f);
 
             Graphics.WidgetManager.AddWidget(textWidget);
 

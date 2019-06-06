@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace AstroMonkey.Graphics
 {
+
     class Widget
     {
         public bool stretchX = false;
@@ -17,6 +18,8 @@ namespace AstroMonkey.Graphics
         protected Vector2 size;
 
         private Texture2D texture;
+
+        public int ZOrder = 0;
 
         public Texture2D Texture {
             get => texture;
@@ -66,6 +69,15 @@ namespace AstroMonkey.Graphics
         {
             return new Vector2(ViewManager.Instance.graphics.PreferredBackBufferWidth * size.X,
                               ViewManager.Instance.graphics.PreferredBackBufferHeight * size.Y);
+        }
+    }
+
+
+    class WidgetComparator : IComparer<Widget>
+    {
+        int IComparer<Widget>.Compare(Widget x, Widget y)
+        {
+            return x.ZOrder - y.ZOrder;
         }
     }
 }
