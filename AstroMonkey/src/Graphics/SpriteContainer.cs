@@ -88,6 +88,11 @@ namespace AstroMonkey.Graphics
 			images.Add("scene03", game.Content.Load<Texture2D>(@"gfx/Scenes/scene03"));
 			images.Add("scene04", game.Content.Load<Texture2D>(@"gfx/Scenes/scene04"));
 			images.Add("scene05", game.Content.Load<Texture2D>(@"gfx/Scenes/scene05"));
+			images.Add("scene06", game.Content.Load<Texture2D>(@"gfx/Scenes/scene06"));
+			images.Add("scene07", game.Content.Load<Texture2D>(@"gfx/Scenes/scene07"));
+			images.Add("scene08", game.Content.Load<Texture2D>(@"gfx/Scenes/scene08"));
+			images.Add("scene09", game.Content.Load<Texture2D>(@"gfx/Scenes/scene09"));
+			images.Add("scene10", game.Content.Load<Texture2D>(@"gfx/Scenes/scene10"));
 		}
 
         public Texture2D GetImage(string name)

@@ -30,7 +30,7 @@ namespace AstroMonkey.Assets.Scenes
 				}
 				else if(o is Objects.FloorExit)
 				{
-					(o as Objects.FloorExit).GetComponent<Gameplay.ChangeLevel>().nextLevel = "menu";
+					(o as Objects.FloorExit).GetComponent<Gameplay.ChangeLevel>().nextLevel = "ending";
 				}
 			}
 

@@ -138,6 +138,7 @@
     <Compile Include="Content\Assets\Scenes\MainMenu.cs" />
     <Compile Include="Content\Assets\Scenes\Pause.cs" />
     <Compile Include="Content\Assets\Scenes\TheBegining.cs" />
+    <Compile Include="Content\Assets\Scenes\TheEnd.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
