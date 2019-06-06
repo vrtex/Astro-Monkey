@@ -13,15 +13,13 @@ namespace AstroMonkey.UI
         private Health health;
         private Gun gun;
 
-        // private AmmoDisplay ammoDisplay;
-
-        private ProgressBarWidget healthBarWidget = new ProgressBarWidget(new Vector2(0.1f, 0.9f), new Vector2(0.3f, 0.05f))
+        private ProgressBarWidget healthBarWidget = new ProgressBarWidget(new Vector2(0.02f, 0.95f), new Vector2(0.2f, 0.025f))
         {
             Texture = SpriteContainer.Instance.GetImage("bananabar"),
             SourceRectangle = new Rectangle(0, 0, 80, 4)
         };
 
-        private Widget healthBarBackground = new Widget(new Vector2(0.1f, 0.9f), new Vector2(0.3f, 0.05f))
+        private Widget healthBarBackground = new Widget(new Vector2(0.02f, 0.95f), new Vector2(0.2f, 0.025f))
         {
             Texture = SpriteContainer.Instance.GetImage("bananabar"),
             SourceRectangle = new Rectangle(0, 4, 80, 4),
@@ -29,7 +27,7 @@ namespace AstroMonkey.UI
         };
 
         private TextWidget ammoDisplayWidget; // set this after gun icon is set
-        private ProgressBarWidget reloadBar; // same here
+        private ProgressBarWidget reloadBarWidget; // same here
 
         private Dictionary<Type, Graphics.Widget> gunIcons = new Dictionary<Type, Graphics.Widget>
         {
@@ -66,10 +64,10 @@ namespace AstroMonkey.UI
             WidgetManager.AddWidget(ammoDisplayWidget);
 
             float barSize = iconEnd.X - currentGunWidget.position.X;
-            reloadBar = new ProgressBarWidget(new Vector2(currentGunWidget.position.X, iconEnd.Y + 0.01f), new Vector2(barSize, 0))
+            reloadBarWidget = new ProgressBarWidget(new Vector2(currentGunWidget.position.X, iconEnd.Y + 0.01f), new Vector2(barSize, 0))
             { Texture = SpriteContainer.Instance.GetImage("reloadTime"), SourceRectangle = new Rectangle(0, 0, 80, 4) };
-            reloadBar.SetProgress(0);
-            WidgetManager.AddWidget(reloadBar);
+            reloadBarWidget.SetProgress(0);
+            WidgetManager.AddWidget(reloadBarWidget);
 
             GunChange(gun);
 
@@ -77,7 +75,7 @@ namespace AstroMonkey.UI
 
         private void UpdateReloadBar(Gun gun)
         {
-            reloadBar.SetProgress(gun.GetReloadLeft());
+            reloadBarWidget.SetProgress(gun.GetReloadLeft());
         }
 
         private void GunChange(Gun gun)
@@ -102,10 +100,12 @@ namespace AstroMonkey.UI
         {
             gun.OnWeaponChange -= GunChange;
             gun.OnAmmoChange -= GunChange;
+            gun.OnReloadProgress -= UpdateReloadBar;
 
             WidgetManager.RemoveWidget(healthBarWidget);
             WidgetManager.RemoveWidget(currentGunWidget);
             WidgetManager.RemoveWidget(ammoDisplayWidget);
+            WidgetManager.RemoveWidget(reloadBarWidget);
 
             base.Destroy();
         }

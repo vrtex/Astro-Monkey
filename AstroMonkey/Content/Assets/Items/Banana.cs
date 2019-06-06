@@ -62,12 +62,15 @@ namespace AstroMonkey.Assets.Objects
 
         private void CheckCollision(Collider thisCollider, Collider otherCollider)
         {
+            Console.WriteLine("collision");
             GameObject other = otherCollider.Parent;
             Player player = other as Player;
             if(player == null)
                 return;
 
             Gameplay.Health health = player.GetComponent<Gameplay.Health>();
+            health.Restore(30);
+            Destroy();
             
         }
 
