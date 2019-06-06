@@ -28,23 +28,23 @@ namespace AstroMonkey.Assets.Scenes
 			}
 			scenesText.Add(new Graphics.TextWidget(new Vector2(0.01f, 0.01f)));
 			scenesText.Last().ZOrder = 1;
-			scenesText.Last().DisplayString = "5";
+			scenesText.Last().DisplayString = "Worth it";
 
 			scenesText.Add(new Graphics.TextWidget(new Vector2(0.01f, 0.01f)));
 			scenesText.Last().ZOrder = 1;
-			scenesText.Last().DisplayString = "4";
+			scenesText.Last().DisplayString = "Boop";
 
 			scenesText.Add(new Graphics.TextWidget(new Vector2(0.01f, 0.01f)));
 			scenesText.Last().ZOrder = 1;
-			scenesText.Last().DisplayString = "3";
+			scenesText.Last().DisplayString = "3... 2... 1...";
 
 			scenesText.Add(new Graphics.TextWidget(new Vector2(0.01f, 0.01f)));
 			scenesText.Last().ZOrder = 1;
-			scenesText.Last().DisplayString = "2";
+			scenesText.Last().DisplayString = "B7 will be landing on Mars soon";
 
 			scenesText.Add(new Graphics.TextWidget(new Vector2(0.01f, 0.01f)));
 			scenesText.Last().ZOrder = 1;
-			scenesText.Last().DisplayString = "Monkey go into space";
+			scenesText.Last().DisplayString = "Banana 7 is saved";
 
 			Graphics.WidgetManager.AddWidget(scenes.Last());
 			Graphics.WidgetManager.AddWidget(scenesText.Last());
