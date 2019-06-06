@@ -16,6 +16,7 @@ namespace AstroMonkey.Graphics
 
         protected Vector2 position;
         protected Vector2 size;
+        protected Vector2 scale = Vector2.One;
 
         private Texture2D texture;
 
@@ -29,6 +30,19 @@ namespace AstroMonkey.Graphics
                 SourceRectangle = new Rectangle(0, 0, texture.Width, texture.Height);
             }
         }
+
+        public Vector2 Scale
+        {
+            get => scale;
+            set
+            {
+                scale = value;
+                size = new Vector2();
+                stretchX = false;
+                stretchY = false;
+            }
+        }
+
         public Rectangle SourceRectangle;
 
         public Widget(Vector2 position) : this(position, new Vector2())
@@ -49,14 +63,11 @@ namespace AstroMonkey.Graphics
             Rectangle toReturn = new Rectangle();
             toReturn.X = (int)(ViewManager.Instance.graphics.PreferredBackBufferWidth * position.X);
             toReturn.Y = (int)(ViewManager.Instance.graphics.PreferredBackBufferHeight * position.Y);
-            toReturn.Width = stretchX ? (int)(ViewManager.Instance.graphics.PreferredBackBufferWidth * size.X) : Texture.Width;
-            toReturn.Height = stretchY ? (int)(ViewManager.Instance.graphics.PreferredBackBufferHeight * size.Y) : Texture.Height;
+            toReturn.Width = stretchX ? (int)(ViewManager.Instance.graphics.PreferredBackBufferWidth * size.X) : SourceRectangle.Width;
+            toReturn.Height = stretchY ? (int)(ViewManager.Instance.graphics.PreferredBackBufferHeight * size.Y) : SourceRectangle.Height;
+            toReturn.Width = (int)(toReturn.Width * scale.X);
+            toReturn.Height = (int)(toReturn.Height * scale.Y);
             return toReturn;
-        }
-
-        public virtual void Draw(SpriteBatch spriteBatch)
-        {
-            spriteBatch.Draw(texture: Texture, destinationRectangle: GetDestinationRectangle(), sourceRectangle: SourceRectangle);
         }
 
         public Vector2 GetPixelPosition()
@@ -69,6 +80,20 @@ namespace AstroMonkey.Graphics
         {
             return new Vector2(ViewManager.Instance.graphics.PreferredBackBufferWidth * size.X,
                               ViewManager.Instance.graphics.PreferredBackBufferHeight * size.Y);
+        }
+
+        public virtual Vector2 getScreenEndPoint()
+        {
+            Vector2 toReturn = new Vector2();
+
+            toReturn.X = position.X;
+
+            return toReturn;
+        }
+
+        public virtual void Draw(SpriteBatch spriteBatch)
+        {
+            spriteBatch.Draw(texture: Texture, destinationRectangle: GetDestinationRectangle(), sourceRectangle: SourceRectangle);
         }
     }
 
