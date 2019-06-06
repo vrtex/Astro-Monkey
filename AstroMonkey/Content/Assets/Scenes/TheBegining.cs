@@ -23,7 +23,7 @@ namespace AstroMonkey.Assets.Scenes
 			for(int i = 5; i >= 1; --i)
 			{
 				scenes.Add(new Graphics.Widget(new Vector2(0f, 0f), new Vector2(1f, 1f)));
-				scenes.Last().Texture = Graphics.SpriteContainer.Instance.GetImage("scene0" + i);
+				scenes.Last().Texture = Graphics.SpriteContainer.Instance.GetImage("scene" + i);
 			}
 
 			Graphics.WidgetManager.AddWidget(scenes.Last());
