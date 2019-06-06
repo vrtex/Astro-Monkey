@@ -81,6 +81,13 @@ namespace AstroMonkey.Graphics
             //fonty
             fonts.Add("text", game.Content.Load<SpriteFont>(@"spritefonts/text"));
 			fonts.Add("planetary", game.Content.Load<SpriteFont>(@"spritefonts/PlanetaryContact"));
+
+			//sceny
+			images.Add("scene01", game.Content.Load<Texture2D>(@"gfx/Scenes/scene01"));
+			images.Add("scene02", game.Content.Load<Texture2D>(@"gfx/Scenes/scene02"));
+			images.Add("scene03", game.Content.Load<Texture2D>(@"gfx/Scenes/scene03"));
+			images.Add("scene04", game.Content.Load<Texture2D>(@"gfx/Scenes/scene04"));
+			images.Add("scene05", game.Content.Load<Texture2D>(@"gfx/Scenes/scene05"));
 		}
 
         public Texture2D GetImage(string name)
