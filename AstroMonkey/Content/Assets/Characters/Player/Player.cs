@@ -184,24 +184,11 @@ namespace AstroMonkey.Assets.Objects
 
         private void OnDeath(Health damaged, DamageInfo damageInfo)
         {
+            healthComponent.OnDepleted -= OnDeath;
             gameoverSFX.Play();
             PlayerDead corpse = new PlayerDead(new Transform(transform));
             GameManager.SpawnObject(corpse);
             Destroy();
-            //inputComponent.Destroy();
-            //RemoveComponent(inputComponent);
-
-            //movement.Destroy();
-            //RemoveComponent(movement);
-
-            //hitSFX.Destroy();
-            //idleSFX.Destroy();
-            //walkSFX.Destroy();
-            //RemoveComponent(hitSFX);
-            //RemoveComponent(idleSFX);
-            //RemoveComponent(walkSFX);
-
-            //gameoverSFX.Play();
         }
 
         private void OnDamageTaken(Health damaged, DamageInfo damageInfo)
@@ -264,6 +251,9 @@ namespace AstroMonkey.Assets.Objects
         public override void Destroy()
         {
 			Audio.AudioManager.Instance.PlayerTransform = null;
+
+            healthComponent.OnDepleted -= OnDeath;
+            healthComponent.OnDamageTaken -= OnDamageTaken;
 
 			walkSFX.Stop();
 			hitSFX.Stop();

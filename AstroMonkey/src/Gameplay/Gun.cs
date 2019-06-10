@@ -125,6 +125,11 @@ namespace AstroMonkey.Gameplay
 
         public void Reload()
         {
+            if(IsReloading())
+                return;
+            var ammo = currentClip.GetAmmoInfo();
+            if(ammo.clipSize == ammo.loaded)
+                return;
             currentClip.StartReload();
         }
 
