@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Input;
 using System.Collections.Generic;
 using System;
+using AstroMonkey.Assets.Objects;
 
 namespace AstroMonkey.Core
 {
@@ -23,6 +24,8 @@ namespace AstroMonkey.Core
 				}
 			}
 		}
+
+        public Player.PlayerState? playerState = null;
 
         static GameManager()
         {

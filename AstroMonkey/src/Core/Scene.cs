@@ -86,8 +86,6 @@ namespace AstroMonkey.Core
                     Group g2 = m.Groups[2];
                     mapWidth = int.Parse(g1.Value);
                     mapHeight = int.Parse(g2.Value);
-                    Console.WriteLine(mapWidth);
-                    Console.WriteLine(mapHeight);
                 }
 
                 Regex regex = new Regex(@"<data encoding=.csv.>(.*?)<\/data>");
@@ -316,6 +314,9 @@ namespace AstroMonkey.Core
 
         public virtual void UnLoad()
         {
+            Assets.Objects.Player player = GetObjectByClass<Assets.Objects.Player>();
+            if(player != null)
+                GameManager.Instance.playerState = player.GetPlayerState();
             foreach(GameObject obj in objects)
                 obj.Destroy();
             Graphics.ViewManager.Instance.PlayerTransform = null;
@@ -326,6 +327,16 @@ namespace AstroMonkey.Core
             foreach(GameObject gameObject in objects)
                 GameManager.SpawnObject(gameObject);
         }
+
+        public T GetObjectByClass<T>() where T : GameObject
+        {
+            foreach(GameObject o in objects)
+                if(o is T)
+                    return (T)o;
+            return null;
+        }
+            
+            
 
         public List<T> GetObjectsByClass<T>() where T : GameObject
         {

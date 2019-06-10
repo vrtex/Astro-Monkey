@@ -112,7 +112,7 @@ namespace AstroMonkey.Assets.Objects
 			corp = typeof(Alien02Dead);
 
 			Gameplay.Gun gun = AddComponent(new Gameplay.Gun(this));
-            gun.AddAmmoClip(Gameplay.Gun.alienClip);
+            gun.AddAmmoClip(Gameplay.Gun.alienClip.Copy());
             aiAttack.shoot = true;
             aiAttack.attackDistance = 6 * 32f * Core.SceneManager.scale;
 

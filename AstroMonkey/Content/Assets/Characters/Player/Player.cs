@@ -6,12 +6,20 @@ using AstroMonkey.Physics.Collider;
 using Microsoft.Xna.Framework.Graphics;
 using System.Diagnostics;
 using AstroMonkey.Gameplay;
+using AstroMonkey.Input;
+using AstroMonkey.Core;
 
 namespace AstroMonkey.Assets.Objects
 {
 
     class Player: Core.GameObject
     {
+        public struct PlayerState
+        {
+            public int health;
+            public List<ClipInfo> ammo;
+        }
+
         private int height = 21;
         private int size = 21;
 
@@ -20,27 +28,30 @@ namespace AstroMonkey.Assets.Objects
 		private Audio.AudioSource idleSFX;
 		private Audio.AudioSource gameoverSFX;
 
+        private Health healthComponent;
+        private InputComponent inputComponent;
+
         UI.PlayerHUD hud;
 
 		private Effect lightOff = null;
 
 		private Navigation.MovementComponent    movement = null;
 
-		public Player(): this(new Core.Transform())
+		public Player(): this(new Transform())
         {
         }
-        public Player(Core.Transform _transform): base(_transform)
+        public Player(Transform _transform): base(_transform)
         {
             Load(_transform);
         }
-        public Player(Vector2 position, Vector2 scale, float rotation = 0f): this(new Core.Transform(position, scale, rotation))
+        public Player(Vector2 position, Vector2 scale, float rotation = 0f): this(new Transform(position, scale, rotation))
         {
         }
-        public Player(Vector2 position): this(new Core.Transform(position, Vector2.One))
+        public Player(Vector2 position): this(new Transform(position, Vector2.One))
         {
         }
 
-        private void Load(Core.Transform _transform)
+        private void Load(Transform _transform)
         {
             // Physics
             AddComponent(new Body(this));
@@ -56,18 +67,34 @@ namespace AstroMonkey.Assets.Objects
 			gameoverSFX	= AddComponent(new Audio.AudioSource(this, Audio.SoundContainer.Instance.GetSoundEffect("GameOver")));
 
 			// Movement
-			movement =  (Navigation.MovementComponent)AddComponent(new Navigation.MovementComponent(this));
+			movement = AddComponent(new Navigation.MovementComponent(this));
 
+            PlayerState? state = Core.GameManager.Instance.playerState;
+            Console.WriteLine("loading player, state: " + state.HasValue);
             Gun gun = AddComponent(new Gun(this));
-            gun.AddAmmoClip(Gun.pistolClip);
-            gun.AddAmmoClip(Gun.rifleClip);
-            gun.AddAmmoClip(Gun.launcherClip);
-            gun.AddAmmoClip(Gun.shotgunClip);
+            if(state == null)
+            {
+                gun.AddAmmoClip(Gun.pistolClip.Copy());
+                gun.AddAmmoClip(Gun.rifleClip.Copy());
+                gun.AddAmmoClip(Gun.launcherClip.Copy());
+                gun.AddAmmoClip(Gun.shotgunClip.Copy());
+            }
+            else
+            {
+                foreach(ClipInfo clip in state.Value.ammo)
+                    // don't care about copying
+                    gun.AddAmmoClip(clip);
+            }
 
-            AddComponent(new Input.InputComponent(this));
+            inputComponent = AddComponent(new Input.InputComponent(this));
 
-            Health healthComponent = AddComponent(new Gameplay.Health(this));
+            // Health
+            healthComponent = AddComponent(new Health(this));
+            if(state.HasValue)
+                healthComponent.CurrentValue = state.Value.health;
             healthComponent.OnDamageTaken += OnDamageTaken;
+            healthComponent.OnDepleted += OnDeath;
+
             hud = Core.GameManager.SpawnObject(new UI.PlayerHUD(this));
 
             List<Rectangle> idle01 = new List<Rectangle>();
@@ -155,6 +182,28 @@ namespace AstroMonkey.Assets.Objects
 			Audio.AudioManager.Instance.PlayerTransform = transform;
 		}
 
+        private void OnDeath(Health damaged, DamageInfo damageInfo)
+        {
+            gameoverSFX.Play();
+            PlayerDead corpse = new PlayerDead(new Transform(transform));
+            GameManager.SpawnObject(corpse);
+            Destroy();
+            //inputComponent.Destroy();
+            //RemoveComponent(inputComponent);
+
+            //movement.Destroy();
+            //RemoveComponent(movement);
+
+            //hitSFX.Destroy();
+            //idleSFX.Destroy();
+            //walkSFX.Destroy();
+            //RemoveComponent(hitSFX);
+            //RemoveComponent(idleSFX);
+            //RemoveComponent(walkSFX);
+
+            //gameoverSFX.Play();
+        }
+
         private void OnDamageTaken(Health damaged, DamageInfo damageInfo)
         {
             //float val = damaged.GetPercentage();
@@ -171,30 +220,46 @@ namespace AstroMonkey.Assets.Objects
         {
             base.Update(gameTime);
 
-            Vector2 currVel = movement.CurrentVelocity;
-            if(Util.Statics.IsNearlyEqual(currVel.Length(), 0, 0.001))
-            {
-                GetComponent<Graphics.AnimatorContainer>().SetAnimation("Hold");
-				walkSFX.IsLooped = false;
-
-			}
-            else
-            {
-                GetComponent<Graphics.AnimatorContainer>().SetAnimation("HoldWalk");
-				if(walkSFX.IsLooped == false)
-				{
-					walkSFX.IsLooped = true;
-					walkSFX.Play();
-				}
-				else
-				{
-					walkSFX.RandPitch();
-				}
-			}
+            UpdateAnimation();
 
 			if(lightOff != null) lightOff.Parameters["angle"]?.SetValue(transform.rotation / ((float)Math.PI * 2));
 
 		}
+
+        private void UpdateAnimation()
+        {
+            //if(healthComponent.CurrentValue <= 0)
+            //{
+            //    GetComponent<Graphics.AnimatorContainer>().SetAnimation("Dead");
+            //    return;
+            //}
+
+            Vector2 currVel = movement.CurrentVelocity;
+            if(Util.Statics.IsNearlyEqual(currVel.Length(), 0, 0.001))
+            {
+                GetComponent<Graphics.AnimatorContainer>().SetAnimation("Hold");
+                walkSFX.IsLooped = false;
+            }
+            else
+            {
+                GetComponent<Graphics.AnimatorContainer>().SetAnimation("HoldWalk");
+                if(walkSFX.IsLooped == false)
+                {
+                    walkSFX.IsLooped = true;
+                    walkSFX.Play();
+                }
+                else
+                {
+                    walkSFX.RandPitch();
+                }
+            }
+        }
+
+        public PlayerState GetPlayerState()
+        {
+            return new PlayerState()
+            { health = GetComponent<Health>().CurrentValue, ammo = GetComponent<Gun>().GetClips() };
+        }
 
         public override void Destroy()
         {

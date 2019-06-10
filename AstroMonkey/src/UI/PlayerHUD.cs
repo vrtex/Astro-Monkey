@@ -53,6 +53,7 @@ namespace AstroMonkey.UI
             gun.OnWeaponChange += GunChange;
             gun.OnReloadProgress += UpdateReloadBar;
 
+            healthBarWidget.SetProgress(health.GetPercentage());
             WidgetManager.AddWidget(healthBarWidget);
             WidgetManager.AddWidget(healthBarBackground);
 

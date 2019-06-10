@@ -62,7 +62,6 @@ namespace AstroMonkey.Assets.Objects
 
         private void CheckCollision(Collider thisCollider, Collider otherCollider)
         {
-            Console.WriteLine("collision");
             GameObject other = otherCollider.Parent;
             Player player = other as Player;
             if(player == null)
@@ -76,7 +75,6 @@ namespace AstroMonkey.Assets.Objects
 
         private void InteractHnadler(Gameplay.InteractComponent interactComponent, Core.GameObject interacting)
         {
-            Console.WriteLine("banana interact");
             Core.Transform newTransofrm = new Core.Transform(transform);
             newTransofrm.position.X += 100;
             newTransofrm.position.Y += 100;

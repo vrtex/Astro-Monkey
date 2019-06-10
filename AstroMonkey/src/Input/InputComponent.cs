@@ -150,8 +150,8 @@ namespace AstroMonkey.Input
             verticalAxis.OnUpdate -= Move;
 
             ActionBinding spawnBinding = InputManager.Manager.GetActionBinding(shootBindingName);
-
-            spawnBinding.OnTrigger -= StartShooting;
+            if(spawnBinding != null)
+                spawnBinding.OnTrigger -= StartShooting;
 
             InputManager.Manager.RemoveBinding(shootBindingName);
             InputManager.Manager.RemoveBinding(horizontalBindingName);

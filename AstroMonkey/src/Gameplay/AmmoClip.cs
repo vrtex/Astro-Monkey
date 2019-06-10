@@ -46,6 +46,18 @@ namespace AstroMonkey.Gameplay
             currentlyInClip = clipSize;
         }
 
+        public AmmoClip(AmmoClip other)
+        {
+            ammoType = other.ammoType;
+            this.clipSize = other.clipSize;
+            this.maxAmmo = other.maxAmmo;
+            this.reloadTime = other.reloadTime;
+
+            ammoReserves = other.ammoReserves;
+            currentlyInClip = other.currentlyInClip;
+
+        }
+
         public void Update(GameTime gameTime)
         {
             TryReload((float)gameTime.ElapsedGameTime.TotalSeconds);

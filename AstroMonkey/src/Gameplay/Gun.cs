@@ -15,6 +15,13 @@ namespace AstroMonkey.Gameplay
         {
             return ammoInfo.clip;
         }
+
+        public ClipInfo Copy()
+        {
+            ClipInfo toReturn = new ClipInfo
+            { clip = new AmmoClip(clip), fireDelay = fireDelay };
+            return toReturn;
+        }
     }
 
 
@@ -164,6 +171,14 @@ namespace AstroMonkey.Gameplay
         {
             ammoClips.Add(clip);
             ChangeAmmo(true);
+        }
+
+        public List<ClipInfo> GetClips()
+        {
+            List<ClipInfo> toReturn = new List<ClipInfo>();
+            foreach(ClipInfo clip in ammoClips)
+                toReturn.Add(clip.Copy());
+            return toReturn;
         }
     }
 }
