@@ -27,9 +27,9 @@ namespace AstroMonkey.Gameplay
 
     class Gun : Component
     {
-        public static readonly ClipInfo pistolClip = new ClipInfo() { clip = new AmmoClip(typeof(PistolBullet), 5, 50, 0.5f), fireDelay = 0.2f };
+        public static readonly ClipInfo pistolClip = new ClipInfo() { clip = new AmmoClip(typeof(PistolBullet), 5, -50, 0.5f), fireDelay = 0.2f };
         public static readonly ClipInfo rifleClip = new ClipInfo { clip = new AmmoClip(typeof(RifleBullet), 25, 150, 0.5f), fireDelay = 0.15f };
-        public static readonly ClipInfo alienClip = new ClipInfo() { clip = new AmmoClip(typeof(AlienBullet), 10, 100, 0.5f), fireDelay = 0.1f };
+        public static readonly ClipInfo alienClip = new ClipInfo() { clip = new AmmoClip(typeof(AlienBullet), 10, -100, 0.5f), fireDelay = 0.1f };
         public static readonly ClipInfo launcherClip = new ClipInfo { clip = new AmmoClip(typeof(Rocket), 3, 20, 2f), fireDelay = 0.75f };
         public static readonly ClipInfo shotgunClip = new ClipInfo { clip = new AmmoClip(typeof(ShotgunProjectile), 500, 2000, 1.5f), fireDelay = 0.45f };
 
@@ -61,6 +61,7 @@ namespace AstroMonkey.Gameplay
 
 		public void Shoot(Vector2 targetPosition)
 		{
+            shooting = true;
             if(delayLeft > 0)
                 return;
             BaseProjectile projectile =
@@ -77,7 +78,6 @@ namespace AstroMonkey.Gameplay
             ShootSoundComponent.Play();
 
             OnAmmoChange?.Invoke(this);
-            shooting = true;
 
             delayLeft = ammoClips[currentClipIndex].fireDelay;
 		}

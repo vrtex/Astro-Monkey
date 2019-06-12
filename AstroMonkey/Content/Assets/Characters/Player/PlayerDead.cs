@@ -51,9 +51,11 @@ namespace AstroMonkey.Assets.Objects
 
             GetComponent<Graphics.StackAnimator>().SetAnimation("Dead");
 
-            DeadPrompt = new TextWidget(new Vector2(0.1f, 0.1f));
-            DeadPrompt.DisplayString = "Monkey died.\nClick here to restart level";
-            DeadPrompt.IsButton = true;
+            DeadPrompt = new TextWidget(new Vector2(0.1f, 0.1f))
+            {
+                DisplayString = "Monkey died.\nClick here to restart level",
+                IsButton = true
+            };
             DeadPrompt.OnClick += Restart;
 
             WidgetManager.AddWidget(DeadPrompt);

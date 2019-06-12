@@ -27,6 +27,7 @@ namespace AstroMonkey.Gameplay
         public Type ammoType { get; private set; }
         private int currentlyInClip;
         private int clipSize;
+        // if ammoReserves is < 0 it's an infinite clip
         private int ammoReserves;
         private int maxAmmo;
 
@@ -75,8 +76,15 @@ namespace AstroMonkey.Gameplay
             reloadLeft -= elapsedTime;
             if(reloadLeft > 0)
                 return;
-            int toMove = Math.Min(clipSize - currentlyInClip, ammoReserves);
-            ammoReserves -= toMove;
+            int toMove;
+            if(ammoReserves >= 0)
+                toMove = Math.Min(clipSize - currentlyInClip, ammoReserves);
+            else
+                toMove = clipSize - currentlyInClip;
+
+            if(ammoReserves >= 0)
+                ammoReserves -= toMove;
+
             currentlyInClip += toMove;
             OnReload?.Invoke(this);
         }

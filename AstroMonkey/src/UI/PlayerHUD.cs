@@ -13,6 +13,9 @@ namespace AstroMonkey.UI
         private Health health;
         private Gun gun;
 
+        private readonly string infSymbol = "inf";
+        //private readonly string infSymbol = ((char)236).ToString();
+
         private ProgressBarWidget healthBarWidget = new ProgressBarWidget(new Vector2(0.02f, 0.95f), new Vector2(0.2f, 0.025f))
         {
             Texture = SpriteContainer.Instance.GetImage("bananabar"),
@@ -86,7 +89,7 @@ namespace AstroMonkey.UI
             currentGunWidget = gunIcons[currentAmmo.type];
             WidgetManager.AddWidget(currentGunWidget);
 
-            string ammoString = currentAmmo.loaded.ToString() + "/" + currentAmmo.reservesLeft.ToString();
+            string ammoString = currentAmmo.loaded.ToString() + "/" + (currentAmmo.reservesLeft >= 0 ? currentAmmo.reservesLeft.ToString() : infSymbol);
             ammoDisplayWidget.DisplayString = ammoString;
 
         }
