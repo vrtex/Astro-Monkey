@@ -29,7 +29,7 @@ namespace AstroMonkey.UI
         private TextWidget ammoDisplayWidget; // set this after gun icon is set
         private ProgressBarWidget reloadBarWidget; // same here
 
-        private Dictionary<Type, Graphics.Widget> gunIcons = new Dictionary<Type, Graphics.Widget>
+        private Dictionary<Type, Widget> gunIcons = new Dictionary<Type, Widget>
         {
             [typeof(PistolBullet)] = new Widget(new Vector2(0.8f, 0.8f))
             { Texture = SpriteContainer.Instance.GetImage("gunIcons"), SourceRectangle = new Rectangle(0, 0, 20, 20), Scale = new Vector2(3, 3)},
@@ -56,7 +56,6 @@ namespace AstroMonkey.UI
             healthBarWidget.SetProgress(health.GetPercentage());
             WidgetManager.AddWidget(healthBarWidget);
             WidgetManager.AddWidget(healthBarBackground);
-
 
             currentGunWidget = gunIcons[typeof(PistolBullet)];
             var iconEnd = currentGunWidget.GetScreenEndPoint();

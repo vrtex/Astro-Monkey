@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using AstroMonkey.Graphics;
 
 namespace AstroMonkey.Assets.Objects
 {
@@ -13,6 +14,8 @@ namespace AstroMonkey.Assets.Objects
 
         private int height = 21;
         private int size = 21;
+
+        private TextWidget DeadPrompt;
 
         public PlayerDead(Transform transform) : base(transform)
         {
@@ -44,6 +47,25 @@ namespace AstroMonkey.Assets.Objects
 
             GetComponent<Graphics.StackAnimator>().SetAnimation("Dead");
 
+            DeadPrompt = new TextWidget(new Vector2(0.1f, 0.1f));
+            DeadPrompt.DisplayString = "Monkey died.\nClick here to restart level";
+            DeadPrompt.IsButton = true;
+            DeadPrompt.OnClick += Restart;
+
+            WidgetManager.AddWidget(DeadPrompt);
+
+        }
+
+        private void Restart(Widget widget)
+        {
+            SceneManager.Instance.ReloadCurrent();
+        }
+
+        public override void Destroy()
+        {
+            WidgetManager.RemoveWidget(DeadPrompt);
+
+            base.Destroy();
         }
 
     }

@@ -31,6 +31,7 @@ namespace AstroMonkey.Core
 			scenes.Add("pause", new Assets.Scenes.Pause());
 			scenes.Add("begin", new Assets.Scenes.TheBegining());
 			scenes.Add("ending", new Assets.Scenes.TheEnd());
+
 		}
 
         public void LoadScene(string name/*, bool hold = false*/)
@@ -61,6 +62,18 @@ namespace AstroMonkey.Core
             var player = currScene.GetObjectsByClass<Assets.Objects.Player>();
             Graphics.ViewManager.Instance.PlayerTransform = player[0].transform;
             heldScene = null; //usunięcie tymczasowej referencji do gry
+        }
+
+        public void ReloadCurrent()
+        {
+            if(currScene == null)
+                return;
+
+            currScene.UnLoad();
+
+            GameManager.FinalizeSpwaning();
+
+            currScene.Load();
         }
     }
 }

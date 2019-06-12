@@ -105,6 +105,15 @@ namespace AstroMonkey.Gameplay
             currentClip.OnReload += ReloadHandler;
         }
 
+        public void ChangeAmmo(Type bulletType)
+        {
+            int found = ammoClips.FindIndex(x => x.clip.ammoType == bulletType);
+            if(found == -1)
+                return;
+            while(currentClipIndex != found)
+                ChangeAmmo(true);
+        }
+
         private void ReloadHandler(AmmoClip clip)
         {
             OnAmmoChange?.Invoke(this);

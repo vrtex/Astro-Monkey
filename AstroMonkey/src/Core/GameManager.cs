@@ -25,6 +25,8 @@ namespace AstroMonkey.Core
 			}
 		}
 
+        private bool restart = false;
+
         public Player.PlayerState? playerState = null;
 
         static GameManager()
@@ -32,6 +34,16 @@ namespace AstroMonkey.Core
             Input.ActionBinding pauseBinding = new Input.ActionBinding(Keys.P);
             pauseBinding.OnTrigger += TogglePause;
             Input.InputManager.Manager.AddActionBinding("pause", pauseBinding);
+
+
+            Input.ActionBinding reloadBind = new Input.ActionBinding(Microsoft.Xna.Framework.Input.Keys.K);
+            reloadBind.OnTrigger += ReloadBind_OnTrigger;
+            Input.InputManager.Manager.AddActionBinding("aaa", reloadBind);
+        }
+
+        private static void ReloadBind_OnTrigger()
+        {
+            Instance.restart = true;
         }
 
         private static void TogglePause()
@@ -165,9 +177,17 @@ namespace AstroMonkey.Core
             if(Instance.nextScene != null)
                 lock(Instance.nextScene)
                 {
+                    Player player = SceneManager.Instance.currScene.GetObjectByClass<Player>();
+                    if(player != null)
+                        GameManager.Instance.playerState = player.GetPlayerState();
                     SceneManager.Instance.LoadScene(Instance.nextScene);
                     Instance.nextScene = null;
                 }
+            if(Instance.restart)
+            {
+                SceneManager.Instance.ReloadCurrent();
+                Instance.restart = false;
+            }
         }
     }
 }

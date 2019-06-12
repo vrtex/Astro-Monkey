@@ -314,11 +314,11 @@ namespace AstroMonkey.Core
 
         public virtual void UnLoad()
         {
-            Assets.Objects.Player player = GetObjectByClass<Assets.Objects.Player>();
-            if(player != null)
-                GameManager.Instance.playerState = player.GetPlayerState();
-            foreach(GameObject obj in objects)
-                obj.Destroy();
+            lock(objects)
+            {
+                foreach(GameObject obj in objects)
+                    obj.Destroy();
+            }
             Graphics.ViewManager.Instance.PlayerTransform = null;
         }
 

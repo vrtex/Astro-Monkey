@@ -16,6 +16,30 @@ namespace AstroMonkey.Graphics
 
         private readonly List<Widget> widgets = new List<Widget>();
 
+        private readonly List<Widget> toAdd = new List<Widget>();
+        private readonly List<Widget> toRemove = new List<Widget>();
+
+        public static void Update()
+        {
+            if(manager.toAdd.Count != 0)
+            {
+                lock(manager.toAdd)
+                {
+                    foreach(var widget in manager.toAdd)
+                        manager.widgets.Add(widget);
+                    manager.widgets.Sort(comparator);
+                    manager.toAdd.Clear();
+                }
+            }
+            if(manager.toRemove.Count != 0)
+            {
+                foreach(var widget in manager.toRemove)
+                    manager.widgets.Remove(widget);
+                manager.widgets.Sort(comparator);
+                manager.toRemove.Clear();
+            }
+        }
+
         public static void Render(SpriteBatch spriteBatch, GraphicsDevice graphicsDevice)
         {
 
@@ -29,14 +53,18 @@ namespace AstroMonkey.Graphics
 
         public static void AddWidget(Widget toAdd)
         {
-            manager.widgets.Add(toAdd);
-            manager.widgets.Sort(comparator);
+            lock(manager.toAdd)
+                manager.toAdd.Add(toAdd);
+            //manager.widgets.Add(toAdd);
+            //manager.widgets.Sort(comparator);
         }
 
         public static void RemoveWidget(Widget toRemove)
         {
-            manager.widgets.Remove(toRemove);
-            manager.widgets.Sort(comparator);
+            lock(manager.toRemove)
+                manager.toRemove.Add(toRemove);
+            //manager.widgets.Remove(toRemove);
+            //manager.widgets.Sort(comparator);
         }
     }
 }

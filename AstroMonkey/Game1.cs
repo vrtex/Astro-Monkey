@@ -161,6 +161,7 @@ namespace AstroMonkey
                 go.Update(gameTime);
             }
 
+            Graphics.WidgetManager.Update();
             Graphics.EffectContainer.Instance.GetEffect("BloodScreen").Parameters["currTime"].SetValue((float)totalGameTime.TotalSeconds);
             Graphics.EffectContainer.Instance.GetEffect("BloodScreen").Parameters["NormalSampler+BloodScreen"].SetValue(blood_screen);
 

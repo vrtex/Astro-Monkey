@@ -98,6 +98,9 @@ namespace AstroMonkey.Graphics
         {
             spriteBatch.Draw(texture: Texture, destinationRectangle: GetDestinationRectangle(), sourceRectangle: SourceRectangle);
         }
+
+        public virtual void AddToScreen() { }
+        public virtual void RemoveFromScreen() { }
     }
 
 

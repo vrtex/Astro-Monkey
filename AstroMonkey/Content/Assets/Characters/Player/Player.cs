@@ -18,6 +18,7 @@ namespace AstroMonkey.Assets.Objects
         {
             public int health;
             public List<ClipInfo> ammo;
+            public Type currentAmmoType;
         }
 
         private int height = 21;
@@ -82,9 +83,11 @@ namespace AstroMonkey.Assets.Objects
             else
             {
                 foreach(ClipInfo clip in state.Value.ammo)
-                    // don't care about copying
-                    gun.AddAmmoClip(clip);
+                    gun.AddAmmoClip(clip.Copy());
+
+                gun.ChangeAmmo(state.Value.currentAmmoType);
             }
+
 
             inputComponent = AddComponent(new Input.InputComponent(this));
 
@@ -245,7 +248,8 @@ namespace AstroMonkey.Assets.Objects
         public PlayerState GetPlayerState()
         {
             return new PlayerState()
-            { health = GetComponent<Health>().CurrentValue, ammo = GetComponent<Gun>().GetClips() };
+            { health = GetComponent<Health>().CurrentValue, ammo = GetComponent<Gun>().GetClips(),
+                currentAmmoType =  GetComponent<Gun>().currentClip.GetAmmoInfo().type };
         }
 
         public override void Destroy()
