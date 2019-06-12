@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using AstroMonkey.Graphics;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace AstroMonkey.Assets.Objects
 {
@@ -16,6 +17,9 @@ namespace AstroMonkey.Assets.Objects
         private int size = 21;
 
         private TextWidget DeadPrompt;
+
+        private Effect HealthFx;
+
 
         public PlayerDead(Transform transform) : base(transform)
         {
@@ -54,6 +58,13 @@ namespace AstroMonkey.Assets.Objects
 
             WidgetManager.AddWidget(DeadPrompt);
 
+
+            HealthFx = EffectContainer.Instance.GetEffect("HealthFX");
+            HealthFx.Parameters["healthLeft"].SetValue(0.0f);
+
+
+            ViewManager.Instance.activeEffects.Add(HealthFx);
+
         }
 
         private void Restart(Widget widget)
@@ -64,6 +75,7 @@ namespace AstroMonkey.Assets.Objects
         public override void Destroy()
         {
             WidgetManager.RemoveWidget(DeadPrompt);
+            Graphics.ViewManager.Instance.activeEffects.Remove(HealthFx);
 
             base.Destroy();
         }

@@ -34,7 +34,10 @@ namespace AstroMonkey.Assets.Objects
 
         UI.PlayerHUD hud;
 
-		private Effect lightOff = null;
+        private Effect HealthFx;
+
+
+        private Effect lightOff = null;
 
 		private Navigation.MovementComponent    movement = null;
 
@@ -183,7 +186,12 @@ namespace AstroMonkey.Assets.Objects
 			lightOff = Graphics.EffectContainer.Instance.GetEffect("LightOff");
 
 			Audio.AudioManager.Instance.PlayerTransform = transform;
-		}
+
+            HealthFx = Graphics.EffectContainer.Instance.GetEffect("HealthFX");
+
+            Graphics.ViewManager.Instance.activeEffects.Add(HealthFx);
+
+        }
 
         private void OnDeath(Health damaged, DamageInfo damageInfo)
         {
@@ -209,6 +217,9 @@ namespace AstroMonkey.Assets.Objects
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
+
+            //HealthFx.Parameters["healthLeft"].SetValue((float)0.2);
+            HealthFx.Parameters["healthLeft"].SetValue((float)healthComponent.GetPercentage());
 
             UpdateAnimation();
 
@@ -264,7 +275,9 @@ namespace AstroMonkey.Assets.Objects
 			idleSFX.Stop();
 			gameoverSFX.Stop();
 
-			hud.Destroy();
+            Graphics.ViewManager.Instance.activeEffects.Remove(HealthFx);
+
+            hud.Destroy();
             base.Destroy();
         }
     }

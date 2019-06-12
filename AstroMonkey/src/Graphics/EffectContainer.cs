@@ -24,7 +24,7 @@ namespace AstroMonkey.Graphics
 			effects.TryGetValue(id, out toReturn);
 			if(toReturn == null)
 			{
-				Console.WriteLine("Unexisting sound: " + id);
+				Console.WriteLine("Unexisting effect: " + id);
 				Console.WriteLine(new System.Diagnostics.StackTrace());
 			}
 			return toReturn;
@@ -34,6 +34,7 @@ namespace AstroMonkey.Graphics
 		{
 			effects.Add("LightOff", game.Content.Load<Effect>("effects/LightOff"));
             effects.Add("BloodScreen", game.Content.Load<Effect>("effects/BloodScreen"));
+            effects.Add("HealthFX", game.Content.Load<Effect>("effects/HealthFx"));
         }
 	}
 }

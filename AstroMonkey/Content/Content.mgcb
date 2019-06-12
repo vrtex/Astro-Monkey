@@ -19,6 +19,12 @@
 /processorParam:DebugMode=Auto
 /build:effects/BloodScreen.fx
 
+#begin effects/HealthFx.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:effects/HealthFx.fx
+
 #begin effects/LightOff.fx
 /importer:EffectImporter
 /processor:EffectProcessor
