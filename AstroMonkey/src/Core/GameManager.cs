@@ -48,13 +48,15 @@ namespace AstroMonkey.Core
 
         private static void TogglePause()
         {
-            //Scene currScene = SceneManager.Instance.currScene;
-            bool paused = SceneManager.Instance.currScene.GetType() == typeof(Assets.Scenes.Pause);
+            Scene currScene = SceneManager.Instance.currScene;
+            bool paused = currScene.GetType() == typeof(Assets.Scenes.Pause);
             if (paused)
             {
                 SceneManager.Instance.Restore();
             }
-            else if(SceneManager.Instance.currScene.GetType() != typeof(Assets.Scenes.MainMenu))
+            else if(currScene.GetType() != typeof(Assets.Scenes.MainMenu) &&
+                currScene.GetType() != typeof(Assets.Scenes.TheBegining) &&
+                currScene.GetType() != typeof(Assets.Scenes.TheEnd))
             {
                 SceneManager.Instance.PauseScene();
             }
