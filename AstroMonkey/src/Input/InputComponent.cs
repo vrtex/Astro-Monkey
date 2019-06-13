@@ -18,9 +18,19 @@ namespace AstroMonkey.Input
         private readonly ActionBinding scrollDownBinding;
         private readonly ActionBinding reloadBinding;
 
+        private readonly ActionBinding pistolSwapBinding;
+        private readonly ActionBinding riffleSwapBinding;
+        private readonly ActionBinding launcherSwapBinding;
+        private readonly ActionBinding shotgunSwapBinding;
+
         private Core.GameObject target = new Core.GameObject();
         private bool projectileToSpawn = false;
 		private Gameplay.Gun gun;
+
+        private readonly string pistolSwapName = "pistol swap";
+        private readonly string riffleSwapName = "riffle swap";
+        private readonly string launcherSwapName = "launcher swap";
+        private readonly string shotgunSwapName = "shotgun swap";
 
         private readonly string verticalBindingName = "move up";
         private readonly string horizontalBindingName = "move right";
@@ -43,6 +53,11 @@ namespace AstroMonkey.Input
             scrollDownBinding = new ActionBinding(EMouseButton.WheelDown);
             reloadBinding = new ActionBinding(Keys.R);
 
+            pistolSwapBinding = new ActionBinding(Keys.D1);
+            riffleSwapBinding = new ActionBinding(Keys.D2);
+            shotgunSwapBinding = new ActionBinding(Keys.D3);
+            launcherSwapBinding = new ActionBinding(Keys.D4);
+
             AttachBindings();
 
             InputManager.Manager.AddAxisBinding(verticalBindingName, verticalAxis);
@@ -54,6 +69,11 @@ namespace AstroMonkey.Input
             InputManager.Manager.AddActionBinding(scrollDownBindName, scrollDownBinding);
             InputManager.Manager.AddActionBinding(scrollUpBindName, scrollUpBinding);
             InputManager.Manager.AddActionBinding(reloadBindName, reloadBinding);
+
+            InputManager.Manager.AddActionBinding(pistolSwapName, pistolSwapBinding);
+            InputManager.Manager.AddActionBinding(riffleSwapName, riffleSwapBinding);
+            InputManager.Manager.AddActionBinding(launcherSwapName, launcherSwapBinding);
+            InputManager.Manager.AddActionBinding(shotgunSwapName, shotgunSwapBinding);
 
             moveComp.CurrentFocus = target;
             InputManager.Manager.OnMouseMove += MoveTarget;
@@ -69,6 +89,31 @@ namespace AstroMonkey.Input
             scrollDownBinding.OnTrigger += ChangeAmmoDown;
             scrollUpBinding.OnTrigger += ChangeAmmoUp;
             reloadBinding.OnTrigger += Reload;
+
+            pistolSwapBinding.OnTrigger += SwapToPistol;
+            riffleSwapBinding.OnTrigger += SwapToRiffle;
+            shotgunSwapBinding.OnTrigger += SwapToShotgun;
+            launcherSwapBinding.OnTrigger += SwapToLauncher;
+        }
+
+        private void SwapToLauncher()
+        {
+            gun.ChangeAmmo(typeof(Assets.Objects.Rocket));
+        }
+
+        private void SwapToShotgun()
+        {
+            gun.ChangeAmmo(typeof(Assets.Objects.ShotgunProjectile));
+        }
+
+        private void SwapToRiffle()
+        {
+            gun.ChangeAmmo(typeof(Assets.Objects.RifleBullet));
+        }
+
+        private void SwapToPistol()
+        {
+            gun.ChangeAmmo(typeof(Assets.Objects.PistolBullet));
         }
 
         public void DetachBindings()
@@ -81,6 +126,8 @@ namespace AstroMonkey.Input
             scrollDownBinding.OnTrigger -= ChangeAmmoDown;
             scrollUpBinding.OnTrigger -= ChangeAmmoUp;
             reloadBinding.OnTrigger -= Reload;
+
+            pistolSwapBinding.OnTrigger -= SwapToPistol;
         }
 
         private void StopShooting()
