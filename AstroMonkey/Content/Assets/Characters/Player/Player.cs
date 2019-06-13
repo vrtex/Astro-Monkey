@@ -96,7 +96,7 @@ namespace AstroMonkey.Assets.Objects
 
             // Health
             healthComponent = AddComponent(new Health(this));
-            healthComponent.MaxHealth = 1000;
+            healthComponent.MaxHealth = 200;
             if(state.HasValue)
                 healthComponent.CurrentValue = state.Value.health;
             healthComponent.OnDamageTaken += OnDamageTaken;
@@ -212,7 +212,8 @@ namespace AstroMonkey.Assets.Objects
             Graphics.EffectContainer.Instance.GetEffect("BloodScreen").Parameters["time"].SetValue((float)time);
             //Console.WriteLine(time);
 
-            hitSFX.Play();
+            if(damageInfo.value > 0)
+                hitSFX.Play();
         }
 
         public override void Update(GameTime gameTime)

@@ -7,6 +7,9 @@ namespace AstroMonkey.Gameplay
 {
     class SuicideComponent : Component
     {
+        public delegate void e();
+        public event e Elapsed;
+
         private int timeLeft;
         bool running = false;
 
@@ -28,7 +31,6 @@ namespace AstroMonkey.Gameplay
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
-
             bool elapsed = Tick((int)gameTime.ElapsedGameTime.TotalMilliseconds);
             if(elapsed)
                 Suicide();
@@ -46,6 +48,7 @@ namespace AstroMonkey.Gameplay
 
         private void Suicide()
         {
+            Elapsed?.Invoke();
             GameManager.DestroyObject(parent);
         }
     }

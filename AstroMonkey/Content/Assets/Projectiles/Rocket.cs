@@ -32,7 +32,7 @@ namespace AstroMonkey.Assets.Objects
             AddComponent(new Graphics.Sprite(this, "rocket", new List<Rectangle>() { new Rectangle(0, 0, 3, 5) }));
 			shootSound = Audio.SoundContainer.Instance.GetSoundEffect("LuncherShoot").CreateInstance();
             speed = 500f;
-            baseDamage = 50;
+            baseDamage = 180;
 		}
 
         protected override void OnBlockingHit(Collider thisCollider, Collider otherCollider)
