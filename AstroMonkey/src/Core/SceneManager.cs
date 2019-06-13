@@ -40,11 +40,6 @@ namespace AstroMonkey.Core
         public void LoadScene(string name/*, bool hold = false*/) // 2
         {
             currScene?.UnLoad();
-            if(name != "menu")
-            {
-                //heldScene?.UnLoad();
-                //heldPlayer = null;
-            }
             GameManager.FinalizeSpwaning();
 
             scenes.TryGetValue(name, out currScene);
