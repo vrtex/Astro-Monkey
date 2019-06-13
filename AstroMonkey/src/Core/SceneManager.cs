@@ -42,7 +42,7 @@ namespace AstroMonkey.Core
             currScene?.UnLoad();
             if(name == "menu")
             {
-                heldScene?.UnLoad();
+                //heldScene?.UnLoad();
                 //heldPlayer = null;
             }
             GameManager.FinalizeSpwaning();
@@ -56,12 +56,14 @@ namespace AstroMonkey.Core
 
         public void PauseScene() // 1
         {
+            currScene.GetObjectByClass<Assets.Objects.Player>().GetComponent<Input.InputComponent>().active = false;
             heldScene = currScene; //zapisanie curr sceny do heldScene
-            heldPlayer = currScene.GetObjectByClass<Assets.Objects.Player>();
+                                   //heldPlayer = currScene.GetObjectByClass<Assets.Objects.Player>();  zostawić
 
+            currScene = null;
             //currScene = null; //usunięcie referencji currSceny
-            //LoadScene("pause"); //wczytanie menu pauzy
-            GameManager.Instance.NextScene = "pause";
+            LoadScene("pause"); //wczytanie menu pauzy
+            //GameManager.Instance.NextScene = "pause";
         }
 
         public void Restore()
@@ -71,13 +73,15 @@ namespace AstroMonkey.Core
 
             currScene = heldScene; // dodanie do curr gry
 
-            //var player = heldScene.GetObjectByClass<Assets.Objects.Player>();
-            //Graphics.ViewManager.Instance.PlayerTransform = heldPlayer.transform;
+            var player = heldScene.GetObjectByClass<Assets.Objects.Player>();
+            Graphics.ViewManager.Instance.PlayerTransform = player.transform;
 
             GameManager.FinalizeSpwaning();
-            currScene?.Load();
+            //currScene?.Load();
             
             heldScene = null; //usunięcie tymczasowej referencji do gry
+            currScene.GetObjectByClass<Assets.Objects.Player>().GetComponent<Input.InputComponent>().active = true;
+
         }
 
         public void ReloadCurrent()

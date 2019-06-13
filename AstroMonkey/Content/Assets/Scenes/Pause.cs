@@ -15,6 +15,7 @@ namespace AstroMonkey.Assets.Scenes
 {
     class Pause : Core.Scene
     {
+        static Input.InputComponent playerInput;
 
         public override void Load()
         {
@@ -67,8 +68,10 @@ namespace AstroMonkey.Assets.Scenes
 
         void Menu(Objects.TextButton textButton)
         {
+            this.Resume(null);
+
             MediaPlayer.Stop();
-            SceneManager.Instance.heldScene.UnLoad();
+            //SceneManager.Instance.heldScene.UnLoad();
 
             //SceneManager.Instance.LoadScene("menu");
             //SceneManager.Instance.heldScene.UnLoad();
