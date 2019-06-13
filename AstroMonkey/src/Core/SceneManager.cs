@@ -51,7 +51,7 @@ namespace AstroMonkey.Core
 
         public void PauseScene() // 1
         {
-            currScene.GetObjectByClass<Assets.Objects.Player>().GetComponent<Input.InputComponent>().DetachBindings();
+            currScene.GetObjectByClass<Assets.Objects.Player>()?.GetComponent<Input.InputComponent>().DetachBindings();
 
             heldScene = currScene; //zapisanie curr sceny do heldScene
 
@@ -67,11 +67,12 @@ namespace AstroMonkey.Core
             currScene = heldScene; // dodanie do curr gry
 
             var player = heldScene.GetObjectByClass<Assets.Objects.Player>();
-            Graphics.ViewManager.Instance.PlayerTransform = player.transform;
+            if(player != null)
+                Graphics.ViewManager.Instance.PlayerTransform = player.transform;
 
             heldScene = null; //usunięcie tymczasowej referencji do gry
 
-            SceneManager.Instance.currScene.GetObjectByClass<Assets.Objects.Player>().GetComponent<Input.InputComponent>().AttachBindings();
+            SceneManager.Instance.currScene.GetObjectByClass<Assets.Objects.Player>()?.GetComponent<Input.InputComponent>().AttachBindings();
         }
 
         public void ReloadCurrent()

@@ -193,6 +193,8 @@ namespace AstroMonkey.Assets.Objects
 
             Graphics.ViewManager.Instance.activeEffects.Add(HealthFx);
 
+            Graphics.ViewManager.Instance.activeEffects.Add(Graphics.EffectContainer.Instance.GetEffect("BloodScreen"));
+
         }
 
         private void OnDeath(Health damaged, DamageInfo damageInfo)
@@ -209,12 +211,15 @@ namespace AstroMonkey.Assets.Objects
             //float val = damaged.GetPercentage();
             //float a = val * 2;
             //Graphics.EffectContainer.Instance.GetEffect("BloodScreen").Parameters["health"].SetValue(val);
-            double time = Game1.totalGameTime.TotalSeconds;
-            Graphics.EffectContainer.Instance.GetEffect("BloodScreen").Parameters["time"].SetValue((float)time);
+            
             //Console.WriteLine(time);
 
             if(damageInfo.value > 0)
+            {
+                double time = Game1.totalGameTime.TotalSeconds;
+                Graphics.EffectContainer.Instance.GetEffect("BloodScreen").Parameters["time"].SetValue((float)time);
                 hitSFX.Play();
+            }
         }
 
         public override void Update(GameTime gameTime)
