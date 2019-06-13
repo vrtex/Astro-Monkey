@@ -9,9 +9,12 @@ namespace AstroMonkey.Core
         public static Dictionary<string, Scene> scenes = new Dictionary<string, Scene>();
 
         public Scene    currScene = null;
-        private Scene heldScene;
+        public Scene heldScene;
+        private Assets.Objects.Player heldPlayer;
 
         public static float scale = 3f;
+
+
 
         static SceneManager()
         {
@@ -34,10 +37,14 @@ namespace AstroMonkey.Core
 
 		}
 
-        public void LoadScene(string name/*, bool hold = false*/)
+        public void LoadScene(string name/*, bool hold = false*/) // 2
         {
             currScene?.UnLoad();
-
+            if(name != "menu")
+            {
+                //heldScene?.UnLoad();
+                //heldPlayer = null;
+            }
             GameManager.FinalizeSpwaning();
 
             scenes.TryGetValue(name, out currScene);
@@ -47,21 +54,29 @@ namespace AstroMonkey.Core
                 throw new ApplicationException("Unknown scene " + name);
         }
 
-        public void PauseScene()
+        public void PauseScene() // 1
         {
+            currScene.GetObjectByClass<Assets.Objects.Player>().GetComponent<Input.InputComponent>().DetachBindings();
+
             heldScene = currScene; //zapisanie curr sceny do heldScene
-            currScene = null; //usunięcie referencji currSceny
+
+            currScene = null;
             LoadScene("pause"); //wczytanie menu pauzy
         }
 
         public void Restore()
         {
-            currScene.UnLoad();
+            currScene?.UnLoad();
             GameManager.FinalizeSpwaning();
+
             currScene = heldScene; // dodanie do curr gry
-            var player = currScene.GetObjectsByClass<Assets.Objects.Player>();
-            Graphics.ViewManager.Instance.PlayerTransform = player[0].transform;
+
+            var player = heldScene.GetObjectByClass<Assets.Objects.Player>();
+            Graphics.ViewManager.Instance.PlayerTransform = player.transform;
+
             heldScene = null; //usunięcie tymczasowej referencji do gry
+
+            SceneManager.Instance.currScene.GetObjectByClass<Assets.Objects.Player>().GetComponent<Input.InputComponent>().AttachBindings();
         }
 
         public void ReloadCurrent()

@@ -15,6 +15,7 @@ namespace AstroMonkey.Assets.Scenes
 {
     class Pause : Core.Scene
     {
+        static Input.InputComponent playerInput;
 
         public override void Load()
         {
@@ -43,6 +44,19 @@ namespace AstroMonkey.Assets.Scenes
                 new Vector2(0.21f, 0.05f)));
             (objects.Last() as Objects.TextButton).onClick += Exit;
 
+            //foreach (Core.GameObject o in objects)
+            //{
+            //    if (o is Objects.TextButton)
+            //    {
+            //        Objects.TextButton tb = (Objects.TextButton)o;
+            //        if(tb.text.Equals("Main Menu"))
+            //        {
+            //            (o as Objects.TextButton).GetComponent<Gameplay.ChangeLevel>().nextLevel = "menu";
+
+            //        }
+            //    }
+            //}
+
             RepairSpawns();
 
         }
@@ -54,6 +68,10 @@ namespace AstroMonkey.Assets.Scenes
 
         void Menu(Objects.TextButton textButton)
         {
+            this.Resume(null);
+
+            MediaPlayer.Stop();
+
             SceneManager.Instance.LoadScene("menu");
         }
 

@@ -279,9 +279,10 @@ namespace AstroMonkey.Assets.Scenes
 			{
 				GameManager.Instance.NextScene = "colliderroom";
 			}
-		}
 
-		void LoadGame(Objects.TextButton textButton)
+        }
+
+        void LoadGame(Objects.TextButton textButton)
 		{
 			CloseAllSection();
 			foreach(var l in loadGame)
