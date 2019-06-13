@@ -71,16 +71,8 @@ namespace AstroMonkey.Assets.Scenes
             this.Resume(null);
 
             MediaPlayer.Stop();
-            //SceneManager.Instance.heldScene.UnLoad();
 
-            //SceneManager.Instance.LoadScene("menu");
-            //SceneManager.Instance.heldScene.UnLoad();
-            //SceneManager.Instance.currScene.UnLoad();
-
-            GameManager.Instance.NextScene = "menu";
-            //SceneManager.Instance.currScene.objects[0].GetComponent<Gameplay.ChangeLevel>().nextLevel = "menu";
-            //objects[0].GetComponent<Gameplay.ChangeLevel>().nextLevel = "menu";
-            //RepairSpawns();
+            SceneManager.Instance.LoadScene("menu");
         }
 
         void Exit(Objects.TextButton textButton)

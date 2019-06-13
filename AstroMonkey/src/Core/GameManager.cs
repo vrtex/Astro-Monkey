@@ -182,8 +182,9 @@ namespace AstroMonkey.Core
                         GameManager.Instance.playerState = player.GetPlayerState();
                     SceneManager.Instance.LoadScene(Instance.nextScene);
                     Instance.nextScene = null;
+
                 }
-            if(Instance.restart)
+            if (Instance.restart)
             {
                 SceneManager.Instance.ReloadCurrent();
                 Instance.restart = false;

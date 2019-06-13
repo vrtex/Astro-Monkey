@@ -85,11 +85,7 @@ namespace AstroMonkey.Input
 
         private void StopShooting()
         {
-            if (active)
-            {
-                gun.StopShooting();
-
-            }
+            gun.StopShooting();
         }
 
         private void TogglePause()
@@ -147,7 +143,6 @@ namespace AstroMonkey.Input
 
         private void StartShooting()
         {
-            if(active)
             gun.Shoot(InputManager.Manager.MouseCursorInWorldSpace);
             //lock(this)
             //    projectileToSpawn = true;
