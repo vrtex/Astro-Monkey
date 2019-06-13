@@ -47,7 +47,7 @@ namespace AstroMonkey.Input
             Value = newValue;
             if(Statics.IsNearlyEqual(Value, 0.0f))
                 Value = 0.0f;
-            OnUpdate(Value);
+            OnUpdate?.Invoke(Value);
         }
     }
 }

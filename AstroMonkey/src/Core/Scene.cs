@@ -14,8 +14,10 @@ namespace AstroMonkey.Core
 		public List<GameObject>					doors				= new List<GameObject>();
 		public List<GameObject>					interactives		= new List<GameObject>();
 		public List<Assets.Objects.NavPoint>	navigationPoints	= new List<Assets.Objects.NavPoint>();
+        public static readonly float            tileSize            = 32f * SceneManager.scale;
 
-		public virtual void Reset() { }
+
+        public virtual void Reset() { }
 
         public virtual void AddToSpawnQueue()
         {

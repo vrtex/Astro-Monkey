@@ -36,15 +36,15 @@ namespace AstroMonkey.Core
             Input.InputManager.Manager.AddActionBinding("pause", pauseBinding);
 
 
-            Input.ActionBinding reloadBind = new Input.ActionBinding(Microsoft.Xna.Framework.Input.Keys.K);
-            reloadBind.OnTrigger += ReloadBind_OnTrigger;
-            Input.InputManager.Manager.AddActionBinding("aaa", reloadBind);
+            // Input.ActionBinding reloadBind = new Input.ActionBinding(Microsoft.Xna.Framework.Input.Keys.K);
+            // reloadBind.OnTrigger += ReloadBind_OnTrigger;
+            // Input.InputManager.Manager.AddActionBinding("aaa", reloadBind);
         }
 
-        private static void ReloadBind_OnTrigger()
-        {
-            Instance.restart = true;
-        }
+        //private static void ReloadBind_OnTrigger()
+        //{
+        //    Instance.restart = true;
+        //}
 
         private static void TogglePause()
         {

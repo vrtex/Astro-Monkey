@@ -523,6 +523,18 @@
 /processorParam:TextureFormat=Color
 /build:gfx/Projectiles/BloodScreen.png
 
+#begin gfx/Projectiles/boom.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:gfx/Projectiles/boom.png
+
 #begin gfx/Projectiles/BulletHit.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -534,6 +546,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:gfx/Projectiles/BulletHit.png
+
+#begin gfx/Projectiles/Explosion.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:gfx/Projectiles/Explosion.png
 
 #begin gfx/Projectiles/PistolBullet.png
 /importer:TextureImporter
