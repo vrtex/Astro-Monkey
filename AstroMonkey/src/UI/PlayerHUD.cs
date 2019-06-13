@@ -13,7 +13,7 @@ namespace AstroMonkey.UI
         private Health health;
         private Gun gun;
 
-        private readonly string infSymbol = "inf";
+        private readonly string infSymbol = "^";
         //private readonly string infSymbol = ((char)236).ToString();
 
         private ProgressBarWidget healthBarWidget = new ProgressBarWidget(new Vector2(0.02f, 0.95f), new Vector2(0.2f, 0.025f))
