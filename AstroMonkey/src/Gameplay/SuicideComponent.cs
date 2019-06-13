@@ -46,7 +46,6 @@ namespace AstroMonkey.Gameplay
 
         private void Suicide()
         {
-            Debug.WriteLine("suicide");
             GameManager.DestroyObject(parent);
         }
     }

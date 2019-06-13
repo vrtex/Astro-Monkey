@@ -96,6 +96,7 @@ namespace AstroMonkey.Assets.Objects
 
             // Health
             healthComponent = AddComponent(new Health(this));
+            healthComponent.MaxHealth = 1000;
             if(state.HasValue)
                 healthComponent.CurrentValue = state.Value.health;
             healthComponent.OnDamageTaken += OnDamageTaken;
