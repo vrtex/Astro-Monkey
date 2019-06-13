@@ -80,8 +80,8 @@ namespace AstroMonkey.Assets.Objects
             {
                 gun.AddAmmoClip(Gun.pistolClip.Copy());
                 gun.AddAmmoClip(Gun.rifleClip.Copy());
-                gun.AddAmmoClip(Gun.launcherClip.Copy());
                 gun.AddAmmoClip(Gun.shotgunClip.Copy());
+                gun.AddAmmoClip(Gun.launcherClip.Copy());
                 gun.ChangeAmmo(typeof(PistolBullet));
             }
             else

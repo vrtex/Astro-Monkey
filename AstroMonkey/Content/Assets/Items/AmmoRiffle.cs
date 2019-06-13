@@ -11,7 +11,7 @@ namespace AstroMonkey.Assets.Objects
 
         public AmmoRiffle(Core.Transform _transform) : base(_transform)
         {
-            ProjectileType = typeof(PistolBullet);
+            ProjectileType = typeof(RifleBullet);
             Load(_transform);
         }
 

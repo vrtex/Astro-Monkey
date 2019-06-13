@@ -12,7 +12,7 @@ namespace AstroMonkey.Assets.Objects
 
         public AmmoGun(Core.Transform _transform) : base(_transform)
         {
-            ProjectileType = typeof(PistolBullet);
+            ProjectileType = typeof(ShotgunProjectile);
             Load(_transform);
         }
 
