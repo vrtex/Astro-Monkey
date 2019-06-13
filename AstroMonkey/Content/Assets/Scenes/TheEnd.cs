@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Media;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -48,7 +49,9 @@ namespace AstroMonkey.Assets.Scenes
 
 			Graphics.WidgetManager.AddWidget(scenes.Last());
 			Graphics.WidgetManager.AddWidget(scenesText.Last());
-		}
+
+            MediaPlayer.Play(Audio.SoundContainer.Instance.GetSong("ending"));
+        }
 
 		private void ProgressScenes()
 		{
