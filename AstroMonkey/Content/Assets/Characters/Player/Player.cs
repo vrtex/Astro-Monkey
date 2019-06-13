@@ -93,7 +93,6 @@ namespace AstroMonkey.Assets.Objects
 
 
             inputComponent = AddComponent(new Input.InputComponent(this));
-            inputComponent.DetachBindings();
 
             // Health
             healthComponent = AddComponent(new Health(this));
