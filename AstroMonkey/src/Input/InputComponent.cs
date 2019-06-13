@@ -9,8 +9,15 @@ namespace AstroMonkey.Input
     class InputComponent : Core.Component
     {
         Navigation.MovementComponent moveComp;
+
         private readonly AxisBinding verticalAxis;
         private readonly AxisBinding horizontalAxis;
+        private readonly ActionBinding shootBinding;
+        private readonly ActionBinding interactBinding;
+        private readonly ActionBinding scrollUpBinding;
+        private readonly ActionBinding scrollDownBinding;
+        private readonly ActionBinding reloadBinding;
+
         private Core.GameObject target = new Core.GameObject();
         private bool projectileToSpawn = false;
 		private Gameplay.Gun gun;
@@ -30,20 +37,13 @@ namespace AstroMonkey.Input
 
             verticalAxis = new AxisBinding(Keys.S, Keys.W);
             horizontalAxis = new AxisBinding(Keys.D, Keys.A);
-            ActionBinding shootBinding = new ActionBinding(EMouseButton.Left);
-            ActionBinding interactBinding = new ActionBinding(Keys.E);
-            ActionBinding scrollUpBinding = new ActionBinding(EMouseButton.WheelUp);
-            ActionBinding scrollDownBinding = new ActionBinding(EMouseButton.WheelDown);
-            ActionBinding reloadBinding = new ActionBinding(Keys.R);
+            shootBinding = new ActionBinding(EMouseButton.Left);
+            interactBinding = new ActionBinding(Keys.E);
+            scrollUpBinding = new ActionBinding(EMouseButton.WheelUp);
+            scrollDownBinding = new ActionBinding(EMouseButton.WheelDown);
+            reloadBinding = new ActionBinding(Keys.R);
 
-            verticalAxis.OnUpdate += Move;
-            horizontalAxis.OnUpdate += Move;
-            shootBinding.OnTrigger += StartShooting;
-            shootBinding.OnRelease += StopShooting;
-            interactBinding.OnTrigger += Interact;
-            scrollDownBinding.OnTrigger += ChangeAmmoDown;
-            scrollUpBinding.OnTrigger += ChangeAmmoUp;
-            reloadBinding.OnTrigger += Reload;
+            AttachBindings();
 
             InputManager.Manager.AddAxisBinding(verticalBindingName, verticalAxis);
             InputManager.Manager.AddAxisBinding(horizontalBindingName, horizontalAxis);
@@ -57,6 +57,30 @@ namespace AstroMonkey.Input
 
             moveComp.CurrentFocus = target;
             InputManager.Manager.OnMouseMove += MoveTarget;
+        }
+
+        public void AttachBindings()
+        {
+            verticalAxis.OnUpdate += Move;
+            horizontalAxis.OnUpdate += Move;
+            shootBinding.OnTrigger += StartShooting;
+            shootBinding.OnRelease += StopShooting;
+            interactBinding.OnTrigger += Interact;
+            scrollDownBinding.OnTrigger += ChangeAmmoDown;
+            scrollUpBinding.OnTrigger += ChangeAmmoUp;
+            reloadBinding.OnTrigger += Reload;
+        }
+
+        public void DetachBindings()
+        {
+            verticalAxis.OnUpdate -= Move;
+            horizontalAxis.OnUpdate -= Move;
+            shootBinding.OnTrigger -= StartShooting;
+            shootBinding.OnRelease -= StopShooting;
+            interactBinding.OnTrigger -= Interact;
+            scrollDownBinding.OnTrigger -= ChangeAmmoDown;
+            scrollUpBinding.OnTrigger -= ChangeAmmoUp;
+            reloadBinding.OnTrigger -= Reload;
         }
 
         private void StopShooting()
@@ -143,11 +167,10 @@ namespace AstroMonkey.Input
         public override void Destroy()
         {
 
-            AxisBinding horizontalBinding = InputManager.Manager.GetAxisBinding(horizontalBindingName);
-            AxisBinding verticalBinding = InputManager.Manager.GetAxisBinding(verticalBindingName);
+            // AxisBinding horizontalBinding = InputManager.Manager.GetAxisBinding(horizontalBindingName);
+            // AxisBinding verticalBinding = InputManager.Manager.GetAxisBinding(verticalBindingName);
 
-            horizontalAxis.OnUpdate -= Move;
-            verticalAxis.OnUpdate -= Move;
+            DetachBindings();
 
             ActionBinding spawnBinding = InputManager.Manager.GetActionBinding(shootBindingName);
             if(spawnBinding != null)
