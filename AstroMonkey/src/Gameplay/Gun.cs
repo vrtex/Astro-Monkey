@@ -27,11 +27,11 @@ namespace AstroMonkey.Gameplay
 
     class Gun : Component
     {
-        public static readonly ClipInfo pistolClip = new ClipInfo() { clip = new AmmoClip(typeof(PistolBullet), 5, -50, 0.5f), fireDelay = 0.2f };
-        public static readonly ClipInfo rifleClip = new ClipInfo { clip = new AmmoClip(typeof(RifleBullet), 25, 150, 0.5f), fireDelay = 0.15f };
-        public static readonly ClipInfo alienClip = new ClipInfo() { clip = new AmmoClip(typeof(AlienBullet), 10, -100, 0.5f), fireDelay = 0.1f };
-        public static readonly ClipInfo launcherClip = new ClipInfo { clip = new AmmoClip(typeof(Rocket), 3, 20, 2f), fireDelay = 0.75f };
-        public static readonly ClipInfo shotgunClip = new ClipInfo { clip = new AmmoClip(typeof(ShotgunProjectile), 500, 2000, 1.5f), fireDelay = 0.45f };
+        public static readonly ClipInfo pistolClip = new ClipInfo() { clip = new AmmoClip(typeof(PistolBullet), 7, -100, 0.5f), fireDelay = 0.5f };
+        public static readonly ClipInfo rifleClip = new ClipInfo { clip = new AmmoClip(typeof(RifleBullet), 25, 150, 0.6f), fireDelay = 0.15f };
+        public static readonly ClipInfo alienClip = new ClipInfo() { clip = new AmmoClip(typeof(AlienBullet), 10, -100, 0.4f), fireDelay = 0.1f };
+        public static readonly ClipInfo launcherClip = new ClipInfo { clip = new AmmoClip(typeof(Rocket), 1, 20, 1.5f), fireDelay = 0.75f };
+        public static readonly ClipInfo shotgunClip = new ClipInfo { clip = new AmmoClip(typeof(ShotgunProjectile), 2, 30, 1.5f), fireDelay = 0.8f };
 
 
         public delegate void GunEvent(Gun gun);

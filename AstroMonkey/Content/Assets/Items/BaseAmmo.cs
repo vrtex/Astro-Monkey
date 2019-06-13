@@ -13,7 +13,7 @@ namespace AstroMonkey.Assets.Objects
 
         private Collider collider;
         public Type ProjectileType { get; protected set; }
-        public int Count { get; private set; } = 1;
+        public int Count { get; protected set; } = 1;
 
         public BaseAmmo(Core.Transform transform) : base(transform)
         {

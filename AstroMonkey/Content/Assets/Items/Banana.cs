@@ -68,7 +68,7 @@ namespace AstroMonkey.Assets.Objects
                 return;
 
             Gameplay.Health health = player.GetComponent<Gameplay.Health>();
-            health.Restore(30);
+            health.Restore(80);
             Destroy();
             
         }

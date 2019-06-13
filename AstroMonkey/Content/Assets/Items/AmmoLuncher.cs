@@ -45,7 +45,9 @@ namespace AstroMonkey.Assets.Objects
                 true));
 
             GetComponent<Graphics.StackAnimator>().SetAnimation("Idle");
-        }
+
+			Count = 5;
+		}
     }
 }
 

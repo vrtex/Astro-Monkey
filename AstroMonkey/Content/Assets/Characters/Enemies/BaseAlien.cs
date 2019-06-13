@@ -20,8 +20,8 @@ namespace AstroMonkey.Assets.Objects
 		public Audio.AudioSource			nearSFX;
 
 		protected UI.HealthBar				healthBar;
-		protected Gameplay.Health			healthComponent;
 		protected int						maxHealth = 100;
+		public Gameplay.Health				healthComponent;
 
 		protected Type						corp        = null;
 

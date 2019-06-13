@@ -23,8 +23,10 @@ namespace AstroMonkey.Navigation
 		public  float                               pathReactionTime	= 1.8f;
 
 		public  MovementComponent					movement			= null;
+		public  Gameplay.Health                     health              = null;
 
 		private bool                                roar                = true;
+		public  bool                                rush                = true;
 
 		public NavigationAgent(GameObject parent) : base(parent)
 		{
@@ -46,6 +48,7 @@ namespace AstroMonkey.Navigation
 				Console.Error.Write("navigation point can not be found");
 			}
 			movement = (parent as Assets.Objects.BaseAlien).movement;
+			health = (parent as Assets.Objects.BaseAlien).healthComponent;
 		}
 
 		public override void Update(GameTime gameTime)
@@ -54,7 +57,7 @@ namespace AstroMonkey.Navigation
 			if(target == null) return;
 
 			float distance = Vector2.Distance(target.transform.position, parent.transform.position);
-			if(distance <= distanceToRush && distanceToRush != -1)
+			if((distance <= distanceToRush && distanceToRush != -1) || (health.CurrentValue < health.MaxHealth && rush))
 			{
 				if(distance > distanceToStop)
 				{

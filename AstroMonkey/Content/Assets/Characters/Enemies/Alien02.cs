@@ -119,6 +119,8 @@ namespace AstroMonkey.Assets.Objects
             navigation.distanceToStop = 5 * 32f * Core.SceneManager.scale;
 
 			navigation.distanceToRush = -1;
-        }
+			navigation.rush = false;
+
+		}
     }
 }

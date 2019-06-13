@@ -11,7 +11,7 @@ namespace AstroMonkey.Assets.Objects
             AddComponent(new Graphics.Sprite(this, "pistolBullet", new List<Rectangle>() { new Rectangle(0, 0, 3, 5) }));
 
             speed = 500f;
-            baseDamage = 10;
+            baseDamage = 15;
         }
     }
 }
