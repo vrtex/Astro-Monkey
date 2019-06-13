@@ -25,7 +25,6 @@ namespace AstroMonkey.Assets.Scenes
 		public override void Load()
 		{
 			base.Load();
-			Graphics.ViewManager.Instance.activeEffects.Clear();
 
 			//MediaPlayer.Volume = Util.Statics.musicVolume;
 			MediaPlayer.IsRepeating = true;

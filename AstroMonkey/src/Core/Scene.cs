@@ -12,7 +12,7 @@ namespace AstroMonkey.Core
 
         public List<GameObject>					objects				= new List<GameObject>();
 		public List<GameObject>					doors				= new List<GameObject>();
-		public List<GameObject>					interactives		= new List<GameObject>();
+		public List<GameObject>					interactibles		= new List<GameObject>();
 		public List<Assets.Objects.NavPoint>	navigationPoints	= new List<Assets.Objects.NavPoint>();
         public static readonly float            tileSize            = 32f * SceneManager.scale;
 
@@ -31,7 +31,7 @@ namespace AstroMonkey.Core
                 GameManager.QueueSpawn(go);
             }
 
-            foreach (GameObject go in interactives)
+            foreach (GameObject go in interactibles)
             {
                 GameManager.QueueSpawn(go);
             }
@@ -51,7 +51,7 @@ namespace AstroMonkey.Core
                 GameManager.QueueDestroy(go);
             }
 
-            foreach (GameObject go in interactives)
+            foreach (GameObject go in interactibles)
             {
                 GameManager.QueueDestroy(go);
             }
@@ -66,8 +66,10 @@ namespace AstroMonkey.Core
                 obj.Destroy();
             objects.Clear();
 			doors.Clear();
-			interactives.Clear();
-		}
+			interactibles.Clear();
+            Graphics.ViewManager.Instance.activeEffects.Clear();
+
+        }
 
         public void LoadFromFile(string filepath)
         {
@@ -142,7 +144,7 @@ namespace AstroMonkey.Core
 				}
 				else if(o is Assets.Objects.Terminal)
 				{
-					interactives.Add(o);
+					interactibles.Add(o);
 				}
 			}
 			SpawnNavigationPoints(navTypes);

@@ -106,7 +106,8 @@ namespace AstroMonkey.UI
             gun.OnWeaponChange -= GunChange;
             gun.OnAmmoChange -= GunChange;
             gun.OnReloadProgress -= UpdateReloadBar;
-
+            
+            WidgetManager.RemoveWidget(healthBarBackground);
             WidgetManager.RemoveWidget(healthBarWidget);
             WidgetManager.RemoveWidget(currentGunWidget);
             WidgetManager.RemoveWidget(ammoDisplayWidget);

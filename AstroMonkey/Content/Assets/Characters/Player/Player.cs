@@ -226,8 +226,8 @@ namespace AstroMonkey.Assets.Objects
         {
             base.Update(gameTime);
 
-            //HealthFx.Parameters["healthLeft"].SetValue((float)0.2);
-            HealthFx.Parameters["healthLeft"].SetValue((float)healthComponent.GetPercentage());
+            HealthFx.Parameters["healthLeft"].SetValue((float)0.2);
+            //HealthFx.Parameters["healthLeft"].SetValue((float)healthComponent.GetPercentage());
 
             UpdateAnimation();
 

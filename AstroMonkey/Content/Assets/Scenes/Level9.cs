@@ -34,23 +34,23 @@ namespace AstroMonkey.Assets.Scenes
 				}
 			}
 
-			Gameplay.DoorTerminal dt = interactives[0].GetComponent<Gameplay.DoorTerminal>();
+			Gameplay.DoorTerminal dt = interactibles[0].GetComponent<Gameplay.DoorTerminal>();
 			dt.doors.Add(doors[6]);
 			dt.doors.Add(doors[7]);
 
-			dt = interactives[1].GetComponent<Gameplay.DoorTerminal>();
+			dt = interactibles[1].GetComponent<Gameplay.DoorTerminal>();
 			dt.doors.Add(doors[0]);
 			dt.doors.Add(doors[1]);
 			dt.doors.Add(doors[3]);
 			dt.doors.Add(doors[5]);
 
-			dt = interactives[2].GetComponent<Gameplay.DoorTerminal>();
+			dt = interactibles[2].GetComponent<Gameplay.DoorTerminal>();
 			dt.doors.Add(doors[2]);
 			dt.doors.Add(doors[4]);
 			dt.doors.Add(doors[3]);
 			dt.doors.Add(doors[5]);
 
-			dt = interactives[3].GetComponent<Gameplay.DoorTerminal>();
+			dt = interactibles[3].GetComponent<Gameplay.DoorTerminal>();
 			dt.doors.Add(doors[2]);
 			dt.doors.Add(doors[4]);
 
@@ -61,7 +61,6 @@ namespace AstroMonkey.Assets.Scenes
 
 			MediaPlayer.Play(Audio.SoundContainer.Instance.GetSong("05_02"));
 
-			Graphics.ViewManager.Instance.activeEffects.Clear();
 			Graphics.ViewManager.Instance.activeEffects.Add(Graphics.EffectContainer.Instance.GetEffect("LightOff"));
 
 			Physics.PhysicsManager.player = playerObject.GetComponent<Physics.Collider.Collider>();
