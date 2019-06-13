@@ -40,7 +40,7 @@ float4 MainPS(float4 pos : SV_POSITION, float4 color : COLOR0, float2 texCoord :
 	//nic się nie zmienia
 	
 	float4 normal = BloodScreen.Sample(NormalSampler, texCoord);
-	if (currTime < time + .2) {
+	if (currTime < time + .25) {
 		normal.r = normal.r * (currTime - time) * 2;
 		normal.g = normal.g * (currTime - time) * 2;
 		normal.b = normal.b * (currTime - time) * 2;

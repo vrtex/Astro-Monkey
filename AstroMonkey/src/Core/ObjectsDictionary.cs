@@ -228,17 +228,17 @@ namespace AstroMonkey.Core
             [502] = new Tuple<Type, float>(typeof(Assets.Objects.Nut), downRotation),
             [522] = new Tuple<Type, float>(typeof(Assets.Objects.Nut), leftRotation),
 
-            // Gun ammo
-            [463] = new Tuple<Type, float>(typeof(Assets.Objects.AmmoGun), upRotation),
-            [483] = new Tuple<Type, float>(typeof(Assets.Objects.AmmoGun), rightRotation),
-            [503] = new Tuple<Type, float>(typeof(Assets.Objects.AmmoGun), downRotation),
-            [523] = new Tuple<Type, float>(typeof(Assets.Objects.AmmoGun), leftRotation),
-
             // Rifle ammo
-            [464] = new Tuple<Type, float>(typeof(Assets.Objects.AmmoRiffle), upRotation),
-            [484] = new Tuple<Type, float>(typeof(Assets.Objects.AmmoRiffle), rightRotation),
-            [504] = new Tuple<Type, float>(typeof(Assets.Objects.AmmoRiffle), downRotation),
-            [524] = new Tuple<Type, float>(typeof(Assets.Objects.AmmoRiffle), leftRotation),
+            [463] = new Tuple<Type, float>(typeof(Assets.Objects.AmmoRiffle), upRotation),
+            [483] = new Tuple<Type, float>(typeof(Assets.Objects.AmmoRiffle), rightRotation),
+            [503] = new Tuple<Type, float>(typeof(Assets.Objects.AmmoRiffle), downRotation),
+            [523] = new Tuple<Type, float>(typeof(Assets.Objects.AmmoRiffle), leftRotation),
+
+            // Gun ammo
+            [464] = new Tuple<Type, float>(typeof(Assets.Objects.AmmoGun), upRotation),
+            [484] = new Tuple<Type, float>(typeof(Assets.Objects.AmmoGun), rightRotation),
+            [504] = new Tuple<Type, float>(typeof(Assets.Objects.AmmoGun), downRotation),
+            [524] = new Tuple<Type, float>(typeof(Assets.Objects.AmmoGun), leftRotation),
 
             // Launcher ammo
             [465] = new Tuple<Type, float>(typeof(Assets.Objects.AmmoLuncher), upRotation),
