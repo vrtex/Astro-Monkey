@@ -55,7 +55,6 @@ namespace AstroMonkey
             
 			foreach(string line in lines)
 			{
-                Debug.WriteLine(line);
                 Regex regexFullscreen = new Regex(@"fullscreen=[0-1]");
 				Regex regexResolution = new Regex(@"resolution=[0-9]");
 				Regex regexSound = new Regex(@"sound=[0-9]{1,3}");
@@ -149,8 +148,8 @@ namespace AstroMonkey
         {
             totalGameTime = gameTime.TotalGameTime;
 
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-                Exit();
+            //if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.P))
+            //    Exit();
 
             Core.GameManager.UpdateScene();
             Core.GameManager.FinalizeSpwaning();
