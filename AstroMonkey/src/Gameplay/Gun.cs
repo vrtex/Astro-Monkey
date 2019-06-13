@@ -62,7 +62,7 @@ namespace AstroMonkey.Gameplay
 		public void Shoot(Vector2 targetPosition)
 		{
             shooting = true;
-            if(delayLeft > 0)
+            if(delayLeft > 0 || IsReloading())
                 return;
             BaseProjectile projectile =
                 currentClip.GetProjectile(parent.transform);
@@ -80,6 +80,8 @@ namespace AstroMonkey.Gameplay
             OnAmmoChange?.Invoke(this);
 
             delayLeft = ammoClips[currentClipIndex].fireDelay;
+            if(currentClip.GetAmmoInfo().loaded == 0)
+                StopShooting();
 		}
 
         public void StopShooting()
@@ -101,6 +103,8 @@ namespace AstroMonkey.Gameplay
                 currentClip.OnReload -= ReloadHandler;
 
             currentClip = ammoClips[currentClipIndex];
+            if(currentClip.GetAmmoInfo().loaded == 0)
+                currentClip.StartReload();
             OnWeaponChange?.Invoke(this);
             currentClip.OnReload += ReloadHandler;
         }

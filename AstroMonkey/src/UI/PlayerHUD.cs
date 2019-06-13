@@ -92,6 +92,8 @@ namespace AstroMonkey.UI
             string ammoString = currentAmmo.loaded.ToString() + "/" + (currentAmmo.reservesLeft >= 0 ? currentAmmo.reservesLeft.ToString() : infSymbol);
             ammoDisplayWidget.DisplayString = ammoString;
 
+            reloadBarWidget.SetProgress(gun.GetReloadLeft());
+
         }
 
         private void HealthChanged(Health damaged, DamageInfo damageInfo)

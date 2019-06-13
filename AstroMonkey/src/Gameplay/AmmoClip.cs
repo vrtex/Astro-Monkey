@@ -43,8 +43,8 @@ namespace AstroMonkey.Gameplay
             this.maxAmmo = maxAmmo;
             this.reloadTime = reloadTime;
 
-            ammoReserves = maxAmmo;
-            currentlyInClip = clipSize;
+            ammoReserves = maxAmmo < 0 ? -1 : 0;
+            currentlyInClip = 0;
         }
 
         public AmmoClip(AmmoClip other)
@@ -132,6 +132,8 @@ namespace AstroMonkey.Gameplay
 
         public void StartReload()
         {
+            if(ammoReserves == 0)
+                return;
             reloadLeft = reloadTime;
         }
 

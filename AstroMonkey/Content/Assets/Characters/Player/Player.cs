@@ -82,6 +82,7 @@ namespace AstroMonkey.Assets.Objects
                 gun.AddAmmoClip(Gun.rifleClip.Copy());
                 gun.AddAmmoClip(Gun.launcherClip.Copy());
                 gun.AddAmmoClip(Gun.shotgunClip.Copy());
+                gun.ChangeAmmo(typeof(PistolBullet));
             }
             else
             {
