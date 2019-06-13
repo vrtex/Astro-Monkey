@@ -43,6 +43,19 @@ namespace AstroMonkey.Assets.Scenes
                 new Vector2(0.21f, 0.05f)));
             (objects.Last() as Objects.TextButton).onClick += Exit;
 
+            //foreach (Core.GameObject o in objects)
+            //{
+            //    if (o is Objects.TextButton)
+            //    {
+            //        Objects.TextButton tb = (Objects.TextButton)o;
+            //        if(tb.text.Equals("Main Menu"))
+            //        {
+            //            (o as Objects.TextButton).GetComponent<Gameplay.ChangeLevel>().nextLevel = "menu";
+
+            //        }
+            //    }
+            //}
+
             RepairSpawns();
 
         }
@@ -54,7 +67,17 @@ namespace AstroMonkey.Assets.Scenes
 
         void Menu(Objects.TextButton textButton)
         {
-            SceneManager.Instance.LoadScene("menu");
+            MediaPlayer.Stop();
+            SceneManager.Instance.heldScene.UnLoad();
+
+            //SceneManager.Instance.LoadScene("menu");
+            //SceneManager.Instance.heldScene.UnLoad();
+            //SceneManager.Instance.currScene.UnLoad();
+
+            GameManager.Instance.NextScene = "menu";
+            //SceneManager.Instance.currScene.objects[0].GetComponent<Gameplay.ChangeLevel>().nextLevel = "menu";
+            //objects[0].GetComponent<Gameplay.ChangeLevel>().nextLevel = "menu";
+            //RepairSpawns();
         }
 
         void Exit(Objects.TextButton textButton)
