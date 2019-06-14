@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using AstroMonkey.Assets.Objects;
 using AstroMonkey.Physics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -113,8 +114,15 @@ namespace AstroMonkey.Graphics
 
                     Vector2 spriteDir = Vector2.Subtract(spritePos, center);
 
-                    spritePos.X += spriteDir.X * i * 0.005f;
-                    spritePos.Y += spriteDir.Y * i * 0.005f;
+                    if(s.GetType() != typeof(AstroMonkey.Assets.Objects.Player))
+                    {
+                        spritePos.X += spriteDir.X * i * 0.005f;
+                        spritePos.Y += spriteDir.Y * i * 0.005f;
+                    } else
+                    {
+                        spritePos.Y = s.transform.position.Y - sprite.stackOffset * i * s.transform.scale.Y + sprite.anchor.Y * s.transform.scale.Y;
+                    }
+                    
                     
                     spriteBatch.Draw(
                         sprite.image,
