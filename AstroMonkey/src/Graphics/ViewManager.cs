@@ -101,16 +101,24 @@ namespace AstroMonkey.Graphics
 
             sprites.Sort(vc);
 
+            Vector2 center = new Vector2(PlayerTransform.position.X, PlayerTransform.position.Y);
+
             foreach(Core.GameObject s in sprites)
             {
                 Sprite sprite = s.GetComponent<Graphics.Sprite>();
                 for(int i = 0; i < sprite.rect.Count; ++i)
                 {
+                    Vector2 spritePos = new Vector2(s.transform.position.X + sprite.anchor.X * s.transform.scale.X,
+                                    s.transform.position.Y - sprite.stackOffset * s.transform.scale.Y + sprite.anchor.Y * s.transform.scale.Y);
+
+                    Vector2 spriteDir = Vector2.Subtract(spritePos, center);
+
+                    spritePos.X += spriteDir.X * i * 0.005f;
+                    spritePos.Y += spriteDir.Y * i * 0.005f;
+                    
                     spriteBatch.Draw(
                         sprite.image,
-                        new Vector2(
-                            s.transform.position.X + sprite.anchor.X * s.transform.scale.X,
-                            s.transform.position.Y - sprite.stackOffset * i * s.transform.scale.Y + sprite.anchor.Y * s.transform.scale.Y),
+                        spritePos,
                         null,
                         sprite.rect[i],
                         sprite.origin,
