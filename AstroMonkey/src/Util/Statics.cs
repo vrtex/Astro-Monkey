@@ -139,5 +139,12 @@ namespace AstroMonkey.Util
 			}
 			return new Vector2(800, 600);
 		}
-    }
+
+		public static void Swap<T>(ref T obj1, ref T obj2)
+		{
+			T temp = obj1;
+			obj1 = obj2;
+			obj2 = temp;
+		}
+	}
 }

@@ -19,7 +19,8 @@ namespace AstroMonkey
         SpriteBatch					spriteBatch;
         InputManager				inputManager;
 		RenderTarget2D              sceneContents;
-        public static Game1 self;
+		RenderTarget2D              supportTarget;
+		public static Game1 self;
         public static System.TimeSpan totalGameTime;
         Texture2D blood_screen;
 
@@ -106,7 +107,9 @@ namespace AstroMonkey
 
 			Core.GameManager.Instance.InitializeGame(this, graphics);
 			sceneContents = new RenderTarget2D(GraphicsDevice, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height);
-            float ratio = ((float)graphics.PreferredBackBufferWidth) / ((float)graphics.PreferredBackBufferHeight);
+			supportTarget = new RenderTarget2D(GraphicsDevice, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height);
+
+			float ratio = ((float)graphics.PreferredBackBufferWidth) / ((float)graphics.PreferredBackBufferHeight);
 			Graphics.EffectContainer.Instance.GetEffect("LightOff").Parameters["aspectRatio"].SetValue(ratio);
 
             //Dodawanie aktywnych efektów do renderowania
@@ -179,8 +182,7 @@ namespace AstroMonkey
 		protected override void Draw(GameTime gameTime)
         {
 
-
-            Graphics.ViewManager.Instance.Render(spriteBatch, GraphicsDevice, sceneContents);
+            Graphics.ViewManager.Instance.Render(spriteBatch, GraphicsDevice, sceneContents, supportTarget);
 
             Graphics.WidgetManager.Render(spriteBatch, GraphicsDevice);
         }

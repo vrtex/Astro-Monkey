@@ -58,7 +58,7 @@ namespace AstroMonkey.Graphics
             sprites.RemoveAll( x => x.Equals(sprite));
         }
 
-        public void Render(SpriteBatch spriteBatch, GraphicsDevice graphicsDevice, RenderTarget2D renderTarget2D)
+        public void Render(SpriteBatch spriteBatch, GraphicsDevice graphicsDevice, RenderTarget2D renderTarget2D, RenderTarget2D supportTarget2D)
         {
 			graphicsDevice.SetRenderTarget(renderTarget2D);
 			graphicsDevice.Clear(Util.Statics.Colors.BLACK);
@@ -135,19 +135,39 @@ namespace AstroMonkey.Graphics
 
 			Texture2D result = renderTarget2D;
 
-			foreach(Effect e in activeEffects)
-			{
-				spriteBatch.Begin(effect: e);
-					spriteBatch.Draw(result, Vector2.Zero, Color.White);
-				spriteBatch.End();
-			}
 			if(activeEffects.Count == 0)
 			{
 				spriteBatch.Begin();
 					spriteBatch.Draw(result, Vector2.Zero, Color.White);
 				spriteBatch.End();
 			}
+			else
+			{
+				List<Texture2D> texureList = new List<Texture2D>();
+
+				foreach(Effect e in activeEffects)
+				{
+					spriteBatch.GraphicsDevice.SetRenderTarget(supportTarget2D);
+					spriteBatch.GraphicsDevice.Clear(new Color(0, 0, 0, 0));
+
+					spriteBatch.Begin(SpriteSortMode.Texture, effect: e);
+						spriteBatch.Draw(renderTarget2D, new Rectangle(0, 0, graphicsDevice.Viewport.Width, graphicsDevice.Viewport.Height), null, Color.White);
+					spriteBatch.End();
+
+					Util.Statics.Swap(ref supportTarget2D, ref renderTarget2D);
+				}
+
+				spriteBatch.GraphicsDevice.SetRenderTarget(null);
+
+				spriteBatch.Begin(SpriteSortMode.Immediate);
+					spriteBatch.Draw(renderTarget2D, new Rectangle(0, 0, graphicsDevice.Viewport.Width, graphicsDevice.Viewport.Height), null, Color.White);
+				spriteBatch.End();
+			}
 		}
-        
-    }
+
+		void DrawEffect(Texture2D texture, List<RenderTarget2D> targetList)
+		{
+
+		}
+	}
 }
