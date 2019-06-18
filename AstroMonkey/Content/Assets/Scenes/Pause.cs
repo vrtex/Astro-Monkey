@@ -16,9 +16,15 @@ namespace AstroMonkey.Assets.Scenes
     class Pause : Core.Scene
     {
         static Input.InputComponent playerInput;
+        private List<Effect> effects = new List<Effect>();
 
         public override void Load()
         {
+            lock(Graphics.ViewManager.Instance.activeEffects)
+            {
+                foreach(var e in Graphics.ViewManager.Instance.activeEffects)
+                    effects.Add(e);
+            }
             base.Load();
 
             //MediaPlayer.IsRepeating = true;
@@ -64,6 +70,12 @@ namespace AstroMonkey.Assets.Scenes
         void Resume(Objects.TextButton textButton)
         {
             SceneManager.Instance.Restore();
+            lock(Graphics.ViewManager.Instance.activeEffects)
+            {
+                foreach(var e in effects)
+                    Graphics.ViewManager.Instance.activeEffects.Add(e);
+            }
+            effects.Clear();
         }
 
         void Menu(Objects.TextButton textButton)
