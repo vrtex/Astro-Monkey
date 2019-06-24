@@ -151,9 +151,10 @@ namespace AstroMonkey
         {
             totalGameTime = gameTime.TotalGameTime;
 
+#if DEBUG
             if(GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Tab))
                 Exit();
-
+#endif
             Core.GameManager.UpdateScene();
             Core.GameManager.FinalizeSpwaning();
             Graphics.AnimationManager.Instance.Update(gameTime.ElapsedGameTime.TotalSeconds);            
