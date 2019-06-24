@@ -64,7 +64,12 @@ namespace AstroMonkey.Core
             // ??
             foreach(GameObject obj in objects)
                 obj.Destroy();
-            objects.Clear();
+
+            lock (objects)
+            {
+                objects.Clear();
+            }
+
 			doors.Clear();
 			interactibles.Clear();
             Graphics.ViewManager.Instance.activeEffects.Clear();

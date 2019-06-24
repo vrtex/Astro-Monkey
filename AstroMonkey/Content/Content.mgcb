@@ -1000,12 +1000,6 @@
 /processorParam:Quality=Best
 /build:sfx/Computer.mp3
 
-#begin sfx/ending.mp3
-/importer:Mp3Importer
-/processor:SongProcessor
-/processorParam:Quality=Best
-/build:sfx/ending.mp3
-
 #begin sfx/guns/GunReload.mp3
 /importer:Mp3Importer
 /processor:SoundEffectProcessor

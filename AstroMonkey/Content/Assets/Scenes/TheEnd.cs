@@ -49,8 +49,6 @@ namespace AstroMonkey.Assets.Scenes
 
 			Graphics.WidgetManager.AddWidget(scenes.Last());
 			Graphics.WidgetManager.AddWidget(scenesText.Last());
-
-            MediaPlayer.Play(Audio.SoundContainer.Instance.GetSong("ending"));
         }
 
 		private void ProgressScenes()

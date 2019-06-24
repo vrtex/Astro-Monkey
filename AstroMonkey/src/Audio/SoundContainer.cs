@@ -120,8 +120,6 @@ namespace AstroMonkey.Audio
 			songs.Add("05_02", game.Content.Load<Song>(@"sfx/background/05 - Interstellar_Spacedrone"));
 			songs.Add("06", game.Content.Load<Song>(@"sfx/background/06 - amb_doomdrones_amorph_stahlwand"));
 			songs.Add("menu", game.Content.Load<Song>(@"sfx/background/menu - Sound design synth bed pad sweeper ambient 01_SFXBible_ss00421"));
-            songs.Add("ending", game.Content.Load<Song>(@"sfx/ending"));
-
         }
     }
 }
