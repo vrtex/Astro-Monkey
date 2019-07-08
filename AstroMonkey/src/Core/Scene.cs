@@ -323,10 +323,15 @@ namespace AstroMonkey.Core
 
         public virtual void UnLoad()
         {
+            // wyjątek
             lock(objects)
             {
-                foreach(GameObject obj in objects)
-                    obj.Destroy();
+                //foreach(GameObject obj in objects)
+                //    obj.Destroy();
+                for(int i = 0; i < objects.Count; i++)
+                {
+                    objects[i]?.Destroy();
+                }
             }
             Graphics.ViewManager.Instance.PlayerTransform = null;
         }

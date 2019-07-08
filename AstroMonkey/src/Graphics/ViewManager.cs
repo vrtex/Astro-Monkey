@@ -145,12 +145,13 @@ namespace AstroMonkey.Graphics
 			{
 				List<Texture2D> texureList = new List<Texture2D>();
 
-				foreach(Effect e in activeEffects)
-				{
+				//foreach(Effect e in activeEffects)
+				//{
+                for(int i = 0; i < activeEffects.Count; i++) { 
 					spriteBatch.GraphicsDevice.SetRenderTarget(supportTarget2D);
 					spriteBatch.GraphicsDevice.Clear(new Color(0, 0, 0, 0));
 
-					spriteBatch.Begin(SpriteSortMode.Texture, effect: e);
+					spriteBatch.Begin(SpriteSortMode.Texture, effect: activeEffects[i]);
 						spriteBatch.Draw(renderTarget2D, new Rectangle(0, 0, graphicsDevice.Viewport.Width, graphicsDevice.Viewport.Height), null, Color.White);
 					spriteBatch.End();
 
