@@ -44,7 +44,11 @@ namespace AstroMonkey.Graphics
 		public void AddSprite(Core.GameObject sprite)
         {
             if(sprite is Assets.Objects.Floor) floor.Add(sprite);
-            else sprites.Add(sprite);
+            else
+                lock(sprites)
+                {
+                    sprites.Add(sprite);
+                }
         }
 
 		public void RemoveSprite(UI.UIElement sprite)

@@ -31,200 +31,207 @@ namespace AstroMonkey.Assets.Scenes
             MediaPlayer.Volume = Util.Statics.musicVolume;
             MediaPlayer.Play(Audio.SoundContainer.Instance.GetSong("menu"));
 
-            objects.Add(new UI.Text("Astro Monkey", "planetary", new Vector2(0.5f, 0.05f), new Vector2(0.25f, 0.1f)));
-			mainMenu.Add(objects.Last() as UI.UIElement);
+            List<GameObject> tempObjects = new List<GameObject>();
+
+            tempObjects.Add(new UI.Text("Astro Monkey", "planetary", new Vector2(0.5f, 0.05f), new Vector2(0.25f, 0.1f)));
+			mainMenu.Add(tempObjects.Last() as UI.UIElement);
 
 			Objects.MenuCenter mc = new Objects.MenuCenter(Graphics.ViewManager.Instance.WinSize()/2, new Vector2(0f, 0f), 0f);
-			objects.Add(mc);
+			tempObjects.Add(mc);
 			Graphics.ViewManager.Instance.PlayerTransform = mc.transform;
 			
-			objects.Add(new Objects.TextButton("New Game", "planetary", new Vector2(0.75f, 0.2f), new Vector2(0.25f, 0.05f)));
-			(objects.Last() as Objects.TextButton).onClick += PlayGame;
-			mainMenu.Add(objects.Last() as UI.UIElement);
-			(objects.Last() as Objects.TextButton).value = -1;
+			tempObjects.Add(new Objects.TextButton("New Game", "planetary", new Vector2(0.75f, 0.2f), new Vector2(0.25f, 0.05f)));
+			(tempObjects.Last() as Objects.TextButton).onClick += PlayGame;
+			mainMenu.Add(tempObjects.Last() as UI.UIElement);
+			(tempObjects.Last() as Objects.TextButton).value = -1;
 
-			objects.Add(new Objects.TextButton("Load Game", "planetary", new Vector2(0.75f, 0.3f), new Vector2(0.26f, 0.05f)));
-			(objects.Last() as Objects.TextButton).onClick += LoadGame;
-			mainMenu.Add(objects.Last() as UI.UIElement);
+			tempObjects.Add(new Objects.TextButton("Load Game", "planetary", new Vector2(0.75f, 0.3f), new Vector2(0.26f, 0.05f)));
+			(tempObjects.Last() as Objects.TextButton).onClick += LoadGame;
+			mainMenu.Add(tempObjects.Last() as UI.UIElement);
 
-			objects.Add(new Objects.TextButton("Settings", "planetary", new Vector2(0.75f, 0.4f), new Vector2(0.21f, 0.05f)));
-			(objects.Last() as Objects.TextButton).onClick += Settings;
-			mainMenu.Add(objects.Last() as UI.UIElement);
+			tempObjects.Add(new Objects.TextButton("Settings", "planetary", new Vector2(0.75f, 0.4f), new Vector2(0.21f, 0.05f)));
+			(tempObjects.Last() as Objects.TextButton).onClick += Settings;
+			mainMenu.Add(tempObjects.Last() as UI.UIElement);
 
-			objects.Add(new Objects.TextButton("Authors", "planetary", new Vector2(0.75f, 0.5f), new Vector2(0.2f, 0.05f)));
-			(objects.Last() as Objects.TextButton).onClick += Authors;
-			mainMenu.Add(objects.Last() as UI.UIElement);
+			tempObjects.Add(new Objects.TextButton("Authors", "planetary", new Vector2(0.75f, 0.5f), new Vector2(0.2f, 0.05f)));
+			(tempObjects.Last() as Objects.TextButton).onClick += Authors;
+			mainMenu.Add(tempObjects.Last() as UI.UIElement);
 
-			objects.Add(new Objects.TextButton("Exit", "planetary", new Vector2(0.75f, 0.6f), new Vector2(0.1f, 0.05f)));
-			(objects.Last() as Objects.TextButton).onClick += QuitGame;
-			mainMenu.Add(objects.Last() as UI.UIElement);
+			tempObjects.Add(new Objects.TextButton("Exit", "planetary", new Vector2(0.75f, 0.6f), new Vector2(0.1f, 0.05f)));
+			(tempObjects.Last() as Objects.TextButton).onClick += QuitGame;
+			mainMenu.Add(tempObjects.Last() as UI.UIElement);
 
-            //objects.Add(new UI.Slider(new Vector2(0.75f, 0.7f), new Vector2(0.32f, 0.05f), 0.5f));
-            //mainMenu.Add(objects.Last() as UI.UIElement);
+            //tempObjects.Add(new UI.Slider(new Vector2(0.75f, 0.7f), new Vector2(0.32f, 0.05f), 0.5f));
+            //mainMenu.Add(tempObjects.Last() as UI.UIElement);
 
             //++++++++++++++++++++++++++++++++++++++ŁADOWANIE GRY++++++++++++++++++++++++++++++++++++++++++
-            objects.Add(new Objects.TextButton("Level 1", "planetary", new Vector2(0.1f, 0.15f), new Vector2(0.32f, 0.05f)));
-			(objects.Last() as Objects.TextButton).onClick += PlayGame;
-			loadGame.Add(objects.Last() as UI.UIElement);
-			(objects.Last() as UI.UIElement).enable = false;
-			(objects.Last() as Objects.TextButton).value = 0;
+            tempObjects.Add(new Objects.TextButton("Level 1", "planetary", new Vector2(0.1f, 0.15f), new Vector2(0.32f, 0.05f)));
+			(tempObjects.Last() as Objects.TextButton).onClick += PlayGame;
+			loadGame.Add(tempObjects.Last() as UI.UIElement);
+			(tempObjects.Last() as UI.UIElement).enable = false;
+			(tempObjects.Last() as Objects.TextButton).value = 0;
 
-			objects.Add(new Objects.TextButton("Level 2", "planetary", new Vector2(0.1f, 0.2f), new Vector2(0.34f, 0.05f)));
-			(objects.Last() as Objects.TextButton).onClick += PlayGame;
-			loadGame.Add(objects.Last() as UI.UIElement);
-			(objects.Last() as UI.UIElement).enable = false;
-			(objects.Last() as Objects.TextButton).value = 1;
+			tempObjects.Add(new Objects.TextButton("Level 2", "planetary", new Vector2(0.1f, 0.2f), new Vector2(0.34f, 0.05f)));
+			(tempObjects.Last() as Objects.TextButton).onClick += PlayGame;
+			loadGame.Add(tempObjects.Last() as UI.UIElement);
+			(tempObjects.Last() as UI.UIElement).enable = false;
+			(tempObjects.Last() as Objects.TextButton).value = 1;
 
-			objects.Add(new Objects.TextButton("Level 3", "planetary", new Vector2(0.1f, 0.25f), new Vector2(0.34f, 0.05f)));
-			(objects.Last() as Objects.TextButton).onClick += PlayGame;
-			loadGame.Add(objects.Last() as UI.UIElement);
-			(objects.Last() as UI.UIElement).enable = false;
-			(objects.Last() as Objects.TextButton).value = 2;
+			tempObjects.Add(new Objects.TextButton("Level 3", "planetary", new Vector2(0.1f, 0.25f), new Vector2(0.34f, 0.05f)));
+			(tempObjects.Last() as Objects.TextButton).onClick += PlayGame;
+			loadGame.Add(tempObjects.Last() as UI.UIElement);
+			(tempObjects.Last() as UI.UIElement).enable = false;
+			(tempObjects.Last() as Objects.TextButton).value = 2;
 
-			objects.Add(new Objects.TextButton("Level 4", "planetary", new Vector2(0.1f, 0.3f), new Vector2(0.34f, 0.05f)));
-			(objects.Last() as Objects.TextButton).onClick += PlayGame;
-			loadGame.Add(objects.Last() as UI.UIElement);
-			(objects.Last() as UI.UIElement).enable = false;
-			(objects.Last() as Objects.TextButton).value = 3;
+			tempObjects.Add(new Objects.TextButton("Level 4", "planetary", new Vector2(0.1f, 0.3f), new Vector2(0.34f, 0.05f)));
+			(tempObjects.Last() as Objects.TextButton).onClick += PlayGame;
+			loadGame.Add(tempObjects.Last() as UI.UIElement);
+			(tempObjects.Last() as UI.UIElement).enable = false;
+			(tempObjects.Last() as Objects.TextButton).value = 3;
 
-			objects.Add(new Objects.TextButton("Level 5", "planetary", new Vector2(0.1f, 0.35f), new Vector2(0.34f, 0.05f)));
-			(objects.Last() as Objects.TextButton).onClick += PlayGame;
-			loadGame.Add(objects.Last() as UI.UIElement);
-			(objects.Last() as UI.UIElement).enable = false;
-			(objects.Last() as Objects.TextButton).value = 4;
+			tempObjects.Add(new Objects.TextButton("Level 5", "planetary", new Vector2(0.1f, 0.35f), new Vector2(0.34f, 0.05f)));
+			(tempObjects.Last() as Objects.TextButton).onClick += PlayGame;
+			loadGame.Add(tempObjects.Last() as UI.UIElement);
+			(tempObjects.Last() as UI.UIElement).enable = false;
+			(tempObjects.Last() as Objects.TextButton).value = 4;
 
-			objects.Add(new Objects.TextButton("Level 6", "planetary", new Vector2(0.1f, 0.4f), new Vector2(0.35f, 0.05f)));
-			(objects.Last() as Objects.TextButton).onClick += PlayGame;
-			loadGame.Add(objects.Last() as UI.UIElement);
-			(objects.Last() as UI.UIElement).enable = false;
-			(objects.Last() as Objects.TextButton).value = 5;
+			tempObjects.Add(new Objects.TextButton("Level 6", "planetary", new Vector2(0.1f, 0.4f), new Vector2(0.35f, 0.05f)));
+			(tempObjects.Last() as Objects.TextButton).onClick += PlayGame;
+			loadGame.Add(tempObjects.Last() as UI.UIElement);
+			(tempObjects.Last() as UI.UIElement).enable = false;
+			(tempObjects.Last() as Objects.TextButton).value = 5;
 
-			objects.Add(new Objects.TextButton("Level 7", "planetary", new Vector2(0.1f, 0.45f), new Vector2(0.34f, 0.05f)));
-			(objects.Last() as Objects.TextButton).onClick += PlayGame;
-			loadGame.Add(objects.Last() as UI.UIElement);
-			(objects.Last() as UI.UIElement).enable = false;
-			(objects.Last() as Objects.TextButton).value = 6;
+			tempObjects.Add(new Objects.TextButton("Level 7", "planetary", new Vector2(0.1f, 0.45f), new Vector2(0.34f, 0.05f)));
+			(tempObjects.Last() as Objects.TextButton).onClick += PlayGame;
+			loadGame.Add(tempObjects.Last() as UI.UIElement);
+			(tempObjects.Last() as UI.UIElement).enable = false;
+			(tempObjects.Last() as Objects.TextButton).value = 6;
 
-			objects.Add(new Objects.TextButton("Level 8", "planetary", new Vector2(0.1f, 0.5f), new Vector2(0.35f, 0.05f)));
-			(objects.Last() as Objects.TextButton).onClick += PlayGame;
-			loadGame.Add(objects.Last() as UI.UIElement);
-			(objects.Last() as UI.UIElement).enable = false;
-			(objects.Last() as Objects.TextButton).value = 7;
+			tempObjects.Add(new Objects.TextButton("Level 8", "planetary", new Vector2(0.1f, 0.5f), new Vector2(0.35f, 0.05f)));
+			(tempObjects.Last() as Objects.TextButton).onClick += PlayGame;
+			loadGame.Add(tempObjects.Last() as UI.UIElement);
+			(tempObjects.Last() as UI.UIElement).enable = false;
+			(tempObjects.Last() as Objects.TextButton).value = 7;
 
-			objects.Add(new Objects.TextButton("Level 9", "planetary", new Vector2(0.1f, 0.55f), new Vector2(0.35f, 0.05f)));
-			(objects.Last() as Objects.TextButton).onClick += PlayGame;
-			loadGame.Add(objects.Last() as UI.UIElement);
-			(objects.Last() as UI.UIElement).enable = false;
-			(objects.Last() as Objects.TextButton).value = 8;
+			tempObjects.Add(new Objects.TextButton("Level 9", "planetary", new Vector2(0.1f, 0.55f), new Vector2(0.35f, 0.05f)));
+			(tempObjects.Last() as Objects.TextButton).onClick += PlayGame;
+			loadGame.Add(tempObjects.Last() as UI.UIElement);
+			(tempObjects.Last() as UI.UIElement).enable = false;
+			(tempObjects.Last() as Objects.TextButton).value = 8;
 
-			objects.Add(new Objects.TextButton("Dev Room", "planetary", new Vector2(0.1f, 0.6f), new Vector2(0.34f, 0.05f)));
-			(objects.Last() as Objects.TextButton).onClick += PlayGame;
-			loadGame.Add(objects.Last() as UI.UIElement);
-			(objects.Last() as UI.UIElement).enable = false;
-			(objects.Last() as Objects.TextButton).value = 9;
+			tempObjects.Add(new Objects.TextButton("Dev Room", "planetary", new Vector2(0.1f, 0.6f), new Vector2(0.34f, 0.05f)));
+			(tempObjects.Last() as Objects.TextButton).onClick += PlayGame;
+			loadGame.Add(tempObjects.Last() as UI.UIElement);
+			(tempObjects.Last() as UI.UIElement).enable = false;
+			(tempObjects.Last() as Objects.TextButton).value = 9;
 
-			objects.Add(new Objects.TextButton("Collider Room", "planetary", new Vector2(0.1f, 0.65f), new Vector2(0.35f, 0.05f)));
-			(objects.Last() as Objects.TextButton).onClick += PlayGame;
-			loadGame.Add(objects.Last() as UI.UIElement);
-			(objects.Last() as UI.UIElement).enable = false;
-			(objects.Last() as Objects.TextButton).value = 10;
+			tempObjects.Add(new Objects.TextButton("Collider Room", "planetary", new Vector2(0.1f, 0.65f), new Vector2(0.35f, 0.05f)));
+			(tempObjects.Last() as Objects.TextButton).onClick += PlayGame;
+			loadGame.Add(tempObjects.Last() as UI.UIElement);
+			(tempObjects.Last() as UI.UIElement).enable = false;
+			(tempObjects.Last() as Objects.TextButton).value = 10;
 
-            objects.Add(new Objects.TextButton("End Animation", "planetary", new Vector2(0.1f, 0.7f), new Vector2(0.35f, 0.05f)));
-            (objects.Last() as Objects.TextButton).onClick += PlayGame;
-            loadGame.Add(objects.Last() as UI.UIElement);
-            (objects.Last() as UI.UIElement).enable = false;
-            (objects.Last() as Objects.TextButton).value = 11;
+            tempObjects.Add(new Objects.TextButton("End Animation", "planetary", new Vector2(0.1f, 0.7f), new Vector2(0.35f, 0.05f)));
+            (tempObjects.Last() as Objects.TextButton).onClick += PlayGame;
+            loadGame.Add(tempObjects.Last() as UI.UIElement);
+            (tempObjects.Last() as UI.UIElement).enable = false;
+            (tempObjects.Last() as Objects.TextButton).value = 11;
 
             //++++++++++++++++++++++++++++++++++++++++++OPCJE++++++++++++++++++++++++++++++++++++++++++++++
 
-            //(objects.Last() as Objects.TextButton).onClick += SetFullscreen;
+            //(tempObjects.Last() as Objects.TextButton).onClick += SetFullscreen;
 
-            //(objects.Last() as UI.UIElement).enable = false;
+            //(tempObjects.Last() as UI.UIElement).enable = false;
 
-            objects.Add(new Objects.TextButton("[ ] Fullscreen", "planetary", new Vector2(0.1f, 0.2f), new Vector2(0.32f, 0.05f)));
-			(objects.Last() as Objects.TextButton).onClick += SetFullscreen;
-			settings.Add(objects.Last() as UI.UIElement);
-			(objects.Last() as UI.UIElement).enable = false;
+            tempObjects.Add(new Objects.TextButton("[ ] Fullscreen", "planetary", new Vector2(0.1f, 0.2f), new Vector2(0.32f, 0.05f)));
+			(tempObjects.Last() as Objects.TextButton).onClick += SetFullscreen;
+			settings.Add(tempObjects.Last() as UI.UIElement);
+			(tempObjects.Last() as UI.UIElement).enable = false;
 
-			objects.Add(new Objects.TextButton("[ ] 1024x768", "planetary", new Vector2(0.1f, 0.3f), new Vector2(0.32f, 0.05f)));
-			(objects.Last() as Objects.TextButton).onClick += SetResolution;
-			settings.Add(objects.Last() as UI.UIElement);
-			(objects.Last() as UI.UIElement).enable = false;
-			(objects.Last() as Objects.TextButton).value = 0;
+			tempObjects.Add(new Objects.TextButton("[ ] 1024x768", "planetary", new Vector2(0.1f, 0.3f), new Vector2(0.32f, 0.05f)));
+			(tempObjects.Last() as Objects.TextButton).onClick += SetResolution;
+			settings.Add(tempObjects.Last() as UI.UIElement);
+			(tempObjects.Last() as UI.UIElement).enable = false;
+			(tempObjects.Last() as Objects.TextButton).value = 0;
 
-			objects.Add(new Objects.TextButton("[ ] 1280x720", "planetary", new Vector2(0.1f, 0.35f), new Vector2(0.34f, 0.05f)));
-			(objects.Last() as Objects.TextButton).onClick += SetResolution;
-			settings.Add(objects.Last() as UI.UIElement);
-			(objects.Last() as UI.UIElement).enable = false;
-			(objects.Last() as Objects.TextButton).value = 1;
+			tempObjects.Add(new Objects.TextButton("[ ] 1280x720", "planetary", new Vector2(0.1f, 0.35f), new Vector2(0.34f, 0.05f)));
+			(tempObjects.Last() as Objects.TextButton).onClick += SetResolution;
+			settings.Add(tempObjects.Last() as UI.UIElement);
+			(tempObjects.Last() as UI.UIElement).enable = false;
+			(tempObjects.Last() as Objects.TextButton).value = 1;
 
-			objects.Add(new Objects.TextButton("[ ] 1400x1050", "planetary", new Vector2(0.1f, 0.4f), new Vector2(0.34f, 0.05f)));
-			(objects.Last() as Objects.TextButton).onClick += SetResolution;
-			settings.Add(objects.Last() as UI.UIElement);
-			(objects.Last() as UI.UIElement).enable = false;
-			(objects.Last() as Objects.TextButton).value = 2;
+			tempObjects.Add(new Objects.TextButton("[ ] 1400x1050", "planetary", new Vector2(0.1f, 0.4f), new Vector2(0.34f, 0.05f)));
+			(tempObjects.Last() as Objects.TextButton).onClick += SetResolution;
+			settings.Add(tempObjects.Last() as UI.UIElement);
+			(tempObjects.Last() as UI.UIElement).enable = false;
+			(tempObjects.Last() as Objects.TextButton).value = 2;
 
-			objects.Add(new Objects.TextButton("[ ] 1680x1050", "planetary", new Vector2(0.1f, 0.45f), new Vector2(0.34f, 0.05f)));
-			(objects.Last() as Objects.TextButton).onClick += SetResolution;
-			settings.Add(objects.Last() as UI.UIElement);
-			(objects.Last() as UI.UIElement).enable = false;
-			(objects.Last() as Objects.TextButton).value = 3;
+			tempObjects.Add(new Objects.TextButton("[ ] 1680x1050", "planetary", new Vector2(0.1f, 0.45f), new Vector2(0.34f, 0.05f)));
+			(tempObjects.Last() as Objects.TextButton).onClick += SetResolution;
+			settings.Add(tempObjects.Last() as UI.UIElement);
+			(tempObjects.Last() as UI.UIElement).enable = false;
+			(tempObjects.Last() as Objects.TextButton).value = 3;
 
-			objects.Add(new Objects.TextButton("[ ] 1920x1080", "planetary", new Vector2(0.1f, 0.50f), new Vector2(0.34f, 0.05f)));
-			(objects.Last() as Objects.TextButton).onClick += SetResolution;
-			settings.Add(objects.Last() as UI.UIElement);
-			(objects.Last() as UI.UIElement).enable = false;
-			(objects.Last() as Objects.TextButton).value = 4;
+			tempObjects.Add(new Objects.TextButton("[ ] 1920x1080", "planetary", new Vector2(0.1f, 0.50f), new Vector2(0.34f, 0.05f)));
+			(tempObjects.Last() as Objects.TextButton).onClick += SetResolution;
+			settings.Add(tempObjects.Last() as UI.UIElement);
+			(tempObjects.Last() as UI.UIElement).enable = false;
+			(tempObjects.Last() as Objects.TextButton).value = 4;
 
-			objects.Add(new Objects.TextButton("[ ] 1920x1200", "planetary", new Vector2(0.1f, 0.55f), new Vector2(0.35f, 0.05f)));
-			(objects.Last() as Objects.TextButton).onClick += SetResolution;
-			settings.Add(objects.Last() as UI.UIElement);
-			(objects.Last() as UI.UIElement).enable = false;
-			(objects.Last() as Objects.TextButton).value = 5;
+			tempObjects.Add(new Objects.TextButton("[ ] 1920x1200", "planetary", new Vector2(0.1f, 0.55f), new Vector2(0.35f, 0.05f)));
+			(tempObjects.Last() as Objects.TextButton).onClick += SetResolution;
+			settings.Add(tempObjects.Last() as UI.UIElement);
+			(tempObjects.Last() as UI.UIElement).enable = false;
+			(tempObjects.Last() as Objects.TextButton).value = 5;
 
-			objects.Add(new UI.Text(" ", "planetary", new Vector2(0.1f, 0.1f), new Vector2(0.25f, 0.05f)));
-			settings.Add(objects.Last() as UI.UIElement);
-			(objects.Last() as UI.UIElement).enable = false;
+			tempObjects.Add(new UI.Text(" ", "planetary", new Vector2(0.1f, 0.1f), new Vector2(0.25f, 0.05f)));
+			settings.Add(tempObjects.Last() as UI.UIElement);
+			(tempObjects.Last() as UI.UIElement).enable = false;
 
-            objects.Add(new UI.Slider(new Vector2(0.1f, 0.60f), new Vector2(0.32f, 0.05f), Util.Statics.musicVolume, "Music"));
-            (objects.Last() as UI.Slider).onChange += SetMusicVolume;
-            settings.Add(objects.Last() as UI.UIElement);
-            (objects.Last() as UI.UIElement).enable = false;
+            tempObjects.Add(new UI.Slider(new Vector2(0.1f, 0.60f), new Vector2(0.32f, 0.05f), Util.Statics.musicVolume, "Music"));
+            (tempObjects.Last() as UI.Slider).onChange += SetMusicVolume;
+            settings.Add(tempObjects.Last() as UI.UIElement);
+            (tempObjects.Last() as UI.UIElement).enable = false;
 
-            objects.Add(new UI.Slider(new Vector2(0.1f, 0.65f), new Vector2(0.32f, 0.05f), Util.Statics.soundVolume, "Sound"));
-            (objects.Last() as UI.Slider).onChange += SetSoundVolume;
-            settings.Add(objects.Last() as UI.UIElement);
-            (objects.Last() as UI.UIElement).enable = false;
+            tempObjects.Add(new UI.Slider(new Vector2(0.1f, 0.65f), new Vector2(0.32f, 0.05f), Util.Statics.soundVolume, "Sound"));
+            (tempObjects.Last() as UI.Slider).onChange += SetSoundVolume;
+            settings.Add(tempObjects.Last() as UI.UIElement);
+            (tempObjects.Last() as UI.UIElement).enable = false;
 
-            objects.Add(new Objects.TextButton("Save settings", "planetary", new Vector2(0.1f, 0.8f), new Vector2(0.35f, 0.05f)));
-            (objects.Last() as Objects.TextButton).onClick += ForceSettingsSave;
-            settings.Add(objects.Last() as UI.UIElement);
-            (objects.Last() as UI.UIElement).enable = false;
+            tempObjects.Add(new Objects.TextButton("Save settings", "planetary", new Vector2(0.1f, 0.8f), new Vector2(0.35f, 0.05f)));
+            (tempObjects.Last() as Objects.TextButton).onClick += ForceSettingsSave;
+            settings.Add(tempObjects.Last() as UI.UIElement);
+            (tempObjects.Last() as UI.UIElement).enable = false;
 
             //+++++++++++++++++++++++++++++++++++++++++AUTORZY+++++++++++++++++++++++++++++++++++++++++++++
-            objects.Add(new UI.Text("Jakub Czaja", "planetary", new Vector2(0.1f, 0.15f), new Vector2(0.25f, 0.1f)));
-			authors.Add(objects.Last() as UI.UIElement);
-			(objects.Last() as UI.UIElement).enable = false;
+            tempObjects.Add(new UI.Text("Jakub Czaja", "planetary", new Vector2(0.1f, 0.15f), new Vector2(0.25f, 0.1f)));
+			authors.Add(tempObjects.Last() as UI.UIElement);
+			(tempObjects.Last() as UI.UIElement).enable = false;
 
-			objects.Add(new UI.Text("Artur Mokrosinski", "planetary", new Vector2(0.1f, 0.2f), new Vector2(0.25f, 0.1f)));
-			authors.Add(objects.Last() as UI.UIElement);
-			(objects.Last() as UI.UIElement).enable = false;
+			tempObjects.Add(new UI.Text("Artur Mokrosinski", "planetary", new Vector2(0.1f, 0.2f), new Vector2(0.25f, 0.1f)));
+			authors.Add(tempObjects.Last() as UI.UIElement);
+			(tempObjects.Last() as UI.UIElement).enable = false;
 
-			objects.Add(new UI.Text("Maciej Nabialczyk", "planetary", new Vector2(0.1f, 0.25f), new Vector2(0.25f, 0.1f)));
-			authors.Add(objects.Last() as UI.UIElement);
-			(objects.Last() as UI.UIElement).enable = false;
+			tempObjects.Add(new UI.Text("Maciej Nabialczyk", "planetary", new Vector2(0.1f, 0.25f), new Vector2(0.25f, 0.1f)));
+			authors.Add(tempObjects.Last() as UI.UIElement);
+			(tempObjects.Last() as UI.UIElement).enable = false;
 
-			objects.Add(new UI.Text("Assets source:", "planetary", new Vector2(0.1f, 0.35f), new Vector2(0.25f, 0.1f)));
-			authors.Add(objects.Last() as UI.UIElement);
-			(objects.Last() as UI.UIElement).enable = false;
+			tempObjects.Add(new UI.Text("Assets source:", "planetary", new Vector2(0.1f, 0.35f), new Vector2(0.25f, 0.1f)));
+			authors.Add(tempObjects.Last() as UI.UIElement);
+			(tempObjects.Last() as UI.UIElement).enable = false;
 
-			objects.Add(new UI.Text("www.dafont.com/planetary-contact.font", "planetary", new Vector2(0.1f, 0.38f), new Vector2(0.25f, 0.1f)));
-			authors.Add(objects.Last() as UI.UIElement);
-			(objects.Last() as UI.UIElement).enable = false;
+			tempObjects.Add(new UI.Text("www.dafont.com/planetary-contact.font", "planetary", new Vector2(0.1f, 0.38f), new Vector2(0.25f, 0.1f)));
+			authors.Add(tempObjects.Last() as UI.UIElement);
+			(tempObjects.Last() as UI.UIElement).enable = false;
 
-			objects.Add(new UI.Text("Sound by Soundsnap", "planetary", new Vector2(0.1f, 0.41f), new Vector2(0.25f, 0.1f)));
-			authors.Add(objects.Last() as UI.UIElement);
-			(objects.Last() as UI.UIElement).enable = false;
+			tempObjects.Add(new UI.Text("Sound by Soundsnap", "planetary", new Vector2(0.1f, 0.41f), new Vector2(0.25f, 0.1f)));
+			authors.Add(tempObjects.Last() as UI.UIElement);
+			(tempObjects.Last() as UI.UIElement).enable = false;
+
+            foreach(var o in tempObjects)
+                GameManager.SpawnObject(o);
+
+            tempObjects.Clear();
 
 			RepairSpawns();
 
