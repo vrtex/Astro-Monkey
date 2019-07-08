@@ -129,13 +129,19 @@ namespace AstroMonkey.Assets.Scenes
 			(objects.Last() as UI.UIElement).enable = false;
 			(objects.Last() as Objects.TextButton).value = 10;
 
-			//++++++++++++++++++++++++++++++++++++++++++OPCJE++++++++++++++++++++++++++++++++++++++++++++++
+            objects.Add(new Objects.TextButton("End Animation", "planetary", new Vector2(0.1f, 0.7f), new Vector2(0.35f, 0.05f)));
+            (objects.Last() as Objects.TextButton).onClick += PlayGame;
+            loadGame.Add(objects.Last() as UI.UIElement);
+            (objects.Last() as UI.UIElement).enable = false;
+            (objects.Last() as Objects.TextButton).value = 11;
 
-			//(objects.Last() as Objects.TextButton).onClick += SetFullscreen;
+            //++++++++++++++++++++++++++++++++++++++++++OPCJE++++++++++++++++++++++++++++++++++++++++++++++
 
-			//(objects.Last() as UI.UIElement).enable = false;
+            //(objects.Last() as Objects.TextButton).onClick += SetFullscreen;
 
-			objects.Add(new Objects.TextButton("[ ] Fullscreen", "planetary", new Vector2(0.1f, 0.2f), new Vector2(0.32f, 0.05f)));
+            //(objects.Last() as UI.UIElement).enable = false;
+
+            objects.Add(new Objects.TextButton("[ ] Fullscreen", "planetary", new Vector2(0.1f, 0.2f), new Vector2(0.32f, 0.05f)));
 			(objects.Last() as Objects.TextButton).onClick += SetFullscreen;
 			settings.Add(objects.Last() as UI.UIElement);
 			(objects.Last() as UI.UIElement).enable = false;
@@ -278,7 +284,10 @@ namespace AstroMonkey.Assets.Scenes
 			{
 				GameManager.Instance.NextScene = "colliderroom";
 			}
-
+            else if (textButton.value == 11)
+            {
+                GameManager.Instance.NextScene = "ending";
+            }
         }
 
         void LoadGame(Objects.TextButton textButton)
