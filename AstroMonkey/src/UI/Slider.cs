@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Text;
 using AstroMonkey.Graphics;
 using AstroMonkey.Input;
@@ -13,6 +14,10 @@ namespace AstroMonkey.UI
         private const int SLIDER_INTERFACE_SIZE = 2;
         private const int SLIDER_WIDTH = 15;
         public float value;
+        private String text;
+
+        public delegate void SliderEvent(Slider slider);
+        public event SliderEvent onChange;
 
         private Color color = Util.Statics.Colors.WHITE_1;
         private Audio.AudioSource clickSFX;
@@ -21,17 +26,18 @@ namespace AstroMonkey.UI
 
         public Slider(Core.Transform _transform) : base(_transform)
         {
+            InputManager.Manager.OnMouseButtonReleased += ReleaseSlider;
+            Load();
+        }
 
-		}
-
-		public Slider(Vector2 anchorPosition, Vector2 anchorSize, float value) : this(new Core.Transform())
+        public Slider(Vector2 anchorPosition, Vector2 anchorSize, float value, String text) : this(new Core.Transform())
 		{
 			this.anchorPosition = anchorPosition;
 			this.anchorSize = anchorSize;
 			this.value = value;
+            this.text = text;
             AnchorToWorldspace(0.5f);
 
-            Load();
 
             drawSliderBackground();
         }
@@ -56,6 +62,7 @@ namespace AstroMonkey.UI
 
         public override void Draw(SpriteBatch spriteBatch, Vector2 centerPos)
         {
+            if (!enable) return;
             spriteBatch.DrawString(SpriteContainer.Instance.GetFont("planetary"), drawSlider(value), WorldspaceToScreenspace(centerPos), color);
         }
 
@@ -73,7 +80,7 @@ namespace AstroMonkey.UI
                 stringBuilder.Append('=');
             }
             stringBuilder.Append('>');
-
+            stringBuilder.Append("  " + text);
             sliderBackground = stringBuilder.ToString();
         }
 
@@ -95,9 +102,26 @@ namespace AstroMonkey.UI
 
         public override void OnClick()
         {
-            value = (InputManager.Manager.MouseCursor.X - position.X) / position.Width;
+            if(!enable) return;
+            InputManager.Manager.OnMouseMove += UpdateCursorPosition;
+            FollowCursor();
         }
 
+        private void FollowCursor()
+        {
+            value = (InputManager.Manager.MouseCursor.X - position.X) / 300;
+            value = MathHelper.Clamp(value, 0, 1);
+            if(value < 0.13f)
+                value = 0f;
+            onChange?.Invoke(this);
+        }
+
+        //public override void OnClick()
+        //{
+        //    if (!enable) return;
+        //    clickSFX.Play();
+        //    onClick?.Invoke(this);
+        //}
         public override void OnEnter()
         {
             color = Util.Statics.Colors.ORANGE;
@@ -107,5 +131,24 @@ namespace AstroMonkey.UI
         {
             color = Util.Statics.Colors.WHITE_1;
         }
-	}
+
+        private void ReleaseSlider(MouseInputEventArgs mouseArgs)
+        {
+            if(mouseArgs.Button != EMouseButton.Left)
+                return;
+            InputManager.Manager.OnMouseMove -= UpdateCursorPosition;
+        }
+
+        private void UpdateCursorPosition(MouseInputEventArgs mouseArgs)
+        {
+            FollowCursor();
+        }
+
+        public override void Destroy()
+        {
+            InputManager.Manager.OnMouseMove -= UpdateCursorPosition;
+            InputManager.Manager.OnMouseButtonReleased -= ReleaseSlider;
+            base.Destroy();
+        }
+    }
 }

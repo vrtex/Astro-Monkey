@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Input;
 using System.Collections.Generic;
 using System;
+using AstroMonkey.Assets.Objects;
 
 namespace AstroMonkey.Core
 {
@@ -11,7 +12,6 @@ namespace AstroMonkey.Core
         private Game CurrentGame;
         private List<GameObject> toSpawn = new List<GameObject>();
         private List<GameObject> toDestroy = new List<GameObject>();
-        private bool bongo = false;
         private String nextScene = null;
 		public String NextScene
 		{
@@ -25,11 +25,41 @@ namespace AstroMonkey.Core
 			}
 		}
 
+        private bool restart = false;
+
+        public Player.PlayerState? playerState = null;
+
         static GameManager()
         {
-            Input.ActionBinding bind = new Input.ActionBinding(Microsoft.Xna.Framework.Input.Keys.O);
-            bind.OnTrigger += swap;
-            Input.InputManager.Manager.AddActionBinding("ee", bind);
+            Input.ActionBinding pauseBinding = new Input.ActionBinding(Keys.Escape);
+            pauseBinding.OnTrigger += TogglePause;
+            Input.InputManager.Manager.AddActionBinding("pause", pauseBinding);
+
+
+            // Input.ActionBinding reloadBind = new Input.ActionBinding(Microsoft.Xna.Framework.Input.Keys.K);
+            // reloadBind.OnTrigger += ReloadBind_OnTrigger;
+            // Input.InputManager.Manager.AddActionBinding("aaa", reloadBind);
+        }
+
+        //private static void ReloadBind_OnTrigger()
+        //{
+        //    Instance.restart = true;
+        //}
+
+        private static void TogglePause()
+        {
+            Scene currScene = SceneManager.Instance.currScene;
+            bool paused = currScene.GetType() == typeof(Assets.Scenes.Pause);
+            if (paused)
+            {
+                SceneManager.Instance.Restore();
+            }
+            else if(currScene.GetType() != typeof(Assets.Scenes.MainMenu) &&
+                currScene.GetType() != typeof(Assets.Scenes.TheBegining) &&
+                currScene.GetType() != typeof(Assets.Scenes.TheEnd))
+            {
+                SceneManager.Instance.PauseScene();
+            }
         }
 
         public void InitializeGame(Game game, GraphicsDeviceManager graphics)
@@ -71,7 +101,7 @@ namespace AstroMonkey.Core
             gameObject.Destroy();
         }
 
-        private static void QueueDestroy(GameObject gameObject)
+        public static void QueueDestroy(GameObject gameObject)
         {
             lock(Instance.toDestroy)
             {
@@ -79,7 +109,15 @@ namespace AstroMonkey.Core
             }
         }
 
-		public Game GetGame()
+        public static void QueueSpawn(GameObject gameObject)
+        {
+            lock (Instance.toSpawn)
+            {
+                Instance.toSpawn.Add(gameObject);
+            }
+        }
+
+        public Game GetGame()
 		{
 			return CurrentGame;
 		}
@@ -141,23 +179,18 @@ namespace AstroMonkey.Core
             if(Instance.nextScene != null)
                 lock(Instance.nextScene)
                 {
+                    Player player = SceneManager.Instance.currScene?.GetObjectByClass<Player>();
+                    if(player != null)
+                        GameManager.Instance.playerState = player.GetPlayerState();
                     SceneManager.Instance.LoadScene(Instance.nextScene);
                     Instance.nextScene = null;
-                }
-        }
 
-        private static void swap()
-        {
-            Instance.nextScene = "";
-            lock(Instance.nextScene)
+                }
+            if (Instance.restart)
             {
-                Instance.nextScene = Instance.bongo ? "basement" : "devroom";
-                //if(!Instance.bongo)
-                //    SceneManager.Instance.LoadScene("basement");
-                //else
-                //    SceneManager.Instance.LoadScene("devroom");
+                SceneManager.Instance.ReloadCurrent();
+                Instance.restart = false;
             }
-            Instance.bongo = !Instance.bongo;
         }
     }
 }

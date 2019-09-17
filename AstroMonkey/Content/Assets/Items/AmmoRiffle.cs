@@ -1,7 +1,5 @@
 ﻿using System.Collections.Generic;
 using Microsoft.Xna.Framework;
-using System;
-using AstroMonkey.Physics.Collider;
 
 namespace AstroMonkey.Assets.Objects
 {
@@ -13,6 +11,7 @@ namespace AstroMonkey.Assets.Objects
 
         public AmmoRiffle(Core.Transform _transform) : base(_transform)
         {
+            ProjectileType = typeof(RifleBullet);
             Load(_transform);
         }
 
@@ -46,7 +45,10 @@ namespace AstroMonkey.Assets.Objects
                 true));
 
             GetComponent<Graphics.StackAnimator>().SetAnimation("Idle");
-        }
+
+			Count = 25;
+
+		}
     }
 }
 

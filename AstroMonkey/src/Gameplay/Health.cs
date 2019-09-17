@@ -1,4 +1,5 @@
 ﻿using AstroMonkey.Core;
+using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,14 +15,21 @@ namespace AstroMonkey.Gameplay
         public event DamageEvent OnDepleted;
 
 		private int maxHealth = 100;
-		private int health = 100;
+        private int currentValue = 100;
+		public int CurrentValue {
+            get => currentValue;
+            set
+            {
+                currentValue = MathHelper.Clamp(value, 0, MaxHealth);
+            }
+        }
 
         public int MaxHealth{
             get => maxHealth;
             set{
                 float percentage = GetPercentage();
                 maxHealth = value;
-                health = (int)(percentage * maxHealth);
+                CurrentValue = (int)(percentage * maxHealth);
             }
         }
 
@@ -30,23 +38,30 @@ namespace AstroMonkey.Gameplay
 
 		}
 
-		public void DeadDamage(DamageInfo damage)
+		public void DealDamage(DamageInfo damage)
 		{
-			health = health - damage.value;
-			if(health < 0) health = 0;
+			CurrentValue = CurrentValue - damage.value;
+			if(CurrentValue < 0) CurrentValue = 0;
 
             OnDamageTaken?.Invoke(this, damage);
-			
-			if(health == 0)
+
+			if(CurrentValue == 0)
 			{
                 OnDepleted?.Invoke(this, damage);
                 //Parent.Destroy();
 			}
 		}
 
+        public void Restore(int toRestore)
+        {
+            CurrentValue += toRestore;
+            CurrentValue = MathHelper.Clamp(CurrentValue, 0, maxHealth);
+            OnDamageTaken?.Invoke(this, new DamageInfo(null, -toRestore));
+        }
+
         public float GetPercentage()
         {
-            return MaxHealth == 0 ? 0f : (float)health / (float)MaxHealth;
+            return MaxHealth == 0 ? 0f : (float)CurrentValue / (float)MaxHealth;
         }
 	}
 }

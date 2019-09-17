@@ -5,62 +5,109 @@ using AstroMonkey.Physics;
 using AstroMonkey.Physics.Collider;
 using Microsoft.Xna.Framework.Graphics;
 using System.Diagnostics;
+using AstroMonkey.Gameplay;
+using AstroMonkey.Input;
+using AstroMonkey.Core;
 
 namespace AstroMonkey.Assets.Objects
 {
 
     class Player: Core.GameObject
     {
+        public struct PlayerState
+        {
+            public int health;
+            public List<ClipInfo> ammo;
+            public Type currentAmmoType;
+        }
+
         private int height = 21;
         private int size = 21;
 
 		private Audio.AudioSource walkSFX;
-		private Audio.AudioSource hitSFX;
+		public Audio.AudioSource hitSFX;
 		private Audio.AudioSource idleSFX;
 		private Audio.AudioSource gameoverSFX;
 
-		private Effect lightOff = null;
+        private Health healthComponent;
+        private InputComponent inputComponent;
 
-		public Player(): this(new Core.Transform())
+        UI.PlayerHUD hud;
+
+        private Effect HealthFx;
+
+
+        private Effect lightOff = null;
+
+		private Navigation.MovementComponent    movement = null;
+
+		public Player(): this(new Transform())
         {
         }
-        public Player(Core.Transform _transform): base(_transform)
+        public Player(Transform _transform): base(_transform)
         {
             Load(_transform);
         }
-        public Player(Vector2 position, Vector2 scale, float rotation = 0f): this(new Core.Transform(position, scale, rotation))
+        public Player(Vector2 position, Vector2 scale, float rotation = 0f): this(new Transform(position, scale, rotation))
         {
         }
-        public Player(Vector2 position): this(new Core.Transform(position, Vector2.One))
+        public Player(Vector2 position): this(new Transform(position, Vector2.One))
         {
         }
 
-        private void Load(Core.Transform _transform)
+        private void Load(Transform _transform)
         {
-
             // Physics
             AddComponent(new Body(this));
             AddComponent(new CircleCollider(this, CollisionChanell.Player, Vector2.Zero, size / 3));
 			//AddComponent(new CircleCollider(this, CollisionChanell.Hitbox, Vector2.Zero, size / 2));
 
 			walkSFX		= AddComponent(new Audio.AudioSource(this, Audio.SoundContainer.Instance.GetSoundEffect("MonkeyWalk")));
-			walkSFX.Pitch = 0.5f;
+			walkSFX.Pitch = 0.2f;
 			hitSFX		= AddComponent(new Audio.AudioSource(this, Audio.SoundContainer.Instance.GetSoundEffect("MonkeyHit")));
+			hitSFX.Pitch = 0.2f;
 			idleSFX		= AddComponent(new Audio.AudioSource(this, Audio.SoundContainer.Instance.GetSoundEffect("MonkeyIdle")));
+			idleSFX.Pitch = 0.2f;
 			gameoverSFX	= AddComponent(new Audio.AudioSource(this, Audio.SoundContainer.Instance.GetSoundEffect("GameOver")));
 
 			// Movement
-			Navigation.MovementComponent moveComp =  (Navigation.MovementComponent)AddComponent(new Navigation.MovementComponent(this));
+			movement = AddComponent(new Navigation.MovementComponent(this));
 
-			AddComponent(new Gameplay.Gun(this));
-            AddComponent(new Input.InputComponent(this));
+            PlayerState? state = Core.GameManager.Instance.playerState;
+            Console.WriteLine("loading player, state: " + state.HasValue);
+            Gun gun = AddComponent(new Gun(this));
+            if(state == null)
+            {
+                gun.AddAmmoClip(Gun.pistolClip.Copy());
+                gun.AddAmmoClip(Gun.rifleClip.Copy());
+                gun.AddAmmoClip(Gun.shotgunClip.Copy());
+                gun.AddAmmoClip(Gun.launcherClip.Copy());
+                gun.ChangeAmmo(typeof(PistolBullet));
+            }
+            else
+            {
+                foreach(ClipInfo clip in state.Value.ammo)
+                    gun.AddAmmoClip(clip.Copy());
 
+                gun.ChangeAmmo(state.Value.currentAmmoType);
+            }
+
+
+            inputComponent = AddComponent(new Input.InputComponent(this));
+
+            // Health
+            healthComponent = AddComponent(new Health(this));
+            healthComponent.MaxHealth = 200;
+            if(state.HasValue)
+                healthComponent.CurrentValue = state.Value.health;
+            healthComponent.OnDamageTaken += OnDamageTaken;
+            healthComponent.OnDepleted += OnDeath;
+
+            hud = Core.GameManager.SpawnObject(new UI.PlayerHUD(this));
 
             List<Rectangle> idle01 = new List<Rectangle>();
             for(int i = 0; i < height; ++i) idle01.Add(new Rectangle(i * size, 0, size, size));
             AddComponent(new Graphics.Sprite(this, "monkey", idle01));
-
-			AddComponent(new Gameplay.Health(this));
 
 			AddComponent(new Graphics.StackAnimator(this));
 
@@ -139,32 +186,106 @@ namespace AstroMonkey.Assets.Objects
             GetComponent<Graphics.StackAnimator>().SetAnimation("Hold");
 
 			lightOff = Graphics.EffectContainer.Instance.GetEffect("LightOff");
-		}
+
+			Audio.AudioManager.Instance.PlayerTransform = transform;
+
+            HealthFx = Graphics.EffectContainer.Instance.GetEffect("HealthFX");
+
+            Graphics.ViewManager.Instance.activeEffects.Add(HealthFx);
+
+            Graphics.ViewManager.Instance.activeEffects.Add(Graphics.EffectContainer.Instance.GetEffect("BloodScreen"));
+
+        }
+
+        private void OnDeath(Health damaged, DamageInfo damageInfo)
+        {
+            healthComponent.OnDepleted -= OnDeath;
+            gameoverSFX.Play();
+            PlayerDead corpse = new PlayerDead(new Transform(transform));
+            GameManager.SpawnObject(corpse);
+            Destroy();
+        }
+
+        private void OnDamageTaken(Health damaged, DamageInfo damageInfo)
+        {
+            //float val = damaged.GetPercentage();
+            //float a = val * 2;
+            //Graphics.EffectContainer.Instance.GetEffect("BloodScreen").Parameters["health"].SetValue(val);
+            
+            //Console.WriteLine(time);
+
+            if(damageInfo.value > 0)
+            {
+                double time = Game1.totalGameTime.TotalSeconds;
+                Graphics.EffectContainer.Instance.GetEffect("BloodScreen").Parameters["time"].SetValue((float)time);
+                hitSFX.Play();
+            }
+        }
 
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
 
-            Vector2 currVel = GetComponent<Navigation.MovementComponent>().CurrentVelocity;
-            if(Util.Statics.IsNearlyEqual(currVel.Length(), 0, 0.001))
-            {
-                GetComponent<Graphics.AnimatorContainer>().SetAnimation("Hold");
-				walkSFX.IsLooped = false;
+            HealthFx.Parameters["healthLeft"].SetValue((float)healthComponent.GetPercentage());
 
-			}
-            else
-            {
-                GetComponent<Graphics.AnimatorContainer>().SetAnimation("HoldWalk");
-				if(walkSFX.IsLooped == false)
-				{
-					walkSFX.IsLooped = true;
-					walkSFX.Play();
-				}
-			}
-            transform.rotation = (float)Math.PI * 0.5f + GetComponent<Navigation.MovementComponent>().CurrentDirection;
+            UpdateAnimation();
 
 			if(lightOff != null) lightOff.Parameters["angle"]?.SetValue(transform.rotation / ((float)Math.PI * 2));
 
 		}
+
+        private void UpdateAnimation()
+        {
+            //if(healthComponent.CurrentValue <= 0)
+            //{
+            //    GetComponent<Graphics.AnimatorContainer>().SetAnimation("Dead");
+            //    return;
+            //}
+
+            Vector2 currVel = movement.CurrentVelocity;
+            if(Util.Statics.IsNearlyEqual(currVel.Length(), 0, 0.001))
+            {
+                GetComponent<Graphics.AnimatorContainer>().SetAnimation("Hold");
+                walkSFX.IsLooped = false;
+            }
+            else
+            {
+                GetComponent<Graphics.AnimatorContainer>().SetAnimation("HoldWalk");
+                if(walkSFX.IsLooped == false)
+                {
+                    walkSFX.IsLooped = true;
+                    walkSFX.Play();
+                }
+                else
+                {
+                    walkSFX.RandPitch();
+                }
+            }
+        }
+
+        public PlayerState GetPlayerState()
+        {
+            return new PlayerState()
+            { health = GetComponent<Health>().CurrentValue, ammo = GetComponent<Gun>().GetClips(),
+                currentAmmoType =  GetComponent<Gun>().currentClip.GetAmmoInfo().type };
+        }
+
+        public override void Destroy()
+        {
+			Audio.AudioManager.Instance.PlayerTransform = null;
+
+            healthComponent.OnDepleted -= OnDeath;
+            healthComponent.OnDamageTaken -= OnDamageTaken;
+
+			walkSFX.Stop();
+			hitSFX.Stop();
+			idleSFX.Stop();
+			gameoverSFX.Stop();
+
+            Graphics.ViewManager.Instance.activeEffects.Remove(HealthFx);
+
+            hud.Destroy();
+            base.Destroy();
+        }
     }
 }

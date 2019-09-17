@@ -9,6 +9,9 @@ namespace AstroMonkey.Util
 {
     class Statics
     {
+        public static float musicVolume = 1f;
+        public static float soundVolume = 1f;
+
         public static bool IsNearlyEqual(float a, float b, float epsilon = 0.0001f)
         {
             return Math.Abs(a - b) < epsilon;
@@ -22,6 +25,16 @@ namespace AstroMonkey.Util
         public static bool IsNearlyEqual(Vector2 a, Vector2 b, float epsilon = 0.0001f)
         {
             return IsNearlyEqual(a.X, a.Y, epsilon) && IsNearlyEqual(a.X, a.Y, epsilon);
+        }
+
+        public static int Map(int x, int in_min, int in_max, int out_min, int out_max)
+        {
+            return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
+        }
+
+        public static float Map(float x, float in_min, float in_max, float out_min, float out_max)
+        {
+            return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
         }
 
         public struct Colors
@@ -126,5 +139,12 @@ namespace AstroMonkey.Util
 			}
 			return new Vector2(800, 600);
 		}
-    }
+
+		public static void Swap<T>(ref T obj1, ref T obj2)
+		{
+			T temp = obj1;
+			obj1 = obj2;
+			obj2 = temp;
+		}
+	}
 }

@@ -1,16 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using AstroMonkey.Core;
 using Microsoft.Xna.Framework;
+using System.Diagnostics;
 
 namespace AstroMonkey.Gameplay
 {
     class SuicideComponent : Component
     {
-        System.Timers.Timer timer;
+        public delegate void e();
+        public event e Elapsed;
+
+        private int timeLeft;
+        bool running = false;
 
         public SuicideComponent(GameObject parent) : base(parent)
         {
@@ -18,20 +19,36 @@ namespace AstroMonkey.Gameplay
 
         public override void Destroy()
         {
-            timer.Stop();
             base.Destroy();
         }
 
         public void Start(int millis)
         {
-            timer = new System.Timers.Timer((double)millis);
-            timer.Elapsed += Suicide;
-            timer.Start();
+            timeLeft = millis;
+            running = true;
         }
 
-        private void Suicide(object sender, System.Timers.ElapsedEventArgs e)
+        public override void Update(GameTime gameTime)
         {
-            Console.WriteLine("suicide");
+            base.Update(gameTime);
+            bool elapsed = Tick((int)gameTime.ElapsedGameTime.TotalMilliseconds);
+            if(elapsed)
+                Suicide();
+
+        }
+
+        private bool Tick(int millis)
+        {
+            if(!running)
+                return false;
+
+            timeLeft -= millis;
+            return millis <= 0;
+        }
+
+        private void Suicide()
+        {
+            Elapsed?.Invoke();
             GameManager.DestroyObject(parent);
         }
     }

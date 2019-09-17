@@ -1,4 +1,5 @@
-﻿using AstroMonkey.Physics;
+﻿using AstroMonkey.Core;
+using AstroMonkey.Physics;
 using AstroMonkey.Physics.Collider;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
@@ -9,7 +10,7 @@ namespace AstroMonkey.Assets.Objects
     class BaseProjectile: Core.GameObject
     {
         public Gameplay.DamageInfo Damage { get; set; }
-        Collider collider;
+        protected Collider collider;
 		public SoundEffectInstance shootSound;
         public float speed = 800f;
         public int baseDamage = 10;
@@ -17,10 +18,6 @@ namespace AstroMonkey.Assets.Objects
         public BaseProjectile(Core.Transform transform): base(transform)
         {
             collider = new CircleCollider(this, CollisionChanell.Bullets, Vector2.Zero, 3);
-
-            // loleh
-            collider.SetReaction(CollisionChanell.Enemy, ReactType.Overlap);
-            // collider.SetReaction(reactions);
 
             collider.OnBeginOverlap += OnHit;
             collider.OnBlockingCollision += OnBlockingHit;
@@ -33,7 +30,18 @@ namespace AstroMonkey.Assets.Objects
             // Damage = new Gameplay.DamageInfo(null, 10);
         }
 
-        private void OnBlockingHit(Collider thisCollider, Collider otherCollider)
+        public virtual void Start(Vector2 target, GameObject parent)
+        {
+            Vector2 direction = target - parent.transform.position;
+            direction.Normalize();
+
+            GetComponent<Navigation.ProjectileMovementComponent>().Direction = direction;
+            GetComponent<Navigation.ProjectileMovementComponent>().Velocity = speed;
+
+            Damage = new Gameplay.DamageInfo(parent, baseDamage);
+        }
+
+        protected virtual void OnBlockingHit(Collider thisCollider, Collider otherCollider)
         {
 			Destroy();
         }
@@ -42,7 +50,7 @@ namespace AstroMonkey.Assets.Objects
         {
             Gameplay.Health enemyHealth = otherCollider.Parent.GetComponent<Gameplay.Health>();
 			if(enemyHealth != null)
-				enemyHealth.DeadDamage(Damage);
+				enemyHealth.DealDamage(Damage);
 			else
 				return;
             Destroy();

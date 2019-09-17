@@ -20,6 +20,9 @@ namespace AstroMonkey.Graphics
             //interfejs
             images.Add("mark", game.Content.Load<Texture2D>(@"gfx/UI/HUD/mark"));
             images.Add("bar", game.Content.Load<Texture2D>(@"gfx/UI/HUD/bar"));
+			images.Add("bananabar", game.Content.Load<Texture2D>(@"gfx/UI/HUD/bananabar"));
+			images.Add("reloadTime", game.Content.Load<Texture2D>(@"gfx/UI/HUD/reloadTime"));
+			images.Add("gunIcons", game.Content.Load<Texture2D>(@"gfx/HUD/guns"));
 
             //efekty
             images.Add("poop", game.Content.Load<Texture2D>(@"gfx/Projectiles/Poop")); 
@@ -27,6 +30,8 @@ namespace AstroMonkey.Graphics
             images.Add("bulletHit", game.Content.Load<Texture2D>(@"gfx/Projectiles/BulletHit"));
             images.Add("alienBullet", game.Content.Load<Texture2D>(@"gfx/Projectiles/AlienBullet"));
 			images.Add("pistolBullet", game.Content.Load<Texture2D>(@"gfx/Projectiles/PistolBullet"));
+			images.Add("explosion", game.Content.Load<Texture2D>(@"gfx/Projectiles/Explosion"));
+			//images.Add("bloodScreen", game.Content.Load<Texture2D>(@"gfx/Projectiles/BloodScreen"));
 
 			//postacie
 			images.Add("monkey", game.Content.Load<Texture2D>(@"gfx/Characters/Player/monkey"));
@@ -39,7 +44,7 @@ namespace AstroMonkey.Graphics
             images.Add("floorCrate", game.Content.Load<Texture2D>(@"gfx/Map/Floor/FloorCrate"));
 
             //otoczenie
-            images.Add("wall", game.Content.Load<Texture2D>(@"gfx /Map/Objects/wall"));
+            images.Add("wall", game.Content.Load<Texture2D>(@"gfx/Map/Objects/wall"));
             images.Add("wallDoor", game.Content.Load<Texture2D>(@"gfx/Map/Objects/wallDoor"));
             images.Add("corner", game.Content.Load<Texture2D>(@"gfx/Map/Objects/corner"));
             images.Add("cornerPhillar", game.Content.Load<Texture2D>(@"gfx/Map/Objects/cornerPhillar"));
@@ -55,15 +60,24 @@ namespace AstroMonkey.Graphics
             images.Add("half-wall", game.Content.Load<Texture2D>(@"gfx/Map/Objects/half-wall"));
             images.Add("doorRight", game.Content.Load<Texture2D>(@"gfx/Map/Objects/DoorRight"));
             images.Add("doorLeft", game.Content.Load<Texture2D>(@"gfx/Map/Objects/DoorLeft"));
+			images.Add("wall02", game.Content.Load<Texture2D>(@"gfx/Map/Objects/wall02"));
+			images.Add("wall03", game.Content.Load<Texture2D>(@"gfx/Map/Objects/wall03"));
+			images.Add("wall04", game.Content.Load<Texture2D>(@"gfx/Map/Objects/wall04"));
+			images.Add("wall05", game.Content.Load<Texture2D>(@"gfx/Map/Objects/wall05"));
+			images.Add("wall06", game.Content.Load<Texture2D>(@"gfx/Map/Objects/wall06"));
+			images.Add("wall07", game.Content.Load<Texture2D>(@"gfx/Map/Objects/wall07"));
 
-            //interaktywne
-            images.Add("terminal", game.Content.Load<Texture2D>(@"gfx/Map/Interactable/terminal"));
+			//interaktywne
+			images.Add("terminal", game.Content.Load<Texture2D>(@"gfx/Map/Interactable/terminal"));
             images.Add("terminalOff", game.Content.Load<Texture2D>(@"gfx/Map/Interactable/terminalOff"));
             images.Add("buttonWall", game.Content.Load<Texture2D>(@"gfx/Map/Interactable/buttonWall"));
             images.Add("buttonClicked", game.Content.Load<Texture2D>(@"gfx/Map/Interactable/buttonClicked"));
 
-            //przedmioty
-            images.Add("banana", game.Content.Load<Texture2D>(@"gfx/Items/Banana"));
+			//nawigacja
+			images.Add("navigationPoint", game.Content.Load<Texture2D>(@"gfx/Map/Interactable/navPoint"));
+
+			//przedmioty
+			images.Add("banana", game.Content.Load<Texture2D>(@"gfx/Items/Banana"));
             images.Add("nut", game.Content.Load<Texture2D>(@"gfx/Items/Nut"));
             images.Add("ammoRiffle", game.Content.Load<Texture2D>(@"gfx/Items/AmmoRiffle"));
             images.Add("ammoGun", game.Content.Load<Texture2D>(@"gfx/Items/AmmoGun"));
@@ -72,6 +86,18 @@ namespace AstroMonkey.Graphics
             //fonty
             fonts.Add("text", game.Content.Load<SpriteFont>(@"spritefonts/text"));
 			fonts.Add("planetary", game.Content.Load<SpriteFont>(@"spritefonts/PlanetaryContact"));
+
+			//sceny
+			images.Add("scene1", game.Content.Load<Texture2D>(@"gfx/Scenes/scene01"));
+			images.Add("scene2", game.Content.Load<Texture2D>(@"gfx/Scenes/scene02"));
+			images.Add("scene3", game.Content.Load<Texture2D>(@"gfx/Scenes/scene03"));
+			images.Add("scene4", game.Content.Load<Texture2D>(@"gfx/Scenes/scene04"));
+			images.Add("scene5", game.Content.Load<Texture2D>(@"gfx/Scenes/scene05"));
+			images.Add("scene6", game.Content.Load<Texture2D>(@"gfx/Scenes/scene06"));
+			images.Add("scene7", game.Content.Load<Texture2D>(@"gfx/Scenes/scene07"));
+			images.Add("scene8", game.Content.Load<Texture2D>(@"gfx/Scenes/scene08"));
+			images.Add("scene9", game.Content.Load<Texture2D>(@"gfx/Scenes/scene09"));
+			images.Add("scene10", game.Content.Load<Texture2D>(@"gfx/Scenes/scene10"));
 		}
 
         public Texture2D GetImage(string name)

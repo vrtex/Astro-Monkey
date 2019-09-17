@@ -18,12 +18,13 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
     <DebugSymbols>true</DebugSymbols>
     <OutputPath>bin\$(MonoGamePlatform)\$(Platform)\$(Configuration)\</OutputPath>
-    <DefineConstants>DEBUG;TRACE;LINUX</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;LINUX NO_DRAW_COLLISIONS</DefineConstants>
     <DebugType>full</DebugType>
     <PlatformTarget>AnyCPU</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>
     <Prefer32Bit>false</Prefer32Bit>
     <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
     <OutputPath>bin\$(MonoGamePlatform)\$(Platform)\$(Configuration)\</OutputPath>
@@ -51,9 +52,19 @@
     <Compile Include="Content\Assets\Characters\Enemies\BaseAlien.cs" />
     <Compile Include="Content\Assets\Characters\Enemies\BaseAlienDead.cs" />
     <Compile Include="Content\Assets\Characters\Player\Player.cs" />
+    <Compile Include="Content\Assets\Characters\Player\PlayerDead.cs" />
     <Compile Include="Content\Assets\HUD\AmmoAmount.cs" />
     <Compile Include="Content\Assets\HUD\EnemyHealthBar.cs" />
     <Compile Include="Content\Assets\Items\BaseAmmo.cs" />
+    <Compile Include="Content\Assets\Map\Floor\FloorExit.cs" />
+    <Compile Include="Content\Assets\Map\Interactable\NavPoint.cs" />
+    <Compile Include="Content\Assets\Map\Objects\Door.cs" />
+    <Compile Include="Content\Assets\Map\Objects\Wall07.cs" />
+    <Compile Include="Content\Assets\Map\Objects\Wall06.cs" />
+    <Compile Include="Content\Assets\Map\Objects\Wall05.cs" />
+    <Compile Include="Content\Assets\Map\Objects\Wall04.cs" />
+    <Compile Include="Content\Assets\Map\Objects\Wall03.cs" />
+    <Compile Include="Content\Assets\Map\Objects\Wall02.cs" />
     <Compile Include="Content\Assets\Menu\MenuCenter.cs" />
     <Compile Include="Content\Assets\HUD\SimpleButton.cs" />
     <Compile Include="Content\Assets\Items\AmmoGun.cs" />
@@ -109,12 +120,27 @@
     <Compile Include="Content\Assets\Projectiles\BulletHit.cs" />
     <Compile Include="Content\Assets\Projectiles\PistolBullet.cs" />
     <Compile Include="Content\Assets\Projectiles\Poop.cs" />
+    <Compile Include="Content\Assets\Projectiles\RifleBullet.cs" />
     <Compile Include="Content\Assets\Projectiles\Rocket.cs" />
+    <Compile Include="Content\Assets\Projectiles\RocketExplosion.cs" />
+    <Compile Include="Content\Assets\Projectiles\ShotgunPellet.cs" />
+    <Compile Include="Content\Assets\Projectiles\ShotgunProjectile.cs" />
     <Compile Include="Content\Assets\Scenes\Basement.cs" />
     <Compile Include="Content\Assets\Scenes\ColliderRoom.cs" />
     <Compile Include="Content\Assets\Scenes\DevRoom.cs" />
     <Compile Include="Content\Assets\Scenes\Level1.cs" />
+    <Compile Include="Content\Assets\Scenes\Level2.cs" />
+    <Compile Include="Content\Assets\Scenes\Level3.cs" />
+    <Compile Include="Content\Assets\Scenes\Level4.cs" />
+    <Compile Include="Content\Assets\Scenes\Level5.cs" />
+    <Compile Include="Content\Assets\Scenes\Level6.cs" />
+    <Compile Include="Content\Assets\Scenes\Level7.cs" />
+    <Compile Include="Content\Assets\Scenes\Level8.cs" />
+    <Compile Include="Content\Assets\Scenes\Level9.cs" />
     <Compile Include="Content\Assets\Scenes\MainMenu.cs" />
+    <Compile Include="Content\Assets\Scenes\Pause.cs" />
+    <Compile Include="Content\Assets\Scenes\TheBegining.cs" />
+    <Compile Include="Content\Assets\Scenes\TheEnd.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -129,13 +155,23 @@
     <Compile Include="src\Core\Scene.cs" />
     <Compile Include="src\Core\SceneManager.cs" />
     <Compile Include="src\Core\Transform.cs" />
+    <Compile Include="src\Gameplay\AIAttack.cs" />
+    <Compile Include="src\Gameplay\AmmoClip.cs" />
     <Compile Include="src\Gameplay\DamageInfo.cs" />
+    <Compile Include="src\Gameplay\DoorTerminal.cs" />
     <Compile Include="src\Gameplay\Gun.cs" />
     <Compile Include="src\Gameplay\Health.cs" />
     <Compile Include="src\Gameplay\InteractComponent.cs" />
+    <Compile Include="src\Gameplay\ChangeLevel.cs" />
     <Compile Include="src\Gameplay\SuicideComponent.cs" />
     <Compile Include="src\Graphics\EffectContainer.cs" />
+    <Compile Include="src\Graphics\ProgressBarWidget.cs" />
+    <Compile Include="src\Graphics\TextWidget.cs" />
+    <Compile Include="src\Graphics\Widget.cs" />
+    <Compile Include="src\Graphics\WidgetManager.cs" />
     <Compile Include="src\Input\InputUI.cs" />
+    <Compile Include="src\Navigation\NavigationAgent.cs" />
+    <Compile Include="src\Navigation\Node.cs" />
     <Compile Include="src\Navigation\ProjectileMovementComponent.cs" />
     <Compile Include="src\Navigation\TeleportTo.cs" />
     <Compile Include="src\Physics\Body.cs" />
@@ -160,12 +196,15 @@
     <Compile Include="src\Graphics\SpriteContainer.cs" />
     <Compile Include="src\Physics\PhysicsManager.cs" />
     <Compile Include="src\Navigation\MovementComponent.cs" />
+    <Compile Include="src\UI\AmmoDisplay.cs" />
     <Compile Include="src\UI\HealthBar.cs" />
     <Compile Include="src\UI\Image.cs" />
+    <Compile Include="src\UI\PlayerHUD.cs" />
     <Compile Include="src\UI\Slider.cs" />
     <Compile Include="src\UI\Text.cs" />
     <Compile Include="src\UI\UIElement.cs" />
     <Compile Include="src\Util\Enums.cs" />
+    <Compile Include="src\Util\Heap.cs" />
     <Compile Include="src\Util\Rect.cs" />
     <Compile Include="src\Util\RNG.cs" />
     <Compile Include="src\Util\Statics.cs" />
@@ -234,6 +273,8 @@
     <Folder Include="Content\Map\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\effects\BloodScreen.fx" />
+    <Content Include="Content\effects\HealthFx.fx" />
     <Content Include="Content\effects\LightOff.fx" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

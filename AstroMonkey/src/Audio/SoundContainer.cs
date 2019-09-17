@@ -75,9 +75,10 @@ namespace AstroMonkey.Audio
 			sounds.Add("Alien03Idle", game.Content.Load<SoundEffect>(@"sfx/alien03/Alien03Idle"));
 			sounds.Add("Alien03Look", game.Content.Load<SoundEffect>(@"sfx/alien03/Alien03Look"));
 			sounds.Add("Alien03Walk", game.Content.Load<SoundEffect>(@"sfx/alien03/Alien03Walk"));
+            sounds.Add("Alien03Near", game.Content.Load<SoundEffect>(@"sfx/alien03/Alien03Look"));
 
-			//broń
-			sounds.Add("GunReload", game.Content.Load<SoundEffect>(@"sfx/guns/GunReload"));
+            //broń
+            sounds.Add("GunReload", game.Content.Load<SoundEffect>(@"sfx/guns/GunReload"));
 			sounds.Add("GunShoot", game.Content.Load<SoundEffect>(@"sfx/guns/GunShoot"));
 			sounds.Add("LuncherHit", game.Content.Load<SoundEffect>(@"sfx/guns/LuncherHit"));
 			sounds.Add("LuncherReload", game.Content.Load<SoundEffect>(@"sfx/guns/LuncherReload"));
@@ -101,7 +102,10 @@ namespace AstroMonkey.Audio
 			sounds.Add("MonkeyIdle", game.Content.Load<SoundEffect>(@"sfx/player/MonkeyIdle"));
 			sounds.Add("MonkeyHit", game.Content.Load<SoundEffect>(@"sfx/player/MonkeyHit"));
 			sounds.Add("GameOver", game.Content.Load<SoundEffect>(@"sfx/player/GameOver"));
-		}
+
+			//inne
+			sounds.Add("Computer", game.Content.Load<SoundEffect>(@"sfx/Computer"));
+        }
 
 		public void LoadMusic(Game game)
 		{
@@ -116,6 +120,6 @@ namespace AstroMonkey.Audio
 			songs.Add("05_02", game.Content.Load<Song>(@"sfx/background/05 - Interstellar_Spacedrone"));
 			songs.Add("06", game.Content.Load<Song>(@"sfx/background/06 - amb_doomdrones_amorph_stahlwand"));
 			songs.Add("menu", game.Content.Load<Song>(@"sfx/background/menu - Sound design synth bed pad sweeper ambient 01_SFXBible_ss00421"));
-		}
-	}
+        }
+    }
 }

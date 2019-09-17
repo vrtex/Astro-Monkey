@@ -29,12 +29,12 @@ namespace AstroMonkey.Assets.Objects
         {
             base.Load(transform);
 
+			healthComponent.MaxHealth = 70;
+			movement.Speed = 220f;
+
             List<Rectangle> idle01 = new List<Rectangle>();
             for(int i = 0; i < height; ++i) idle01.Add(new Rectangle(i * size, 0, size, size));
             AddComponent(new Graphics.Sprite(this, "alien01", idle01));
-
-            AddComponent(new Graphics.StackAnimator(this));
-
 
 
             //STANIE
@@ -66,7 +66,7 @@ namespace AstroMonkey.Assets.Objects
                 new Graphics.StackAnimation("Attack",
                 GetComponent<Graphics.Sprite>(),
                 new List<List<Rectangle>> { idle01, attack01 },
-                266,
+                166,
                 true));
 
             GetComponent<Graphics.StackAnimator>().SetAnimation("Idle");
@@ -76,6 +76,14 @@ namespace AstroMonkey.Assets.Objects
 			hitSFX = AddComponent(new Audio.AudioSource(this, Audio.SoundContainer.Instance.GetSoundEffect("Alien01Hit")));
 			idleSFX = AddComponent(new Audio.AudioSource(this, Audio.SoundContainer.Instance.GetSoundEffect("Alien01Idle")));
 			lookSFX = AddComponent(new Audio.AudioSource(this, Audio.SoundContainer.Instance.GetSoundEffect("Alien01Look")));
+			attackSFX = AddComponent(new Audio.AudioSource(this, Audio.SoundContainer.Instance.GetSoundEffect("Alien01Attack")));
+			nearSFX = AddComponent(new Audio.AudioSource(this, Audio.SoundContainer.Instance.GetSoundEffect("Alien01Near")));
+			walkSFX.Pitch = 0.2f;
+			hitSFX.Pitch = 0.2f;
+			idleSFX.Pitch = 0.2f;
+			lookSFX.Pitch = 0.2f;
+			attackSFX.Pitch = 0.2f;
+			nearSFX.Pitch = 0.2f;
 
 			//ustawianie zwłok kosmity
 			corp = typeof(Alien01Dead);

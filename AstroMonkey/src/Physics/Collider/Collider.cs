@@ -14,7 +14,7 @@ namespace AstroMonkey.Physics.Collider
         private Dictionary<CollisionChanell, ReactType> reaction;
         private Vector2 relativePosition;
         protected float scale;
-
+		
         private bool temp;
 
         public delegate void ColliderEvent(Collider thisCollider, Collider otherCollider);
@@ -24,7 +24,9 @@ namespace AstroMonkey.Physics.Collider
 
         public List<Collider> collisons = new List<Collider>();
 
-        public Collider(
+		public bool isActive = true;
+
+		public Collider(
             GameObject gameObject,
             CollisionChanell collisionChanell = CollisionChanell.Object,
             Vector2 relativePosition = new Vector2(),
@@ -189,7 +191,7 @@ namespace AstroMonkey.Physics.Collider
                     reaction.Add(CollisionChanell.Item, ReactType.Overlap);
                     reaction.Add(CollisionChanell.Object, ReactType.Block);
                     reaction.Add(CollisionChanell.Hitbox, ReactType.Ignore);
-                    reaction.Add(CollisionChanell.Bullets, ReactType.Ignore);
+                    reaction.Add(CollisionChanell.Bullets, ReactType.Overlap);
                     reaction.Add(CollisionChanell.InteractPlayer, ReactType.Overlap);
                     reaction.Add(CollisionChanell.InteractBullet, ReactType.Ignore);
                     break;
@@ -235,11 +237,11 @@ namespace AstroMonkey.Physics.Collider
                     break;
                 case CollisionChanell.Bullets:
                     reaction.Add(CollisionChanell.Player, ReactType.Ignore);
-                    reaction.Add(CollisionChanell.Enemy, ReactType.Ignore);
+                    reaction.Add(CollisionChanell.Enemy, ReactType.Overlap);
                     reaction.Add(CollisionChanell.Item, ReactType.Ignore);
                     reaction.Add(CollisionChanell.Object, ReactType.Block);
                     reaction.Add(CollisionChanell.Hitbox, ReactType.Block);
-                    reaction.Add(CollisionChanell.Bullets, ReactType.Block);
+                    reaction.Add(CollisionChanell.Bullets, ReactType.Ignore);
                     reaction.Add(CollisionChanell.InteractPlayer, ReactType.Ignore);
                     reaction.Add(CollisionChanell.InteractBullet, ReactType.Ignore);
                     break;
