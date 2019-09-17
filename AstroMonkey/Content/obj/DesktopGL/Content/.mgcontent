@@ -4,100 +4,126 @@
   <Platform>DesktopGL</Platform>
   <Config />
   <SourceFiles>
-    <File>D:/P/PG2D/AstroMonkey/AstroMonkey/Content/effects/LightOff.fx</File>
-    <File>D:/P/PG2D/AstroMonkey/AstroMonkey/Content/gfx/Characters/Enemies/Alien01.png</File>
-    <File>D:/P/PG2D/AstroMonkey/AstroMonkey/Content/gfx/Characters/Enemies/Alien02.png</File>
-    <File>D:/P/PG2D/AstroMonkey/AstroMonkey/Content/gfx/Characters/Enemies/Alien03.png</File>
-    <File>D:/P/PG2D/AstroMonkey/AstroMonkey/Content/gfx/Characters/Player/monkey.png</File>
-    <File>D:/P/PG2D/AstroMonkey/AstroMonkey/Content/gfx/Items/AmmoGun.png</File>
-    <File>D:/P/PG2D/AstroMonkey/AstroMonkey/Content/gfx/Items/AmmoLuncher.png</File>
-    <File>D:/P/PG2D/AstroMonkey/AstroMonkey/Content/gfx/Items/AmmoRiffle.png</File>
-    <File>D:/P/PG2D/AstroMonkey/AstroMonkey/Content/gfx/Items/Banana.png</File>
-    <File>D:/P/PG2D/AstroMonkey/AstroMonkey/Content/gfx/Items/Nut.png</File>
-    <File>D:/P/PG2D/AstroMonkey/AstroMonkey/Content/gfx/Map/Floor/FloorCrate.png</File>
-    <File>D:/P/PG2D/AstroMonkey/AstroMonkey/Content/gfx/Map/Floor/FloorPlatform.png</File>
-    <File>D:/P/PG2D/AstroMonkey/AstroMonkey/Content/gfx/Map/Interactable/buttonClicked.png</File>
-    <File>D:/P/PG2D/AstroMonkey/AstroMonkey/Content/gfx/Map/Interactable/buttonWall.png</File>
-    <File>D:/P/PG2D/AstroMonkey/AstroMonkey/Content/gfx/Map/Interactable/terminal.png</File>
-    <File>D:/P/PG2D/AstroMonkey/AstroMonkey/Content/gfx/Map/Interactable/terminalOff.png</File>
-    <File>D:/P/PG2D/AstroMonkey/AstroMonkey/Content/gfx/Map/Objects/armchair.png</File>
-    <File>D:/P/PG2D/AstroMonkey/AstroMonkey/Content/gfx/Map/Objects/case.png</File>
-    <File>D:/P/PG2D/AstroMonkey/AstroMonkey/Content/gfx/Map/Objects/caseCaffe.png</File>
-    <File>D:/P/PG2D/AstroMonkey/AstroMonkey/Content/gfx/Map/Objects/caseMicrowave.png</File>
-    <File>D:/P/PG2D/AstroMonkey/AstroMonkey/Content/gfx/Map/Objects/cockpit.png</File>
-    <File>D:/P/PG2D/AstroMonkey/AstroMonkey/Content/gfx/Map/Objects/column.png</File>
-    <File>D:/P/PG2D/AstroMonkey/AstroMonkey/Content/gfx/Map/Objects/corner.png</File>
-    <File>D:/P/PG2D/AstroMonkey/AstroMonkey/Content/gfx/Map/Objects/cornerPhillar.png</File>
-    <File>D:/P/PG2D/AstroMonkey/AstroMonkey/Content/gfx/Map/Objects/doorLeft.png</File>
-    <File>D:/P/PG2D/AstroMonkey/AstroMonkey/Content/gfx/Map/Objects/doorRight.png</File>
-    <File>D:/P/PG2D/AstroMonkey/AstroMonkey/Content/gfx/Map/Objects/fridge.png</File>
-    <File>D:/P/PG2D/AstroMonkey/AstroMonkey/Content/gfx/Map/Objects/half-wall.png</File>
-    <File>D:/P/PG2D/AstroMonkey/AstroMonkey/Content/gfx/Map/Objects/neonSign.png</File>
-    <File>D:/P/PG2D/AstroMonkey/AstroMonkey/Content/gfx/Map/Objects/table.png</File>
-    <File>D:/P/PG2D/AstroMonkey/AstroMonkey/Content/gfx/Map/Objects/wall.png</File>
-    <File>D:/P/PG2D/AstroMonkey/AstroMonkey/Content/gfx/Map/Objects/wallDoor.png</File>
-    <File>D:/P/PG2D/AstroMonkey/AstroMonkey/Content/gfx/Projectiles/AlienBullet.png</File>
-    <File>D:/P/PG2D/AstroMonkey/AstroMonkey/Content/gfx/Projectiles/BulletHit.png</File>
-    <File>D:/P/PG2D/AstroMonkey/AstroMonkey/Content/gfx/Projectiles/PistolBullet.png</File>
-    <File>D:/P/PG2D/AstroMonkey/AstroMonkey/Content/gfx/Projectiles/Poop.png</File>
-    <File>D:/P/PG2D/AstroMonkey/AstroMonkey/Content/gfx/Projectiles/Rocket.png</File>
-    <File>D:/P/PG2D/AstroMonkey/AstroMonkey/Content/gfx/UI/HUD/bar.png</File>
-    <File>D:/P/PG2D/AstroMonkey/AstroMonkey/Content/gfx/UI/HUD/mark.png</File>
-    <File>D:/P/PG2D/AstroMonkey/AstroMonkey/Content/sfx/alien01/Alien01Attack.mp3</File>
-    <File>D:/P/PG2D/AstroMonkey/AstroMonkey/Content/sfx/alien01/Alien01Dead.mp3</File>
-    <File>D:/P/PG2D/AstroMonkey/AstroMonkey/Content/sfx/alien01/Alien01Hit.mp3</File>
-    <File>D:/P/PG2D/AstroMonkey/AstroMonkey/Content/sfx/alien01/Alien01Idle.mp3</File>
-    <File>D:/P/PG2D/AstroMonkey/AstroMonkey/Content/sfx/alien01/Alien01Look.mp3</File>
-    <File>D:/P/PG2D/AstroMonkey/AstroMonkey/Content/sfx/alien01/Alien01Near.mp3</File>
-    <File>D:/P/PG2D/AstroMonkey/AstroMonkey/Content/sfx/alien01/Alien01Near02.mp3</File>
-    <File>D:/P/PG2D/AstroMonkey/AstroMonkey/Content/sfx/alien01/Alien01Walk.mp3</File>
-    <File>D:/P/PG2D/AstroMonkey/AstroMonkey/Content/sfx/alien02/Alien02Attack.mp3</File>
-    <File>D:/P/PG2D/AstroMonkey/AstroMonkey/Content/sfx/alien02/Alien02Dead.mp3</File>
-    <File>D:/P/PG2D/AstroMonkey/AstroMonkey/Content/sfx/alien02/Alien02Hit.mp3</File>
-    <File>D:/P/PG2D/AstroMonkey/AstroMonkey/Content/sfx/alien02/Alien02Idle.mp3</File>
-    <File>D:/P/PG2D/AstroMonkey/AstroMonkey/Content/sfx/alien02/Alien02Look.mp3</File>
-    <File>D:/P/PG2D/AstroMonkey/AstroMonkey/Content/sfx/alien02/Alien02Near.mp3</File>
-    <File>D:/P/PG2D/AstroMonkey/AstroMonkey/Content/sfx/alien02/Alien02Walk.mp3</File>
-    <File>D:/P/PG2D/AstroMonkey/AstroMonkey/Content/sfx/alien03/Alien03Attack.mp3</File>
-    <File>D:/P/PG2D/AstroMonkey/AstroMonkey/Content/sfx/alien03/Alien03Dead.mp3</File>
-    <File>D:/P/PG2D/AstroMonkey/AstroMonkey/Content/sfx/alien03/Alien03Hit.mp3</File>
-    <File>D:/P/PG2D/AstroMonkey/AstroMonkey/Content/sfx/alien03/Alien03Idle.mp3</File>
-    <File>D:/P/PG2D/AstroMonkey/AstroMonkey/Content/sfx/alien03/Alien03Look.mp3</File>
-    <File>D:/P/PG2D/AstroMonkey/AstroMonkey/Content/sfx/alien03/Alien03Walk.mp3</File>
-    <File>D:/P/PG2D/AstroMonkey/AstroMonkey/Content/sfx/background/01 - Sound design sweeper bed filter swells ambient 01_SFXBible_ss00411.mp3</File>
-    <File>D:/P/PG2D/AstroMonkey/AstroMonkey/Content/sfx/background/02 - Dark_SciFi_Drone_Mixed_080.mp3</File>
-    <File>D:/P/PG2D/AstroMonkey/AstroMonkey/Content/sfx/background/02 - Dark_SciFi_Drone_Mixed_083_V2.mp3</File>
-    <File>D:/P/PG2D/AstroMonkey/AstroMonkey/Content/sfx/background/02 - Spaceship Passageway.mp3</File>
-    <File>D:/P/PG2D/AstroMonkey/AstroMonkey/Content/sfx/background/03 - SCIENCE FICTION DRONE ADVANCED TECHNOLOGY HUM 01.mp3</File>
-    <File>D:/P/PG2D/AstroMonkey/AstroMonkey/Content/sfx/background/03 - SCIENCE FICTION DRONE DARK BLIPS 01.mp3</File>
-    <File>D:/P/PG2D/AstroMonkey/AstroMonkey/Content/sfx/background/04 - HORROR DRONE DARK AIR 01.mp3</File>
-    <File>D:/P/PG2D/AstroMonkey/AstroMonkey/Content/sfx/background/05 - Crab Nebula.mp3</File>
-    <File>D:/P/PG2D/AstroMonkey/AstroMonkey/Content/sfx/background/05 - Interstellar_Spacedrone.mp3</File>
-    <File>D:/P/PG2D/AstroMonkey/AstroMonkey/Content/sfx/background/06 - amb_doomdrones_amorph_stahlwand.mp3</File>
-    <File>D:/P/PG2D/AstroMonkey/AstroMonkey/Content/sfx/background/menu - Sound design synth bed pad sweeper ambient 01_SFXBible_ss00421.mp3</File>
-    <File>D:/P/PG2D/AstroMonkey/AstroMonkey/Content/sfx/bottle_pop_2.wav</File>
-    <File>D:/P/PG2D/AstroMonkey/AstroMonkey/Content/sfx/guns/GunReload.mp3</File>
-    <File>D:/P/PG2D/AstroMonkey/AstroMonkey/Content/sfx/guns/GunShoot.mp3</File>
-    <File>D:/P/PG2D/AstroMonkey/AstroMonkey/Content/sfx/guns/LuncherHit.mp3</File>
-    <File>D:/P/PG2D/AstroMonkey/AstroMonkey/Content/sfx/guns/LuncherReload.mp3</File>
-    <File>D:/P/PG2D/AstroMonkey/AstroMonkey/Content/sfx/guns/LuncherShoot.mp3</File>
-    <File>D:/P/PG2D/AstroMonkey/AstroMonkey/Content/sfx/guns/PistolReload.mp3</File>
-    <File>D:/P/PG2D/AstroMonkey/AstroMonkey/Content/sfx/guns/PistolShoot.mp3</File>
-    <File>D:/P/PG2D/AstroMonkey/AstroMonkey/Content/sfx/guns/PopHit.mp3</File>
-    <File>D:/P/PG2D/AstroMonkey/AstroMonkey/Content/sfx/guns/PopReload.mp3</File>
-    <File>D:/P/PG2D/AstroMonkey/AstroMonkey/Content/sfx/guns/RifleReload.mp3</File>
-    <File>D:/P/PG2D/AstroMonkey/AstroMonkey/Content/sfx/guns/RifleShoot.mp3</File>
-    <File>D:/P/PG2D/AstroMonkey/AstroMonkey/Content/sfx/menu/MenuClick.mp3</File>
-    <File>D:/P/PG2D/AstroMonkey/AstroMonkey/Content/sfx/menu/MenuHover.mp3</File>
-    <File>D:/P/PG2D/AstroMonkey/AstroMonkey/Content/sfx/player/GameOver.mp3</File>
-    <File>D:/P/PG2D/AstroMonkey/AstroMonkey/Content/sfx/player/MonkeyHit.mp3</File>
-    <File>D:/P/PG2D/AstroMonkey/AstroMonkey/Content/sfx/player/MonkeyIdle.mp3</File>
-    <File>D:/P/PG2D/AstroMonkey/AstroMonkey/Content/sfx/player/MonkeyIdle02.mp3</File>
-    <File>D:/P/PG2D/AstroMonkey/AstroMonkey/Content/sfx/player/MonkeyLook.mp3</File>
-    <File>D:/P/PG2D/AstroMonkey/AstroMonkey/Content/sfx/player/MonkeyWalk.mp3</File>
-    <File>D:/P/PG2D/AstroMonkey/AstroMonkey/Content/sfx/player/MonkeyWalk02.mp3</File>
-    <File>D:/P/PG2D/AstroMonkey/AstroMonkey/Content/spritefonts/PlanetaryContact.spritefont</File>
-    <File>D:/P/PG2D/AstroMonkey/AstroMonkey/Content/spritefonts/text.spritefont</File>
+    <File>F:/Politechnika/Semestr6/ProgramowanieGier2D/AM/AstroMonkey/Content/effects/BloodScreen.fx</File>
+    <File>F:/Politechnika/Semestr6/ProgramowanieGier2D/AM/AstroMonkey/Content/effects/HealthFx.fx</File>
+    <File>F:/Politechnika/Semestr6/ProgramowanieGier2D/AM/AstroMonkey/Content/effects/LightOff.fx</File>
+    <File>F:/Politechnika/Semestr6/ProgramowanieGier2D/AM/AstroMonkey/Content/gfx/Characters/Enemies/Alien01.png</File>
+    <File>F:/Politechnika/Semestr6/ProgramowanieGier2D/AM/AstroMonkey/Content/gfx/Characters/Enemies/Alien02.png</File>
+    <File>F:/Politechnika/Semestr6/ProgramowanieGier2D/AM/AstroMonkey/Content/gfx/Characters/Enemies/Alien03.png</File>
+    <File>F:/Politechnika/Semestr6/ProgramowanieGier2D/AM/AstroMonkey/Content/gfx/Characters/Player/monkey.png</File>
+    <File>F:/Politechnika/Semestr6/ProgramowanieGier2D/AM/AstroMonkey/Content/gfx/HUD/guns.png</File>
+    <File>F:/Politechnika/Semestr6/ProgramowanieGier2D/AM/AstroMonkey/Content/gfx/Items/AmmoGun.png</File>
+    <File>F:/Politechnika/Semestr6/ProgramowanieGier2D/AM/AstroMonkey/Content/gfx/Items/AmmoLuncher.png</File>
+    <File>F:/Politechnika/Semestr6/ProgramowanieGier2D/AM/AstroMonkey/Content/gfx/Items/AmmoRiffle.png</File>
+    <File>F:/Politechnika/Semestr6/ProgramowanieGier2D/AM/AstroMonkey/Content/gfx/Items/Banana.png</File>
+    <File>F:/Politechnika/Semestr6/ProgramowanieGier2D/AM/AstroMonkey/Content/gfx/Items/Nut.png</File>
+    <File>F:/Politechnika/Semestr6/ProgramowanieGier2D/AM/AstroMonkey/Content/gfx/Map/Floor/FloorCrate.png</File>
+    <File>F:/Politechnika/Semestr6/ProgramowanieGier2D/AM/AstroMonkey/Content/gfx/Map/Floor/FloorPlatform.png</File>
+    <File>F:/Politechnika/Semestr6/ProgramowanieGier2D/AM/AstroMonkey/Content/gfx/Map/Interactable/buttonClicked.png</File>
+    <File>F:/Politechnika/Semestr6/ProgramowanieGier2D/AM/AstroMonkey/Content/gfx/Map/Interactable/buttonWall.png</File>
+    <File>F:/Politechnika/Semestr6/ProgramowanieGier2D/AM/AstroMonkey/Content/gfx/Map/Interactable/navPoint.png</File>
+    <File>F:/Politechnika/Semestr6/ProgramowanieGier2D/AM/AstroMonkey/Content/gfx/Map/Interactable/terminal.png</File>
+    <File>F:/Politechnika/Semestr6/ProgramowanieGier2D/AM/AstroMonkey/Content/gfx/Map/Interactable/terminalOff.png</File>
+    <File>F:/Politechnika/Semestr6/ProgramowanieGier2D/AM/AstroMonkey/Content/gfx/Map/Objects/armchair.png</File>
+    <File>F:/Politechnika/Semestr6/ProgramowanieGier2D/AM/AstroMonkey/Content/gfx/Map/Objects/case.png</File>
+    <File>F:/Politechnika/Semestr6/ProgramowanieGier2D/AM/AstroMonkey/Content/gfx/Map/Objects/caseCaffe.png</File>
+    <File>F:/Politechnika/Semestr6/ProgramowanieGier2D/AM/AstroMonkey/Content/gfx/Map/Objects/caseMicrowave.png</File>
+    <File>F:/Politechnika/Semestr6/ProgramowanieGier2D/AM/AstroMonkey/Content/gfx/Map/Objects/cockpit.png</File>
+    <File>F:/Politechnika/Semestr6/ProgramowanieGier2D/AM/AstroMonkey/Content/gfx/Map/Objects/column.png</File>
+    <File>F:/Politechnika/Semestr6/ProgramowanieGier2D/AM/AstroMonkey/Content/gfx/Map/Objects/corner.png</File>
+    <File>F:/Politechnika/Semestr6/ProgramowanieGier2D/AM/AstroMonkey/Content/gfx/Map/Objects/cornerPhillar.png</File>
+    <File>F:/Politechnika/Semestr6/ProgramowanieGier2D/AM/AstroMonkey/Content/gfx/Map/Objects/doorLeft.png</File>
+    <File>F:/Politechnika/Semestr6/ProgramowanieGier2D/AM/AstroMonkey/Content/gfx/Map/Objects/doorRight.png</File>
+    <File>F:/Politechnika/Semestr6/ProgramowanieGier2D/AM/AstroMonkey/Content/gfx/Map/Objects/fridge.png</File>
+    <File>F:/Politechnika/Semestr6/ProgramowanieGier2D/AM/AstroMonkey/Content/gfx/Map/Objects/half-wall.png</File>
+    <File>F:/Politechnika/Semestr6/ProgramowanieGier2D/AM/AstroMonkey/Content/gfx/Map/Objects/neonSign.png</File>
+    <File>F:/Politechnika/Semestr6/ProgramowanieGier2D/AM/AstroMonkey/Content/gfx/Map/Objects/table.png</File>
+    <File>F:/Politechnika/Semestr6/ProgramowanieGier2D/AM/AstroMonkey/Content/gfx/Map/Objects/wall.png</File>
+    <File>F:/Politechnika/Semestr6/ProgramowanieGier2D/AM/AstroMonkey/Content/gfx/Map/Objects/wall02.png</File>
+    <File>F:/Politechnika/Semestr6/ProgramowanieGier2D/AM/AstroMonkey/Content/gfx/Map/Objects/wall03.png</File>
+    <File>F:/Politechnika/Semestr6/ProgramowanieGier2D/AM/AstroMonkey/Content/gfx/Map/Objects/wall04.png</File>
+    <File>F:/Politechnika/Semestr6/ProgramowanieGier2D/AM/AstroMonkey/Content/gfx/Map/Objects/wall05.png</File>
+    <File>F:/Politechnika/Semestr6/ProgramowanieGier2D/AM/AstroMonkey/Content/gfx/Map/Objects/wall06.png</File>
+    <File>F:/Politechnika/Semestr6/ProgramowanieGier2D/AM/AstroMonkey/Content/gfx/Map/Objects/wall07.png</File>
+    <File>F:/Politechnika/Semestr6/ProgramowanieGier2D/AM/AstroMonkey/Content/gfx/Map/Objects/wallDoor.png</File>
+    <File>F:/Politechnika/Semestr6/ProgramowanieGier2D/AM/AstroMonkey/Content/gfx/Projectiles/AlienBullet.png</File>
+    <File>F:/Politechnika/Semestr6/ProgramowanieGier2D/AM/AstroMonkey/Content/gfx/Projectiles/BloodScreen.png</File>
+    <File>F:/Politechnika/Semestr6/ProgramowanieGier2D/AM/AstroMonkey/Content/gfx/Projectiles/boom.png</File>
+    <File>F:/Politechnika/Semestr6/ProgramowanieGier2D/AM/AstroMonkey/Content/gfx/Projectiles/BulletHit.png</File>
+    <File>F:/Politechnika/Semestr6/ProgramowanieGier2D/AM/AstroMonkey/Content/gfx/Projectiles/Explosion.png</File>
+    <File>F:/Politechnika/Semestr6/ProgramowanieGier2D/AM/AstroMonkey/Content/gfx/Projectiles/PistolBullet.png</File>
+    <File>F:/Politechnika/Semestr6/ProgramowanieGier2D/AM/AstroMonkey/Content/gfx/Projectiles/Poop.png</File>
+    <File>F:/Politechnika/Semestr6/ProgramowanieGier2D/AM/AstroMonkey/Content/gfx/Projectiles/Rocket.png</File>
+    <File>F:/Politechnika/Semestr6/ProgramowanieGier2D/AM/AstroMonkey/Content/gfx/Scenes/scene01.png</File>
+    <File>F:/Politechnika/Semestr6/ProgramowanieGier2D/AM/AstroMonkey/Content/gfx/Scenes/scene02.png</File>
+    <File>F:/Politechnika/Semestr6/ProgramowanieGier2D/AM/AstroMonkey/Content/gfx/Scenes/scene03.png</File>
+    <File>F:/Politechnika/Semestr6/ProgramowanieGier2D/AM/AstroMonkey/Content/gfx/Scenes/scene04.png</File>
+    <File>F:/Politechnika/Semestr6/ProgramowanieGier2D/AM/AstroMonkey/Content/gfx/Scenes/scene05.png</File>
+    <File>F:/Politechnika/Semestr6/ProgramowanieGier2D/AM/AstroMonkey/Content/gfx/Scenes/scene06.png</File>
+    <File>F:/Politechnika/Semestr6/ProgramowanieGier2D/AM/AstroMonkey/Content/gfx/Scenes/scene07.png</File>
+    <File>F:/Politechnika/Semestr6/ProgramowanieGier2D/AM/AstroMonkey/Content/gfx/Scenes/scene08.png</File>
+    <File>F:/Politechnika/Semestr6/ProgramowanieGier2D/AM/AstroMonkey/Content/gfx/Scenes/scene09.png</File>
+    <File>F:/Politechnika/Semestr6/ProgramowanieGier2D/AM/AstroMonkey/Content/gfx/Scenes/scene10.png</File>
+    <File>F:/Politechnika/Semestr6/ProgramowanieGier2D/AM/AstroMonkey/Content/gfx/UI/HUD/bananabar.png</File>
+    <File>F:/Politechnika/Semestr6/ProgramowanieGier2D/AM/AstroMonkey/Content/gfx/UI/HUD/bar.png</File>
+    <File>F:/Politechnika/Semestr6/ProgramowanieGier2D/AM/AstroMonkey/Content/gfx/UI/HUD/mark.png</File>
+    <File>F:/Politechnika/Semestr6/ProgramowanieGier2D/AM/AstroMonkey/Content/gfx/UI/HUD/reloadTime.png</File>
+    <File>F:/Politechnika/Semestr6/ProgramowanieGier2D/AM/AstroMonkey/Content/sfx/alien01/Alien01Attack.mp3</File>
+    <File>F:/Politechnika/Semestr6/ProgramowanieGier2D/AM/AstroMonkey/Content/sfx/alien01/Alien01Dead.mp3</File>
+    <File>F:/Politechnika/Semestr6/ProgramowanieGier2D/AM/AstroMonkey/Content/sfx/alien01/Alien01Hit.mp3</File>
+    <File>F:/Politechnika/Semestr6/ProgramowanieGier2D/AM/AstroMonkey/Content/sfx/alien01/Alien01Idle.mp3</File>
+    <File>F:/Politechnika/Semestr6/ProgramowanieGier2D/AM/AstroMonkey/Content/sfx/alien01/Alien01Look.mp3</File>
+    <File>F:/Politechnika/Semestr6/ProgramowanieGier2D/AM/AstroMonkey/Content/sfx/alien01/Alien01Near.mp3</File>
+    <File>F:/Politechnika/Semestr6/ProgramowanieGier2D/AM/AstroMonkey/Content/sfx/alien01/Alien01Near02.mp3</File>
+    <File>F:/Politechnika/Semestr6/ProgramowanieGier2D/AM/AstroMonkey/Content/sfx/alien01/Alien01Walk.mp3</File>
+    <File>F:/Politechnika/Semestr6/ProgramowanieGier2D/AM/AstroMonkey/Content/sfx/alien02/Alien02Attack.mp3</File>
+    <File>F:/Politechnika/Semestr6/ProgramowanieGier2D/AM/AstroMonkey/Content/sfx/alien02/Alien02Dead.mp3</File>
+    <File>F:/Politechnika/Semestr6/ProgramowanieGier2D/AM/AstroMonkey/Content/sfx/alien02/Alien02Hit.mp3</File>
+    <File>F:/Politechnika/Semestr6/ProgramowanieGier2D/AM/AstroMonkey/Content/sfx/alien02/Alien02Idle.mp3</File>
+    <File>F:/Politechnika/Semestr6/ProgramowanieGier2D/AM/AstroMonkey/Content/sfx/alien02/Alien02Look.mp3</File>
+    <File>F:/Politechnika/Semestr6/ProgramowanieGier2D/AM/AstroMonkey/Content/sfx/alien02/Alien02Near.mp3</File>
+    <File>F:/Politechnika/Semestr6/ProgramowanieGier2D/AM/AstroMonkey/Content/sfx/alien02/Alien02Walk.mp3</File>
+    <File>F:/Politechnika/Semestr6/ProgramowanieGier2D/AM/AstroMonkey/Content/sfx/alien03/Alien03Attack.mp3</File>
+    <File>F:/Politechnika/Semestr6/ProgramowanieGier2D/AM/AstroMonkey/Content/sfx/alien03/Alien03Dead.mp3</File>
+    <File>F:/Politechnika/Semestr6/ProgramowanieGier2D/AM/AstroMonkey/Content/sfx/alien03/Alien03Hit.mp3</File>
+    <File>F:/Politechnika/Semestr6/ProgramowanieGier2D/AM/AstroMonkey/Content/sfx/alien03/Alien03Idle.mp3</File>
+    <File>F:/Politechnika/Semestr6/ProgramowanieGier2D/AM/AstroMonkey/Content/sfx/alien03/Alien03Look.mp3</File>
+    <File>F:/Politechnika/Semestr6/ProgramowanieGier2D/AM/AstroMonkey/Content/sfx/alien03/Alien03Walk.mp3</File>
+    <File>F:/Politechnika/Semestr6/ProgramowanieGier2D/AM/AstroMonkey/Content/sfx/background/01 - Sound design sweeper bed filter swells ambient 01_SFXBible_ss00411.mp3</File>
+    <File>F:/Politechnika/Semestr6/ProgramowanieGier2D/AM/AstroMonkey/Content/sfx/background/02 - Dark_SciFi_Drone_Mixed_080.mp3</File>
+    <File>F:/Politechnika/Semestr6/ProgramowanieGier2D/AM/AstroMonkey/Content/sfx/background/02 - Dark_SciFi_Drone_Mixed_083_V2.mp3</File>
+    <File>F:/Politechnika/Semestr6/ProgramowanieGier2D/AM/AstroMonkey/Content/sfx/background/02 - Spaceship Passageway.mp3</File>
+    <File>F:/Politechnika/Semestr6/ProgramowanieGier2D/AM/AstroMonkey/Content/sfx/background/03 - SCIENCE FICTION DRONE ADVANCED TECHNOLOGY HUM 01.mp3</File>
+    <File>F:/Politechnika/Semestr6/ProgramowanieGier2D/AM/AstroMonkey/Content/sfx/background/03 - SCIENCE FICTION DRONE DARK BLIPS 01.mp3</File>
+    <File>F:/Politechnika/Semestr6/ProgramowanieGier2D/AM/AstroMonkey/Content/sfx/background/04 - HORROR DRONE DARK AIR 01.mp3</File>
+    <File>F:/Politechnika/Semestr6/ProgramowanieGier2D/AM/AstroMonkey/Content/sfx/background/05 - Crab Nebula.mp3</File>
+    <File>F:/Politechnika/Semestr6/ProgramowanieGier2D/AM/AstroMonkey/Content/sfx/background/05 - Interstellar_Spacedrone.mp3</File>
+    <File>F:/Politechnika/Semestr6/ProgramowanieGier2D/AM/AstroMonkey/Content/sfx/background/06 - amb_doomdrones_amorph_stahlwand.mp3</File>
+    <File>F:/Politechnika/Semestr6/ProgramowanieGier2D/AM/AstroMonkey/Content/sfx/background/menu - Sound design synth bed pad sweeper ambient 01_SFXBible_ss00421.mp3</File>
+    <File>F:/Politechnika/Semestr6/ProgramowanieGier2D/AM/AstroMonkey/Content/sfx/bottle_pop_2.wav</File>
+    <File>F:/Politechnika/Semestr6/ProgramowanieGier2D/AM/AstroMonkey/Content/sfx/Computer.mp3</File>
+    <File>F:/Politechnika/Semestr6/ProgramowanieGier2D/AM/AstroMonkey/Content/sfx/guns/GunReload.mp3</File>
+    <File>F:/Politechnika/Semestr6/ProgramowanieGier2D/AM/AstroMonkey/Content/sfx/guns/GunShoot.mp3</File>
+    <File>F:/Politechnika/Semestr6/ProgramowanieGier2D/AM/AstroMonkey/Content/sfx/guns/LuncherHit.mp3</File>
+    <File>F:/Politechnika/Semestr6/ProgramowanieGier2D/AM/AstroMonkey/Content/sfx/guns/LuncherReload.mp3</File>
+    <File>F:/Politechnika/Semestr6/ProgramowanieGier2D/AM/AstroMonkey/Content/sfx/guns/LuncherShoot.mp3</File>
+    <File>F:/Politechnika/Semestr6/ProgramowanieGier2D/AM/AstroMonkey/Content/sfx/guns/PistolReload.mp3</File>
+    <File>F:/Politechnika/Semestr6/ProgramowanieGier2D/AM/AstroMonkey/Content/sfx/guns/PistolShoot.mp3</File>
+    <File>F:/Politechnika/Semestr6/ProgramowanieGier2D/AM/AstroMonkey/Content/sfx/guns/PopHit.mp3</File>
+    <File>F:/Politechnika/Semestr6/ProgramowanieGier2D/AM/AstroMonkey/Content/sfx/guns/PopReload.mp3</File>
+    <File>F:/Politechnika/Semestr6/ProgramowanieGier2D/AM/AstroMonkey/Content/sfx/guns/RifleReload.mp3</File>
+    <File>F:/Politechnika/Semestr6/ProgramowanieGier2D/AM/AstroMonkey/Content/sfx/guns/RifleShoot.mp3</File>
+    <File>F:/Politechnika/Semestr6/ProgramowanieGier2D/AM/AstroMonkey/Content/sfx/menu/MenuClick.mp3</File>
+    <File>F:/Politechnika/Semestr6/ProgramowanieGier2D/AM/AstroMonkey/Content/sfx/menu/MenuHover.mp3</File>
+    <File>F:/Politechnika/Semestr6/ProgramowanieGier2D/AM/AstroMonkey/Content/sfx/player/GameOver.mp3</File>
+    <File>F:/Politechnika/Semestr6/ProgramowanieGier2D/AM/AstroMonkey/Content/sfx/player/MonkeyHit.mp3</File>
+    <File>F:/Politechnika/Semestr6/ProgramowanieGier2D/AM/AstroMonkey/Content/sfx/player/MonkeyIdle.mp3</File>
+    <File>F:/Politechnika/Semestr6/ProgramowanieGier2D/AM/AstroMonkey/Content/sfx/player/MonkeyIdle02.mp3</File>
+    <File>F:/Politechnika/Semestr6/ProgramowanieGier2D/AM/AstroMonkey/Content/sfx/player/MonkeyLook.mp3</File>
+    <File>F:/Politechnika/Semestr6/ProgramowanieGier2D/AM/AstroMonkey/Content/sfx/player/MonkeyWalk.mp3</File>
+    <File>F:/Politechnika/Semestr6/ProgramowanieGier2D/AM/AstroMonkey/Content/sfx/player/MonkeyWalk02.mp3</File>
+    <File>F:/Politechnika/Semestr6/ProgramowanieGier2D/AM/AstroMonkey/Content/spritefonts/PlanetaryContact.spritefont</File>
+    <File>F:/Politechnika/Semestr6/ProgramowanieGier2D/AM/AstroMonkey/Content/spritefonts/text.spritefont</File>
   </SourceFiles>
   <DestFiles>
     <File xsi:nil="true" />
@@ -171,7 +197,33 @@
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
     <File>sfx/test_sound.wav</File>
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
